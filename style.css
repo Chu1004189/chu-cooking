@@ -351,16 +351,17 @@ html.skip-opening .opening{
 
 .hero-visual{
   position:absolute;
-  width:min(56vw,690px);
-  height:min(56vw,690px);
-  right:1%;
+  width:min(58vw,720px);
+  height:min(58vw,720px);
+  left:50%;
   top:50%;
-  transform:translateY(-50%);
+  transform:translate(-50%,-50%);
   border-radius:50%;
   overflow:hidden;
   border:12px solid #fff;
   box-shadow:20px 25px 0 var(--yellow);
-  z-index:2;
+  z-index:1;
+  opacity:.95;
 }
 
 .hero-visual img{
