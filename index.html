@@ -6,10 +6,12 @@
 
 <title>CHU dot COOKING</title>
 
+<meta name="description" content="CHU dot COOKING">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
 
@@ -17,261 +19,204 @@
    BASE
 ========================================================= */
 
-:root {
-  --black: #0b0908;
-  --black-soft: #12100e;
-  --orange: #e56b2f;
-  --orange-light: #ff9458;
-  --orange-dark: #9d3f18;
-  --cream: #f2e8dc;
-  --gray: #9d958d;
-  --line: rgba(229,107,47,.22);
+:root{
+  --black:#0b0a09;
+  --black2:#11100e;
+  --orange:#e85d04;
+  --orange2:#f26a1b;
+  --orange3:#ff8a3d;
+  --cream:#f4eee6;
+  --white:#fffaf4;
+  --gray:#a59d94;
+  --line:rgba(255,255,255,.10);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-html {
-  scroll-behavior: smooth;
+html{
+  scroll-behavior:smooth;
 }
 
-body {
-  background: var(--black);
-  color: var(--cream);
-  font-family: "Inter", "Noto Sans JP", sans-serif;
-  overflow-x: hidden;
+body{
+  background:var(--black);
+  color:var(--cream);
+  font-family:"DM Sans","Noto Sans JP",sans-serif;
+  overflow-x:hidden;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+body.lock{
+  overflow:hidden;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
 }
 
 button,
-input {
-  font-family: inherit;
+input{
+  font:inherit;
+}
+
+button{
+  border:0;
+  cursor:pointer;
 }
 
 
 /* =========================================================
-   OPENING
+   LOADING / OPENING
 ========================================================= */
 
-#opening {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background:
-    radial-gradient(circle at 50% 50%,
-      rgba(229,107,47,.12),
-      transparent 35%),
-    #080706;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
-
-  animation: openingHide 1.1s ease 4.4s forwards;
+.opening{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:#080706;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
 }
 
-.opening-glow {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-
-  border-radius: 50%;
-
-  background: rgba(229,107,47,.18);
-  filter: blur(100px);
-
-  transform: scale(.2);
-  opacity: 0;
-
-  animation:
-    glowIn 1.8s cubic-bezier(.16,1,.3,1) .2s forwards,
-    glowPulse 2.2s ease 1.8s infinite alternate;
-}
-
-.opening-ring {
-  position: absolute;
-
-  width: 240px;
-  height: 240px;
-
-  border: 1px solid rgba(229,107,47,.45);
-  border-radius: 50%;
-
-  opacity: 0;
-  transform: scale(.3);
-
-  animation:
-    ringIn 1.4s cubic-bezier(.16,1,.3,1) .5s forwards,
-    ringRotate 6s linear 1.9s infinite;
-}
-
-.opening-ring::after {
-  content: "";
-
-  position: absolute;
-  inset: 18px;
-
-  border: 1px solid rgba(255,148,88,.18);
-  border-radius: 50%;
-}
-
-.opening-logo {
-  position: relative;
-  z-index: 3;
-
-  width: 150px;
-  max-width: 34vw;
-  height: auto;
-
-  opacity: 0;
-  transform: scale(.72) translateY(12px);
-
-  filter:
-    brightness(0)
-    invert(1)
-    drop-shadow(0 0 25px rgba(229,107,47,.25));
-
-  animation:
-    logoReveal 1.2s cubic-bezier(.16,1,.3,1) .85s forwards,
-    logoSettle 1s ease 2.25s forwards;
-}
-
-.opening-line {
-  position: absolute;
-  left: 50%;
-
-  width: 1px;
-  height: 90px;
-
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    var(--orange),
-    transparent
+.opening::before{
+  content:"";
+  position:absolute;
+  width:80vw;
+  height:80vw;
+  max-width:900px;
+  max-height:900px;
+  border-radius:50%;
+  background:radial-gradient(
+    circle,
+    rgba(232,93,4,.22) 0%,
+    rgba(232,93,4,.08) 35%,
+    transparent 70%
   );
-
-  transform: translateX(-50%) scaleY(0);
-  transform-origin: center;
-
-  opacity: 0;
-
-  animation: lineReveal 1.2s ease 1.4s forwards;
+  transform:scale(.4);
+  opacity:0;
+  animation:openingGlow 2.5s ease forwards;
 }
 
-.opening-name {
-  position: absolute;
-  bottom: 12%;
-
-  text-align: center;
-
-  opacity: 0;
-  transform: translateY(25px);
-
-  animation: nameReveal 1.1s cubic-bezier(.16,1,.3,1) 2.1s forwards;
+.opening::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(232,93,4,.12) 50%,
+      transparent 100%
+    );
+  transform:translateX(-100%);
+  animation:openingSweep 1.8s ease .3s forwards;
 }
 
-.opening-name-small {
-  display: block;
-
-  margin-bottom: 10px;
-
-  color: var(--orange-light);
-
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: .42em;
+.opening-logo{
+  position:relative;
+  z-index:3;
+  width:min(240px,42vw);
+  opacity:0;
+  transform:scale(.88);
+  animation:
+    logoAppear 1.1s cubic-bezier(.16,1,.3,1) .3s forwards,
+    logoFloat 2s ease-in-out 1.3s infinite;
+  filter:brightness(0) invert(1);
 }
 
-.opening-name-main {
-  display: block;
-
-  font-family: "DM Serif Display", serif;
-
-  font-size: clamp(24px, 4vw, 42px);
-  letter-spacing: .08em;
+.opening-line{
+  position:absolute;
+  z-index:2;
+  width:0;
+  height:1px;
+  background:var(--orange);
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  animation:openingLine 1.4s cubic-bezier(.77,0,.18,1) .55s forwards;
 }
 
-.opening-name-main span {
-  color: var(--orange);
+.opening-text{
+  position:absolute;
+  bottom:10%;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:3;
+  color:rgba(255,255,255,.55);
+  font-size:10px;
+  letter-spacing:.45em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  opacity:0;
+  animation:fadeUp .8s ease 1.1s forwards;
 }
 
+.opening.hide{
+  animation:openingOut .9s cubic-bezier(.77,0,.18,1) forwards;
+}
 
-/* =========================================================
-   OPENING ANIMATION
-========================================================= */
+@keyframes openingGlow{
+  0%{transform:scale(.4);opacity:0}
+  40%{opacity:1}
+  100%{transform:scale(1);opacity:.8}
+}
 
-@keyframes glowIn {
-  to {
-    opacity: 1;
-    transform: scale(1);
+@keyframes openingSweep{
+  0%{transform:translateX(-100%)}
+  100%{transform:translateX(100%)}
+}
+
+@keyframes logoAppear{
+  0%{
+    opacity:0;
+    transform:scale(.82);
+    filter:brightness(0) invert(1) blur(8px);
+  }
+  60%{
+    opacity:1;
+    filter:brightness(0) invert(1) blur(0);
+  }
+  100%{
+    opacity:1;
+    transform:scale(1);
   }
 }
 
-@keyframes glowPulse {
-  from {
-    transform: scale(1);
-  }
+@keyframes logoFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-5px)}
+}
 
-  to {
-    transform: scale(1.15);
-    opacity: .65;
+@keyframes openingLine{
+  0%{width:0}
+  100%{width:75vw}
+}
+
+@keyframes openingOut{
+  0%{
+    opacity:1;
+    transform:translateY(0);
+  }
+  100%{
+    opacity:0;
+    transform:translateY(-100%);
+    visibility:hidden;
   }
 }
 
-@keyframes ringIn {
-  to {
-    opacity: 1;
-    transform: scale(1);
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translate(-50%,20px);
   }
-}
-
-@keyframes ringRotate {
-  to {
-    transform: scale(1) rotate(360deg);
-  }
-}
-
-@keyframes logoReveal {
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-@keyframes logoSettle {
-  to {
-    transform: scale(.88);
-  }
-}
-
-@keyframes lineReveal {
-  to {
-    opacity: 1;
-    transform: translateX(-50%) scaleY(1);
-  }
-}
-
-@keyframes nameReveal {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes openingHide {
-  to {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+  to{
+    opacity:1;
+    transform:translate(-50%,0);
   }
 }
 
@@ -280,77 +225,75 @@ input {
    HEADER
 ========================================================= */
 
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-
-  z-index: 100;
-
-  padding: 28px 5vw;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  background: linear-gradient(
-    to bottom,
-    rgba(11,9,8,.9),
-    transparent
-  );
-
-  transition: .3s;
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  padding:26px 5vw;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:.4s ease;
 }
 
-.logo-text {
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: .22em;
+header.scrolled{
+  padding:16px 5vw;
+  background:rgba(11,10,9,.88);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
 }
 
-.logo-text span {
-  color: var(--orange);
+.logo-small{
+  font-family:"Cormorant Garamond",serif;
+  font-size:25px;
+  font-weight:600;
+  letter-spacing:.08em;
 }
 
-nav {
-  display: flex;
-  gap: 35px;
+.logo-small span{
+  color:var(--orange2);
 }
 
-nav a {
-  position: relative;
-
-  color: rgba(242,232,220,.72);
-
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .2em;
-
-  transition: .3s;
+nav{
+  display:flex;
+  gap:35px;
+  align-items:center;
 }
 
-nav a::after {
-  content: "";
-
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-
-  width: 0;
-  height: 1px;
-
-  background: var(--orange);
-
-  transition: .3s;
+nav a{
+  position:relative;
+  font-size:11px;
+  letter-spacing:.2em;
+  color:rgba(255,255,255,.65);
+  transition:.3s;
 }
 
-nav a:hover {
-  color: white;
+nav a::after{
+  content:"";
+  position:absolute;
+  bottom:-7px;
+  left:0;
+  width:0;
+  height:1px;
+  background:var(--orange2);
+  transition:.3s;
 }
 
-nav a:hover::after {
-  width: 100%;
+nav a:hover{
+  color:white;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+.menu-btn{
+  display:none;
+  background:none;
+  color:white;
+  font-size:24px;
 }
 
 
@@ -358,218 +301,174 @@ nav a:hover::after {
    HERO
 ========================================================= */
 
-.hero {
-  min-height: 100vh;
-
-  position: relative;
-
-  display: flex;
-  align-items: center;
-
-  padding: 150px 8vw 100px;
-
-  overflow: hidden;
-
-  background:
-    radial-gradient(
-      circle at 75% 40%,
-      rgba(229,107,47,.14),
-      transparent 30%
-    ),
-    linear-gradient(
-      120deg,
-      #0b0908 0%,
-      #100d0b 60%,
-      #1a0e09 100%
-    );
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:150px 8vw 100px;
+  overflow:hidden;
 }
 
-.hero::before {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  opacity: .06;
-
-  background-image:
-    linear-gradient(
-      rgba(255,255,255,.5) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.5) 1px,
-      transparent 1px
-    );
-
-  background-size: 70px 70px;
-
-  mask-image: linear-gradient(
-    to right,
-    black,
-    transparent
+.hero::before{
+  content:"";
+  position:absolute;
+  width:700px;
+  height:700px;
+  right:-300px;
+  top:-200px;
+  border-radius:50%;
+  background:radial-gradient(
+    circle,
+    rgba(232,93,4,.25),
+    transparent 65%
   );
 }
 
-.hero::after {
-  content: "";
-
-  position: absolute;
-
-  width: 600px;
-  height: 600px;
-
-  right: -250px;
-  bottom: -300px;
-
-  border-radius: 50%;
-
-  border: 1px solid rgba(229,107,47,.18);
-  box-shadow:
-    0 0 0 80px rgba(229,107,47,.025),
-    0 0 0 160px rgba(229,107,47,.015);
+.hero::after{
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  left:-300px;
+  bottom:-300px;
+  border-radius:50%;
+  background:radial-gradient(
+    circle,
+    rgba(232,93,4,.12),
+    transparent 65%
+  );
 }
 
-.hero-content {
-  position: relative;
-  z-index: 2;
-
-  max-width: 1000px;
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:1100px;
 }
 
-.hero-kicker {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-
-  margin-bottom: 35px;
-
-  color: var(--orange-light);
-
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: .35em;
-
-  animation: heroUp .9s ease 4.7s both;
+.hero-kicker{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  color:var(--orange3);
+  font-size:10px;
+  letter-spacing:.38em;
+  text-transform:uppercase;
+  margin-bottom:30px;
+  opacity:0;
+  animation:heroIn .9s ease 2.9s forwards;
 }
 
-.hero-kicker::before {
-  content: "";
-
-  width: 45px;
-  height: 1px;
-
-  background: var(--orange);
+.hero-kicker::before{
+  content:"";
+  width:38px;
+  height:1px;
+  background:var(--orange);
 }
 
-.hero-title {
-  font-family: "DM Serif Display", serif;
-
-  font-size: clamp(64px, 10vw, 150px);
-
-  font-weight: 400;
-  line-height: .87;
-
-  letter-spacing: -.045em;
-
-  max-width: 1100px;
-
-  animation: heroUp 1s cubic-bezier(.16,1,.3,1) 4.8s both;
+.hero-title{
+  font-family:"Cormorant Garamond",serif;
+  font-weight:500;
+  line-height:.86;
+  letter-spacing:-.045em;
+  font-size:clamp(70px,11vw,165px);
+  text-transform:uppercase;
+  opacity:0;
+  animation:heroIn 1.2s cubic-bezier(.16,1,.3,1) 3s forwards;
 }
 
-.hero-title .line-one {
-  display: block;
+.hero-title .line{
+  display:block;
 }
 
-.hero-title .line-two {
-  display: block;
-
-  margin-left: 9vw;
-
-  color: var(--orange);
+.hero-title .accent{
+  color:var(--orange2);
+  margin-left:8vw;
 }
 
-.hero-sub {
-  margin-top: 45px;
-  margin-left: 10vw;
-
-  max-width: 480px;
-
-  font-size: 12px;
-  line-height: 2;
-
-  color: rgba(242,232,220,.52);
-
-  animation: heroUp 1s ease 5s both;
+.hero-sub{
+  margin-top:45px;
+  margin-left:8vw;
+  font-size:13px;
+  line-height:1.8;
+  color:rgba(255,255,255,.48);
+  letter-spacing:.08em;
+  opacity:0;
+  animation:heroIn .9s ease 3.2s forwards;
 }
 
-@keyframes heroUp {
-  from {
-    opacity: 0;
-    transform: translateY(35px);
+.hero-scroll{
+  position:absolute;
+  right:6vw;
+  bottom:55px;
+  z-index:3;
+  writing-mode:vertical-rl;
+  font-size:9px;
+  letter-spacing:.35em;
+  color:rgba(255,255,255,.4);
+}
+
+.hero-scroll::before{
+  content:"";
+  display:block;
+  width:1px;
+  height:60px;
+  background:linear-gradient(
+    to bottom,
+    transparent,
+    var(--orange)
+  );
+  margin:auto auto 15px;
+}
+
+@keyframes heroIn{
+  from{
+    opacity:0;
+    transform:translateY(35px);
   }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  to{
+    opacity:1;
+    transform:translateY(0);
   }
-}
-
-.hero-number {
-  position: absolute;
-
-  right: 6vw;
-  bottom: 7vh;
-
-  writing-mode: vertical-rl;
-
-  color: rgba(229,107,47,.55);
-
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: .35em;
-
-  animation: heroUp 1s ease 5.2s both;
 }
 
 
 /* =========================================================
-   SECTION COMMON
+   COMMON
 ========================================================= */
 
-.section {
-  padding: 130px 7vw;
+.section{
+  padding:130px 7vw;
+  position:relative;
 }
 
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-
-  margin-bottom: 60px;
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-bottom:60px;
 }
 
-.section-title {
-  font-family: "DM Serif Display", serif;
-
-  font-size: clamp(42px, 6vw, 78px);
-  font-weight: 400;
-
-  line-height: .9;
+.section-label{
+  font-size:10px;
+  letter-spacing:.35em;
+  color:var(--orange2);
+  text-transform:uppercase;
+  margin-bottom:12px;
 }
 
-.section-title span {
-  color: var(--orange);
+.section-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(45px,6vw,82px);
+  line-height:.9;
+  font-weight:500;
+  letter-spacing:-.03em;
 }
 
-.section-label {
-  color: var(--orange);
-
-  font-size: 9px;
-  font-weight: 800;
-
-  letter-spacing: .35em;
+.section-number{
+  color:rgba(255,255,255,.2);
+  font-family:"Cormorant Garamond",serif;
+  font-size:18px;
 }
 
 
@@ -577,82 +476,62 @@ nav a:hover::after {
    SEARCH
 ========================================================= */
 
-.search-area {
-  padding: 100px 7vw 40px;
-
-  background:
-    linear-gradient(
-      180deg,
-      #0b0908,
-      #100d0b
-    );
+.search-area{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:35px 0;
+  display:flex;
+  gap:30px;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:75px;
 }
 
-.search-box {
-  max-width: 700px;
-
-  position: relative;
+.search-box{
+  flex:1;
+  position:relative;
 }
 
-.search-box input {
-  width: 100%;
-
-  padding: 20px 0;
-
-  border: none;
-  border-bottom: 1px solid rgba(242,232,220,.25);
-
-  outline: none;
-
-  background: transparent;
-
-  color: white;
-
-  font-size: 18px;
-
-  transition: .3s;
+.search-box input{
+  width:100%;
+  background:none;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.2);
+  padding:15px 0;
+  color:white;
+  outline:none;
+  font-size:16px;
 }
 
-.search-box input:focus {
-  border-color: var(--orange);
+.search-box input::placeholder{
+  color:rgba(255,255,255,.3);
 }
 
-.search-box input::placeholder {
-  color: rgba(242,232,220,.28);
+.search-box input:focus{
+  border-color:var(--orange);
 }
 
-.categories {
-  display: flex;
-  flex-wrap: wrap;
-
-  gap: 10px;
-
-  margin-top: 25px;
+.categories{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
 }
 
-.category-btn {
-  padding: 9px 18px;
-
-  border: 1px solid rgba(242,232,220,.15);
-  border-radius: 100px;
-
-  background: transparent;
-
-  color: rgba(242,232,220,.6);
-
-  font-size: 10px;
-  letter-spacing: .08em;
-
-  cursor: pointer;
-
-  transition: .3s;
+.category-btn{
+  background:rgba(255,255,255,.04);
+  color:rgba(255,255,255,.6);
+  padding:10px 18px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:30px;
+  font-size:11px;
+  transition:.3s;
 }
 
 .category-btn:hover,
-.category-btn.active {
-  border-color: var(--orange);
-  background: var(--orange);
-  color: #120a06;
+.category-btn.active{
+  background:var(--orange);
+  color:white;
+  border-color:var(--orange);
 }
 
 
@@ -660,202 +539,146 @@ nav a:hover::after {
    RECIPE GRID
 ========================================================= */
 
-.recipe-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr));
-
-  gap: 25px;
+.recipe-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:45px 25px;
 }
 
-.recipe-card {
-  position: relative;
-
-  min-height: 430px;
-
-  overflow: hidden;
-
-  background: #17120f;
-
-  cursor: pointer;
-
+.recipe-card{
+  cursor:pointer;
+  opacity:0;
+  transform:translateY(35px);
   transition:
-    transform .5s cubic-bezier(.16,1,.3,1),
-    box-shadow .5s;
+    opacity .8s ease,
+    transform .8s ease;
 }
 
-.recipe-card:hover {
-  transform: translateY(-10px);
-
-  box-shadow:
-    0 30px 60px rgba(0,0,0,.35);
+.recipe-card.visible{
+  opacity:1;
+  transform:translateY(0);
 }
 
-.recipe-photo {
-  position: absolute;
-  inset: 0;
-
-  transition: transform .7s cubic-bezier(.16,1,.3,1);
+.recipe-photo{
+  position:relative;
+  aspect-ratio:4/3;
+  overflow:hidden;
+  background:#201814;
+  margin-bottom:22px;
 }
 
-.recipe-card:hover .recipe-photo {
-  transform: scale(1.08);
-}
-
-.recipe-photo::after {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
+.recipe-photo::after{
+  content:"";
+  position:absolute;
+  inset:0;
   background:
-    linear-gradient(
-      to top,
-      rgba(8,6,5,.95),
-      rgba(8,6,5,.1) 65%
-    );
-}
-
-
-/* 仮の料理ビジュアル */
-
-.photo-shrimp {
-  background:
-    radial-gradient(
-      circle at 60% 40%,
-      #ed7441 0 6%,
-      transparent 7%
-    ),
-    radial-gradient(
-      circle at 45% 55%,
-      #c84f24 0 8%,
-      transparent 9%
-    ),
-    radial-gradient(
-      circle at 30% 40%,
-      #e58b4d 0 5%,
-      transparent 6%
-    ),
     linear-gradient(
       135deg,
-      #20100a,
-      #8e351a
+      rgba(255,255,255,.04),
+      transparent 40%,
+      rgba(0,0,0,.5)
     );
+  transition:.5s;
 }
 
-.photo-pasta {
+.recipe-card:hover .recipe-photo::after{
+  background:rgba(232,93,4,.16);
+}
+
+.recipe-photo::before{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  transition:.8s cubic-bezier(.16,1,.3,1);
+}
+
+.recipe-card:hover .recipe-photo::before{
+  transform:scale(1.08);
+}
+
+
+/* Dummy food visuals */
+
+.photo-shrimp::before{
   background:
-    radial-gradient(
-      ellipse at center,
-      #e58b45 0 15%,
-      #7a351c 16% 35%,
-      transparent 36%
-    ),
-    linear-gradient(
-      135deg,
-      #32170d,
-      #b95728
-    );
+    radial-gradient(circle at 20% 30%, #ff8d54 0 7%, transparent 8%),
+    radial-gradient(circle at 50% 45%, #f46c30 0 9%, transparent 10%),
+    radial-gradient(circle at 72% 25%, #ff9a5e 0 8%, transparent 9%),
+    radial-gradient(circle at 35% 70%, #9dbb65 0 8%, transparent 9%),
+    linear-gradient(135deg,#362015,#17100c);
 }
 
-.photo-chicken {
+.photo-pasta::before{
   background:
-    radial-gradient(
-      ellipse at 55% 45%,
-      #d58d53 0 18%,
-      #82441e 19% 36%,
-      transparent 37%
-    ),
-    linear-gradient(
-      135deg,
-      #24150e,
-      #9a5129
-    );
+    radial-gradient(ellipse at 45% 50%, #f6a43c 0 25%, transparent 26%),
+    radial-gradient(circle at 55% 40%, #fff0bd 0 5%, transparent 6%),
+    linear-gradient(135deg,#28150d,#6e2b0c);
 }
 
-.photo-eggplant {
+.photo-chicken::before{
   background:
-    radial-gradient(
-      ellipse at 50% 50%,
-      #6c3d59 0 20%,
-      #2d172a 21% 38%,
-      transparent 39%
-    ),
-    linear-gradient(
-      135deg,
-      #120d13,
-      #713728
-    );
+    radial-gradient(ellipse at 50% 50%, #e9b875 0 23%, transparent 24%),
+    radial-gradient(circle at 65% 40%, #e4d09a 0 5%, transparent 6%),
+    linear-gradient(135deg,#152017,#304326);
 }
 
-.photo-rice {
+.photo-nasu::before{
   background:
-    radial-gradient(
-      circle at 50% 50%,
-      #c87936 0 20%,
-      #6d3219 21% 40%,
-      transparent 41%
-    ),
-    linear-gradient(
-      135deg,
-      #26150d,
-      #8d431f
-    );
+    radial-gradient(ellipse at 50% 50%, #4e173f 0 25%, transparent 26%),
+    radial-gradient(circle at 65% 40%, #8e4d1f 0 8%, transparent 9%),
+    linear-gradient(135deg,#211018,#381116);
 }
 
-.photo-pork {
+.photo-rice::before{
   background:
-    radial-gradient(
-      ellipse at 45% 45%,
-      #d68c68 0 17%,
-      #7b3929 18% 36%,
-      transparent 37%
-    ),
-    linear-gradient(
-      135deg,
-      #1c110e,
-      #873e29
-    );
+    radial-gradient(ellipse at 50% 50%, #e4a73d 0 28%, transparent 29%),
+    radial-gradient(circle at 30% 35%, #c84f22 0 6%, transparent 7%),
+    linear-gradient(135deg,#1d120b,#4d2410);
 }
 
-.recipe-info {
-  position: absolute;
-
-  z-index: 2;
-
-  left: 25px;
-  right: 25px;
-  bottom: 25px;
+.photo-pork::before{
+  background:
+    radial-gradient(ellipse at 50% 50%, #e6a79a 0 24%, transparent 25%),
+    radial-gradient(circle at 40% 38%, #8f6c43 0 7%, transparent 8%),
+    linear-gradient(135deg,#211810,#4a2c19);
 }
 
-.recipe-category {
-  display: inline-block;
-
-  margin-bottom: 12px;
-
-  color: var(--orange-light);
-
-  font-size: 8px;
-  font-weight: 800;
-
-  letter-spacing: .25em;
+.recipe-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
 }
 
-.recipe-name {
-  font-family: "DM Serif Display", serif;
-
-  font-size: 30px;
-  line-height: 1.05;
+.recipe-category{
+  color:var(--orange2);
+  font-size:9px;
+  letter-spacing:.25em;
+  text-transform:uppercase;
 }
 
-.recipe-meta {
-  margin-top: 14px;
+.recipe-time{
+  color:rgba(255,255,255,.35);
+  font-size:9px;
+}
 
-  color: rgba(242,232,220,.45);
+.recipe-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:29px;
+  font-weight:500;
+  line-height:1.05;
+  transition:.3s;
+}
 
-  font-size: 9px;
-  letter-spacing: .12em;
+.recipe-card:hover .recipe-title{
+  color:var(--orange3);
+}
+
+.recipe-description{
+  margin-top:10px;
+  font-size:11px;
+  line-height:1.7;
+  color:rgba(255,255,255,.38);
 }
 
 
@@ -863,59 +686,63 @@ nav a:hover::after {
    CATEGORY
 ========================================================= */
 
-.category-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(4, 1fr);
-
-  gap: 15px;
+.category-section{
+  background:#0f0d0b;
 }
 
-.category-card {
-  position: relative;
-
-  padding: 50px 30px;
-
-  min-height: 180px;
-
-  border: 1px solid var(--line);
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(229,107,47,.08),
-      transparent
-    );
-
-  overflow: hidden;
-
-  cursor: pointer;
-
-  transition: .4s;
+.category-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line);
+  border-left:1px solid var(--line);
 }
 
-.category-card:hover {
-  background: rgba(229,107,47,.12);
-  transform: translateY(-5px);
+.category-card{
+  min-height:230px;
+  padding:35px;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  position:relative;
+  overflow:hidden;
+  transition:.4s;
 }
 
-.category-number {
-  color: var(--orange);
-
-  font-size: 9px;
-  letter-spacing: .25em;
+.category-card::before{
+  content:"";
+  position:absolute;
+  width:160px;
+  height:160px;
+  right:-70px;
+  bottom:-70px;
+  border-radius:50%;
+  background:var(--orange);
+  opacity:0;
+  transition:.5s;
 }
 
-.category-name {
-  position: absolute;
+.category-card:hover{
+  background:#17120e;
+}
 
-  left: 30px;
-  bottom: 25px;
+.category-card:hover::before{
+  opacity:.18;
+}
 
-  font-family: "DM Serif Display", serif;
+.category-icon{
+  font-size:28px;
+  margin-bottom:70px;
+}
 
-  font-size: 32px;
+.category-name{
+  font-family:"Cormorant Garamond",serif;
+  font-size:30px;
+}
+
+.category-count{
+  font-size:9px;
+  color:rgba(255,255,255,.35);
+  letter-spacing:.15em;
+  margin-top:7px;
 }
 
 
@@ -923,51 +750,34 @@ nav a:hover::after {
    ABOUT
 ========================================================= */
 
-.about {
-  min-height: 65vh;
-
-  display: flex;
-  align-items: center;
-
-  position: relative;
-
-  overflow: hidden;
-
-  background:
-    radial-gradient(
-      circle at 80% 50%,
-      rgba(229,107,47,.13),
-      transparent 35%
-    );
+.about{
+  min-height:65vh;
+  display:flex;
+  align-items:center;
 }
 
-.about-content {
-  max-width: 800px;
+.about-inner{
+  max-width:900px;
 }
 
-.about-big {
-  font-family: "DM Serif Display", serif;
-
-  font-size: clamp(50px, 8vw, 110px);
-
-  line-height: .9;
-
-  letter-spacing: -.04em;
+.about-big{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(45px,7vw,95px);
+  line-height:.95;
+  font-weight:500;
 }
 
-.about-big span {
-  color: var(--orange);
+.about-big span{
+  color:var(--orange2);
 }
 
-.about-small {
-  margin-top: 35px;
-
-  max-width: 500px;
-
-  color: rgba(242,232,220,.45);
-
-  font-size: 11px;
-  line-height: 2;
+.about-small{
+  margin-top:45px;
+  margin-left:15vw;
+  max-width:430px;
+  font-size:12px;
+  line-height:2;
+  color:rgba(255,255,255,.42);
 }
 
 
@@ -975,33 +785,27 @@ nav a:hover::after {
    FOOTER
 ========================================================= */
 
-footer {
-  padding: 50px 7vw;
-
-  border-top: 1px solid rgba(242,232,220,.08);
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+footer{
+  border-top:1px solid var(--line);
+  padding:45px 7vw;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.footer-logo {
-  font-weight: 800;
-  font-size: 11px;
-
-  letter-spacing: .22em;
+.footer-logo{
+  font-family:"Cormorant Garamond",serif;
+  font-size:23px;
 }
 
-.footer-logo span {
-  color: var(--orange);
+.footer-logo span{
+  color:var(--orange);
 }
 
-.footer-copy {
-  color: rgba(242,232,220,.3);
-
-  font-size: 8px;
-
-  letter-spacing: .15em;
+.footer-copy{
+  color:rgba(255,255,255,.3);
+  font-size:9px;
+  letter-spacing:.2em;
 }
 
 
@@ -1009,150 +813,133 @@ footer {
    MODAL
 ========================================================= */
 
-.modal {
-  position: fixed;
-  inset: 0;
-
-  z-index: 500;
-
-  background: rgba(5,4,3,.88);
-
-  backdrop-filter: blur(15px);
-
-  display: none;
-
-  align-items: center;
-  justify-content: center;
-
-  padding: 30px;
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:3000;
+  background:rgba(0,0,0,.82);
+  backdrop-filter:blur(12px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+  opacity:0;
+  visibility:hidden;
+  transition:.4s;
 }
 
-.modal.show {
-  display: flex;
+.modal.active{
+  opacity:1;
+  visibility:visible;
 }
 
-.modal-content {
-  position: relative;
-
-  width: min(900px, 100%);
-
-  max-height: 90vh;
-
-  overflow-y: auto;
-
-  background: #15110e;
-
-  border: 1px solid rgba(229,107,47,.25);
-
-  padding: 50px;
+.modal-content{
+  width:min(1000px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#15120f;
+  border:1px solid rgba(255,255,255,.1);
+  position:relative;
+  transform:translateY(30px);
+  transition:.5s;
 }
 
-.modal-close {
-  position: absolute;
-
-  top: 20px;
-  right: 25px;
-
-  border: none;
-
-  background: none;
-
-  color: white;
-
-  font-size: 25px;
-
-  cursor: pointer;
+.modal.active .modal-content{
+  transform:translateY(0);
 }
 
-.modal-category {
-  color: var(--orange);
-
-  font-size: 9px;
-  font-weight: 800;
-
-  letter-spacing: .3em;
+.modal-close{
+  position:absolute;
+  top:20px;
+  right:20px;
+  z-index:5;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:rgba(0,0,0,.5);
+  color:white;
+  font-size:20px;
 }
 
-.modal-title {
-  margin-top: 12px;
-
-  font-family: "DM Serif Display", serif;
-
-  font-size: clamp(40px, 6vw, 70px);
-
-  line-height: .95;
+.modal-photo{
+  height:330px;
+  position:relative;
 }
 
-.modal-grid {
-  display: grid;
-
-  grid-template-columns: 1fr 1.5fr;
-
-  gap: 50px;
-
-  margin-top: 50px;
+.modal-photo::before{
+  content:"";
+  position:absolute;
+  inset:0;
 }
 
-.modal-heading {
-  margin-bottom: 20px;
-
-  color: var(--orange-light);
-
-  font-size: 10px;
-  font-weight: 800;
-
-  letter-spacing: .25em;
+.modal-body{
+  padding:45px;
 }
 
-.ingredients li {
-  list-style: none;
-
-  padding: 10px 0;
-
-  border-bottom: 1px solid rgba(242,232,220,.08);
-
-  font-size: 12px;
-
-  color: rgba(242,232,220,.75);
+.modal-category{
+  color:var(--orange);
+  font-size:10px;
+  letter-spacing:.25em;
+  margin-bottom:12px;
 }
 
-.steps {
-  counter-reset: step;
+.modal-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:55px;
+  line-height:.95;
+  font-weight:500;
+  margin-bottom:40px;
 }
 
-.steps li {
-  list-style: none;
-
-  counter-increment: step;
-
-  position: relative;
-
-  padding:
-    0 0 25px 45px;
-
-  margin-bottom: 25px;
-
-  border-bottom: 1px solid rgba(242,232,220,.08);
-
-  color: rgba(242,232,220,.7);
-
-  font-size: 12px;
-
-  line-height: 1.8;
+.modal-columns{
+  display:grid;
+  grid-template-columns:1fr 1.5fr;
+  gap:60px;
 }
 
-.steps li::before {
-  content: counter(step, decimal-leading-zero);
+.modal-heading{
+  font-size:10px;
+  letter-spacing:.25em;
+  color:var(--orange);
+  margin-bottom:20px;
+}
 
-  position: absolute;
+.ingredients{
+  list-style:none;
+}
 
-  left: 0;
-  top: 0;
+.ingredients li{
+  padding:9px 0;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  font-size:12px;
+}
 
-  color: var(--orange);
+.steps{
+  counter-reset:step;
+  list-style:none;
+}
 
-  font-size: 10px;
-  font-weight: 800;
+.steps li{
+  counter-increment:step;
+  position:relative;
+  padding-left:45px;
+  margin-bottom:25px;
+  font-size:12px;
+  line-height:1.8;
+  color:rgba(255,255,255,.65);
+}
+
+.steps li::before{
+  content:counter(step,decimal-leading-zero);
+  position:absolute;
+  left:0;
+  top:0;
+  color:var(--orange);
+  font-family:"Cormorant Garamond",serif;
+  font-size:20px;
 }
 
 
@@ -1160,304 +947,312 @@ footer {
    MOBILE
 ========================================================= */
 
-@media (max-width: 900px) {
+@media(max-width:900px){
 
-  nav {
-    display: none;
+  nav{
+    display:none;
+    position:absolute;
+    top:70px;
+    right:5vw;
+    background:#15120f;
+    border:1px solid var(--line);
+    padding:25px;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:20px;
   }
 
-  .hero {
-    padding-left: 7vw;
-    padding-right: 7vw;
+  nav.open{
+    display:flex;
   }
 
-  .hero-title {
-    font-size: clamp(58px, 14vw, 100px);
+  .menu-btn{
+    display:block;
   }
 
-  .hero-title .line-two {
-    margin-left: 5vw;
+  .hero{
+    padding:150px 7vw 100px;
   }
 
-  .recipe-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .hero-title{
+    font-size:clamp(58px,15vw,110px);
   }
 
-  .category-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .hero-title .accent{
+    margin-left:0;
   }
 
-  .modal-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
+  .hero-sub{
+    margin-left:0;
+  }
+
+  .recipe-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .category-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .category-card{
+    min-height:190px;
+  }
+
+  .modal-columns{
+    grid-template-columns:1fr;
+    gap:40px;
   }
 }
 
-@media (max-width: 600px) {
 
-  header {
-    padding: 22px 6vw;
+@media(max-width:600px){
+
+  header{
+    padding:20px 6vw;
   }
 
-  .opening-logo {
-    width: 125px;
+  header.scrolled{
+    padding:15px 6vw;
   }
 
-  .opening-ring {
-    width: 190px;
-    height: 190px;
+  .logo-small{
+    font-size:22px;
   }
 
-  .hero {
-    min-height: 100svh;
-
-    padding:
-      140px 7vw
-      80px;
+  .hero{
+    min-height:100svh;
+    padding:140px 7vw 80px;
   }
 
-  .hero-title {
-    font-size: 17vw;
+  .hero-kicker{
+    font-size:8px;
+    letter-spacing:.25em;
   }
 
-  .hero-title .line-one {
-    white-space: nowrap;
+  .hero-title{
+    font-size:18vw;
+    line-height:.88;
   }
 
-  .hero-title .line-two {
-    margin-left: 0;
+  .hero-sub{
+    margin-top:30px;
+    font-size:10px;
   }
 
-  .hero-sub {
-    margin-left: 0;
-    margin-top: 30px;
+  .hero-scroll{
+    display:none;
   }
 
-  .hero-number {
-    display: none;
+  .section{
+    padding:90px 6vw;
   }
 
-  .section {
-    padding: 90px 7vw;
+  .section-head{
+    margin-bottom:40px;
   }
 
-  .section-header {
-    display: block;
+  .section-title{
+    font-size:55px;
   }
 
-  .section-label {
-    display: block;
-
-    margin-bottom: 15px;
+  .search-area{
+    display:block;
   }
 
-  .recipe-grid {
-    grid-template-columns: 1fr;
+  .categories{
+    margin-top:25px;
   }
 
-  .recipe-card {
-    min-height: 390px;
+  .category-btn{
+    padding:9px 14px;
   }
 
-  .category-grid {
-    grid-template-columns: 1fr 1fr;
+  .recipe-grid{
+    grid-template-columns:1fr;
+    gap:50px;
   }
 
-  .category-card {
-    min-height: 150px;
-
-    padding: 25px 20px;
+  .recipe-title{
+    font-size:32px;
   }
 
-  .category-name {
-    left: 20px;
-    bottom: 20px;
-
-    font-size: 25px;
+  .category-grid{
+    grid-template-columns:1fr 1fr;
   }
 
-  .modal {
-    padding: 12px;
+  .category-card{
+    padding:22px;
+    min-height:170px;
   }
 
-  .modal-content {
-    padding: 35px 22px;
-
-    max-height: 94vh;
+  .category-icon{
+    margin-bottom:45px;
   }
 
-  .modal-title {
-    font-size: 42px;
+  .category-name{
+    font-size:25px;
   }
 
-  footer {
-    display: block;
+  .about-small{
+    margin-left:0;
   }
 
-  .footer-copy {
-    margin-top: 15px;
+  footer{
+    padding:35px 6vw;
+    display:block;
   }
+
+  .footer-copy{
+    margin-top:15px;
+  }
+
+  .modal{
+    padding:10px;
+  }
+
+  .modal-body{
+    padding:30px 22px;
+  }
+
+  .modal-photo{
+    height:220px;
+  }
+
+  .modal-title{
+    font-size:45px;
+  }
+
+}
+
+
+/* =========================================================
+   CUSTOM SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar{
+  width:8px;
+}
+
+::-webkit-scrollbar-track{
+  background:#090807;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#3a2519;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background:var(--orange);
 }
 
 </style>
 </head>
 
 
-<body>
+<body class="lock">
 
 
-<!-- =====================================================
+<!-- ======================================================
      OPENING
-===================================================== -->
+====================================================== -->
 
-<div id="opening">
-
-  <div class="opening-glow"></div>
-
-  <div class="opening-ring"></div>
+<div class="opening" id="opening">
 
   <div class="opening-line"></div>
 
   <img
     src="logo.png"
-    alt="CHU dot COOKING"
     class="opening-logo"
+    alt="CHU dot COOKING"
   >
 
-  <div class="opening-name">
-
-    <span class="opening-name-small">
-      CHU DOT COOKING
-    </span>
-
-    <span class="opening-name-main">
-      MY FOOD. <span>MY RULES.</span>
-    </span>
-
+  <div class="opening-text">
+    MY KITCHEN / MY RULES
   </div>
 
 </div>
 
 
-<!-- =====================================================
+<!-- ======================================================
      HEADER
-===================================================== -->
+====================================================== -->
 
-<header>
+<header id="header">
 
-  <a href="#" class="logo-text">
-    CHU dot <span>COOKING</span>
+  <a href="#top" class="logo-small">
+    CHU <span>dot</span> COOKING
   </a>
 
-  <nav>
+  <nav id="nav">
+
     <a href="#recipes">RECIPES</a>
-    <a href="#category">CATEGORY</a>
+    <a href="#categories">CATEGORY</a>
     <a href="#about">ABOUT</a>
+
   </nav>
+
+  <button class="menu-btn" id="menuBtn">
+    ☰
+  </button>
 
 </header>
 
 
-<!-- =====================================================
+<main id="top">
+
+
+<!-- ======================================================
      HERO
-===================================================== -->
+====================================================== -->
 
 <section class="hero">
 
   <div class="hero-content">
 
     <div class="hero-kicker">
-      CHU DOT COOKING / PERSONAL KITCHEN
+      CHU DOT COOKING
     </div>
 
     <h1 class="hero-title">
 
-      <span class="line-one">
-        NOTHING TASTES
+      <span class="line">
+        NOTHING
       </span>
 
-      <span class="line-two">
-        BETTER.
+      <span class="line accent">
+        TASTES BETTER.
+      </span>
+
+      <span class="line">
+        THAN WHAT I
+      </span>
+
+      <span class="line accent">
+        MAKE.
       </span>
 
     </h1>
 
     <p class="hero-sub">
-      THAN WHAT I MAKE.
+      MY KITCHEN. MY RULES.
     </p>
 
   </div>
 
-  <div class="hero-number">
-    EST. 2026 / KITCHEN ARCHIVE
+  <div class="hero-scroll">
+    SCROLL TO COOK
   </div>
 
 </section>
 
 
-<!-- =====================================================
-     SEARCH
-===================================================== -->
-
-<section class="search-area">
-
-  <div class="search-box">
-
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="Search my recipes..."
-    >
-
-  </div>
-
-  <div class="categories">
-
-    <button
-      class="category-btn active"
-      data-category="all">
-      ALL
-    </button>
-
-    <button
-      class="category-btn"
-      data-category="麺">
-      麺
-    </button>
-
-    <button
-      class="category-btn"
-      data-category="肉">
-      肉
-    </button>
-
-    <button
-      class="category-btn"
-      data-category="ご飯">
-      ご飯
-    </button>
-
-    <button
-      class="category-btn"
-      data-category="副菜">
-      副菜
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
+<!-- ======================================================
      RECIPES
-===================================================== -->
+====================================================== -->
 
-<section
-  class="section"
-  id="recipes"
->
+<section class="section" id="recipes">
 
-  <div class="section-header">
+  <div class="section-head">
 
     <div>
 
@@ -1466,31 +1261,80 @@ footer {
       </div>
 
       <h2 class="section-title">
-        MY <span>RECIPES.</span>
+        RECIPES
       </h2>
+
+    </div>
+
+    <div class="section-number">
+      06
+    </div>
+
+  </div>
+
+
+  <div class="search-area">
+
+    <div class="search-box">
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="料理名を検索..."
+      >
+
+    </div>
+
+
+    <div class="categories">
+
+      <button
+        class="category-btn active"
+        data-category="all">
+        ALL
+      </button>
+
+      <button
+        class="category-btn"
+        data-category="麺">
+        麺
+      </button>
+
+      <button
+        class="category-btn"
+        data-category="肉">
+        肉
+      </button>
+
+      <button
+        class="category-btn"
+        data-category="ご飯">
+        ご飯
+      </button>
+
+      <button
+        class="category-btn"
+        data-category="副菜">
+        副菜
+      </button>
 
     </div>
 
   </div>
 
-  <div
-    class="recipe-grid"
-    id="recipeGrid">
-  </div>
+
+  <div class="recipe-grid" id="recipeGrid"></div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- ======================================================
      CATEGORY
-===================================================== -->
+====================================================== -->
 
-<section
-  class="section"
-  id="category"
->
+<section class="section category-section" id="categories">
 
-  <div class="section-header">
+  <div class="section-head">
 
     <div>
 
@@ -1499,7 +1343,7 @@ footer {
       </div>
 
       <h2 class="section-title">
-        COOK BY <span>TYPE.</span>
+        CATEGORY
       </h2>
 
     </div>
@@ -1509,63 +1353,71 @@ footer {
 
   <div class="category-grid">
 
-    <div
-      class="category-card"
-      data-filter="麺">
+    <div class="category-card" data-filter="麺">
 
-      <div class="category-number">
-        01
+      <div class="category-icon">
+        🍜
       </div>
 
       <div class="category-name">
         麺
       </div>
 
+      <div class="category-count">
+        NOODLES
+      </div>
+
     </div>
 
 
-    <div
-      class="category-card"
-      data-filter="肉">
+    <div class="category-card" data-filter="肉">
 
-      <div class="category-number">
-        02
+      <div class="category-icon">
+        🥩
       </div>
 
       <div class="category-name">
         肉
       </div>
 
+      <div class="category-count">
+        MEAT
+      </div>
+
     </div>
 
 
-    <div
-      class="category-card"
-      data-filter="ご飯">
+    <div class="category-card" data-filter="ご飯">
 
-      <div class="category-number">
-        03
+      <div class="category-icon">
+        🍚
       </div>
 
       <div class="category-name">
         ご飯
       </div>
 
+      <div class="category-count">
+        RICE
+      </div>
+
     </div>
 
 
-    <div
-      class="category-card"
-      data-filter="副菜">
+    <div class="category-card" data-filter="副菜">
 
-      <div class="category-number">
-        04
+      <div class="category-icon">
+        🥢
       </div>
 
       <div class="category-name">
         副菜
       </div>
 
+      <div class="category-count">
+        SIDE DISH
+      </div>
+
     </div>
 
   </div>
@@ -1573,60 +1425,66 @@ footer {
 </section>
 
 
-<!-- =====================================================
+<!-- ======================================================
      ABOUT
-===================================================== -->
+====================================================== -->
 
-<section
-  class="section about"
-  id="about"
->
+<section class="section about" id="about">
 
-  <div class="about-content">
+  <div class="about-inner">
 
     <div class="section-label">
-      03 / KITCHEN
+      03 / ABOUT
     </div>
 
-    <h2 class="about-big">
+    <div class="about-big">
 
-      COOK IT.<br>
+      Cook it.
+      <br>
 
-      <span>EAT IT.</span><br>
+      Eat it.
+      <br>
 
-      DO IT AGAIN.
+      <span>
+        Make it yours.
+      </span>
 
-    </h2>
+    </div>
+
+    <p class="about-small">
+      CHU dot COOKING
+    </p>
 
   </div>
 
 </section>
 
 
-<!-- =====================================================
+</main>
+
+
+<!-- ======================================================
      FOOTER
-===================================================== -->
+====================================================== -->
 
 <footer>
 
   <div class="footer-logo">
-    CHU dot <span>COOKING</span>
+    CHU <span>dot</span> COOKING
   </div>
 
   <div class="footer-copy">
-    PERSONAL KITCHEN ARCHIVE / 2026
+    © CHU dot COOKING
   </div>
 
 </footer>
 
 
-<!-- =====================================================
+<!-- ======================================================
      MODAL
-===================================================== -->
+====================================================== -->
 
-<div
-  class="modal"
-  id="recipeModal">
+<div class="modal" id="modal">
 
   <div class="modal-content">
 
@@ -1636,43 +1494,56 @@ footer {
       ×
     </button>
 
+
     <div
-      class="modal-category"
-      id="modalCategory">
+      class="modal-photo"
+      id="modalPhoto">
     </div>
 
-    <h2
-      class="modal-title"
-      id="modalTitle">
-    </h2>
 
+    <div class="modal-body">
 
-    <div class="modal-grid">
-
-      <div>
-
-        <div class="modal-heading">
-          INGREDIENTS
-        </div>
-
-        <ul
-          class="ingredients"
-          id="modalIngredients">
-        </ul>
-
+      <div
+        class="modal-category"
+        id="modalCategory">
       </div>
 
+      <h2
+        class="modal-title"
+        id="modalTitle">
+      </h2>
 
-      <div>
 
-        <div class="modal-heading">
-          METHOD
+      <div class="modal-columns">
+
+
+        <div>
+
+          <div class="modal-heading">
+            INGREDIENTS
+          </div>
+
+          <ul
+            class="ingredients"
+            id="modalIngredients">
+          </ul>
+
         </div>
 
-        <ol
-          class="steps"
-          id="modalSteps">
-        </ol>
+
+        <div>
+
+          <div class="modal-heading">
+            HOW TO MAKE
+          </div>
+
+          <ol
+            class="steps"
+            id="modalSteps">
+          </ol>
+
+        </div>
+
 
       </div>
 
@@ -1686,337 +1557,182 @@ footer {
 <script>
 
 /* =========================================================
-   RECIPE DATA
+   RECIPES
 ========================================================= */
 
 const recipes = [
 
   {
-    id: 1,
+    title:"海老塩焼きそば",
+    category:"麺",
+    time:"20 MIN",
+    description:"海老の旨味を丸ごと使った、強火仕上げの塩焼きそば。",
+    photo:"photo-shrimp",
 
-    name: "海老塩焼きそば",
-
-    category: "麺",
-
-    time: "約20分",
-
-    servings: "2人前",
-
-    photo: "photo-shrimp",
-
-    ingredients: [
-
-      "海老 — 好きなだけ",
-
-      "中華麺 — 2玉",
-
-      "もやし — 1/2袋",
-
-      "長ネギ or 小口ネギ — 適量",
-
-      "あげ玉 — 適量",
-
-      "ごま油 — 適量",
-
-      "塩コショウ — 3g",
-
-      "黒胡椒 — 適量・強気",
-
-      "砂糖 — 7g",
-
-      "醤油 — 2g",
-
-      "料理酒 — 15g",
-
-      "鶏ガラの素 — 4g",
-
-      "煮干し粉 — 3g",
-
-      "おろしにんにく — 15g",
-
-      "茹で汁 — 25cc ※必要に応じて"
-
+    ingredients:[
+      ["海老","好きなだけ"],
+      ["中華麺","2玉"],
+      ["もやし","1/2袋"],
+      ["長ネギor小口ネギ","適量"],
+      ["あげ玉","適量"],
+      ["ごま油","適量"],
+      ["塩コショウ","3g"],
+      ["黒胡椒","適量・強気"],
+      ["砂糖","7g"],
+      ["醤油","2g"],
+      ["料理酒","15g"],
+      ["鶏ガラの素","4g"],
+      ["煮干し粉","3g"],
+      ["おろしにんにく","15g"],
+      ["茹で汁","25cc ※必要に応じて"]
     ],
 
-    steps: [
-
-      "鉄鍋に塩コショウを振った海老をごま油で炒める。火が通ったら汁ごと別容器へ移す。",
-
-      "中華麺を別鍋で表示時間通りに茹でる。",
-
-      "麺を茹でている間に、茹で汁・塩コショウ・黒胡椒・砂糖・醤油・料理酒・鶏ガラの素・煮干し粉・おろしにんにくを混ぜて塩ダレを作る。",
-
+    steps:[
+      "鉄鍋を熱し、海老に塩コショウを満遍なく振って、ごま油で炒める。",
+      "海老が焼けたら汁ごと別容器へ一旦取り出す。",
+      "別鍋で中華麺を表記通り茹でる。",
+      "麺を茹でている間に、茹で汁・塩コショウ・黒胡椒・砂糖・醤油・料理酒・鶏ガラ・煮干し粉・にんにくを混ぜて塩ダレを作る。",
       "麺が茹で上がったら流水でぬめりを洗い流す。",
-
-      "海老を炒めた鉄鍋にごま油を敷き、強火で麺を炒めて焼き目をつける。",
-
-      "海老・もやし・ネギ・塩ダレを加え、強火で一気に混ぜ合わせる。",
-
-      "仕上げにあげ玉を加えて混ぜ、盛り付ける。"
-
+      "海老を炒めた鉄鍋にごま油を敷き、強火で麺を焼き目がつくように炒める。",
+      "麺が炒まったら海老・もやし・ネギ・塩ダレを加え、強火で一気に混ぜ合わせる。",
+      "仕上げにあげ玉を混ぜて盛り付ける。"
     ]
   },
 
 
   {
-    id: 2,
+    title:"とろけるチーズの焼きナポリタン",
+    category:"麺",
+    time:"25 MIN",
+    description:"香ばしく焼いたナポリタンに、とろけるチーズ。",
+    photo:"photo-pasta",
 
-    name: "とろけるチーズの焼きナポリタン",
-
-    category: "麺",
-
-    time: "約25分",
-
-    servings: "2人前",
-
-    photo: "photo-pasta",
-
-    ingredients: [
-
-      "スパゲッティ — 200g",
-
-      "玉ねぎ — 1/2個",
-
-      "ウインナー — 4本",
-
-      "ケチャップ — 80g",
-
-      "チーズ — 80g",
-
-      "バター — 10g",
-
-      "塩 — 適量",
-
-      "黒胡椒 — 適量"
-
+    ingredients:[
+      ["パスタ","160g"],
+      ["玉ねぎ","1/2個"],
+      ["ウインナー","4本"],
+      ["ケチャップ","大さじ4"],
+      ["チーズ","適量"],
+      ["バター","10g"]
     ],
 
-    steps: [
-
-      "スパゲッティを表示時間より少し短めに茹でる。",
-
+    steps:[
+      "パスタを表示時間通りに茹でる。",
       "フライパンで玉ねぎとウインナーを炒める。",
-
-      "ケチャップを加えて少し焼き、酸味を飛ばす。",
-
-      "茹で上がった麺とバターを加えて炒め合わせる。",
-
-      "耐熱皿に盛り、チーズを乗せる。",
-
-      "オーブンでチーズがこんがりするまで焼く。"
-
+      "ケチャップを加えて軽く炒める。",
+      "茹でたパスタを加えて全体を合わせる。",
+      "耐熱皿に盛り、チーズを乗せて焼き色がつくまで焼く。"
     ]
   },
 
 
   {
-    id: 3,
+    title:"鶏むね肉のレモン醤油ソテー",
+    category:"肉",
+    time:"20 MIN",
+    description:"さっぱりしたレモンと醤油で仕上げる鶏むねソテー。",
+    photo:"photo-chicken",
 
-    name: "鶏むね肉のレモン醤油ソテー",
-
-    category: "肉",
-
-    time: "約20分",
-
-    servings: "2人前",
-
-    photo: "photo-chicken",
-
-    ingredients: [
-
-      "鶏むね肉 — 1枚",
-
-      "醤油 — 20g",
-
-      "レモン汁 — 15g",
-
-      "酒 — 15g",
-
-      "砂糖 — 5g",
-
-      "にんにく — 少々",
-
-      "黒胡椒 — 適量",
-
-      "オリーブオイル — 適量"
-
+    ingredients:[
+      ["鶏むね肉","1枚"],
+      ["醤油","大さじ1"],
+      ["レモン汁","大さじ1"],
+      ["酒","大さじ1"],
+      ["にんにく","少々"],
+      ["オリーブオイル","適量"]
     ],
 
-    steps: [
-
+    steps:[
       "鶏むね肉を食べやすい厚さに切る。",
-
-      "醤油・レモン汁・酒・砂糖・にんにくを混ぜる。",
-
-      "フライパンで鶏肉を焼く。",
-
-      "両面に焼き色がついたら調味料を加える。",
-
-      "タレを煮詰めながら鶏肉に絡める。",
-
-      "仕上げに黒胡椒を振る。"
-
+      "フライパンに油を熱し、鶏肉を焼く。",
+      "両面に焼き色がついたら酒を加える。",
+      "醤油・レモン汁・にんにくを加える。",
+      "タレを絡めながら仕上げる。"
     ]
   },
 
 
   {
-    id: 4,
+    title:"とろ旨麻婆なす",
+    category:"副菜",
+    time:"25 MIN",
+    description:"とろとろの茄子に、花椒の香りを効かせた麻婆仕立て。",
+    photo:"photo-nasu",
 
-    name: "とろ旨麻婆なす",
-
-    category: "副菜",
-
-    time: "約25分",
-
-    servings: "2人前",
-
-    photo: "photo-eggplant",
-
-    ingredients: [
-
-      "冷凍なす — 250g",
-
-      "豚ひき肉 — 120g",
-
-      "長ネギ — 1/2本",
-
-      "甜麺醤 — 15g",
-
-      "醤油 — 10g",
-
-      "鶏ガラスープ — 100ml",
-
-      "豆板醤 — 5g",
-
-      "花椒 — 適量",
-
-      "ごま油 — 適量"
-
+    ingredients:[
+      ["冷凍なす","250g"],
+      ["豚ひき肉","100g"],
+      ["長ネギ","1/2本"],
+      ["甜麺醤","大さじ1"],
+      ["豆板醤","小さじ1"],
+      ["醤油","小さじ1"],
+      ["花椒","適量"]
     ],
 
-    steps: [
-
+    steps:[
       "フライパンで豚ひき肉を炒める。",
-
-      "豆板醤と甜麺醤を加えて炒める。",
-
-      "なすを加えて全体を混ぜる。",
-
-      "鶏ガラスープと醤油を加える。",
-
-      "少し煮詰めて味を整える。",
-
-      "仕上げに花椒とごま油を加える。"
-
+      "豆板醤と甜麺醤を加えて香りを出す。",
+      "なすを加えて炒める。",
+      "調味料を加えて全体を煮絡める。",
+      "仕上げに花椒とネギを加える。"
     ]
   },
 
 
   {
-    id: 5,
+    title:"炊飯器スパイスチキンライス",
+    category:"ご飯",
+    time:"60 MIN",
+    description:"炊飯器だけで作れる、香りの強いスパイスチキンライス。",
+    photo:"photo-rice",
 
-    name: "炊飯器スパイスチキンライス",
-
-    category: "ご飯",
-
-    time: "約60分",
-
-    servings: "2〜3人前",
-
-    photo: "photo-rice",
-
-    ingredients: [
-
-      "米 — 2合",
-
-      "鶏もも肉 — 1枚",
-
-      "玉ねぎ — 1/2個",
-
-      "トマト — 1個",
-
-      "カレー粉 — 8g",
-
-      "クミン — 2g",
-
-      "ヨーグルト — 50g",
-
-      "にんにく — 5g",
-
-      "しょうが — 5g",
-
-      "レモン汁 — 10g",
-
-      "塩 — 適量"
-
+    ingredients:[
+      ["米","2合"],
+      ["鶏肉","1枚"],
+      ["カレー粉","大さじ1"],
+      ["クミン","小さじ1"],
+      ["ヨーグルト","大さじ2"],
+      ["トマト","1個"],
+      ["にんにく","適量"],
+      ["しょうが","適量"],
+      ["レモン汁","小さじ1"]
     ],
 
-    steps: [
-
-      "米を洗い、炊飯器に入れる。",
-
-      "調味料とスパイスを加える。",
-
-      "鶏肉・玉ねぎ・トマトを乗せる。",
-
-      "通常モードで炊飯する。",
-
-      "炊き上がったら鶏肉をほぐし、全体を混ぜる。",
-
-      "味を見て塩とレモン汁で調整する。"
-
+    steps:[
+      "米を洗って炊飯器に入れる。",
+      "調味料とスパイスを混ぜる。",
+      "鶏肉に調味料を揉み込む。",
+      "米の上に鶏肉とトマトを乗せる。",
+      "通常炊飯する。",
+      "炊き上がったら鶏肉をほぐして全体を混ぜる。"
     ]
   },
 
 
   {
-    id: 6,
+    title:"豚しゃぶの香味ごまポン",
+    category:"肉",
+    time:"15 MIN",
+    description:"豚しゃぶに香味たっぷりのごまポン酢を合わせる。",
+    photo:"photo-pork",
 
-    name: "豚しゃぶの香味ごまポン",
-
-    category: "肉",
-
-    time: "約15分",
-
-    servings: "2人前",
-
-    photo: "photo-pork",
-
-    ingredients: [
-
-      "豚しゃぶ肉 — 200g",
-
-      "ポン酢 — 30g",
-
-      "醤油 — 10g",
-
-      "酢 — 10g",
-
-      "砂糖 — 5g",
-
-      "ごま油 — 5g",
-
-      "白ごま — 10g",
-
-      "にんにく — 2g",
-
-      "しょうが — 2g"
-
+    ingredients:[
+      ["豚しゃぶ肉","200g"],
+      ["ポン酢","大さじ2"],
+      ["醤油","大さじ1"],
+      ["酢","大さじ1"],
+      ["ごま油","小さじ1"],
+      ["すりごま","大さじ1"],
+      ["しょうが","適量"],
+      ["にんにく","適量"]
     ],
 
-    steps: [
-
-      "豚肉を沸騰させすぎない湯でしゃぶしゃぶする。",
-
-      "ポン酢・醤油・酢・砂糖・ごま油・白ごま・にんにく・しょうがを混ぜる。",
-
-      "豚肉の水気を切る。",
-
-      "タレをかけて全体を和える。",
-
-      "仕上げに白ごまを追加する。"
-
+    steps:[
+      "豚肉を沸騰させすぎない湯で茹でる。",
+      "火が通ったら水気を切る。",
+      "調味料をすべて混ぜてタレを作る。",
+      "豚肉にタレをかける。",
+      "仕上げにすりごまを追加する。"
     ]
   }
 
@@ -2036,20 +1752,20 @@ const searchInput =
 const categoryButtons =
   document.querySelectorAll(".category-btn");
 
-const categoryCards =
-  document.querySelectorAll(".category-card");
-
 const modal =
-  document.getElementById("recipeModal");
+  document.getElementById("modal");
 
 const modalClose =
   document.getElementById("modalClose");
 
+const modalTitle =
+  document.getElementById("modalTitle");
+
 const modalCategory =
   document.getElementById("modalCategory");
 
-const modalTitle =
-  document.getElementById("modalTitle");
+const modalPhoto =
+  document.getElementById("modalPhoto");
 
 const modalIngredients =
   document.getElementById("modalIngredients");
@@ -2057,25 +1773,54 @@ const modalIngredients =
 const modalSteps =
   document.getElementById("modalSteps");
 
+const header =
+  document.getElementById("header");
+
+const opening =
+  document.getElementById("opening");
+
+const nav =
+  document.getElementById("nav");
+
+const menuBtn =
+  document.getElementById("menuBtn");
+
 
 /* =========================================================
-   RENDER RECIPES
+   OPENING
 ========================================================= */
 
-function renderRecipes(list) {
+window.addEventListener("load",()=>{
+
+  setTimeout(()=>{
+
+    opening.classList.add("hide");
+
+    document.body.classList.remove("lock");
+
+  },3200);
+
+});
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function renderRecipes(list){
 
   recipeGrid.innerHTML = "";
 
-  if (list.length === 0) {
+  if(list.length === 0){
 
     recipeGrid.innerHTML = `
       <div style="
         grid-column:1/-1;
         padding:80px 0;
-        color:rgba(242,232,220,.4);
-        font-size:12px;
+        text-align:center;
+        color:rgba(255,255,255,.35);
       ">
-        NO RECIPES FOUND.
+        該当する料理がありません。
       </div>
     `;
 
@@ -2083,43 +1828,56 @@ function renderRecipes(list) {
   }
 
 
-  list.forEach(recipe => {
+  list.forEach((recipe,index)=>{
 
-    const card = document.createElement("article");
+    const card =
+      document.createElement("article");
 
-    card.className = "recipe-card";
+    card.className =
+      "recipe-card";
 
     card.innerHTML = `
 
-      <div class="recipe-photo ${recipe.photo}">
-      </div>
+      <div class="
+        recipe-photo
+        ${recipe.photo}
+      "></div>
 
-      <div class="recipe-info">
+      <div class="recipe-meta">
 
-        <div class="recipe-category">
+        <span class="recipe-category">
           ${recipe.category}
-        </div>
+        </span>
 
-        <h3 class="recipe-name">
-          ${recipe.name}
-        </h3>
-
-        <div class="recipe-meta">
-          ${recipe.time} / ${recipe.servings}
-        </div>
+        <span class="recipe-time">
+          ${recipe.time}
+        </span>
 
       </div>
+
+      <h3 class="recipe-title">
+        ${recipe.title}
+      </h3>
+
+      <p class="recipe-description">
+        ${recipe.description}
+      </p>
 
     `;
 
+    card.addEventListener("click",()=>{
 
-    card.addEventListener(
-      "click",
-      () => openRecipe(recipe)
-    );
+      openModal(recipe);
 
+    });
 
     recipeGrid.appendChild(card);
+
+    setTimeout(()=>{
+
+      card.classList.add("visible");
+
+    },index * 90);
 
   });
 
@@ -2127,74 +1885,13 @@ function renderRecipes(list) {
 
 
 /* =========================================================
-   OPEN RECIPE
-========================================================= */
-
-function openRecipe(recipe) {
-
-  modalCategory.textContent =
-    recipe.category;
-
-  modalTitle.textContent =
-    recipe.name;
-
-
-  modalIngredients.innerHTML =
-    recipe.ingredients
-      .map(item => `<li>${item}</li>`)
-      .join("");
-
-
-  modalSteps.innerHTML =
-    recipe.steps
-      .map(step => `<li>${step}</li>`)
-      .join("");
-
-
-  modal.classList.add("show");
-
-  document.body.style.overflow = "hidden";
-
-}
-
-
-/* =========================================================
-   CLOSE MODAL
-========================================================= */
-
-function closeModal() {
-
-  modal.classList.remove("show");
-
-  document.body.style.overflow = "";
-
-}
-
-modalClose.addEventListener(
-  "click",
-  closeModal
-);
-
-modal.addEventListener(
-  "click",
-  event => {
-
-    if (event.target === modal) {
-      closeModal();
-    }
-
-  }
-);
-
-
-/* =========================================================
-   SEARCH
+   FILTER
 ========================================================= */
 
 let currentCategory = "all";
 
 
-function filterRecipes() {
+function filterRecipes(){
 
   const keyword =
     searchInput.value
@@ -2203,18 +1900,19 @@ function filterRecipes() {
 
 
   const filtered =
-    recipes.filter(recipe => {
+    recipes.filter(recipe=>{
 
       const matchCategory =
         currentCategory === "all" ||
         recipe.category === currentCategory;
 
-
       const matchKeyword =
-        recipe.name
+        recipe.title
+          .toLowerCase()
+          .includes(keyword) ||
+        recipe.description
           .toLowerCase()
           .includes(keyword);
-
 
       return matchCategory && matchKeyword;
 
@@ -2226,112 +1924,203 @@ function filterRecipes() {
 }
 
 
-/* =========================================================
-   CATEGORY BUTTON
-========================================================= */
-
-categoryButtons.forEach(button => {
-
-  button.addEventListener(
-    "click",
-    () => {
-
-      categoryButtons.forEach(btn =>
-        btn.classList.remove("active")
-      );
-
-      button.classList.add("active");
-
-      currentCategory =
-        button.dataset.category;
-
-      filterRecipes();
-
-      document
-        .getElementById("recipes")
-        .scrollIntoView({
-          behavior: "smooth"
-        });
-
-    }
-  );
-
-});
-
-
-/* =========================================================
-   CATEGORY CARD
-========================================================= */
-
-categoryCards.forEach(card => {
-
-  card.addEventListener(
-    "click",
-    () => {
-
-      const category =
-        card.dataset.filter;
-
-
-      currentCategory = category;
-
-
-      categoryButtons.forEach(button => {
-
-        button.classList.toggle(
-          "active",
-          button.dataset.category === category
-        );
-
-      });
-
-
-      filterRecipes();
-
-
-      document
-        .getElementById("recipes")
-        .scrollIntoView({
-          behavior: "smooth"
-        });
-
-    }
-  );
-
-});
-
-
-/* =========================================================
-   SEARCH INPUT
-========================================================= */
-
 searchInput.addEventListener(
   "input",
   filterRecipes
 );
 
 
+categoryButtons.forEach(button=>{
+
+  button.addEventListener("click",()=>{
+
+    categoryButtons.forEach(btn=>
+      btn.classList.remove("active")
+    );
+
+    button.classList.add("active");
+
+    currentCategory =
+      button.dataset.category;
+
+    filterRecipes();
+
+    document
+      .getElementById("recipes")
+      .scrollIntoView({
+        behavior:"smooth"
+      });
+
+  });
+
+});
+
+
 /* =========================================================
-   INITIALIZE
+   CATEGORY CARDS
 ========================================================= */
 
-renderRecipes(recipes);
+document
+  .querySelectorAll(".category-card")
+  .forEach(card=>{
+
+    card.addEventListener("click",()=>{
+
+      const category =
+        card.dataset.filter;
+
+      currentCategory = category;
+
+      categoryButtons.forEach(btn=>{
+
+        btn.classList.toggle(
+          "active",
+          btn.dataset.category === category
+        );
+
+      });
+
+      filterRecipes();
+
+      document
+        .getElementById("recipes")
+        .scrollIntoView({
+          behavior:"smooth"
+        });
+
+    });
+
+  });
 
 
 /* =========================================================
-   ESC TO CLOSE MODAL
+   MODAL
 ========================================================= */
+
+function openModal(recipe){
+
+  modalTitle.textContent =
+    recipe.title;
+
+  modalCategory.textContent =
+    recipe.category;
+
+  modalPhoto.className =
+    `modal-photo ${recipe.photo}`;
+
+
+  modalIngredients.innerHTML =
+    recipe.ingredients
+      .map(item=>`
+        <li>
+          <span>${item[0]}</span>
+          <span>${item[1]}</span>
+        </li>
+      `)
+      .join("");
+
+
+  modalSteps.innerHTML =
+    recipe.steps
+      .map(step=>`
+        <li>${step}</li>
+      `)
+      .join("");
+
+
+  modal.classList.add("active");
+
+  document.body.classList.add("lock");
+
+}
+
+
+function closeModal(){
+
+  modal.classList.remove("active");
+
+  document.body.classList.remove("lock");
+
+}
+
+
+modalClose.addEventListener(
+  "click",
+  closeModal
+);
+
+
+modal.addEventListener("click",event=>{
+
+  if(event.target === modal){
+
+    closeModal();
+
+  }
+
+});
+
 
 document.addEventListener(
   "keydown",
-  event => {
+  event=>{
 
-    if (event.key === "Escape") {
+    if(event.key === "Escape"){
+
       closeModal();
+
     }
 
   }
 );
+
+
+/* =========================================================
+   HEADER SCROLL
+========================================================= */
+
+window.addEventListener("scroll",()=>{
+
+  if(window.scrollY > 50){
+
+    header.classList.add("scrolled");
+
+  }else{
+
+    header.classList.remove("scrolled");
+
+  }
+
+});
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+menuBtn.addEventListener("click",()=>{
+
+  nav.classList.toggle("open");
+
+});
+
+
+nav.querySelectorAll("a").forEach(link=>{
+
+  link.addEventListener("click",()=>{
+
+    nav.classList.remove("open");
+
+  });
+
+});
+
+
+/* =========================================================
+   INITIAL
+========================================================= */
+
+renderRecipes(recipes);
 
 </script>
 
