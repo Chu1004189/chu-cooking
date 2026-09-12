@@ -3,17 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" type="image/png" href="logov2.png">
+
 <title>CHU dot COOKING</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root{
   --orange:#ff681f;
   --orange2:#ff8a35;
   --yellow:#ffd84d;
+  --pale-yellow:#fff1b8;
   --pink:#ffaaa5;
   --green:#b9d77a;
   --cream:#fff6e9;
@@ -26,6 +30,8 @@
 
 *{
   box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 html{
@@ -33,16 +39,10 @@ html{
 }
 
 body{
-  margin:0;
-  background:var(--cream);
+  background:var(--white);
   color:var(--brown);
-  font-family:"M PLUS Rounded 1c",sans-serif;
+  font-family:"DM Sans","M PLUS Rounded 1c",sans-serif;
   overflow-x:hidden;
-}
-
-img{
-  display:block;
-  width:100%;
 }
 
 button,
@@ -51,7 +51,12 @@ input{
 }
 
 button{
-  cursor:pointer;
+  border:0;
+}
+
+img{
+  max-width:100%;
+  display:block;
 }
 
 a{
@@ -59,9 +64,10 @@ a{
   text-decoration:none;
 }
 
-/* =========================
+
+/* =================================
    OPENING
-========================= */
+================================= */
 
 .opening{
   position:fixed;
@@ -72,308 +78,298 @@ a{
   align-items:center;
   justify-content:center;
   overflow:hidden;
-  animation:openingHide 1s ease 3.5s forwards;
+  animation:openingOut 1s 3s forwards;
+  pointer-events:none;
 }
 
 .opening-circle{
   position:absolute;
-  width:15vw;
-  height:15vw;
-  min-width:180px;
-  min-height:180px;
-  background:var(--yellow);
+  width:0;
+  height:0;
   border-radius:50%;
-  animation:circleGrow 1.5s cubic-bezier(.65,0,.25,1) .25s forwards;
+  background:var(--yellow);
+  animation:circleOpen 1.5s .1s cubic-bezier(.7,0,.2,1) forwards;
 }
 
 .opening-dots{
   position:absolute;
   inset:0;
-  pointer-events:none;
 }
 
 .opening-dots span{
   position:absolute;
-  width:12px;
-  height:12px;
-  background:#fff;
+  width:9px;
+  height:9px;
   border-radius:50%;
+  background:#fff;
   opacity:0;
-  animation:dotIn .5s ease forwards;
+  animation:dotIn .5s forwards;
 }
 
 .opening-dots span:nth-child(1){
-  top:15%;
-  left:13%;
-  animation-delay:.5s;
-}
-
-.opening-dots span:nth-child(2){
-  top:25%;
-  right:17%;
+  top:17%;
+  left:14%;
   animation-delay:.7s;
 }
 
-.opening-dots span:nth-child(3){
-  bottom:20%;
-  left:18%;
+.opening-dots span:nth-child(2){
+  top:26%;
+  right:18%;
   animation-delay:.9s;
 }
 
-.opening-dots span:nth-child(4){
-  bottom:15%;
-  right:13%;
+.opening-dots span:nth-child(3){
+  bottom:19%;
+  left:20%;
   animation-delay:1.1s;
 }
 
-.opening-logo{
-  position:absolute;
-  width:170px;
-  filter:brightness(0) invert(1);
-  opacity:0;
-  animation:openingLogo .8s ease 1s forwards;
+.opening-dots span:nth-child(4){
+  bottom:27%;
+  right:13%;
+  animation-delay:1.25s;
 }
 
-.opening-content{
+.opening-inner{
   position:relative;
   z-index:2;
+  width:min(90vw,700px);
   text-align:center;
   color:#fff;
+  opacity:0;
+  transform:translateY(20px);
+  animation:openingText 1s .65s forwards;
+}
+
+.opening-logo{
+  width:150px;
+  margin:0 auto 30px;
+  filter:brightness(0) invert(1);
 }
 
 .opening-kicker{
-  font-family:"DM Sans",sans-serif;
-  font-size:clamp(13px,1.5vw,18px);
+  font-size:12px;
   font-weight:900;
-  letter-spacing:.14em;
-  margin-bottom:20px;
-  opacity:0;
-  animation:fadeUp .7s ease 1.5s forwards;
+  letter-spacing:.2em;
+  margin-bottom:12px;
 }
 
 .opening-title{
-  font-family:"DM Sans",sans-serif;
-  font-size:clamp(34px,6vw,78px);
-  font-weight:900;
+  font-size:clamp(38px,7vw,86px);
   line-height:.95;
-  letter-spacing:-.06em;
+  font-weight:900;
+  letter-spacing:-.055em;
   white-space:nowrap;
-  opacity:0;
-  animation:fadeUp .8s ease 1.75s forwards;
 }
 
 .opening-sub{
-  margin-top:25px;
+  margin-top:20px;
   font-size:12px;
+  font-weight:800;
   letter-spacing:.18em;
-  font-weight:700;
-  opacity:0;
-  animation:fadeUp .7s ease 2s forwards;
 }
 
-@keyframes circleGrow{
-  from{transform:scale(1)}
-  to{transform:scale(18)}
-}
-
-@keyframes openingLogo{
+@keyframes circleOpen{
   from{
-    opacity:0;
-    transform:translateY(15px) scale(.9);
+    width:0;
+    height:0;
   }
   to{
-    opacity:1;
-    transform:translateY(0) scale(1);
+    width:180vw;
+    height:180vw;
   }
 }
 
-@keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translateY(20px);
+@keyframes dotIn{
+  to{
+    opacity:1;
   }
+}
+
+@keyframes openingText{
   to{
     opacity:1;
     transform:translateY(0);
   }
 }
 
-@keyframes dotIn{
-  from{
-    opacity:0;
-    transform:scale(0);
-  }
-  to{
-    opacity:1;
-    transform:scale(1);
-  }
-}
-
-@keyframes openingHide{
+@keyframes openingOut{
   to{
     opacity:0;
     visibility:hidden;
-    pointer-events:none;
   }
 }
 
-/* =========================
+
+/* =================================
    HEADER
-========================= */
+================================= */
 
 .site-header{
   position:fixed;
   top:0;
   left:0;
-  right:0;
+  width:100%;
   z-index:1000;
-  height:72px;
+  padding:12px 24px;
+  background:rgba(255,253,248,.94);
+  backdrop-filter:blur(12px);
+  border-bottom:3px solid var(--orange);
+  box-shadow:0 4px 18px rgba(51,32,24,.08);
+}
+
+.header-inner{
+  max-width:1280px;
+  margin:auto;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 5vw;
-  background:rgba(255,253,248,.96);
-  border-bottom:3px solid var(--orange);
-  box-shadow:0 4px 18px rgba(51,32,24,.08);
-  backdrop-filter:blur(12px);
+  gap:20px;
 }
 
 .header-logo{
-  width:130px;
-  flex:none;
+  display:flex;
+  align-items:center;
+  flex-shrink:0;
+}
+
+.header-logo img{
+  width:82px;
+  height:auto;
+  display:block;
 }
 
 .header-nav{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:6px;
 }
 
-.nav-btn{
-  border:0;
-  background:transparent;
+.header-nav a{
   padding:9px 14px;
   border-radius:999px;
-  font-family:"DM Sans","M PLUS Rounded 1c",sans-serif;
   font-size:12px;
   font-weight:900;
-  letter-spacing:.04em;
+  white-space:nowrap;
   transition:.2s ease;
 }
 
-.nav-btn:hover{
-  background:var(--yellow);
-  transform:translateY(-2px);
-}
-
-.nav-btn.active{
+.header-nav a:hover,
+.header-nav a.active{
   background:var(--orange);
   color:#fff;
 }
 
-/* =========================
-   COMMON
-========================= */
 
-section{
+/* =================================
+   COMMON
+================================= */
+
+.section{
   position:relative;
+  padding:130px 6vw;
 }
 
 .section-inner{
-  width:min(1200px,90%);
+  max-width:1280px;
   margin:auto;
 }
 
-.section-kicker{
-  font-family:"DM Sans",sans-serif;
-  font-size:13px;
+.eyebrow{
+  display:inline-block;
+  padding:7px 13px;
+  border-radius:999px;
+  background:var(--yellow);
+  color:var(--brown);
+  font-size:11px;
   font-weight:900;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  margin-bottom:18px;
+  letter-spacing:.1em;
 }
 
-.section-title{
-  font-size:clamp(44px,7vw,100px);
-  font-weight:900;
-  line-height:.95;
-  letter-spacing:-.07em;
-  margin:0;
-}
 
-.orange{
-  color:var(--orange);
-}
-
-/* =========================
+/* =================================
    HERO
-========================= */
+================================= */
 
 .hero{
-  min-height:100vh;
-  padding:150px 5vw 80px;
+  min-height:100svh;
+  padding:140px 6vw 70px;
+  background:var(--cream);
   display:flex;
   align-items:center;
   overflow:hidden;
-}
-
-.hero-inner{
-  width:min(1250px,100%);
-  margin:auto;
   position:relative;
 }
 
-.hero-sticker{
-  position:absolute;
-  top:0;
-  right:4%;
-  background:var(--yellow);
-  border:3px solid var(--brown);
-  padding:14px 20px;
-  border-radius:50%;
-  transform:rotate(8deg);
-  font-family:"DM Sans",sans-serif;
-  font-size:12px;
-  line-height:1.1;
-  font-weight:900;
-  text-align:center;
-  z-index:5;
+.hero-inner{
+  width:100%;
+  max-width:1280px;
+  margin:auto;
+  position:relative;
+  min-height:650px;
+  display:flex;
+  align-items:center;
 }
 
 .hero-copy{
   position:relative;
-  z-index:4;
-  width:max-content;
+  z-index:5;
+  width:58%;
 }
 
-.hero h1{
-  margin:0;
-  font-size:clamp(70px,11vw,170px);
-  line-height:.86;
-  letter-spacing:-.09em;
+.hero-title{
+  margin-top:28px;
+  font-size:clamp(68px,9vw,150px);
+  line-height:.82;
+  letter-spacing:-.085em;
   font-weight:900;
 }
 
-.hero h1 span{
+.hero-title span{
   display:block;
-  white-space:nowrap;
 }
 
-.hero h1 .accent{
+.hero-title .accent{
   color:var(--orange);
+}
+
+.hero-english{
+  margin-top:34px;
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:.16em;
+}
+
+.hero-sticker{
+  position:absolute;
+  right:0;
+  bottom:30px;
+  width:145px;
+  height:145px;
+  border-radius:50%;
+  background:var(--yellow);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-size:12px;
+  line-height:1.3;
+  font-weight:900;
+  transform:rotate(10deg);
+  z-index:7;
 }
 
 .hero-visual{
   position:absolute;
-  width:min(48vw,590px);
-  height:min(48vw,590px);
-  right:0;
+  width:min(52vw,650px);
+  height:min(52vw,650px);
+  right:-4%;
   top:50%;
-  transform:translateY(-50%) rotate(5deg);
-  border-radius:42% 58% 55% 45%;
+  transform:translateY(-50%);
+  border-radius:50%;
   overflow:hidden;
-  border:10px solid var(--white);
-  box-shadow:18px 20px 0 var(--yellow);
+  border:12px solid #fff;
+  box-shadow:20px 25px 0 var(--yellow);
   z-index:2;
 }
 
@@ -383,109 +379,202 @@ section{
   object-fit:cover;
 }
 
-.hero-visual::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(135deg,rgba(255,255,255,.12),transparent 45%);
-}
 
-.hero-bottom{
-  margin-top:42px;
-  display:flex;
-  align-items:center;
-  gap:25px;
-}
-
-.hero-english{
-  font-family:"DM Sans",sans-serif;
-  font-size:clamp(15px,2vw,25px);
-  font-weight:900;
-  letter-spacing:.04em;
-}
-
-.hero-scroll{
-  font-family:"DM Sans",sans-serif;
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:.15em;
-  color:var(--gray);
-}
-
-/* =========================
+/* =================================
    ABOUT
-========================= */
+================================= */
 
 .about{
-  padding:150px 0;
-  background:var(--yellow);
-  overflow:hidden;
-}
-
-.about-inner{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8vw;
-  align-items:end;
-}
-
-.about-title{
-  font-size:clamp(60px,8vw,120px);
-  line-height:.9;
-  letter-spacing:-.08em;
-  font-weight:900;
-  margin:0;
-  white-space:nowrap;
-}
-
-.about-title span{
-  display:block;
-}
-
-.about-title span:last-child{
-  color:var(--orange);
-}
-
-.about-note{
-  font-size:clamp(24px,3vw,42px);
-  line-height:1.3;
-  font-weight:800;
-  margin:0;
-}
-
-.about-note::before{
-  content:"「";
-  color:var(--orange);
-}
-
-.about-note::after{
-  content:"」";
-  color:var(--orange);
-}
-
-/* =========================
-   MOOD
-========================= */
-
-.mood{
-  padding:150px 0 100px;
   background:var(--white);
 }
 
-.mood-heading{
+.about-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:70px;
+  align-items:center;
+}
+
+.about-title{
+  margin-top:24px;
+  font-size:clamp(55px,7.5vw,110px);
+  line-height:.9;
+  letter-spacing:-.08em;
+  font-weight:900;
+}
+
+.about-copy{
+  font-size:clamp(24px,3vw,42px);
+  line-height:1.25;
+  font-weight:900;
+}
+
+.about-shape{
+  margin-top:40px;
+  width:180px;
+  height:180px;
+  border-radius:40% 60% 55% 45%;
+  background:var(--pink);
+  transform:rotate(-12deg);
+}
+
+
+/* =================================
+   RECIPES
+================================= */
+
+.recipes{
+  background:var(--white);
+}
+
+.section-heading{
   display:flex;
-  justify-content:space-between;
   align-items:end;
+  justify-content:space-between;
   gap:30px;
-  margin-bottom:55px;
+  margin-bottom:38px;
+}
+
+.section-title{
+  font-size:clamp(50px,7vw,100px);
+  line-height:.85;
+  letter-spacing:-.08em;
+  font-weight:900;
+}
+
+.section-title small{
+  display:block;
+  margin-bottom:12px;
+  font-size:12px;
+  letter-spacing:.18em;
+  color:var(--orange);
+}
+
+.search-box{
+  width:min(330px,100%);
+}
+
+.search-box input{
+  width:100%;
+  padding:15px 18px;
+  border:2px solid var(--brown);
+  border-radius:999px;
+  outline:none;
+  background:#fff;
+  font-weight:700;
+}
+
+.search-box input:focus{
+  border-color:var(--orange);
+}
+
+.recipe-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:26px;
+}
+
+.recipe-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:24px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.25s ease;
+}
+
+.recipe-card:hover{
+  transform:translateY(-7px);
+  box-shadow:0 15px 35px rgba(51,32,24,.12);
+}
+
+.recipe-image{
+  aspect-ratio:1.25 / 1;
+  overflow:hidden;
+  position:relative;
+}
+
+.recipe-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.4s ease;
+}
+
+.recipe-card:hover .recipe-image img{
+  transform:scale(1.05);
+}
+
+.recipe-info{
+  padding:18px 18px 20px;
+}
+
+.recipe-title{
+  font-size:19px;
+  font-weight:900;
+  line-height:1.25;
+}
+
+.recipe-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:12px;
+}
+
+.recipe-tag{
+  font-size:10px;
+  font-weight:900;
+  color:var(--orange);
+}
+
+.pagination{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  width:100%;
+  margin-top:38px;
+  position:relative;
+  z-index:20;
+}
+
+.pagination button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:42px;
+  height:42px;
+  flex:0 0 42px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  background:var(--white);
+  color:var(--brown);
+  font-weight:900;
+  cursor:pointer;
+}
+
+.pagination button.active{
+  background:var(--orange);
+  color:#fff;
+  border-color:var(--orange);
+}
+
+
+/* =================================
+   MOOD
+================================= */
+
+.mood{
+  background:var(--pale-yellow);
 }
 
 .mood-title{
-  font-size:clamp(58px,9vw,130px);
-  line-height:.85;
-  letter-spacing:-.09em;
+  font-size:clamp(65px,9vw,125px);
+  line-height:.82;
+  letter-spacing:-.085em;
   font-weight:900;
-  margin:0;
 }
 
 .mood-title span{
@@ -496,317 +585,124 @@ section{
   color:var(--orange);
 }
 
-.mood-description{
-  max-width:360px;
-  font-size:14px;
-  line-height:1.8;
-  color:var(--gray);
-  font-weight:700;
-}
-
 .tag-list{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
+  margin-top:50px;
 }
 
-.tag-btn{
-  border:2px solid var(--brown);
-  background:var(--white);
+.tag-button{
   padding:12px 18px;
+  border:2px solid var(--brown);
   border-radius:999px;
-  font-size:13px;
+  background:#fff;
+  color:var(--brown);
+  font-size:12px;
   font-weight:900;
+  cursor:pointer;
   transition:.2s ease;
 }
 
-.tag-btn:hover,
-.tag-btn.active{
+.tag-button:hover,
+.tag-button.active{
   background:var(--orange);
+  border-color:var(--orange);
   color:#fff;
-  border-color:var(--orange);
-  transform:translateY(-2px) rotate(-1deg);
 }
 
-/* =========================
-   SEARCH
-========================= */
-
-.recipe-area{
-  padding:80px 0 150px;
-  background:var(--white);
-}
-
-.recipe-toolbar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:30px;
-  margin-bottom:45px;
-}
-
-.recipe-heading{
-  font-size:clamp(45px,7vw,95px);
-  line-height:.9;
-  letter-spacing:-.08em;
-  font-weight:900;
-  margin:0;
-}
-
-.search-box{
-  position:relative;
-  width:min(380px,100%);
-}
-
-.search-box input{
-  width:100%;
-  border:2px solid var(--brown);
-  background:var(--cream);
-  border-radius:999px;
-  padding:15px 22px;
-  outline:none;
-  font-size:14px;
-  font-weight:700;
-}
-
-.search-box input:focus{
-  border-color:var(--orange);
-  box-shadow:0 0 0 4px rgba(255,104,31,.12);
-}
-
-.search-label{
-  position:absolute;
-  top:-9px;
-  left:20px;
-  padding:0 7px;
-  background:var(--white);
-  font-family:"DM Sans",sans-serif;
-  font-size:9px;
-  font-weight:900;
-  letter-spacing:.12em;
-}
-
-/* =========================
-   RECIPE GRID
-========================= */
-
-.recipe-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
-}
-
-.recipe-card{
-  background:var(--cream);
-  border-radius:25px;
-  overflow:hidden;
-  border:2px solid var(--line);
-  transition:.25s ease;
-  cursor:pointer;
-}
-
-.recipe-card:hover{
-  transform:translateY(-7px) rotate(-.4deg);
-  box-shadow:10px 12px 0 var(--yellow);
-}
-
-.recipe-card-image{
-  aspect-ratio:1/1;
-  overflow:hidden;
-}
-
-.recipe-card-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:.5s ease;
-}
-
-.recipe-card:hover .recipe-card-image img{
-  transform:scale(1.06);
-}
-
-.recipe-card-body{
-  padding:18px;
-}
-
-.recipe-number{
-  font-family:"DM Sans",sans-serif;
-  font-size:10px;
-  font-weight:900;
-  color:var(--gray);
-  margin-bottom:7px;
-}
-
-.recipe-card-title{
-  font-size:20px;
-  line-height:1.3;
-  font-weight:900;
-  margin:0 0 12px;
-}
-
-.recipe-tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:5px;
-}
-
-.recipe-tag{
-  display:inline-flex;
-  background:#fff;
-  border-radius:999px;
-  padding:5px 9px;
-  font-size:10px;
-  font-weight:800;
-}
-
-/* =========================
-   PAGINATION
-========================= */
-
-.pagination{
-  display:flex;
-  justify-content:center;
-  gap:8px;
+.mood-results{
   margin-top:55px;
 }
 
-.page-btn{
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  border:2px solid var(--brown);
-  background:transparent;
-  font-family:"DM Sans",sans-serif;
-  font-size:13px;
-  font-weight:900;
-}
 
-.page-btn:hover,
-.page-btn.active{
-  background:var(--orange);
-  color:#fff;
-  border-color:var(--orange);
-}
-
-.no-results{
-  grid-column:1/-1;
-  text-align:center;
-  padding:80px 20px;
-  font-size:20px;
-  font-weight:900;
-}
-
-/* =========================
+/* =================================
    FINAL CTA
-========================= */
+================================= */
 
 .final-cta{
-  padding:170px 5vw;
   background:var(--orange);
   color:#fff;
+  min-height:65vh;
+  display:flex;
+  align-items:center;
   overflow:hidden;
 }
 
 .final-cta-inner{
-  width:min(1200px,100%);
+  width:100%;
+  max-width:1280px;
   margin:auto;
-  position:relative;
 }
 
 .final-cta-title{
-  font-size:clamp(55px,10vw,150px);
-  line-height:.87;
-  letter-spacing:-.09em;
+  font-size:clamp(60px,9vw,140px);
+  line-height:.85;
+  letter-spacing:-.085em;
   font-weight:900;
-  margin:0;
 }
 
 .final-cta-title span{
   display:block;
 }
 
-.final-cta-title span:last-child{
+.final-cta-title span:nth-child(2){
   color:var(--yellow);
 }
 
-.final-cta-circle{
-  position:absolute;
-  width:230px;
-  height:230px;
-  border-radius:50%;
-  background:var(--yellow);
-  right:5%;
-  bottom:-20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:var(--brown);
-  font-family:"DM Sans",sans-serif;
-  font-size:15px;
+.final-cta-mark{
+  margin-top:55px;
+  font-size:13px;
   font-weight:900;
-  text-align:center;
-  transform:rotate(8deg);
+  letter-spacing:.18em;
 }
 
-/* =========================
+
+/* =================================
    FOOTER
-========================= */
+================================= */
 
-footer{
-  padding:45px 5vw;
-  background:var(--brown);
+.site-footer{
+  padding:28px 6vw;
+  background:var(--black);
   color:#fff;
-}
-
-.footer-inner{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-}
-
-.footer-logo{
-  width:140px;
-  filter:brightness(0) invert(1);
+  text-align:center;
 }
 
 .footer-copy{
-  font-family:"DM Sans",sans-serif;
-  font-size:10px;
-  letter-spacing:.12em;
+  font-size:11px;
   font-weight:700;
-  opacity:.7;
+  letter-spacing:.08em;
 }
 
-/* =========================
+
+/* =================================
    MODAL
-========================= */
+================================= */
 
 .modal{
   position:fixed;
   inset:0;
-  z-index:5000;
-  background:rgba(23,18,15,.65);
+  z-index:3000;
+  background:rgba(23,18,15,.72);
   display:none;
   align-items:center;
   justify-content:center;
   padding:30px;
-  backdrop-filter:blur(8px);
 }
 
 .modal.show{
   display:flex;
 }
 
-.modal-window{
-  width:min(1000px,100%);
-  max-height:90vh;
-  overflow:auto;
+.modal-box{
+  position:relative;
+  width:min(1050px,100%);
+  max-height:92vh;
+  overflow-y:auto;
   background:var(--white);
   border-radius:30px;
-  position:relative;
-  box-shadow:15px 20px 0 var(--yellow);
+  box-shadow:0 30px 80px rgba(0,0,0,.3);
 }
 
 .modal-close{
@@ -815,17 +711,18 @@ footer{
   right:18px;
   width:44px;
   height:44px;
-  border:0;
   border-radius:50%;
-  background:var(--brown);
+  background:var(--orange);
   color:#fff;
-  font-size:20px;
-  z-index:3;
+  font-size:24px;
+  font-weight:900;
+  cursor:pointer;
+  z-index:10;
 }
 
 .modal-top{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:.9fr 1.1fr;
 }
 
 .modal-image{
@@ -839,80 +736,61 @@ footer{
 }
 
 .modal-intro{
-  padding:50px 42px 40px;
-}
-
-.modal-number{
-  font-family:"DM Sans",sans-serif;
-  font-size:11px;
-  font-weight:900;
-  color:var(--orange);
-  letter-spacing:.15em;
+  padding:60px 48px 45px;
 }
 
 .modal-title{
-  font-size:clamp(35px,4vw,62px);
-  line-height:.95;
+  font-size:clamp(38px,5vw,68px);
+  line-height:.9;
   letter-spacing:-.07em;
   font-weight:900;
-  margin:15px 0 25px;
 }
 
 .modal-tags{
   display:flex;
   flex-wrap:wrap;
   gap:7px;
+  margin-top:22px;
 }
 
 .modal-tag{
-  border:1px solid var(--brown);
-  background:transparent;
+  padding:8px 12px;
   border-radius:999px;
-  padding:7px 11px;
+  background:var(--yellow);
+  color:var(--brown);
   font-size:11px;
   font-weight:900;
-  transition:.2s;
-}
-
-.modal-tag:hover{
-  background:var(--orange);
-  border-color:var(--orange);
-  color:#fff;
+  cursor:pointer;
 }
 
 .modal-section{
-  padding:45px 42px;
-  border-top:2px solid var(--line);
+  padding:45px 48px;
+  border-top:1px solid var(--line);
 }
 
 .modal-section-title{
-  font-family:"DM Sans",sans-serif;
   font-size:13px;
   font-weight:900;
-  letter-spacing:.13em;
+  letter-spacing:.12em;
   margin-bottom:25px;
 }
 
-/* =========================
-   INGREDIENTS
-========================= */
-
 .ingredients-list{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:10px;
 }
 
 .ingredient-item{
+  padding:13px 14px;
+  border-radius:13px;
+  background:#fff;
+  border:1px solid var(--line);
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  padding:13px 15px;
-  border-radius:12px;
-  background:var(--cream);
+  gap:12px;
   font-size:13px;
-  font-weight:800;
+  font-weight:700;
 }
 
 .ingredient-name{
@@ -920,255 +798,382 @@ footer{
 }
 
 .ingredient-amount{
-  white-space:nowrap;
   color:var(--orange);
-  font-family:"DM Sans",sans-serif;
   font-weight:900;
+  white-space:nowrap;
 }
-
-/* =========================
-   HOW TO COOK
-========================= */
 
 .steps{
   display:flex;
   flex-direction:column;
-  gap:25px;
+  gap:18px;
 }
 
 .step{
   display:grid;
-  grid-template-columns:55px 1fr;
-  gap:18px;
+  grid-template-columns:44px 1fr;
+  gap:16px;
   align-items:start;
 }
 
 .step-number{
-  width:48px;
-  height:48px;
+  width:44px;
+  height:44px;
   border-radius:50%;
-  background:var(--yellow);
+  background:var(--orange);
+  color:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-family:"DM Sans",sans-serif;
-  font-size:13px;
   font-weight:900;
+  font-size:13px;
 }
 
 .step-text{
-  font-size:16px;
-  line-height:2;
+  padding-top:8px;
+  font-size:15px;
+  line-height:1.8;
   font-weight:700;
 }
-
-/* clickable ingredient in cooking steps */
 
 .cooking-ingredient{
   position:relative;
   display:inline-block;
   color:var(--orange);
-  font-weight:900;
   border-bottom:2px dotted var(--orange);
   cursor:pointer;
-  transition:.15s;
+  font-weight:900;
 }
 
-.cooking-ingredient:hover{
-  background:var(--yellow);
-  color:var(--brown);
-}
-
-.amount-bubble{
+.ingredient-bubble{
   position:absolute;
   left:50%;
-  bottom:calc(100% + 11px);
-  transform:translateX(-50%) scale(.9);
+  bottom:calc(100% + 10px);
+  transform:translateX(-50%);
+  min-width:62px;
+  padding:7px 10px;
+  border-radius:10px;
   background:var(--brown);
   color:#fff;
-  padding:8px 13px;
-  border-radius:10px;
-  white-space:nowrap;
-  font-family:"DM Sans","M PLUS Rounded 1c",sans-serif;
-  font-size:13px;
+  font-size:11px;
   font-weight:900;
-  opacity:0;
-  pointer-events:none;
-  transition:.15s ease;
-  z-index:20;
+  text-align:center;
+  white-space:nowrap;
+  z-index:50;
+  box-shadow:0 7px 18px rgba(0,0,0,.18);
 }
 
-.amount-bubble::after{
+.ingredient-bubble::after{
   content:"";
   position:absolute;
   left:50%;
-  top:100%;
+  bottom:-6px;
   transform:translateX(-50%);
-  border-left:7px solid transparent;
-  border-right:7px solid transparent;
+  border-left:6px solid transparent;
+  border-right:6px solid transparent;
   border-top:7px solid var(--brown);
 }
 
-.cooking-ingredient.active .amount-bubble{
-  opacity:1;
-  transform:translateX(-50%) scale(1);
+
+/* =================================
+   MORE RECIPES
+================================= */
+
+.more-recipes{
+  padding:45px 48px 55px;
+  border-top:1px solid var(--line);
+  background:var(--cream);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+.more-heading{
+  margin-bottom:24px;
+}
 
-@media(max-width:900px){
+.more-heading small{
+  display:block;
+  color:var(--orange);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.16em;
+  margin-bottom:7px;
+}
+
+.more-heading h3{
+  font-size:30px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:-.05em;
+}
+
+.more-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.more-card{
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+  cursor:pointer;
+  border:1px solid var(--line);
+  transition:.2s ease;
+}
+
+.more-card:hover{
+  transform:translateY(-4px);
+}
+
+.more-card-image{
+  aspect-ratio:1.3 / 1;
+  overflow:hidden;
+}
+
+.more-card-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.more-card-info{
+  padding:12px 13px 15px;
+}
+
+.more-card-title{
+  font-size:13px;
+  line-height:1.3;
+  font-weight:900;
+}
+
+.more-card-tags{
+  margin-top:7px;
+  font-size:9px;
+  color:var(--orange);
+  font-weight:900;
+}
+
+
+/* =================================
+   EMPTY
+================================= */
+
+.empty{
+  padding:70px 20px;
+  text-align:center;
+  font-size:14px;
+  font-weight:800;
+  color:var(--gray);
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media(max-width:800px){
 
   .site-header{
-    height:66px;
-    padding:0 3vw;
+    padding:9px 10px;
   }
 
-  .header-logo{
-    width:105px;
+  .header-inner{
+    gap:7px;
+  }
+
+  .header-logo img{
+    width:58px;
   }
 
   .header-nav{
-    gap:3px;
+    gap:2px;
+    flex:1;
+    justify-content:flex-end;
   }
 
-  .nav-btn{
-    padding:8px 9px;
-    font-size:10px;
+  .header-nav a{
+    padding:7px 8px;
+    font-size:9px;
+  }
+
+  .section{
+    padding:100px 5vw;
   }
 
   .hero{
     min-height:100svh;
-    padding:120px 5vw 60px;
-    align-items:flex-start;
+    padding:105px 5vw 45px;
   }
 
   .hero-inner{
-    height:calc(100svh - 170px);
-    display:flex;
-    align-items:center;
+    min-height:720px;
+    display:block;
   }
 
   .hero-copy{
     width:100%;
-    position:relative;
+    padding-top:90px;
     z-index:5;
   }
 
-  .hero h1{
-    font-size:clamp(62px,17vw,125px);
+  .hero-title{
+    position:relative;
+    z-index:5;
+    font-size:clamp(54px,14vw,82px);
+    line-height:.84;
   }
 
-  .hero h1 span{
+  .hero-title span:last-child{
+    font-size:13vw;
     white-space:nowrap;
   }
 
+  .hero-english{
+    margin-top:24px;
+    font-size:10px;
+  }
+
   .hero-visual{
-    width:68vw;
-    height:68vw;
-    right:2%;
-    top:54%;
-    transform:translateY(-50%) rotate(5deg);
-    opacity:.9;
+    width:74vw;
+    height:74vw;
+    right:-3%;
+    top:57%;
+    transform:none;
     border-width:7px;
-    box-shadow:12px 14px 0 var(--yellow);
+    box-shadow:12px 15px 0 var(--yellow);
     z-index:3;
-  }
-
-  .hero-copy{
-    text-shadow:
-      2px 2px 0 rgba(255,253,248,.8),
-      -2px -2px 0 rgba(255,253,248,.8),
-      2px -2px 0 rgba(255,253,248,.8),
-      -2px 2px 0 rgba(255,253,248,.8);
-  }
-
-  .hero-bottom{
-    position:relative;
-    z-index:6;
+    opacity:.98;
   }
 
   .hero-sticker{
-    top:2%;
+    width:100px;
+    height:100px;
     right:0;
+    bottom:40px;
     font-size:9px;
-    padding:11px;
   }
 
-  .about-inner{
+  .about-grid{
     grid-template-columns:1fr;
-    gap:55px;
+    gap:45px;
   }
 
   .about-title{
-    font-size:clamp(55px,13vw,100px);
+    font-size:11.5vw;
+    white-space:nowrap;
+    letter-spacing:-.075em;
   }
 
-  .mood-heading{
-    flex-direction:column;
-    align-items:flex-start;
+  .about-copy{
+    font-size:26px;
   }
 
-  .recipe-toolbar{
-    flex-direction:column;
-    align-items:flex-start;
+  .section-heading{
+    display:block;
+  }
+
+  .section-title{
+    font-size:18vw;
   }
 
   .search-box{
-    width:100%;
+    margin-top:25px;
   }
 
   .recipe-grid{
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:8px;
   }
 
   .recipe-card{
-    border-radius:14px;
+    border-radius:13px;
   }
 
-  .recipe-card-body{
-    padding:10px;
+  .recipe-info{
+    padding:10px 8px 11px;
   }
 
-  .recipe-card-title{
-    font-size:13px;
+  .recipe-title{
+    font-size:11px;
+    line-height:1.3;
   }
 
-  .recipe-number{
-    font-size:8px;
+  .recipe-tags{
+    gap:3px;
+    margin-top:6px;
   }
 
   .recipe-tag{
-    font-size:8px;
-    padding:4px 6px;
+    font-size:7px;
+  }
+
+  .pagination{
+    gap:8px;
+    margin-top:28px;
+    padding:0 12px;
+  }
+
+  .pagination button{
+    width:40px;
+    height:40px;
+    flex:0 0 40px;
+    min-width:40px;
+  }
+
+  .mood-title{
+    font-size:18vw;
+  }
+
+  .tag-list{
+    margin-top:35px;
+    gap:7px;
+  }
+
+  .tag-button{
+    padding:10px 13px;
+    font-size:10px;
+  }
+
+  .final-cta{
+    min-height:60vh;
+  }
+
+  .final-cta-title{
+    font-size:17vw;
   }
 
   .modal{
-    padding:12px;
+    padding:10px;
   }
 
-  .modal-window{
-    max-height:94vh;
+  .modal-box{
     border-radius:22px;
+    max-height:94vh;
   }
 
   .modal-top{
-    grid-template-columns:1fr;
+    display:block;
   }
 
   .modal-image{
-    min-height:260px;
-    max-height:330px;
+    height:240px;
+    min-height:0;
   }
 
   .modal-intro{
-    padding:30px 22px;
+    padding:30px 22px 25px;
+  }
+
+  .modal-title{
+    font-size:42px;
   }
 
   .modal-section{
     padding:30px 22px;
+  }
+
+  .modal-section-title{
+    font-size:11px;
+    margin-bottom:18px;
   }
 
   .ingredients-list{
@@ -1178,235 +1183,102 @@ footer{
 
   .ingredient-item{
     display:block;
-    padding:11px;
+    padding:10px;
     font-size:11px;
   }
 
   .ingredient-amount{
     display:block;
     margin-top:4px;
-    font-size:11px;
   }
 
   .step{
-    grid-template-columns:42px 1fr;
-    gap:12px;
+    grid-template-columns:35px 1fr;
+    gap:10px;
   }
 
   .step-number{
-    width:38px;
-    height:38px;
+    width:35px;
+    height:35px;
     font-size:11px;
   }
 
   .step-text{
+    padding-top:5px;
     font-size:13px;
-    line-height:1.9;
+    line-height:1.75;
   }
 
-  .final-cta{
-    padding:120px 5vw;
+  .more-recipes{
+    padding:30px 22px 35px;
   }
 
-  .final-cta-circle{
-    width:150px;
-    height:150px;
-    right:0;
-    bottom:-20px;
-    font-size:11px;
-  }
-}
-
-@media(max-width:600px){
-
-  .opening-logo{
-    width:105px;
+  .more-heading h3{
+    font-size:24px;
   }
 
-  .opening-title{
-    font-size:clamp(27px,8vw,42px);
-  }
-
-  .opening-kicker{
-    font-size:10px;
-  }
-
-  .opening-sub{
-    font-size:8px;
-  }
-
-  .site-header{
-    height:60px;
-  }
-
-  .header-logo{
-    display:none;
-  }
-
-  .header-nav{
-    width:100%;
-    justify-content:space-between;
-    gap:3px;
-  }
-
-  .nav-btn{
-    flex:1;
-    padding:8px 4px;
-    font-size:9px;
-  }
-
-  .hero{
-    padding-top:95px;
-  }
-
-  .hero-inner{
-    height:calc(100svh - 135px);
-  }
-
-  .hero h1{
-    font-size:clamp(57px,16vw,100px);
-    line-height:.86;
-  }
-
-  .hero h1 span:last-child{
-    font-size:.84em;
-  }
-
-  .hero-visual{
-    width:74vw;
-    height:74vw;
-    right:-3%;
-    top:57%;
-    z-index:3;
-  }
-
-  .hero-bottom{
-    margin-top:25px;
-    gap:13px;
-  }
-
-  .hero-english{
-    font-size:11px;
-  }
-
-  .hero-scroll{
-    font-size:7px;
-  }
-
-  .about{
-    padding:100px 0;
-  }
-
-  .about-title{
-    font-size:11.5vw;
-    white-space:nowrap;
-    letter-spacing:-.075em;
-  }
-
-  .about-note{
-    font-size:23px;
-  }
-
-  .mood{
-    padding:100px 0 70px;
-  }
-
-  .mood-title{
-    font-size:18vw;
-  }
-
-  .section-inner{
-    width:90%;
-  }
-
-  .recipe-area{
-    padding:55px 0 100px;
-  }
-
-  .recipe-heading{
-    font-size:18vw;
-  }
-
-  .recipe-grid{
+  .more-grid{
     grid-template-columns:repeat(3,minmax(0,1fr));
     gap:7px;
   }
 
-  .recipe-card:hover{
-    transform:none;
-    box-shadow:none;
+  .more-card{
+    border-radius:11px;
   }
 
-  .recipe-card-body{
+  .more-card-info{
     padding:8px;
   }
 
-  .recipe-card-title{
-    font-size:11px;
-    line-height:1.25;
-    margin-bottom:7px;
-  }
-
-  .recipe-number{
-    margin-bottom:4px;
-  }
-
-  .recipe-tags{
-    display:none;
-  }
-
-  .pagination{
-    gap:5px;
-    margin-top:35px;
-  }
-
-  .page-btn{
-    width:34px;
-    height:34px;
-    font-size:11px;
-  }
-
-  .modal-title{
-    font-size:42px;
-  }
-
-  .modal-image{
-    min-height:220px;
-    max-height:270px;
-  }
-
-  .modal-close{
-    width:38px;
-    height:38px;
-    font-size:17px;
-  }
-
-  .modal-section-title{
-    margin-bottom:18px;
-  }
-
-  .amount-bubble{
-    font-size:12px;
-    padding:7px 10px;
-  }
-
-  .final-cta{
-    padding:100px 5vw;
-  }
-
-  .final-cta-title{
-    font-size:17vw;
-  }
-
-  .final-cta-circle{
-    width:125px;
-    height:125px;
+  .more-card-title{
     font-size:9px;
   }
 
-  .footer-inner{
-    flex-direction:column;
-    align-items:flex-start;
+  .more-card-tags{
+    font-size:7px;
+  }
+
+  .modal-close{
+    top:10px;
+    right:10px;
+    width:38px;
+    height:38px;
+    font-size:20px;
+  }
+
+  .opening-logo{
+    width:105px;
+    margin-bottom:24px;
+  }
+
+  .opening-kicker{
+    font-size:9px;
+    margin-bottom:10px;
+  }
+
+  .opening-title{
+    font-size:10vw;
+  }
+
+  .opening-sub{
+    margin-top:15px;
+    font-size:8px;
+  }
+}
+
+@media(max-width:360px){
+
+  .header-logo img{
+    width:48px;
+  }
+
+  .header-nav a{
+    padding:6px 6px;
+    font-size:8px;
+  }
+
+  .recipe-title{
+    font-size:10px;
   }
 }
 </style>
@@ -1419,7 +1291,6 @@ footer{
 ========================= -->
 
 <div class="opening" id="opening">
-
   <div class="opening-circle"></div>
 
   <div class="opening-dots">
@@ -1429,18 +1300,21 @@ footer{
     <span></span>
   </div>
 
-  <img
-    class="opening-logo"
-    src="logo.png"
-    alt="CHU dot COOKING"
-  >
+  <div class="opening-inner">
+    <img class="opening-logo" src="logo.png" alt="CHU dot COOKING">
 
-  <div class="opening-content">
-    <div class="opening-kicker">MY KITCHEN / MY RULES</div>
-    <div class="opening-title">CHU dot COOKING</div>
-    <div class="opening-sub">COOK IT. EAT IT. LOVE IT.</div>
+    <div class="opening-kicker">
+      MY KITCHEN / MY RULES
+    </div>
+
+    <div class="opening-title">
+      CHU dot COOKING
+    </div>
+
+    <div class="opening-sub">
+      COOK IT. EAT IT. LOVE IT.
+    </div>
   </div>
-
 </div>
 
 
@@ -1449,71 +1323,47 @@ footer{
 ========================= -->
 
 <header class="site-header">
+  <div class="header-inner">
 
-  <a href="#home">
-    <img
-      class="header-logo"
-      src="logo.png"
-      alt="CHU dot COOKING"
-    >
-  </a>
+    <a href="#home" class="header-logo">
+      <img src="logov2.png" alt="CHU dot COOKING">
+    </a>
 
-  <nav class="header-nav">
+    <nav class="header-nav">
+      <a href="#home" data-nav="home">HOME</a>
+      <a href="#about" data-nav="about">ABOUT</a>
+      <a href="#recipes" data-nav="recipes">レシピ</a>
+      <a href="#mood" data-nav="mood">気分は？</a>
+    </nav>
 
-    <button class="nav-btn active" data-target="home">
-      HOME
-    </button>
-
-    <button class="nav-btn" data-target="about">
-      ABOUT
-    </button>
-
-    <button class="nav-btn" data-target="mood">
-      気分は？
-    </button>
-
-    <button class="nav-btn" data-target="recipes">
-      レシピ
-    </button>
-
-  </nav>
-
+  </div>
 </header>
 
-
-<main>
 
 <!-- =========================
      HERO
 ========================= -->
 
+<main>
+
 <section class="hero" id="home">
 
   <div class="hero-inner">
 
-    <div class="hero-sticker">
-      MY KITCHEN<br>
-      MY RULES
-    </div>
-
     <div class="hero-copy">
 
-      <h1>
+      <span class="eyebrow">
+        MY KITCHEN / MY RULES
+      </span>
+
+      <h1 class="hero-title">
         <span>俺の作る</span>
         <span class="accent">メシが、</span>
         <span class="accent">一番うまい！</span>
       </h1>
 
-      <div class="hero-bottom">
-
-        <div class="hero-english">
-          COOK IT. EAT IT. LOVE IT.
-        </div>
-
-        <div class="hero-scroll">
-          SCROLL DOWN ↓
-        </div>
-
+      <div class="hero-english">
+        COOK IT. EAT IT. LOVE IT.
       </div>
 
     </div>
@@ -1521,8 +1371,13 @@ footer{
     <div class="hero-visual">
       <img
         src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=85"
-        alt="料理"
+        alt="food"
       >
+    </div>
+
+    <div class="hero-sticker">
+      MY KITCHEN<br>
+      / MY RULES
     </div>
 
   </div>
@@ -1534,55 +1389,26 @@ footer{
      ABOUT
 ========================= -->
 
-<section class="about" id="about">
+<section class="section about" id="about">
 
-  <div class="section-inner about-inner">
+  <div class="section-inner about-grid">
 
     <div>
-
-      <div class="section-kicker">
-        ABOUT CHU dot COOKING
-      </div>
+      <span class="eyebrow">ABOUT ME / FOOD</span>
 
       <h2 class="about-title">
-        <span>うまいものは、</span>
-        <span>自分で作る。</span>
+        うまいものは、<br>
+        自分で作る。
       </h2>
-
     </div>
 
-    <p class="about-note">
-      こういうのでいいんだよ。
-    </p>
+    <div>
+      <p class="about-copy">
+        「こういうのでいいんだよ。」
+      </p>
 
-  </div>
-
-</section>
-
-
-<!-- =========================
-     MOOD
-========================= -->
-
-<section class="mood" id="mood">
-
-  <div class="section-inner">
-
-    <div class="mood-heading">
-
-      <h2 class="mood-title">
-        <span>今日の</span>
-        <span>気分は？</span>
-      </h2>
-
-      <div class="mood-description">
-        今食べたいものを選ぶ。<br>
-        タグを押せば、その気分に合うレシピだけが出てくる。
-      </div>
-
+      <div class="about-shape"></div>
     </div>
-
-    <div class="tag-list" id="tagList"></div>
 
   </div>
 
@@ -1593,41 +1419,55 @@ footer{
      RECIPES
 ========================= -->
 
-<section class="recipe-area" id="recipes">
+<section class="section recipes" id="recipes">
 
   <div class="section-inner">
 
-    <div class="recipe-toolbar">
+    <div class="section-heading">
 
-      <h2 class="recipe-heading">
+      <h2 class="section-title">
+        <small>COOKING ARCHIVE</small>
         レシピ
       </h2>
 
       <div class="search-box">
-
-        <div class="search-label">
-          SEARCH
-        </div>
-
         <input
-          id="searchInput"
           type="search"
-          placeholder="料理名・材料・タグから探す"
+          id="searchInput"
+          placeholder="料理名・材料を検索"
+          autocomplete="off"
         >
-
       </div>
 
     </div>
 
-    <div
-      class="recipe-grid"
-      id="recipeGrid"
-    ></div>
+    <div class="recipe-grid" id="recipeGrid"></div>
 
-    <div
-      class="pagination"
-      id="pagination"
-    ></div>
+    <div class="pagination" id="pagination"></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     MOOD
+========================= -->
+
+<section class="section mood" id="mood">
+
+  <div class="section-inner">
+
+    <h2 class="mood-title">
+      <span>今日の</span>
+      <span>気分は？</span>
+    </h2>
+
+    <div class="tag-list" id="tagList"></div>
+
+    <div class="mood-results">
+      <div class="recipe-grid" id="moodGrid"></div>
+    </div>
 
   </div>
 
@@ -1638,7 +1478,7 @@ footer{
      FINAL CTA
 ========================= -->
 
-<section class="final-cta">
+<section class="section final-cta">
 
   <div class="final-cta-inner">
 
@@ -1648,10 +1488,8 @@ footer{
       <span>一番うまい。</span>
     </h2>
 
-    <div class="final-cta-circle">
-      COOK IT.<br>
-      EAT IT.<br>
-      LOVE IT.
+    <div class="final-cta-mark">
+      CHU dot COOKING
     </div>
 
   </div>
@@ -1665,74 +1503,26 @@ footer{
      FOOTER
 ========================= -->
 
-<footer>
-
-  <div class="footer-inner">
-
-    <img
-      class="footer-logo"
-      src="logo.png"
-      alt="CHU dot COOKING"
-    >
-
-    <div class="footer-copy">
-      © CHU dot COOKING
-    </div>
-
+<footer class="site-footer">
+  <div class="footer-copy">
+    © 2026 CHU dot COOKING
   </div>
-
 </footer>
 
 
 <!-- =========================
-     MODAL
+     RECIPE MODAL
 ========================= -->
 
-<div
-  class="modal"
-  id="recipeModal"
->
+<div class="modal" id="recipeModal">
 
-  <div class="modal-window">
+  <div class="modal-box">
 
-    <button
-      class="modal-close"
-      id="modalClose"
-      aria-label="閉じる"
-    >
+    <button class="modal-close" id="modalClose" aria-label="close">
       ×
     </button>
 
-    <div
-      class="modal-top"
-      id="modalTop"
-    ></div>
-
-    <div class="modal-section">
-
-      <div class="modal-section-title">
-        INGREDIENTS / 材料
-      </div>
-
-      <div
-        class="ingredients-list"
-        id="modalIngredients"
-      ></div>
-
-    </div>
-
-    <div class="modal-section">
-
-      <div class="modal-section-title">
-        HOW TO COOK
-      </div>
-
-      <div
-        class="steps"
-        id="modalSteps"
-      ></div>
-
-    </div>
+    <div id="modalContent"></div>
 
   </div>
 
@@ -1741,751 +1531,816 @@ footer{
 
 <script>
 
-/* =========================================================
-   RECIPE DATA
-========================================================= */
+/* =================================
+   RECIPES DATA
+================================= */
 
 const recipes = [
 
   {
     name:"海老塩焼きそば",
     image:"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1000&q=85",
-    tags:["麺類","ガッツリ","海鮮"],
-    searchText:"海老 中華麺 もやし ネギ あげ玉 ごま油 塩 黒胡椒 砂糖 醤油 酒 鶏ガラ 煮干し にんにく 焼きそば",
+    tags:["麺類","海鮮","ガッツリ"],
+    searchText:"海老 塩 焼きそば 麺 もやし キャベツ",
     ingredients:[
-      ["海老","好きなだけ"],
       ["中華麺","2玉"],
-      ["もやし","1/2袋"],
-      ["長ネギ or 小口ネギ","適量"],
-      ["あげ玉","適量"],
-      ["ごま油","適量"],
-      ["塩コショウ","3g"],
-      ["黒胡椒","適量・強気"],
-      ["砂糖","7g"],
-      ["醤油","2g"],
-      ["料理酒","15g"],
-      ["鶏ガラの素","4g"],
-      ["煮干し粉","3g"],
-      ["おろしにんにく","15g"],
-      ["茹で汁","25cc"]
+      ["むき海老","120g"],
+      ["キャベツ","120g"],
+      ["もやし","100g"],
+      ["ごま油","10g"],
+      ["鶏ガラスープの素","5g"],
+      ["塩","3g"],
+      ["黒こしょう","少々"],
+      ["にんにく","5g"]
     ],
     steps:[
-      "鉄鍋に塩コショウを振った海老をごま油で炒め、汁ごと別容器へ移す。",
-      "中華麺を別鍋で表示時間通りに茹でる。",
-      "茹で汁、塩コショウ、黒胡椒、砂糖、醤油、料理酒、鶏ガラの素、煮干し粉、おろしにんにくを混ぜる。",
-      "麺が茹で上がったら流水でぬめりを洗い流す。",
-      "海老を炒めた鉄鍋にごま油を敷き、強火で麺を炒めて焼き目をつける。",
-      "海老、もやし、ネギ、塩ダレを加えて強火で混ぜる。",
-      "仕上げにあげ玉を加えて盛り付ける。"
+      "フライパンにごま油とにんにくを入れて中火で熱する。",
+      "海老を加えて炒め、色が変わったらキャベツともやしを加える。",
+      "中華麺を加えてほぐしながら炒める。",
+      "鶏ガラスープの素、塩、黒こしょうで味を整える。"
     ]
   },
 
   {
     name:"鶏むね肉のレモン醤油ソテー",
     image:"https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=85",
-    tags:["肉","鶏肉","簡単"],
-    searchText:"鶏むね肉 レモン 醤油 にんにく ソテー",
+    tags:["鶏肉","さっぱり","おかず"],
+    searchText:"鶏むね肉 レモン 醤油 ソテー",
     ingredients:[
-      ["鶏むね肉","1枚"],
-      ["醤油","大さじ1"],
-      ["レモン汁","大さじ1"],
-      ["にんにく","小さじ1"],
-      ["片栗粉","大さじ1"],
-      ["油","適量"]
+      ["鶏むね肉","300g"],
+      ["塩","2g"],
+      ["黒こしょう","少々"],
+      ["薄力粉","15g"],
+      ["油","10g"],
+      ["醤油","15g"],
+      ["レモン汁","15g"],
+      ["砂糖","5g"]
     ],
     steps:[
-      "鶏むね肉を食べやすい大きさに切り、片栗粉をまぶす。",
-      "フライパンに油を熱して鶏肉を焼く。",
-      "両面に焼き色がついたら醤油、レモン汁、にんにくを加える。",
-      "全体を絡めて完成。"
+      "鶏むね肉をそぎ切りにして、塩、黒こしょうをまぶす。",
+      "薄力粉を薄くまぶす。",
+      "フライパンに油を熱し、鶏肉を両面焼く。",
+      "醤油、レモン汁、砂糖を加えて全体に絡める。"
     ]
   },
 
   {
     name:"とろ旨麻婆なす",
     image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
-    tags:["肉","野菜","中華","ガッツリ"],
-    searchText:"なす 豚ひき肉 長ネギ 豆板醤 甜麺醤 花椒 麻婆",
+    tags:["なす","中華","ご飯"],
+    searchText:"麻婆なす なす 豚ひき肉 豆板醤 甜麺醤",
     ingredients:[
-      ["なす","3本"],
-      ["豚ひき肉","150g"],
-      ["長ネギ","1/2本"],
-      ["豆板醤","小さじ1"],
-      ["甜麺醤","大さじ1"],
-      ["醤油","小さじ1"],
-      ["鶏ガラ","小さじ1"],
-      ["花椒","適量"]
+      ["冷凍なす","300g"],
+      ["豚ひき肉","120g"],
+      ["長ねぎ","50g"],
+      ["にんにく","5g"],
+      ["しょうが","5g"],
+      ["豆板醤","5g"],
+      ["甜麺醤","15g"],
+      ["醤油","10g"],
+      ["鶏ガラスープの素","3g"],
+      ["水","100g"],
+      ["花椒","少々"],
+      ["ごま油","5g"]
     ],
     steps:[
-      "なすを乱切りにする。",
-      "フライパンで豚ひき肉を炒める。",
-      "豆板醤と甜麺醤を加えて香りを出す。",
-      "なすと調味料を加えて炒め煮にする。",
-      "仕上げに花椒を振る。"
+      "フライパンにごま油、にんにく、しょうが、豆板醤を入れて炒める。",
+      "豚ひき肉を加えて炒める。",
+      "甜麺醤と醤油を加える。",
+      "なすと水、鶏ガラスープの素を加えて煮る。",
+      "仕上げに長ねぎと花椒を加える。"
     ]
   },
 
   {
     name:"炊飯器スパイスチキンライス",
     image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
-    tags:["ご飯","鶏肉","炊飯器","簡単"],
-    searchText:"米 鶏肉 カレー粉 クミン 黒胡椒 ヨーグルト にんにく 生姜 トマト レモン",
+    tags:["ご飯","鶏肉","スパイス"],
+    searchText:"炊飯器 チキンライス カレー粉 クミン ヨーグルト",
     ingredients:[
       ["米","2合"],
-      ["鶏もも肉","1枚"],
-      ["カレー粉","大さじ1"],
-      ["クミン","小さじ1"],
-      ["黒胡椒","適量"],
+      ["鶏もも肉","250g"],
+      ["玉ねぎ","100g"],
+      ["トマト","100g"],
       ["ヨーグルト","50g"],
-      ["にんにく","小さじ1"],
-      ["生姜","小さじ1"],
-      ["トマト","1個"],
-      ["レモン汁","小さじ2"]
+      ["カレー粉","8g"],
+      ["クミン","2g"],
+      ["黒こしょう","1g"],
+      ["にんにく","5g"],
+      ["しょうが","5g"],
+      ["レモン汁","10g"],
+      ["塩","5g"]
     ],
     steps:[
       "米を研いで炊飯器に入れる。",
-      "調味料を加えて軽く混ぜる。",
-      "鶏肉とトマトを上に乗せる。",
-      "通常炊飯する。",
-      "炊き上がったら鶏肉を切り分けて盛り付ける。"
+      "鶏肉にヨーグルト、カレー粉、クミン、塩、にんにく、しょうがを絡める。",
+      "米の上に玉ねぎ、トマト、鶏肉をのせる。",
+      "通常通り炊飯する。",
+      "炊き上がったら黒こしょうとレモン汁を加える。"
     ]
   },
 
   {
     name:"とろけるチーズの焼きナポリタン",
-    image:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=85",
-    tags:["麺類","パスタ","チーズ","ガッツリ"],
-    searchText:"パスタ ケチャップ ウインナー 玉ねぎ チーズ ナポリタン",
+    image:"https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=85",
+    tags:["パスタ","チーズ","洋食"],
+    searchText:"ナポリタン パスタ チーズ ケチャップ ウインナー",
     ingredients:[
-      ["パスタ","100g"],
-      ["ウインナー","4本"],
-      ["玉ねぎ","1/2個"],
-      ["ケチャップ","大さじ3"],
-      ["チーズ","50g"],
-      ["バター","10g"]
+      ["スパゲッティ","200g"],
+      ["玉ねぎ","100g"],
+      ["ピーマン","50g"],
+      ["ウインナー","80g"],
+      ["ケチャップ","80g"],
+      ["ウスターソース","10g"],
+      ["バター","10g"],
+      ["チーズ","70g"],
+      ["塩","2g"],
+      ["黒こしょう","少々"]
     ],
     steps:[
-      "パスタを表示時間通りに茹でる。",
-      "具材をバターで炒める。",
-      "ケチャップを加えて炒める。",
-      "パスタを加えて混ぜる。",
-      "チーズを乗せて焼き色をつける。"
+      "スパゲッティを表示時間通り茹でる。",
+      "フライパンで玉ねぎ、ピーマン、ウインナーを炒める。",
+      "ケチャップとウスターソースを加える。",
+      "スパゲッティとバターを加えて炒め合わせる。",
+      "耐熱皿に入れてチーズをのせ、焼き色がつくまで焼く。"
     ]
   },
 
   {
     name:"ごろごろ野菜サラダ",
     image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=85",
-    tags:["野菜","副菜","簡単"],
-    searchText:"レタス トマト きゅうり 玉ねぎ サラダ",
+    tags:["サラダ","野菜","さっぱり"],
+    searchText:"サラダ 野菜 トマト きゅうり レタス",
     ingredients:[
       ["レタス","100g"],
-      ["トマト","1個"],
-      ["きゅうり","1本"],
-      ["玉ねぎ","1/4個"],
-      ["オリーブオイル","大さじ1"],
-      ["酢","大さじ1"],
-      ["塩","少々"]
+      ["トマト","100g"],
+      ["きゅうり","80g"],
+      ["玉ねぎ","30g"],
+      ["オリーブオイル","15g"],
+      ["酢","15g"],
+      ["砂糖","5g"],
+      ["塩","2g"],
+      ["黒こしょう","少々"]
     ],
     steps:[
-      "野菜を食べやすく切る。",
-      "ボウルにすべて入れる。",
-      "オリーブオイル、酢、塩を加える。",
-      "全体を混ぜて完成。"
+      "野菜を食べやすい大きさに切る。",
+      "オリーブオイル、酢、砂糖、塩、黒こしょうを混ぜる。",
+      "野菜とドレッシングを和える。"
     ]
   },
 
   {
     name:"豚キムチ丼",
-    image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
-    tags:["丼","肉","ご飯","ガッツリ"],
-    searchText:"豚肉 キムチ ご飯 卵 にんにく 豚キムチ丼",
+    image:"https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=900&q=85",
+    tags:["丼","豚肉","辛い"],
+    searchText:"豚キムチ 豚肉 キムチ 丼 ご飯",
     ingredients:[
-      ["豚バラ肉","180g"],
+      ["豚バラ肉","150g"],
       ["キムチ","120g"],
-      ["ご飯","1膳"],
-      ["卵黄","1個"],
-      ["醤油","小さじ1"],
-      ["ごま油","小さじ1"]
+      ["玉ねぎ","80g"],
+      ["ごま油","5g"],
+      ["醤油","10g"],
+      ["砂糖","5g"],
+      ["ご飯","300g"],
+      ["青ねぎ","適量"]
     ],
     steps:[
-      "豚肉をごま油で炒める。",
-      "キムチを加えてさらに炒める。",
-      "醤油で味を整える。",
-      "ご飯に乗せて卵黄を添える。"
+      "フライパンにごま油を熱し、豚肉を炒める。",
+      "玉ねぎを加えて炒める。",
+      "キムチを加える。",
+      "醤油と砂糖を加えて炒め合わせる。",
+      "ご飯に盛り、青ねぎをのせる。"
     ]
   },
 
   {
     name:"照り焼きチキン丼",
-    image:"https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=85",
-    tags:["丼","鶏肉","ご飯","肉"],
-    searchText:"鶏もも肉 醤油 みりん 砂糖 ご飯 照り焼き",
+    image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
+    tags:["丼","鶏肉","甘辛"],
+    searchText:"照り焼き チキン 鶏肉 丼 醤油 みりん",
     ingredients:[
-      ["鶏もも肉","1枚"],
-      ["醤油","大さじ1"],
-      ["みりん","大さじ1"],
-      ["砂糖","大さじ1"],
-      ["ご飯","1膳"]
+      ["鶏もも肉","250g"],
+      ["醤油","20g"],
+      ["みりん","20g"],
+      ["砂糖","10g"],
+      ["酒","15g"],
+      ["ご飯","300g"],
+      ["青ねぎ","適量"]
     ],
     steps:[
-      "鶏肉を皮目から焼く。",
-      "両面に焼き色をつける。",
-      "醤油、みりん、砂糖を加える。",
-      "煮詰めながら鶏肉に絡める。",
-      "ご飯に乗せる。"
+      "鶏肉の余分な脂を取り、食べやすく切る。",
+      "フライパンで鶏肉を皮目から焼く。",
+      "裏返して火を通す。",
+      "醤油、みりん、砂糖、酒を加えて煮絡める。",
+      "ご飯に盛る。"
     ]
   },
 
   {
     name:"ねぎ塩豚カルビ丼",
-    image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
-    tags:["丼","肉","ご飯","ガッツリ"],
-    searchText:"豚カルビ 長ネギ レモン ご飯 塩 ごま油",
+    image:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
+    tags:["丼","豚肉","ガッツリ"],
+    searchText:"ねぎ塩 豚カルビ 豚肉 丼 レモン",
     ingredients:[
-      ["豚カルビ","180g"],
-      ["長ネギ","1/2本"],
-      ["ご飯","1膳"],
+      ["豚バラ肉","180g"],
+      ["長ねぎ","80g"],
+      ["ごま油","10g"],
+      ["レモン汁","10g"],
+      ["鶏ガラスープの素","3g"],
       ["塩","2g"],
-      ["ごま油","小さじ1"],
-      ["レモン汁","小さじ1"]
+      ["黒こしょう","少々"],
+      ["ご飯","300g"]
     ],
     steps:[
-      "長ネギをみじん切りにする。",
-      "豚カルビを焼く。",
-      "ネギ、塩、ごま油、レモン汁を混ぜる。",
-      "ご飯に豚肉を乗せ、ねぎ塩をかける。"
+      "長ねぎをみじん切りにする。",
+      "ごま油、レモン汁、鶏ガラスープの素、塩、黒こしょうと混ぜる。",
+      "豚肉をフライパンで焼く。",
+      "ねぎ塩だれを加えて軽く炒める。",
+      "ご飯に盛る。"
     ]
   },
 
   {
     name:"鮭のバター醤油焼き",
     image:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=85",
-    tags:["魚","簡単","和食"],
-    searchText:"鮭 バター 醤油 魚",
+    tags:["魚","和食","バター"],
+    searchText:"鮭 バター 醤油 焼き魚",
     ingredients:[
       ["鮭","2切れ"],
-      ["バター","10g"],
-      ["醤油","小さじ2"],
-      ["黒胡椒","適量"]
+      ["塩","2g"],
+      ["薄力粉","10g"],
+      ["バター","15g"],
+      ["醤油","15g"],
+      ["レモン汁","5g"]
     ],
     steps:[
-      "鮭に黒胡椒を振る。",
-      "フライパンで鮭を焼く。",
-      "バターと醤油を加える。",
-      "全体に絡めて完成。"
+      "鮭に塩を振り、薄力粉を薄くまぶす。",
+      "フライパンにバターを熱する。",
+      "鮭を両面焼く。",
+      "醤油とレモン汁を加えて絡める。"
     ]
   },
 
   {
     name:"さば味噌煮",
-    image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
-    tags:["魚","和食","ご飯"],
-    searchText:"さば 味噌 生姜 砂糖 酒",
+    image:"https://images.unsplash.com/photo-1534256958597-7fe685cbd745?auto=format&fit=crop&w=900&q=85",
+    tags:["魚","和食","煮物"],
+    searchText:"さば 味噌煮 味噌 生姜",
     ingredients:[
       ["さば","2切れ"],
-      ["味噌","大さじ2"],
-      ["砂糖","大さじ1"],
-      ["酒","大さじ2"],
-      ["生姜","10g"]
+      ["味噌","35g"],
+      ["酒","30g"],
+      ["みりん","20g"],
+      ["砂糖","15g"],
+      ["醤油","5g"],
+      ["しょうが","10g"],
+      ["水","150g"]
     ],
     steps:[
-      "さばに熱湯をかけて臭みを取る。",
-      "鍋に調味料と生姜を入れて煮立てる。",
+      "鍋に水、酒、みりん、砂糖、しょうがを入れて煮立てる。",
       "さばを加える。",
       "落とし蓋をして煮る。",
-      "煮汁をかけながら仕上げる。"
+      "味噌と醤油を加える。",
+      "煮汁をかけながら煮詰める。"
     ]
   },
 
   {
     name:"豚しゃぶ冷やしうどん",
-    image:"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1000&q=85",
-    tags:["麺類","肉","簡単","冷たい"],
-    searchText:"うどん 豚肉 きゅうり めんつゆ 豚しゃぶ",
+    image:"https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=900&q=85",
+    tags:["麺類","豚肉","さっぱり"],
+    searchText:"豚しゃぶ うどん 冷やし めんつゆ",
     ingredients:[
-      ["うどん","1玉"],
-      ["豚しゃぶ肉","100g"],
-      ["きゅうり","1/2本"],
-      ["めんつゆ","大さじ2"],
-      ["ごま油","小さじ1"]
+      ["冷凍うどん","2玉"],
+      ["豚しゃぶ肉","150g"],
+      ["きゅうり","80g"],
+      ["めんつゆ","50g"],
+      ["水","100g"],
+      ["ごま油","5g"],
+      ["白ごま","5g"],
+      ["ねぎ","適量"]
     ],
     steps:[
       "うどんを茹でて冷水で締める。",
       "豚肉を茹でて冷ます。",
       "きゅうりを細切りにする。",
-      "すべて盛り付けてつゆをかける。"
+      "めんつゆ、水、ごま油を混ぜる。",
+      "うどんに具材をのせてつゆをかける。"
     ]
   },
 
   {
     name:"明太クリームパスタ",
-    image:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=85",
-    tags:["麺類","パスタ","簡単"],
-    searchText:"パスタ 明太子 生クリーム 牛乳 バター",
+    image:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=85",
+    tags:["パスタ","クリーム","明太子"],
+    searchText:"明太子 クリーム パスタ 豆乳 牛乳",
     ingredients:[
-      ["パスタ","100g"],
-      ["明太子","40g"],
-      ["牛乳","100ml"],
+      ["スパゲッティ","200g"],
+      ["明太子","80g"],
+      ["牛乳","150g"],
+      ["生クリーム","50g"],
       ["バター","10g"],
-      ["醤油","小さじ1"]
+      ["醤油","5g"],
+      ["黒こしょう","少々"],
+      ["刻み海苔","適量"]
     ],
     steps:[
-      "パスタを茹でる。",
-      "フライパンにバターと牛乳を入れる。",
+      "スパゲッティを茹でる。",
+      "フライパンに牛乳、生クリーム、バターを入れる。",
       "明太子を加える。",
-      "茹でたパスタを加えて混ぜる。",
-      "醤油で味を整える。"
+      "茹でたパスタを加える。",
+      "醤油と黒こしょうで味を整え、海苔をのせる。"
     ]
   },
 
   {
     name:"焼肉チャーハン",
     image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
-    tags:["ご飯","肉","ガッツリ","炒め物"],
-    searchText:"ご飯 牛肉 焼肉のたれ 卵 ネギ チャーハン",
+    tags:["ご飯","肉","ガッツリ"],
+    searchText:"焼肉 チャーハン 牛肉 ご飯",
     ingredients:[
-      ["ご飯","250g"],
-      ["牛肉","100g"],
-      ["卵","1個"],
-      ["長ネギ","1/3本"],
-      ["焼肉のたれ","大さじ1"]
+      ["ご飯","300g"],
+      ["牛こま肉","100g"],
+      ["卵","2個"],
+      ["長ねぎ","50g"],
+      ["焼肉のたれ","30g"],
+      ["醤油","5g"],
+      ["ごま油","5g"],
+      ["黒こしょう","少々"]
     ],
     steps:[
-      "牛肉とネギを炒める。",
-      "卵を加える。",
-      "ご飯を加えて強火で炒める。",
-      "焼肉のたれを加える。",
-      "全体を炒めて完成。"
+      "牛肉を小さく切る。",
+      "フライパンにごま油を熱し、牛肉を炒める。",
+      "卵とご飯を加えて炒める。",
+      "長ねぎを加える。",
+      "焼肉のたれと醤油で味付けする。"
     ]
   },
 
   {
     name:"にんにく醤油チャーハン",
     image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
-    tags:["ご飯","簡単","ガッツリ"],
-    searchText:"ご飯 卵 にんにく 醤油 ネギ チャーハン",
+    tags:["ご飯","にんにく","ガッツリ"],
+    searchText:"にんにく 醤油 チャーハン 卵",
     ingredients:[
-      ["ご飯","250g"],
-      ["卵","1個"],
+      ["ご飯","300g"],
+      ["卵","2個"],
+      ["長ねぎ","50g"],
       ["にんにく","10g"],
-      ["醤油","小さじ2"],
-      ["ネギ","適量"]
+      ["醤油","15g"],
+      ["ごま油","10g"],
+      ["塩","2g"],
+      ["黒こしょう","少々"]
     ],
     steps:[
-      "にんにくを油で炒める。",
-      "卵を加える。",
-      "ご飯を加えて炒める。",
-      "醤油を鍋肌から加える。",
-      "ネギを混ぜる。"
+      "フライパンにごま油とにんにくを入れる。",
+      "卵を加えてすぐにご飯を加える。",
+      "長ねぎを加えて炒める。",
+      "塩、黒こしょう、醤油で味付けする。"
     ]
   },
 
   {
     name:"チーズ麻婆豆腐",
     image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
-    tags:["中華","肉","チーズ","ガッツリ"],
-    searchText:"豆腐 豚ひき肉 豆板醤 チーズ 麻婆豆腐",
+    tags:["豆腐","中華","チーズ"],
+    searchText:"麻婆豆腐 チーズ 豆腐 豚ひき肉",
     ingredients:[
       ["豆腐","300g"],
       ["豚ひき肉","100g"],
-      ["豆板醤","小さじ1"],
-      ["味噌","小さじ1"],
+      ["長ねぎ","50g"],
+      ["豆板醤","5g"],
+      ["甜麺醤","15g"],
+      ["醤油","10g"],
+      ["鶏ガラスープの素","3g"],
+      ["水","100g"],
       ["チーズ","50g"],
-      ["長ネギ","適量"]
+      ["ごま油","5g"]
     ],
     steps:[
-      "豚ひき肉を炒める。",
-      "豆板醤と味噌を加える。",
-      "豆腐を加えて煮る。",
-      "チーズを乗せて溶かす。",
-      "ネギを散らす。"
+      "ごま油で長ねぎ、豆板醤を炒める。",
+      "豚ひき肉を加えて炒める。",
+      "甜麺醤と醤油を加える。",
+      "水、鶏ガラスープの素、豆腐を加える。",
+      "最後にチーズを加えて溶かす。"
     ]
   },
 
   {
     name:"旨辛よだれ鶏",
-    image:"https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=85",
-    tags:["肉","鶏肉","辛い","中華"],
-    searchText:"鶏むね肉 ラー油 酢 醤油 ごま よだれ鶏",
+    image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85",
+    tags:["鶏肉","辛い","中華"],
+    searchText:"よだれ鶏 鶏むね肉 ラー油 ごま",
     ingredients:[
-      ["鶏むね肉","1枚"],
-      ["醤油","大さじ1"],
-      ["酢","大さじ1"],
-      ["ラー油","小さじ1"],
-      ["砂糖","小さじ1"],
-      ["白ごま","大さじ1"]
+      ["鶏むね肉","300g"],
+      ["醤油","20g"],
+      ["酢","15g"],
+      ["砂糖","8g"],
+      ["ごま油","8g"],
+      ["食べるラー油","15g"],
+      ["白ごま","8g"],
+      ["にんにく","5g"],
+      ["しょうが","5g"],
+      ["ねぎ","50g"]
     ],
     steps:[
-      "鶏むね肉を茹でる。",
-      "粗熱を取って薄切りにする。",
-      "調味料を混ぜてタレを作る。",
-      "鶏肉にタレをかける。",
-      "白ごまを散らす。"
+      "鶏むね肉を茹でて火を通し、冷ます。",
+      "醤油、酢、砂糖、ごま油、ラー油、にんにく、しょうがを混ぜる。",
+      "鶏肉を食べやすく切る。",
+      "たれをかけ、ねぎと白ごまをのせる。"
     ]
   },
 
   {
     name:"なすの揚げ浸し",
-    image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=85",
-    tags:["野菜","副菜","和食"],
-    searchText:"なす めんつゆ 生姜 ネギ 揚げ浸し",
+    image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85",
+    tags:["なす","和食","副菜"],
+    searchText:"なす 揚げ浸し めんつゆ 生姜",
     ingredients:[
-      ["なす","3本"],
-      ["めんつゆ","大さじ3"],
-      ["水","大さじ3"],
-      ["生姜","5g"],
-      ["ネギ","適量"]
+      ["なす","300g"],
+      ["めんつゆ","50g"],
+      ["水","100g"],
+      ["しょうが","8g"],
+      ["ごま油","10g"],
+      ["ねぎ","適量"]
     ],
     steps:[
-      "なすを切る。",
-      "油でなすを焼く。",
-      "めんつゆと水を合わせる。",
-      "熱いうちになすを漬ける。",
-      "生姜とネギを乗せる。"
+      "なすを食べやすく切る。",
+      "フライパンにごま油を熱し、なすを焼く。",
+      "めんつゆと水を加える。",
+      "しょうがを加えて煮る。",
+      "ねぎをのせる。"
     ]
   },
 
   {
     name:"きゅうりの塩昆布和え",
     image:"https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=85",
-    tags:["野菜","副菜","簡単"],
-    searchText:"きゅうり 塩昆布 ごま油 ごま",
+    tags:["副菜","野菜","さっぱり"],
+    searchText:"きゅうり 塩昆布 ごま油",
     ingredients:[
       ["きゅうり","2本"],
       ["塩昆布","10g"],
-      ["ごま油","小さじ1"],
-      ["白ごま","小さじ1"]
+      ["ごま油","8g"],
+      ["白ごま","5g"]
     ],
     steps:[
-      "きゅうりを叩いて食べやすくする。",
-      "塩昆布とごま油を加える。",
-      "白ごまを加える。",
-      "全体を和える。"
+      "きゅうりを叩いて食べやすく切る。",
+      "塩昆布、ごま油、白ごまと和える。",
+      "少し置いて味をなじませる。"
     ]
   },
 
   {
     name:"ツナ卵サラダ",
-    image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=85",
-    tags:["野菜","副菜","簡単"],
-    searchText:"ツナ 卵 レタス マヨネーズ サラダ",
+    image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=85",
+    tags:["サラダ","卵","簡単"],
+    searchText:"ツナ 卵 サラダ マヨネーズ",
     ingredients:[
-      ["ツナ","1缶"],
-      ["卵","2個"],
-      ["レタス","100g"],
-      ["マヨネーズ","大さじ2"],
-      ["黒胡椒","適量"]
+      ["卵","3個"],
+      ["ツナ","70g"],
+      ["マヨネーズ","30g"],
+      ["醤油","5g"],
+      ["黒こしょう","少々"]
     ],
     steps:[
       "卵を茹でる。",
-      "レタスを食べやすく切る。",
-      "ツナと卵を加える。",
-      "マヨネーズで和える。",
-      "黒胡椒を振る。"
+      "卵を粗くつぶす。",
+      "ツナ、マヨネーズ、醤油を加える。",
+      "黒こしょうを振る。"
     ]
   },
 
   {
     name:"ベーコンとほうれん草のキッシュ",
-    image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85",
-    tags:["洋食","野菜","チーズ"],
-    searchText:"ベーコン ほうれん草 卵 チーズ 牛乳 キッシュ",
+    image:"https://images.unsplash.com/photo-1572449043416-55f4685c9bb7?auto=format&fit=crop&w=900&q=85",
+    tags:["洋食","卵","チーズ"],
+    searchText:"キッシュ ベーコン ほうれん草 卵 チーズ",
     ingredients:[
-      ["ベーコン","80g"],
+      ["卵","3個"],
+      ["ベーコン","70g"],
       ["ほうれん草","100g"],
-      ["卵","2個"],
-      ["チーズ","50g"],
-      ["牛乳","100ml"],
-      ["塩","少々"]
+      ["牛乳","100g"],
+      ["チーズ","60g"],
+      ["塩","2g"],
+      ["黒こしょう","少々"]
     ],
     steps:[
       "ベーコンとほうれん草を炒める。",
-      "卵と牛乳を混ぜる。",
-      "具材とチーズを加える。",
-      "耐熱皿に入れる。",
-      "オーブンで焼く。"
+      "卵、牛乳、塩、黒こしょうを混ぜる。",
+      "具材を耐熱皿に入れる。",
+      "卵液を流し、チーズをのせる。",
+      "180℃のオーブンで焼く。"
     ]
   },
 
   {
     name:"豚肉と玉ねぎの生姜焼き",
-    image:"https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=85",
-    tags:["肉","ご飯","和食","簡単"],
-    searchText:"豚肉 玉ねぎ 生姜 醤油 みりん 生姜焼き",
+    image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
+    tags:["豚肉","和食","ご飯"],
+    searchText:"生姜焼き 豚肉 玉ねぎ 生姜 醤油",
     ingredients:[
       ["豚ロース","200g"],
-      ["玉ねぎ","1/2個"],
-      ["醤油","大さじ1"],
-      ["みりん","大さじ1"],
-      ["生姜","10g"]
+      ["玉ねぎ","100g"],
+      ["醤油","20g"],
+      ["みりん","15g"],
+      ["酒","15g"],
+      ["砂糖","5g"],
+      ["しょうが","15g"],
+      ["油","5g"]
     ],
     steps:[
-      "玉ねぎを切る。",
-      "豚肉を焼く。",
+      "醤油、みりん、酒、砂糖、しょうがを混ぜる。",
+      "フライパンに油を熱し豚肉を焼く。",
       "玉ねぎを加える。",
-      "調味料を加える。",
-      "煮絡めて完成。"
+      "合わせ調味料を加えて炒め絡める。"
     ]
   },
 
   {
     name:"濃厚カルボナーラ",
-    image:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=85",
-    tags:["麺類","パスタ","チーズ"],
-    searchText:"パスタ 卵 チーズ ベーコン 黒胡椒 カルボナーラ",
+    image:"https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=85",
+    tags:["パスタ","チーズ","濃厚"],
+    searchText:"カルボナーラ パスタ 卵 チーズ ベーコン",
     ingredients:[
-      ["パスタ","100g"],
-      ["ベーコン","60g"],
-      ["卵","1個"],
-      ["粉チーズ","30g"],
-      ["黒胡椒","たっぷり"]
+      ["スパゲッティ","200g"],
+      ["ベーコン","80g"],
+      ["卵","2個"],
+      ["粉チーズ","40g"],
+      ["牛乳","50g"],
+      ["黒こしょう","2g"],
+      ["塩","適量"]
     ],
     steps:[
-      "パスタを茹でる。",
+      "スパゲッティを茹でる。",
       "ベーコンを炒める。",
-      "卵とチーズを混ぜる。",
-      "火を止めてパスタを加える。",
-      "卵液を加えて素早く混ぜる。",
-      "黒胡椒をたっぷり振る。"
+      "卵、粉チーズ、牛乳を混ぜる。",
+      "茹でたパスタをベーコンと合わせる。",
+      "火を止めて卵液を加え、余熱で絡める。",
+      "黒こしょうをたっぷり振る。"
     ]
   },
 
   {
     name:"豚肉とキャベツの塩炒め",
-    image:"https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=85",
-    tags:["肉","野菜","簡単","炒め物"],
-    searchText:"豚肉 キャベツ にんにく 塩 鶏ガラ 炒め",
+    image:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
+    tags:["豚肉","野菜","簡単"],
+    searchText:"豚肉 キャベツ 塩炒め にんにく",
     ingredients:[
-      ["豚肉","150g"],
+      ["豚こま肉","180g"],
       ["キャベツ","200g"],
       ["にんにく","5g"],
-      ["鶏ガラ","小さじ1"],
-      ["塩","少々"],
-      ["黒胡椒","適量"]
+      ["鶏ガラスープの素","4g"],
+      ["塩","2g"],
+      ["ごま油","8g"],
+      ["黒こしょう","少々"]
     ],
     steps:[
-      "豚肉を炒める。",
-      "にんにくを加える。",
+      "ごま油とにんにくを炒める。",
+      "豚肉を加える。",
       "キャベツを加えて強火で炒める。",
-      "鶏ガラと塩で味付けする。",
-      "黒胡椒を振る。"
+      "鶏ガラスープの素と塩で味付けする。",
+      "黒こしょうを振る。"
     ]
   },
 
   {
     name:"ツナマヨ醤油うどん",
-    image:"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1000&q=85",
-    tags:["麺類","簡単","うどん"],
-    searchText:"うどん ツナ マヨネーズ 醤油 ネギ",
+    image:"https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=900&q=85",
+    tags:["麺類","簡単","ツナ"],
+    searchText:"ツナマヨ うどん 醤油 めんつゆ",
     ingredients:[
-      ["うどん","1玉"],
-      ["ツナ","1缶"],
-      ["マヨネーズ","大さじ1"],
-      ["醤油","小さじ1"],
-      ["ネギ","適量"]
+      ["冷凍うどん","2玉"],
+      ["ツナ","70g"],
+      ["マヨネーズ","30g"],
+      ["めんつゆ","20g"],
+      ["醤油","5g"],
+      ["ごま油","5g"],
+      ["ねぎ","適量"]
     ],
     steps:[
-      "うどんを茹でる。",
-      "ツナとマヨネーズを混ぜる。",
-      "うどんに乗せる。",
-      "醤油をかける。",
-      "ネギを散らす。"
+      "うどんを温める。",
+      "ツナ、マヨネーズ、めんつゆ、醤油、ごま油を混ぜる。",
+      "うどんと和える。",
+      "ねぎをのせる。"
     ]
   },
 
   {
     name:"にんにく味噌豚丼",
-    image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
-    tags:["丼","肉","ご飯","ガッツリ"],
-    searchText:"豚肉 味噌 にんにく ご飯 玉ねぎ 豚丼",
+    image:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
+    tags:["丼","豚肉","味噌"],
+    searchText:"豚丼 にんにく 味噌 豚肉 ご飯",
     ingredients:[
-      ["豚こま肉","180g"],
-      ["玉ねぎ","1/2個"],
-      ["味噌","大さじ1"],
-      ["醤油","小さじ1"],
-      ["にんにく","5g"],
-      ["ご飯","1膳"]
+      ["豚バラ肉","180g"],
+      ["味噌","20g"],
+      ["醤油","10g"],
+      ["みりん","15g"],
+      ["砂糖","8g"],
+      ["にんにく","8g"],
+      ["ご飯","300g"],
+      ["ねぎ","適量"]
     ],
     steps:[
-      "豚肉と玉ねぎを炒める。",
-      "味噌、醤油、にんにくを混ぜる。",
+      "味噌、醤油、みりん、砂糖、にんにくを混ぜる。",
+      "豚肉を焼く。",
       "合わせ調味料を加える。",
-      "全体を煮絡める。",
-      "ご飯に乗せる。"
+      "照りが出るまで炒める。",
+      "ご飯に盛る。"
     ]
   },
 
   {
     name:"トマトとモッツァレラのサラダ",
     image:"https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=85",
-    tags:["野菜","副菜","簡単","チーズ"],
-    searchText:"トマト モッツァレラ チーズ バジル オリーブオイル サラダ",
+    tags:["サラダ","チーズ","さっぱり"],
+    searchText:"トマト モッツァレラ サラダ オリーブオイル",
     ingredients:[
-      ["トマト","2個"],
-      ["モッツァレラ","100g"],
-      ["オリーブオイル","大さじ1"],
-      ["塩","少々"],
-      ["黒胡椒","適量"]
+      ["トマト","200g"],
+      ["モッツァレラチーズ","100g"],
+      ["オリーブオイル","15g"],
+      ["塩","2g"],
+      ["黒こしょう","少々"],
+      ["レモン汁","5g"]
     ],
     steps:[
       "トマトとモッツァレラを切る。",
-      "交互に盛り付ける。",
-      "オリーブオイルをかける。",
-      "塩と黒胡椒で仕上げる。"
+      "皿に交互に並べる。",
+      "オリーブオイルとレモン汁をかける。",
+      "塩と黒こしょうを振る。"
     ]
   },
 
   {
     name:"カレー風味のポテト炒め",
-    image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=85",
-    tags:["野菜","副菜","簡単","カレー"],
-    searchText:"じゃがいも カレー粉 ベーコン 玉ねぎ 炒め",
+    image:"https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=900&q=85",
+    tags:["じゃがいも","カレー","副菜"],
+    searchText:"じゃがいも カレー粉 ポテト 炒め",
     ingredients:[
-      ["じゃがいも","2個"],
-      ["ベーコン","50g"],
-      ["玉ねぎ","1/2個"],
-      ["カレー粉","小さじ1"],
-      ["塩","少々"]
+      ["じゃがいも","300g"],
+      ["玉ねぎ","80g"],
+      ["ベーコン","60g"],
+      ["カレー粉","6g"],
+      ["塩","2g"],
+      ["黒こしょう","少々"],
+      ["油","10g"]
     ],
     steps:[
-      "じゃがいもを薄切りにする。",
-      "ベーコンと玉ねぎを炒める。",
-      "じゃがいもを加える。",
-      "カレー粉と塩で味付けする。",
-      "火が通るまで炒める。"
+      "じゃがいもを細切りにする。",
+      "フライパンに油を熱してじゃがいもを炒める。",
+      "玉ねぎとベーコンを加える。",
+      "カレー粉と塩を加える。",
+      "黒こしょうで仕上げる。"
     ]
   },
 
   {
     name:"韓国風ピリ辛冷奴",
     image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
-    tags:["副菜","辛い","簡単","韓国"],
-    searchText:"豆腐 コチュジャン ごま油 ごま 韓国",
+    tags:["豆腐","韓国","辛い"],
+    searchText:"冷奴 豆腐 コチュジャン ごま油 韓国",
     ingredients:[
       ["豆腐","300g"],
-      ["コチュジャン","小さじ1"],
-      ["醤油","小さじ1"],
-      ["ごま油","小さじ1"],
-      ["白ごま","大さじ1"]
+      ["コチュジャン","8g"],
+      ["味噌","5g"],
+      ["すりごま","8g"],
+      ["めんつゆ","10g"],
+      ["豆乳","30g"],
+      ["食べるラー油","5g"],
+      ["にんにく","4g"],
+      ["ねぎ","適量"]
     ],
     steps:[
-      "豆腐の水気を切る。",
-      "調味料を混ぜる。",
-      "豆腐にタレをかける。",
-      "白ごまを散らす。"
+      "コチュジャン、味噌、すりごま、めんつゆ、豆乳、食べるラー油、にんにくを混ぜる。",
+      "豆腐を器に盛る。",
+      "たれをかける。",
+      "ねぎをのせる。"
     ]
   },
 
   {
     name:"焼きチーズカレー",
-    image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
-    tags:["ご飯","チーズ","ガッツリ","カレー"],
-    searchText:"ご飯 カレー チーズ 卵 焼きカレー",
+    image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85",
+    tags:["ご飯","カレー","チーズ"],
+    searchText:"チーズカレー 焼きカレー ご飯 チーズ",
     ingredients:[
-      ["ご飯","200g"],
-      ["カレー","200g"],
-      ["チーズ","50g"],
-      ["卵","1個"]
+      ["ご飯","300g"],
+      ["カレー","250g"],
+      ["チーズ","80g"],
+      ["卵","1個"],
+      ["黒こしょう","少々"]
     ],
     steps:[
       "耐熱皿にご飯を盛る。",
       "カレーをかける。",
-      "チーズを乗せる。",
-      "中央に卵を落とす。",
-      "オーブンで焼く。"
+      "中央に卵をのせる。",
+      "チーズをたっぷりのせる。",
+      "トースターで焼き色がつくまで焼く。",
+      "黒こしょうを振る。"
     ]
   },
 
   {
     name:"塩だれ豚キャベツ丼",
-    image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
-    tags:["丼","肉","野菜","ご飯"],
-    searchText:"豚肉 キャベツ 塩だれ ご飯 ごま油 レモン",
+    image:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
+    tags:["丼","豚肉","塩だれ"],
+    searchText:"豚キャベツ 丼 塩だれ ご飯 ごま油",
     ingredients:[
-      ["豚肉","150g"],
-      ["キャベツ","100g"],
-      ["ご飯","1膳"],
-      ["ごま油","小さじ1"],
-      ["レモン汁","小さじ1"],
-      ["塩","2g"]
+      ["豚バラ肉","180g"],
+      ["キャベツ","180g"],
+      ["ごま油","10g"],
+      ["鶏ガラスープの素","4g"],
+      ["塩","2g"],
+      ["レモン汁","8g"],
+      ["にんにく","5g"],
+      ["ご飯","300g"],
+      ["黒こしょう","少々"]
     ],
     steps:[
-      "豚肉を炒める。",
-      "キャベツを加える。",
-      "ごま油、レモン汁、塩を加える。",
-      "ご飯に乗せる。"
+      "ごま油、鶏ガラスープの素、塩、レモン汁、にんにくを混ぜる。",
+      "豚肉を焼く。",
+      "キャベツを加えて炒める。",
+      "塩だれを加えて絡める。",
+      "ご飯に盛り、黒こしょうを振る。"
     ]
   }
 
 ];
 
 
-/* =========================================================
+/* =================================
    STATE
-========================================================= */
+================================= */
 
 const perPage = 15;
 
 let currentPage = 1;
-let activeTag = "";
-let searchWord = "";
+let activeTag = "すべて";
+let currentRecipe = null;
 
 
-/* =========================================================
+/* =================================
    ELEMENTS
-========================================================= */
+================================= */
 
 const recipeGrid = document.getElementById("recipeGrid");
 const pagination = document.getElementById("pagination");
 const tagList = document.getElementById("tagList");
+const moodGrid = document.getElementById("moodGrid");
 const searchInput = document.getElementById("searchInput");
-
 const modal = document.getElementById("recipeModal");
+const modalContent = document.getElementById("modalContent");
 const modalClose = document.getElementById("modalClose");
-const modalTop = document.getElementById("modalTop");
-const modalIngredients = document.getElementById("modalIngredients");
-const modalSteps = document.getElementById("modalSteps");
 
 
-/* =========================================================
+/* =================================
    TAGS
-========================================================= */
+================================= */
 
-const allTags = [
-  ...new Set(
-    recipes.flatMap(recipe => recipe.tags)
-  )
-];
+function getAllTags(){
+
+  const tags = new Set();
+
+  recipes.forEach(recipe=>{
+    recipe.tags.forEach(tag=>tags.add(tag));
+  });
+
+  return ["すべて", ...Array.from(tags)];
+
+}
+
 
 function renderTags(){
 
   tagList.innerHTML = "";
 
-  allTags.forEach(tag => {
+  getAllTags().forEach(tag=>{
 
     const button = document.createElement("button");
 
-    button.className = "tag-btn";
+    button.className = "tag-button";
 
-    if(activeTag === tag){
+    if(tag === activeTag){
       button.classList.add("active");
     }
 
     button.textContent = "#" + tag;
 
-    button.addEventListener("click", () => {
+    button.addEventListener("click",()=>{
 
-      if(activeTag === tag){
-        activeTag = "";
-      }else{
-        activeTag = tag;
-      }
-
+      activeTag = tag;
       currentPage = 1;
 
       renderTags();
-      renderRecipes();
+      renderMoodRecipes();
+
+      if(tag !== "すべて"){
+        setTimeout(()=>{
+          document.getElementById("mood").scrollIntoView({
+            behavior:"smooth"
+          });
+        },50);
+      }
 
     });
 
@@ -2496,31 +2351,38 @@ function renderTags(){
 }
 
 
-/* =========================================================
+/* =================================
    FILTER
-========================================================= */
+================================= */
 
 function getFilteredRecipes(){
 
-  return recipes.filter(recipe => {
+  const keyword = searchInput.value.trim().toLowerCase();
+
+  return recipes.filter(recipe=>{
 
     const tagMatch =
-      !activeTag ||
+      activeTag === "すべて" ||
       recipe.tags.includes(activeTag);
 
-    const text =
-      [
-        recipe.name,
-        recipe.searchText,
-        ...recipe.tags,
-        ...recipe.ingredients.flat()
-      ]
-      .join(" ")
-      .toLowerCase();
+    const ingredientText =
+      recipe.ingredients
+        .map(item=>item[0] + " " + item[1])
+        .join(" ");
+
+    const searchable = (
+      recipe.name +
+      " " +
+      recipe.searchText +
+      " " +
+      recipe.tags.join(" ") +
+      " " +
+      ingredientText
+    ).toLowerCase();
 
     const keywordMatch =
-      !searchWord ||
-      text.includes(searchWord.toLowerCase());
+      !keyword ||
+      searchable.includes(keyword);
 
     return tagMatch && keywordMatch;
 
@@ -2529,16 +2391,55 @@ function getFilteredRecipes(){
 }
 
 
-/* =========================================================
-   RECIPE GRID
-========================================================= */
+/* =================================
+   CARD
+================================= */
+
+function createRecipeCard(recipe){
+
+  const card = document.createElement("article");
+
+  card.className = "recipe-card";
+
+  card.innerHTML = `
+    <div class="recipe-image">
+      <img src="${recipe.image}" alt="${recipe.name}" loading="lazy">
+    </div>
+
+    <div class="recipe-info">
+
+      <h3 class="recipe-title">
+        ${recipe.name}
+      </h3>
+
+      <div class="recipe-tags">
+        ${recipe.tags.map(tag=>`
+          <span class="recipe-tag">#${tag}</span>
+        `).join("")}
+      </div>
+
+    </div>
+  `;
+
+  card.addEventListener("click",()=>{
+    openRecipe(recipe);
+  });
+
+  return card;
+
+}
+
+
+/* =================================
+   MAIN RECIPE LIST
+================================= */
 
 function renderRecipes(){
 
   const filtered = getFilteredRecipes();
 
   const totalPages =
-    Math.max(1, Math.ceil(filtered.length / perPage));
+    Math.max(1,Math.ceil(filtered.length / perPage));
 
   if(currentPage > totalPages){
     currentPage = totalPages;
@@ -2547,79 +2448,37 @@ function renderRecipes(){
   const start =
     (currentPage - 1) * perPage;
 
-  const currentRecipes =
-    filtered.slice(start, start + perPage);
+  const visible =
+    filtered.slice(start,start + perPage);
 
   recipeGrid.innerHTML = "";
 
-  if(currentRecipes.length === 0){
+  if(!visible.length){
 
     recipeGrid.innerHTML = `
-      <div class="no-results">
-        その条件のレシピはまだないみたい。
+      <div class="empty">
+        該当するレシピがありません。
       </div>
     `;
 
-    pagination.innerHTML = "";
+  }else{
 
-    return;
-  }
-
-  currentRecipes.forEach((recipe,index) => {
-
-    const actualIndex =
-      start + index + 1;
-
-    const card =
-      document.createElement("article");
-
-    card.className = "recipe-card";
-
-    card.innerHTML = `
-
-      <div class="recipe-card-image">
-        <img
-          src="${recipe.image}"
-          alt="${recipe.name}"
-          loading="lazy"
-        >
-      </div>
-
-      <div class="recipe-card-body">
-
-        <div class="recipe-number">
-          NO.${String(actualIndex).padStart(2,"0")}
-        </div>
-
-        <h3 class="recipe-card-title">
-          ${recipe.name}
-        </h3>
-
-        <div class="recipe-tags">
-          ${recipe.tags.map(tag =>
-            `<span class="recipe-tag">#${tag}</span>`
-          ).join("")}
-        </div>
-
-      </div>
-    `;
-
-    card.addEventListener("click", () => {
-      openRecipe(recipe);
+    visible.forEach(recipe=>{
+      recipeGrid.appendChild(
+        createRecipeCard(recipe)
+      );
     });
 
-    recipeGrid.appendChild(card);
-
-  });
+  }
 
   renderPagination(totalPages);
 
 }
 
 
-/* =========================================================
+/* =================================
    PAGINATION
-========================================================= */
+================================= */
 
 function renderPagination(totalPages){
 
@@ -2629,30 +2488,28 @@ function renderPagination(totalPages){
     return;
   }
 
-  for(let i=1;i<=totalPages;i++){
+  for(let page=1; page<=totalPages; page++){
 
-    const button =
-      document.createElement("button");
+    const button = document.createElement("button");
 
-    button.className = "page-btn";
+    button.type = "button";
+    button.textContent = page;
 
-    if(i === currentPage){
+    if(page === currentPage){
       button.classList.add("active");
+      button.setAttribute("aria-current","page");
     }
 
-    button.textContent = i;
+    button.addEventListener("click",()=>{
 
-    button.addEventListener("click", () => {
-
-      currentPage = i;
+      currentPage = page;
 
       renderRecipes();
 
-      document
-        .getElementById("recipes")
-        .scrollIntoView({
-          behavior:"smooth"
-        });
+      document.getElementById("recipes").scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
 
     });
 
@@ -2663,62 +2520,402 @@ function renderPagination(totalPages){
 }
 
 
-/* =========================================================
+/* =================================
+   MOOD RECIPES
+================================= */
+
+function renderMoodRecipes(){
+
+  moodGrid.innerHTML = "";
+
+  const filtered =
+    getFilteredRecipes().slice(0,6);
+
+  if(!filtered.length){
+
+    moodGrid.innerHTML = `
+      <div class="empty">
+        該当するレシピがありません。
+      </div>
+    `;
+
+    return;
+  }
+
+  filtered.forEach(recipe=>{
+    moodGrid.appendChild(
+      createRecipeCard(recipe)
+    );
+  });
+
+}
+
+
+/* =================================
+   INGREDIENT MAP
+================================= */
+
+function makeIngredientMap(recipe){
+
+  const map = new Map();
+
+  recipe.ingredients.forEach(item=>{
+    map.set(item[0],item[1]);
+  });
+
+  return map;
+
+}
+
+
+/* =================================
+   CLICKABLE INGREDIENTS
+   各材料につき最初の1回だけ
+================================= */
+
+function makeClickableIngredients(text,ingredientMap,usedIngredients){
+
+  let result = text;
+
+  const names =
+    Array.from(ingredientMap.keys())
+      .sort((a,b)=>b.length-a.length);
+
+  names.forEach(name=>{
+
+    if(usedIngredients.has(name)){
+      return;
+    }
+
+    const index = result.indexOf(name);
+
+    if(index === -1){
+      return;
+    }
+
+    const amount = ingredientMap.get(name);
+
+    const before = result.slice(0,index);
+    const after = result.slice(index + name.length);
+
+    result =
+      before +
+      `
+        <span
+          class="cooking-ingredient"
+          data-ingredient="${escapeHtml(name)}"
+        >
+          ${escapeHtml(name)}
+          <span class="ingredient-bubble" style="display:none;">
+            ${escapeHtml(amount)}
+          </span>
+        </span>
+      ` +
+      after;
+
+    usedIngredients.add(name);
+
+  });
+
+  return result;
+
+}
+
+
+/* =================================
+   ESCAPE
+================================= */
+
+function escapeHtml(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =================================
+   RELATED RECIPES
+================================= */
+
+function getRelatedRecipes(current){
+
+  const currentIngredients =
+    new Set(
+      current.ingredients.map(item=>item[0])
+    );
+
+  const candidates =
+    recipes
+      .filter(recipe=>recipe !== current)
+      .map(recipe=>{
+
+        const ingredients =
+          recipe.ingredients.map(item=>item[0]);
+
+        const common =
+          ingredients.filter(
+            item=>currentIngredients.has(item)
+          ).length;
+
+        return {
+          recipe,
+          common
+        };
+
+      })
+      .filter(item=>item.common > 0)
+      .sort((a,b)=>b.common-a.common);
+
+  if(!candidates.length){
+    return [];
+  }
+
+  const topCount =
+    Math.min(8,candidates.length);
+
+  const topCandidates =
+    candidates.slice(0,topCount);
+
+  topCandidates.sort(
+    ()=>Math.random() - .5
+  );
+
+  return topCandidates
+    .slice(0,3)
+    .map(item=>item.recipe);
+
+}
+
+
+/* =================================
    MODAL
-========================================================= */
+================================= */
 
 function openRecipe(recipe){
 
-  modal.classList.add("show");
+  currentRecipe = recipe;
 
-  document.body.style.overflow = "hidden";
+  const ingredientMap =
+    makeIngredientMap(recipe);
 
-  modalTop.innerHTML = `
+  const usedIngredients =
+    new Set();
 
-    <div class="modal-image">
-      <img
-        src="${recipe.image}"
-        alt="${recipe.name}"
-      >
-    </div>
+  const stepsHtml =
+    recipe.steps.map((step,index)=>{
 
-    <div class="modal-intro">
+      const clickable =
+        makeClickableIngredients(
+          escapeHtml(step),
+          ingredientMap,
+          usedIngredients
+        );
 
-      <div class="modal-number">
-        CHU RECIPE
+      return `
+        <div class="step">
+
+          <div class="step-number">
+            ${String(index+1).padStart(2,"0")}
+          </div>
+
+          <div class="step-text">
+            ${clickable}
+          </div>
+
+        </div>
+      `;
+
+    }).join("");
+
+
+  const related =
+    getRelatedRecipes(recipe);
+
+
+  const relatedHtml =
+    related.length
+      ? `
+        <section class="more-recipes">
+
+          <div class="more-heading">
+            <small>MORE RECIPES</small>
+            <h3>こんなのもどう？</h3>
+          </div>
+
+          <div class="more-grid">
+
+            ${related.map((item,index)=>`
+
+              <article
+                class="more-card"
+                data-related-index="${index}"
+              >
+
+                <div class="more-card-image">
+                  <img
+                    src="${item.image}"
+                    alt="${item.name}"
+                    loading="lazy"
+                  >
+                </div>
+
+                <div class="more-card-info">
+
+                  <div class="more-card-title">
+                    ${item.name}
+                  </div>
+
+                  <div class="more-card-tags">
+                    ${item.tags.map(tag=>"#"+tag).join(" ")}
+                  </div>
+
+                </div>
+
+              </article>
+
+            `).join("")}
+
+          </div>
+
+        </section>
+      `
+      : "";
+
+
+  modalContent.innerHTML = `
+
+    <div class="modal-top">
+
+      <div class="modal-image">
+        <img
+          src="${recipe.image}"
+          alt="${recipe.name}"
+        >
       </div>
 
-      <h2 class="modal-title">
-        ${recipe.name}
-      </h2>
+      <div class="modal-intro">
 
-      <div class="modal-tags">
+        <h2 class="modal-title">
+          ${recipe.name}
+        </h2>
 
-        ${recipe.tags.map(tag => `
-          <button
-            class="modal-tag"
-            data-modal-tag="${tag}"
-          >
-            #${tag}
-          </button>
+        <div class="modal-tags">
+
+          ${recipe.tags.map(tag=>`
+
+            <button
+              class="modal-tag"
+              type="button"
+              data-tag="${escapeHtml(tag)}"
+            >
+              #${tag}
+            </button>
+
+          `).join("")}
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <section class="modal-section">
+
+      <h3 class="modal-section-title">
+        材料 / INGREDIENTS
+      </h3>
+
+      <div class="ingredients-list">
+
+        ${recipe.ingredients.map(item=>`
+
+          <div class="ingredient-item">
+
+            <span class="ingredient-name">
+              ${escapeHtml(item[0])}
+            </span>
+
+            <span class="ingredient-amount">
+              ${escapeHtml(item[1])}
+            </span>
+
+          </div>
+
         `).join("")}
 
       </div>
 
-    </div>
+    </section>
+
+
+    <section class="modal-section">
+
+      <h3 class="modal-section-title">
+        つくりかた / HOW TO COOK
+      </h3>
+
+      <div class="steps">
+        ${stepsHtml}
+      </div>
+
+    </section>
+
+    ${relatedHtml}
+
   `;
 
 
-  /* TAG CLICK */
+  modal.classList.add("show");
+  document.body.style.overflow = "hidden";
 
-  modalTop
-    .querySelectorAll("[data-modal-tag]")
-    .forEach(button => {
 
-      button.addEventListener("click", () => {
+  /* 材料タップ */
+
+  modalContent
+    .querySelectorAll(".cooking-ingredient")
+    .forEach(element=>{
+
+      element.addEventListener("click",event=>{
+
+        event.stopPropagation();
+
+        const bubble =
+          element.querySelector(".ingredient-bubble");
+
+        modalContent
+          .querySelectorAll(".ingredient-bubble")
+          .forEach(item=>{
+            if(item !== bubble){
+              item.style.display = "none";
+            }
+          });
+
+        bubble.style.display =
+          bubble.style.display === "none"
+            ? "block"
+            : "none";
+
+      });
+
+    });
+
+
+  /* タグ */
+
+  modalContent
+    .querySelectorAll(".modal-tag")
+    .forEach(button=>{
+
+      button.addEventListener("click",()=>{
 
         const tag =
-          button.dataset.modalTag;
+          button.dataset.tag;
 
         closeModal();
 
@@ -2727,11 +2924,11 @@ function openRecipe(recipe){
 
         renderTags();
         renderRecipes();
+        renderMoodRecipes();
 
-        setTimeout(() => {
+        setTimeout(()=>{
 
-          document
-            .getElementById("mood")
+          document.getElementById("mood")
             .scrollIntoView({
               behavior:"smooth"
             });
@@ -2743,106 +2940,20 @@ function openRecipe(recipe){
     });
 
 
-  /* INGREDIENTS */
+  /* 関連レシピ */
 
-  modalIngredients.innerHTML =
-    recipe.ingredients
-      .map(([name,amount]) => `
+  modalContent
+    .querySelectorAll(".more-card")
+    .forEach(card=>{
 
-        <div class="ingredient-item">
+      card.addEventListener("click",()=>{
 
-          <span class="ingredient-name">
-            ${name}
-          </span>
+        const index =
+          Number(card.dataset.relatedIndex);
 
-          <span class="ingredient-amount">
-            ${amount}
-          </span>
-
-        </div>
-
-      `)
-      .join("");
-
-
-  /* =======================================================
-     INGREDIENT LOOKUP
-  ======================================================= */
-
-  const ingredientMap = {};
-
-  recipe.ingredients.forEach(([name,amount]) => {
-
-    ingredientMap[name] = amount;
-
-  });
-
-
-  /* =======================================================
-     MAKE STEP TEXT CLICKABLE
-  ======================================================= */
-
-  modalSteps.innerHTML = "";
-
-  recipe.steps.forEach((stepText,index) => {
-
-    const step =
-      document.createElement("div");
-
-    step.className = "step";
-
-    const number =
-      document.createElement("div");
-
-    number.className = "step-number";
-
-    number.textContent =
-      String(index + 1).padStart(2,"0");
-
-
-    const text =
-      document.createElement("div");
-
-    text.className = "step-text";
-
-    text.innerHTML =
-      makeClickableIngredients(
-        stepText,
-        ingredientMap
-      );
-
-
-    step.appendChild(number);
-    step.appendChild(text);
-
-    modalSteps.appendChild(step);
-
-  });
-
-
-  /* =======================================================
-     BUBBLE EVENTS
-  ======================================================= */
-
-  modalSteps
-    .querySelectorAll(".cooking-ingredient")
-    .forEach(element => {
-
-      element.addEventListener("click", event => {
-
-        event.stopPropagation();
-
-        modalSteps
-          .querySelectorAll(".cooking-ingredient.active")
-          .forEach(other => {
-
-            if(other !== element){
-              other.classList.remove("active");
-            }
-
-          });
-
-        element.classList.toggle("active");
+        if(related[index]){
+          openRecipe(related[index]);
+        }
 
       });
 
@@ -2851,74 +2962,27 @@ function openRecipe(recipe){
 }
 
 
-/* =========================================================
-   CLICKABLE INGREDIENT TEXT
-========================================================= */
-
-function makeClickableIngredients(text, ingredientMap){
-
-  let result = text;
-
-  const names =
-    Object.keys(ingredientMap)
-      .sort((a,b) => b.length - a.length);
-
-  names.forEach(name => {
-
-    const amount =
-      ingredientMap[name];
-
-    const escaped =
-      name.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
-
-    const regex =
-      new RegExp(`(?<![>\\w])${escaped}(?![\\w])`,"g");
-
-    result =
-      result.replace(
-        regex,
-        `
-        <span
-          class="cooking-ingredient"
-          data-ingredient="${name}"
-        >
-          ${name}
-          <span class="amount-bubble">
-            ${amount}
-          </span>
-        </span>
-        `
-      );
-
-  });
-
-  return result;
-}
-
-
-/* =========================================================
+/* =================================
    CLOSE MODAL
-========================================================= */
+================================= */
 
 function closeModal(){
 
   modal.classList.remove("show");
-
   document.body.style.overflow = "";
+
+  currentRecipe = null;
 
 }
 
 
-/* =========================================================
-   MODAL EVENTS
-========================================================= */
+/* =================================
+   EVENTS
+================================= */
 
-modalClose.addEventListener(
-  "click",
-  closeModal
-);
+modalClose.addEventListener("click",closeModal);
 
-modal.addEventListener("click", event => {
+modal.addEventListener("click",event=>{
 
   if(event.target === modal){
     closeModal();
@@ -2926,8 +2990,7 @@ modal.addEventListener("click", event => {
 
 });
 
-
-document.addEventListener("keydown", event => {
+document.addEventListener("keydown",event=>{
 
   if(event.key === "Escape"){
     closeModal();
@@ -2935,119 +2998,69 @@ document.addEventListener("keydown", event => {
 
 });
 
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-searchInput.addEventListener("input", event => {
-
-  searchWord =
-    event.target.value.trim();
+searchInput.addEventListener("input",()=>{
 
   currentPage = 1;
 
   renderRecipes();
+  renderMoodRecipes();
 
 });
 
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
+/* =================================
+   NAV ACTIVE
+================================= */
 
-document
-  .querySelectorAll(".nav-btn")
-  .forEach(button => {
+const navLinks =
+  document.querySelectorAll(".header-nav a");
 
-    button.addEventListener("click", () => {
+const sections =
+  document.querySelectorAll(
+    "#home,#about,#recipes,#mood"
+  );
 
-      const target =
-        document.getElementById(
-          button.dataset.target
-        );
+function updateActiveNav(){
 
-      if(target){
+  const scrollPosition =
+    window.scrollY + 180;
 
-        target.scrollIntoView({
-          behavior:"smooth"
-        });
+  let activeId = "home";
 
-      }
+  sections.forEach(section=>{
 
-    });
-
-  });
-
-
-/* =========================================================
-   ACTIVE NAV ON SCROLL
-========================================================= */
-
-const sections = [
-  "home",
-  "about",
-  "mood",
-  "recipes"
-];
-
-const navButtons =
-  document.querySelectorAll(".nav-btn");
-
-window.addEventListener("scroll", () => {
-
-  let current = "home";
-
-  sections.forEach(id => {
-
-    const section =
-      document.getElementById(id);
-
-    if(
-      window.scrollY >=
-      section.offsetTop - 130
-    ){
-
-      current = id;
-
+    if(scrollPosition >= section.offsetTop){
+      activeId = section.id;
     }
 
   });
 
-  navButtons.forEach(button => {
+  navLinks.forEach(link=>{
 
-    button.classList.toggle(
+    link.classList.toggle(
       "active",
-      button.dataset.target === current
+      link.dataset.nav === activeId
     );
 
   });
 
-});
+}
+
+window.addEventListener(
+  "scroll",
+  updateActiveNav,
+  {passive:true}
+);
 
 
-/* =========================================================
-   OPENING CLEANUP
-========================================================= */
-
-setTimeout(() => {
-
-  const opening =
-    document.getElementById("opening");
-
-  if(opening){
-    opening.style.pointerEvents = "none";
-  }
-
-},4500);
-
-
-/* =========================================================
-   INITIAL RENDER
-========================================================= */
+/* =================================
+   INIT
+================================= */
 
 renderTags();
 renderRecipes();
+renderMoodRecipes();
+updateActiveNav();
 
 </script>
 
