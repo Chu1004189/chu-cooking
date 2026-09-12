@@ -8,9 +8,28 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
+
+/* =========================================================
+   COLOR
+========================================================= */
+
+:root {
+  --orange: #ff6b22;
+  --orange-dark: #df4d0c;
+  --cream: #fff4e7;
+  --yellow: #ffd84d;
+  --pink: #ffaaa0;
+  --green: #b9d77b;
+  --blue: #8ed8e8;
+  --brown: #492617;
+  --white: #fffdf9;
+  --text: #302017;
+}
+
 
 /* =========================================================
    RESET
@@ -27,15 +46,15 @@ html {
 }
 
 body {
-  background: #f5eee5;
-  color: #17120f;
-  font-family: "Inter", "Noto Sans JP", sans-serif;
-  overflow-x: hidden;
-}
+  background: var(--cream);
+  color: var(--text);
 
-img {
-  max-width: 100%;
-  display: block;
+  font-family:
+    "Inter",
+    "Noto Sans JP",
+    sans-serif;
+
+  overflow-x: hidden;
 }
 
 a {
@@ -48,21 +67,9 @@ input {
   font-family: inherit;
 }
 
-
-/* =========================================================
-   VARIABLES
-========================================================= */
-
-:root {
-  --cream: #f5eee5;
-  --paper: #fffaf4;
-  --orange: #ed642d;
-  --orange-dark: #b9431d;
-  --brown: #2a1911;
-  --black: #17120f;
-  --yellow: #f5c84b;
-  --pink: #ef9d91;
-  --green: #879b62;
+img {
+  display: block;
+  max-width: 100%;
 }
 
 
@@ -73,6 +80,7 @@ input {
 .opening {
   position: fixed;
   inset: 0;
+
   z-index: 9999;
 
   background: var(--orange);
@@ -83,126 +91,240 @@ input {
 
   overflow: hidden;
 
-  animation: openingOut 1s ease 3.8s forwards;
+  animation:
+    openingDisappear
+    1s
+    cubic-bezier(.76,0,.24,1)
+    3.7s
+    forwards;
 }
 
-.opening::before {
-  content: "";
 
+/* 大きなオレンジの円 */
+
+.opening-circle {
   position: absolute;
-  width: 130vw;
-  height: 130vw;
 
-  border: 1px solid rgba(255,255,255,.35);
+  width: 20px;
+  height: 20px;
+
   border-radius: 50%;
 
-  animation: circleIn 1.5s cubic-bezier(.16,1,.3,1) .1s both;
+  background: var(--yellow);
+
+  animation:
+    circleExpand
+    1.3s
+    cubic-bezier(.16,1,.3,1)
+    .15s
+    forwards;
 }
 
-.opening::after {
-  content: "";
 
+/* 小さなドット */
+
+.opening-dots {
   position: absolute;
-  width: 90vw;
-  height: 90vw;
 
-  border: 1px solid rgba(255,255,255,.22);
+  inset: 0;
+
+  pointer-events: none;
+}
+
+.opening-dot {
+  position: absolute;
+
+  width: 12px;
+  height: 12px;
+
   border-radius: 50%;
 
-  animation: circleIn 1.5s cubic-bezier(.16,1,.3,1) .3s both;
+  background: white;
+
+  opacity: 0;
+
+  animation:
+    dotPop
+    .7s
+    cubic-bezier(.16,1,.3,1)
+    forwards;
 }
 
-.opening-inner {
+.dot1 {
+  top: 20%;
+  left: 15%;
+  animation-delay: .7s;
+}
+
+.dot2 {
+  top: 17%;
+  right: 20%;
+  width: 20px;
+  height: 20px;
+  animation-delay: .9s;
+}
+
+.dot3 {
+  bottom: 22%;
+  left: 18%;
+  width: 17px;
+  height: 17px;
+  animation-delay: 1.05s;
+}
+
+.dot4 {
+  bottom: 17%;
+  right: 15%;
+  animation-delay: .8s;
+}
+
+.dot5 {
+  top: 35%;
+  left: 8%;
+  width: 8px;
+  height: 8px;
+  animation-delay: 1.2s;
+}
+
+.dot6 {
+  bottom: 40%;
+  right: 8%;
+  width: 9px;
+  height: 9px;
+  animation-delay: 1.15s;
+}
+
+
+/* ロゴ */
+
+.opening-logo-wrap {
   position: relative;
-  z-index: 3;
+
+  z-index: 5;
 
   text-align: center;
 
-  animation: openingContent 1.2s cubic-bezier(.16,1,.3,1) .3s both;
+  animation:
+    openingLogo
+    1s
+    cubic-bezier(.16,1,.3,1)
+    .65s
+    both;
 }
 
 .opening-logo {
-  width: 135px;
+  width: 125px;
 
-  margin: 0 auto 30px;
+  margin: 0 auto 22px;
 
   filter:
     brightness(0)
     invert(1);
 
   animation:
-    logoPop 1.1s cubic-bezier(.16,1,.3,1) .5s both;
+    logoBounce
+    1.3s
+    cubic-bezier(.16,1,.3,1)
+    .6s
+    both;
 }
 
-.opening-small {
+.opening-text {
   color: white;
 
-  font-size: 9px;
-  font-weight: 800;
+  font-family: "Fredoka", sans-serif;
 
-  letter-spacing: .35em;
+  font-size: 13px;
+  font-weight: 700;
+
+  letter-spacing: .18em;
 }
 
-.opening-title {
-  margin-top: 13px;
+.opening-sub {
+  margin-top: 9px;
 
-  color: white;
+  color: rgba(255,255,255,.8);
 
-  font-family: "DM Serif Display", serif;
+  font-size: 8px;
+  font-weight: 700;
 
-  font-size: clamp(32px, 7vw, 80px);
-
-  line-height: .9;
-
-  letter-spacing: -.03em;
+  letter-spacing: .25em;
 }
 
-.opening-title span {
-  display: block;
+
+/* アニメーション */
+
+@keyframes circleExpand {
+
+  0% {
+    width: 20px;
+    height: 20px;
+  }
+
+  100% {
+    width: 180vw;
+    height: 180vw;
+  }
+
 }
 
-@keyframes logoPop {
+@keyframes dotPop {
+
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+}
+
+@keyframes openingLogo {
+
   from {
     opacity: 0;
-    transform: scale(.5) rotate(-8deg);
+    transform: translateY(40px) rotate(-5deg);
   }
 
   to {
     opacity: 1;
+    transform: translateY(0) rotate(0);
+  }
+
+}
+
+@keyframes logoBounce {
+
+  0% {
+    transform: scale(.4) rotate(-12deg);
+  }
+
+  60% {
+    transform: scale(1.08) rotate(3deg);
+  }
+
+  100% {
     transform: scale(1) rotate(0);
   }
+
 }
 
-@keyframes openingContent {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
+@keyframes openingDisappear {
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes circleIn {
-  from {
-    transform: scale(.1);
-    opacity: 0;
-  }
-
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes openingOut {
   to {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
   }
+
 }
 
 
@@ -211,6 +333,7 @@ input {
 ========================================================= */
 
 .header {
+
   position: absolute;
 
   top: 0;
@@ -218,20 +341,30 @@ input {
 
   width: 100%;
 
+  padding:
+    25px
+    5vw;
+
   z-index: 100;
 
-  padding: 24px 4vw;
-
   display: flex;
+
   align-items: center;
   justify-content: space-between;
 }
 
 .header-logo {
-  font-size: 13px;
-  font-weight: 900;
 
-  letter-spacing: .16em;
+  font-family:
+    "Fredoka",
+    sans-serif;
+
+  font-size: 17px;
+
+  font-weight: 700;
+
+  letter-spacing: -.02em;
+
 }
 
 .header-logo span {
@@ -239,17 +372,22 @@ input {
 }
 
 .header-nav {
+
   display: flex;
-  gap: 28px;
+
+  gap: 25px;
 }
 
 .header-nav a {
+
   font-size: 9px;
-  font-weight: 800;
 
-  letter-spacing: .18em;
+  font-weight: 900;
 
-  transition: .3s;
+  letter-spacing: .14em;
+
+  transition: .25s;
+
 }
 
 .header-nav a:hover {
@@ -262,236 +400,422 @@ input {
 ========================================================= */
 
 .hero {
+
   position: relative;
 
   min-height: 100svh;
 
-  padding: 130px 5vw 70px;
+  padding:
+    150px
+    6vw
+    80px;
 
   display: flex;
+
   align-items: center;
 
   background:
-    radial-gradient(
-      circle at 70% 45%,
-      #f5c84b 0,
-      #f5c84b 13%,
-      transparent 13.5%
-    ),
     var(--cream);
 
   overflow: hidden;
+
 }
 
-.hero-bg-word {
+
+/* 背景の巨大文字 */
+
+.hero-bg {
+
   position: absolute;
 
-  top: 12%;
   left: -3%;
+  top: 18%;
 
-  font-family: "DM Serif Display", serif;
+  font-family:
+    "Fredoka",
+    sans-serif;
 
-  font-size: clamp(150px, 25vw, 400px);
+  font-size:
+    clamp(
+      170px,
+      27vw,
+      420px
+    );
+
+  font-weight: 700;
 
   line-height: .7;
 
-  color: rgba(237,100,45,.07);
-
-  white-space: nowrap;
+  color:
+    rgba(
+      255,
+      107,
+      34,
+      .07
+    );
 
   pointer-events: none;
+
 }
 
-.hero-main {
+
+/* HERO CONTENT */
+
+.hero-content {
+
   position: relative;
-  z-index: 2;
+
+  z-index: 3;
 
   width: 100%;
+
 }
 
-.hero-eyebrow {
+.hero-label {
+
   display: inline-flex;
+
   align-items: center;
-  gap: 10px;
 
-  margin-bottom: 28px;
+  gap: 9px;
 
-  color: var(--orange);
+  margin-bottom: 25px;
+
+  color:
+    var(--orange);
 
   font-size: 9px;
+
   font-weight: 900;
 
-  letter-spacing: .3em;
+  letter-spacing: .25em;
+
 }
 
-.hero-eyebrow::before {
+.hero-label::before {
+
   content: "";
 
-  width: 35px;
-  height: 3px;
+  width: 28px;
+  height: 4px;
 
-  background: var(--orange);
+  border-radius: 10px;
+
+  background:
+    var(--orange);
+
 }
 
+
+/* メインコピー */
+
 .hero-title {
-  max-width: 900px;
 
-  font-family: "DM Serif Display", serif;
+  max-width: 1000px;
 
-  font-size: clamp(65px, 12vw, 170px);
+  font-family:
+    "Fredoka",
+    sans-serif;
 
-  font-weight: 400;
+  font-size:
+    clamp(
+      65px,
+      12vw,
+      170px
+    );
+
+  font-weight: 700;
 
   line-height: .78;
 
-  letter-spacing: -.055em;
+  letter-spacing:
+    -.065em;
+
 }
 
-.hero-title .orange {
-  color: var(--orange);
-
-  margin-left: 12vw;
+.hero-title .line1 {
+  display: block;
 }
 
-.hero-jp {
-  margin-top: 45px;
-  margin-left: 12vw;
+.hero-title .line2 {
 
-  max-width: 400px;
+  display: block;
 
-  font-size: 13px;
+  color:
+    var(--orange);
+
+  margin-left:
+    10vw;
+
+}
+
+.hero-title .line3 {
+
+  display: block;
+
+  margin-left:
+    4vw;
+
+}
+
+
+/* 日本語 */
+
+.hero-copy {
+
+  margin:
+    45px
+    0
+    0
+    14vw;
+
+  max-width: 390px;
+
+  font-size: 14px;
+
   font-weight: 700;
 
   line-height: 1.8;
+
 }
 
+
+/* スタンプ */
+
 .hero-sticker {
+
   position: absolute;
 
   right: 10%;
-  bottom: 16%;
+  bottom: 18%;
 
-  width: 135px;
-  height: 135px;
+  width: 145px;
+  height: 145px;
 
   border-radius: 50%;
 
-  background: var(--orange);
+  background:
+    var(--yellow);
 
-  color: white;
+  border:
+    4px solid
+    var(--brown);
+
+  color:
+    var(--brown);
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
   text-align: center;
 
-  font-size: 11px;
-  font-weight: 900;
+  font-family:
+    "Fredoka",
+    sans-serif;
 
-  line-height: 1.3;
+  font-size: 15px;
 
-  transform: rotate(9deg);
+  font-weight: 700;
+
+  line-height: 1.05;
+
+  transform:
+    rotate(10deg);
 
   box-shadow:
-    8px 8px 0 var(--brown);
+    7px 8px 0
+    var(--brown);
 
-  animation: stickerFloat 4s ease-in-out infinite;
+  animation:
+    stickerFloat
+    3s
+    ease-in-out
+    infinite;
+
 }
 
 @keyframes stickerFloat {
-  0%,100% {
-    transform: rotate(9deg) translateY(0);
+
+  0%,
+  100% {
+    transform:
+      rotate(10deg)
+      translateY(0);
   }
 
   50% {
-    transform: rotate(4deg) translateY(-10px);
+    transform:
+      rotate(4deg)
+      translateY(-10px);
   }
+
 }
 
-.scroll-mark {
+
+/* scroll */
+
+.hero-scroll {
+
   position: absolute;
 
-  bottom: 30px;
   left: 50%;
+  bottom: 25px;
 
-  transform: translateX(-50%);
+  transform:
+    translateX(-50%);
 
   font-size: 8px;
-  font-weight: 800;
 
-  letter-spacing: .3em;
+  font-weight: 900;
 
-  color: rgba(23,18,15,.5);
+  letter-spacing: .25em;
+
+  color:
+    rgba(
+      48,
+      32,
+      23,
+      .45
+    );
+
 }
 
 
 /* =========================================================
-   INTRO
+   ORANGE INTRO
 ========================================================= */
 
 .intro {
+
   position: relative;
 
-  padding: 150px 7vw;
+  padding:
+    150px
+    7vw;
 
-  background: var(--orange);
+  background:
+    var(--orange);
 
-  color: white;
+  color:
+    white;
 
   overflow: hidden;
+
 }
 
+
+/* ドットパターン */
+
 .intro::before {
-  content: "COOK";
+
+  content: "";
 
   position: absolute;
 
-  right: -4%;
-  top: 20%;
+  inset: 0;
 
-  font-family: "DM Serif Display", serif;
+  opacity: .16;
 
-  font-size: 25vw;
+  background-image:
+    radial-gradient(
+      white 2px,
+      transparent 2px
+    );
+
+  background-size:
+    25px
+    25px;
+
+}
+
+
+/* 巨大文字 */
+
+.intro::after {
+
+  content:
+    "YUMMY!";
+
+  position: absolute;
+
+  right: -3%;
+  bottom: -10%;
+
+  font-family:
+    "Fredoka",
+    sans-serif;
+
+  font-size:
+    25vw;
+
+  font-weight: 700;
 
   line-height: .7;
 
-  color: rgba(255,255,255,.08);
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .08
+    );
+
 }
 
-.intro-inner {
+.intro-content {
+
   position: relative;
+
   z-index: 2;
 
-  max-width: 850px;
+  max-width: 900px;
+
 }
 
-.intro-small {
+.section-mini {
+
   font-size: 9px;
-  font-weight: 800;
+
+  font-weight: 900;
 
   letter-spacing: .3em;
 
-  margin-bottom: 35px;
+  margin-bottom: 30px;
+
 }
 
 .intro-title {
-  font-family: "DM Serif Display", serif;
 
-  font-size: clamp(50px, 8vw, 110px);
+  font-family:
+    "Fredoka",
+    sans-serif;
 
-  line-height: .9;
+  font-size:
+    clamp(
+      55px,
+      9vw,
+      120px
+    );
 
-  letter-spacing: -.04em;
+  line-height: .85;
+
+  letter-spacing:
+    -.05em;
+
 }
 
-.intro-title em {
-  color: var(--yellow);
-  font-style: normal;
+.intro-title span {
+
+  color:
+    var(--yellow);
+
 }
 
 .intro-text {
-  max-width: 500px;
+
+  max-width: 470px;
 
   margin-top: 40px;
 
@@ -499,157 +823,270 @@ input {
 
   line-height: 2;
 
-  color: rgba(255,255,255,.78);
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .8
+    );
+
 }
 
 
 /* =========================================================
-   VISUAL COLLAGE
+   FOOD PLAYGROUND
 ========================================================= */
 
-.collage {
+.playground {
+
   position: relative;
 
-  min-height: 800px;
+  min-height:
+    850px;
 
-  padding: 100px 5vw;
+  padding:
+    100px
+    5vw;
 
-  background: var(--paper);
+  background:
+    var(--yellow);
 
   overflow: hidden;
+
 }
 
-.collage-title {
+
+/* 見出し */
+
+.playground-title {
+
   position: relative;
+
   z-index: 5;
 
-  text-align: center;
+  text-align:
+    center;
 
-  font-family: "DM Serif Display", serif;
+  font-family:
+    "Fredoka",
+    sans-serif;
 
-  font-size: clamp(55px, 10vw, 140px);
+  font-size:
+    clamp(
+      65px,
+      13vw,
+      180px
+    );
 
-  line-height: .8;
+  font-weight: 700;
 
-  color: var(--brown);
+  line-height: .7;
+
+  letter-spacing:
+    -.06em;
+
 }
 
-.collage-title span {
-  color: var(--orange);
+.playground-title span {
+
+  color:
+    var(--orange);
+
 }
 
-.food-shape {
+
+/* 仮料理写真 */
+
+.food {
+
   position: absolute;
 
   overflow: hidden;
 
+  border:
+    7px solid
+    var(--white);
+
   box-shadow:
-    12px 18px 35px rgba(40,20,10,.15);
+    10px 14px 0
+    rgba(
+      48,
+      32,
+      23,
+      .15
+    );
+
 }
 
-.food-shape::after {
+.food::after {
+
   content: "";
 
   position: absolute;
+
   inset: 0;
 
   background:
     linear-gradient(
       135deg,
-      rgba(255,255,255,.18),
+      rgba(
+        255,
+        255,
+        255,
+        .2
+      ),
       transparent
     );
+
 }
 
-.food-one {
-  width: 330px;
-  height: 420px;
+
+/* 海老 */
+
+.food1 {
+
+  width: 300px;
+  height: 370px;
 
   left: 8%;
-  top: 250px;
+  top: 300px;
 
   background:
     radial-gradient(
-      circle at 45% 45%,
-      #ef844d 0 18%,
-      #8d351b 19% 36%,
-      transparent 37%
+      circle at 35% 45%,
+      #f38b4e
+      0 8%,
+      transparent 9%
     ),
-    #38170c;
+    radial-gradient(
+      circle at 60% 55%,
+      #df5a28
+      0 10%,
+      transparent 11%
+    ),
+    radial-gradient(
+      circle at 50% 35%,
+      #ffb06c
+      0 6%,
+      transparent 7%
+    ),
+    #b7441a;
 
-  transform: rotate(-7deg);
+  transform:
+    rotate(-7deg);
+
 }
 
-.food-two {
-  width: 270px;
-  height: 340px;
 
-  right: 10%;
-  top: 210px;
+/* パスタ */
+
+.food2 {
+
+  width: 250px;
+  height: 320px;
+
+  right: 9%;
+  top: 260px;
 
   background:
     radial-gradient(
-      ellipse at 50% 50%,
-      #e4a066 0 20%,
-      #823a24 21% 40%,
-      transparent 41%
+      ellipse at center,
+      #f2a25f
+      0 18%,
+      #c25b27
+      19% 39%,
+      transparent 40%
     ),
-    #28130c;
+    #713016;
 
-  transform: rotate(8deg);
+  transform:
+    rotate(8deg);
+
 }
 
-.food-three {
-  width: 230px;
-  height: 280px;
+
+/* ご飯 */
+
+.food3 {
+
+  width: 210px;
+  height: 260px;
 
   left: 43%;
-  bottom: 50px;
+  bottom: 55px;
 
   background:
     radial-gradient(
-      circle at 50% 50%,
-      #d4a04b 0 20%,
-      #71411e 21% 40%,
-      transparent 41%
+      circle at center,
+      #e6ad58
+      0 20%,
+      #9a4e20
+      21% 42%,
+      transparent 43%
     ),
-    #2a170e;
+    #5a2b14;
 
-  transform: rotate(4deg);
+  transform:
+    rotate(4deg);
+
 }
 
-.collage-label {
+
+/* シール */
+
+.food-sticker {
+
   position: absolute;
 
-  z-index: 6;
+  z-index: 10;
 
-  padding: 12px 18px;
+  padding:
+    14px
+    20px;
 
-  background: var(--yellow);
+  border-radius:
+    50px;
 
-  color: var(--brown);
+  background:
+    var(--pink);
 
-  font-size: 9px;
-  font-weight: 900;
+  color:
+    var(--brown);
 
-  letter-spacing: .1em;
+  font-family:
+    "Fredoka",
+    sans-serif;
 
-  transform: rotate(-8deg);
+  font-size:
+    14px;
+
+  font-weight:
+    700;
+
+  transform:
+    rotate(-8deg);
+
 }
 
-.label-one {
-  left: 28%;
-  top: 340px;
+.sticker1 {
+
+  top: 370px;
+  left: 31%;
+
 }
 
-.label-two {
+.sticker2 {
+
   right: 25%;
-  bottom: 180px;
+  bottom: 160px;
 
-  background: var(--orange);
-  color: white;
+  background:
+    var(--green);
 
-  transform: rotate(6deg);
+  transform:
+    rotate(7deg);
+
 }
 
 
@@ -658,196 +1095,408 @@ input {
 ========================================================= */
 
 .recipes {
-  padding: 130px 6vw;
 
-  background: var(--brown);
+  padding:
+    130px
+    6vw;
 
-  color: white;
+  background:
+    var(--cream);
+
 }
 
-.section-top {
-  display: flex;
+.recipes-heading {
 
-  align-items: flex-end;
-  justify-content: space-between;
+  display:
+    flex;
 
-  margin-bottom: 70px;
+  justify-content:
+    space-between;
+
+  align-items:
+    flex-end;
+
+  margin-bottom:
+    70px;
+
 }
 
-.section-number {
-  color: var(--orange);
+.recipes-title {
 
-  font-size: 9px;
-  font-weight: 900;
+  font-family:
+    "Fredoka",
+    sans-serif;
 
-  letter-spacing: .3em;
+  font-size:
+    clamp(
+      60px,
+      11vw,
+      150px
+    );
+
+  line-height:
+    .72;
+
+  letter-spacing:
+    -.06em;
+
 }
 
-.section-title {
-  margin-top: 12px;
+.recipes-title span {
 
-  font-family: "DM Serif Display", serif;
+  color:
+    var(--orange);
 
-  font-size: clamp(55px, 9vw, 120px);
-
-  line-height: .8;
 }
 
-.section-title span {
-  color: var(--orange);
+.recipes-note {
+
+  max-width:
+    250px;
+
+  font-size:
+    10px;
+
+  font-weight:
+    600;
+
+  line-height:
+    1.8;
+
 }
 
-.section-note {
-  max-width: 260px;
 
-  color: rgba(255,255,255,.5);
-
-  font-size: 10px;
-
-  line-height: 1.8;
-}
+/* カード */
 
 .recipe-grid {
-  display: grid;
+
+  display:
+    grid;
 
   grid-template-columns:
     repeat(12, 1fr);
 
-  gap: 18px;
+  gap:
+    20px;
+
 }
 
 .recipe-card {
-  position: relative;
 
-  min-height: 440px;
+  position:
+    relative;
 
-  overflow: hidden;
+  min-height:
+    430px;
 
-  cursor: pointer;
+  overflow:
+    hidden;
 
-  background: #3b2117;
+  border-radius:
+    28px;
+
+  cursor:
+    pointer;
+
+  background:
+    var(--orange);
+
+  transition:
+    transform
+    .4s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    );
+
 }
 
+.recipe-card:hover {
+
+  transform:
+    rotate(
+      -1deg
+    )
+    translateY(
+      -8px
+    );
+
+}
+
+
+/* サイズ */
+
 .recipe-card:nth-child(1) {
-  grid-column: span 7;
+  grid-column:
+    span 7;
 }
 
 .recipe-card:nth-child(2) {
-  grid-column: span 5;
+  grid-column:
+    span 5;
 }
 
 .recipe-card:nth-child(3) {
-  grid-column: span 5;
+  grid-column:
+    span 5;
 }
 
 .recipe-card:nth-child(4) {
-  grid-column: span 7;
+  grid-column:
+    span 7;
 }
 
 .recipe-card:nth-child(5),
 .recipe-card:nth-child(6) {
-  grid-column: span 6;
+  grid-column:
+    span 6;
 }
+
+
+/* 写真 */
 
 .recipe-photo {
-  position: absolute;
-  inset: 0;
+
+  position:
+    absolute;
+
+  inset:
+    0;
 
   transition:
-    transform .7s cubic-bezier(.16,1,.3,1);
+    transform
+    .6s
+    cubic-bezier(
+      .16,
+      1,
+      .3,
+      1
+    );
+
 }
 
-.recipe-card:hover .recipe-photo {
-  transform: scale(1.08);
+.recipe-card:hover
+.recipe-photo {
+
+  transform:
+    scale(
+      1.08
+    );
+
 }
 
 .recipe-photo::after {
+
   content: "";
 
-  position: absolute;
-  inset: 0;
+  position:
+    absolute;
+
+  inset:
+    0;
 
   background:
     linear-gradient(
       to top,
-      rgba(0,0,0,.85),
-      transparent 65%
+      rgba(
+        48,
+        25,
+        10,
+        .85
+      ),
+      transparent
+      65%
     );
+
 }
 
+
+/* 仮料理 */
+
 .photo-shrimp {
+
   background:
-    radial-gradient(circle at 40% 45%, #ed7843 0 8%, transparent 9%),
-    radial-gradient(circle at 62% 55%, #cf5426 0 10%, transparent 11%),
-    radial-gradient(circle at 55% 35%, #f09b59 0 6%, transparent 7%),
-    linear-gradient(135deg,#241009,#9c401d);
+    radial-gradient(
+      circle at 40% 45%,
+      #f58c4c
+      0 8%,
+      transparent 9%
+    ),
+    radial-gradient(
+      circle at 65% 55%,
+      #dc5929
+      0 10%,
+      transparent 11%
+    ),
+    #a73e18;
+
 }
 
 .photo-pasta {
+
   background:
-    radial-gradient(ellipse at center,#df8147 0 18%,#7c341c 19% 38%,transparent 39%),
-    linear-gradient(135deg,#29130b,#a84923);
+    radial-gradient(
+      ellipse at center,
+      #efa466
+      0 20%,
+      #c35b2c
+      21% 40%,
+      transparent 41%
+    ),
+    #713016;
+
 }
 
 .photo-chicken {
+
   background:
-    radial-gradient(ellipse at center,#d7985e 0 20%,#743a20 21% 42%,transparent 43%),
-    linear-gradient(135deg,#20120c,#8f4725);
+    radial-gradient(
+      ellipse at center,
+      #e1a16b
+      0 20%,
+      #9b4b27
+      21% 42%,
+      transparent 43%
+    ),
+    #653018;
+
 }
 
 .photo-eggplant {
+
   background:
-    radial-gradient(ellipse at center,#70435d 0 22%,#301727 23% 43%,transparent 44%),
-    linear-gradient(135deg,#160c12,#6d3228);
+    radial-gradient(
+      ellipse at center,
+      #8a5271
+      0 22%,
+      #47213c
+      23% 43%,
+      transparent 44%
+    ),
+    #301427;
+
 }
 
 .photo-rice {
+
   background:
-    radial-gradient(circle at center,#d38a42 0 23%,#713719 24% 44%,transparent 45%),
-    linear-gradient(135deg,#27140b,#93461e);
+    radial-gradient(
+      circle at center,
+      #e4a95a
+      0 23%,
+      #9c4d1d
+      24% 44%,
+      transparent 45%
+    ),
+    #56270f;
+
 }
 
 .photo-pork {
+
   background:
-    radial-gradient(ellipse at center,#d99472 0 20%,#713525 21% 42%,transparent 43%),
-    linear-gradient(135deg,#1e100c,#843e2b);
+    radial-gradient(
+      ellipse at center,
+      #df9c7a
+      0 20%,
+      #9a4930
+      21% 42%,
+      transparent 43%
+    ),
+    #5c281b;
+
 }
 
+
+/* カード文字 */
+
 .recipe-info {
-  position: absolute;
 
-  z-index: 3;
+  position:
+    absolute;
 
-  left: 28px;
-  right: 28px;
-  bottom: 28px;
+  z-index:
+    3;
+
+  left:
+    28px;
+
+  right:
+    28px;
+
+  bottom:
+    28px;
+
+  color:
+    white;
+
 }
 
 .recipe-category {
-  color: var(--yellow);
 
-  font-size: 8px;
-  font-weight: 900;
+  display:
+    inline-block;
 
-  letter-spacing: .3em;
+  padding:
+    6px
+    12px;
 
-  margin-bottom: 12px;
+  border-radius:
+    30px;
+
+  background:
+    var(--yellow);
+
+  color:
+    var(--brown);
+
+  font-size:
+    8px;
+
+  font-weight:
+    900;
+
+  margin-bottom:
+    12px;
+
 }
 
 .recipe-name {
-  font-family: "DM Serif Display", serif;
 
-  font-size: clamp(28px, 4vw, 50px);
+  font-family:
+    "Fredoka",
+    sans-serif;
 
-  line-height: .95;
+  font-size:
+    clamp(
+      27px,
+      4vw,
+      50px
+    );
+
+  line-height:
+    .95;
+
 }
 
 .recipe-meta {
-  margin-top: 13px;
 
-  color: rgba(255,255,255,.5);
+  margin-top:
+    12px;
 
-  font-size: 9px;
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .65
+    );
+
+  font-size:
+    9px;
+
 }
 
 
@@ -856,90 +1505,173 @@ input {
 ========================================================= */
 
 .category {
-  padding: 140px 5vw;
 
-  background: var(--yellow);
+  padding:
+    140px
+    5vw;
 
-  overflow: hidden;
+  background:
+    var(--pink);
+
+  overflow:
+    hidden;
+
 }
 
-.category-heading {
-  display: flex;
+.category-head {
 
-  align-items: baseline;
-  gap: 25px;
+  display:
+    flex;
 
-  margin-bottom: 70px;
+  align-items:
+    baseline;
+
+  gap:
+    20px;
+
+  margin-bottom:
+    70px;
+
 }
 
-.category-heading h2 {
-  font-family: "DM Serif Display", serif;
+.category-head h2 {
 
-  font-size: clamp(60px, 11vw, 150px);
+  font-family:
+    "Fredoka",
+    sans-serif;
 
-  line-height: .75;
+  font-size:
+    clamp(
+      60px,
+      11vw,
+      150px
+    );
+
+  line-height:
+    .7;
+
+  letter-spacing:
+    -.06em;
+
 }
 
-.category-heading span {
-  color: var(--orange);
+.category-head span {
 
-  font-size: 9px;
-  font-weight: 900;
+  font-size:
+    9px;
 
-  letter-spacing: .3em;
+  font-weight:
+    900;
+
+  letter-spacing:
+    .2em;
+
 }
 
 .category-list {
-  display: grid;
+
+  display:
+    grid;
 
   grid-template-columns:
-    repeat(4, 1fr);
+    repeat(
+      4,
+      1fr
+    );
 
-  border-top: 2px solid var(--brown);
-  border-bottom: 2px solid var(--brown);
+  border-top:
+    3px
+    solid
+    var(--brown);
+
+  border-bottom:
+    3px
+    solid
+    var(--brown);
+
 }
 
 .category-item {
-  position: relative;
 
-  min-height: 230px;
+  position:
+    relative;
 
-  padding: 30px;
+  min-height:
+    230px;
 
-  display: flex;
-  align-items: flex-end;
+  padding:
+    30px;
 
-  border-right: 1px solid rgba(42,25,17,.35);
+  display:
+    flex;
 
-  cursor: pointer;
+  align-items:
+    flex-end;
 
-  transition: .35s;
+  border-right:
+    1px
+    solid
+    rgba(
+      73,
+      38,
+      23,
+      .3
+    );
+
+  cursor:
+    pointer;
+
+  transition:
+    .35s;
+
 }
 
 .category-item:last-child {
-  border-right: none;
+  border-right:
+    none;
 }
 
 .category-item:hover {
-  background: var(--orange);
 
-  color: white;
+  background:
+    var(--orange);
+
+  color:
+    white;
+
 }
 
-.category-item-number {
-  position: absolute;
+.category-number {
 
-  top: 25px;
-  left: 30px;
+  position:
+    absolute;
 
-  font-size: 9px;
-  font-weight: 900;
+  top:
+    25px;
+
+  left:
+    30px;
+
+  font-size:
+    9px;
+
+  font-weight:
+    900;
+
 }
 
-.category-item-name {
-  font-family: "DM Serif Display", serif;
+.category-name {
 
-  font-size: 45px;
+  font-family:
+    "Fredoka",
+    sans-serif;
+
+  font-size:
+    55px;
+
+  font-weight:
+    700;
+
 }
 
 
@@ -948,71 +1680,140 @@ input {
 ========================================================= */
 
 .archive {
-  padding: 140px 6vw;
 
-  background: var(--cream);
+  padding:
+    140px
+    6vw;
+
+  background:
+    var(--white);
+
 }
 
-.archive-header {
-  margin-bottom: 80px;
+.archive-title {
+
+  font-family:
+    "Fredoka",
+    sans-serif;
+
+  font-size:
+    clamp(
+      60px,
+      11vw,
+      150px
+    );
+
+  line-height:
+    .72;
+
+  letter-spacing:
+    -.06em;
+
+  margin-bottom:
+    70px;
+
 }
 
-.archive-header h2 {
-  font-family: "DM Serif Display", serif;
+.archive-title span {
 
-  font-size: clamp(55px, 10vw, 140px);
+  color:
+    var(--orange);
 
-  line-height: .8;
-}
-
-.archive-header h2 span {
-  color: var(--orange);
 }
 
 .archive-list {
-  border-top: 1px solid rgba(23,18,15,.25);
+
+  border-top:
+    2px
+    solid
+    var(--brown);
+
 }
 
 .archive-item {
-  display: grid;
 
-  grid-template-columns: 100px 1fr 120px;
+  display:
+    grid;
 
-  align-items: center;
+  grid-template-columns:
+    80px
+    1fr
+    100px;
 
-  padding: 28px 0;
+  align-items:
+    center;
 
-  border-bottom: 1px solid rgba(23,18,15,.25);
+  padding:
+    25px
+    0;
 
-  transition: .3s;
+  border-bottom:
+    1px
+    solid
+    rgba(
+      73,
+      38,
+      23,
+      .25
+    );
 
-  cursor: pointer;
+  cursor:
+    pointer;
+
+  transition:
+    .3s;
+
 }
 
 .archive-item:hover {
-  padding-left: 20px;
 
-  color: var(--orange);
+  padding-left:
+    20px;
+
+  color:
+    var(--orange);
+
 }
 
-.archive-no {
-  font-size: 10px;
-  font-weight: 800;
+.archive-number {
+
+  font-size:
+    9px;
+
+  font-weight:
+    900;
+
 }
 
 .archive-name {
-  font-family: "DM Serif Display", serif;
 
-  font-size: clamp(24px, 3vw, 38px);
+  font-family:
+    "Fredoka",
+    sans-serif;
+
+  font-size:
+    clamp(
+      25px,
+      3vw,
+      42px
+    );
+
 }
 
 .archive-category {
-  text-align: right;
 
-  font-size: 9px;
-  font-weight: 800;
+  text-align:
+    right;
 
-  letter-spacing: .2em;
+  font-size:
+    8px;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .15em;
+
 }
 
 
@@ -1021,69 +1822,123 @@ input {
 ========================================================= */
 
 .final {
-  position: relative;
 
-  min-height: 80vh;
+  position:
+    relative;
 
-  padding: 120px 7vw;
+  min-height:
+    80vh;
 
-  background: var(--orange);
+  padding:
+    130px
+    7vw;
 
-  color: white;
+  background:
+    var(--green);
 
-  display: flex;
-  align-items: center;
+  overflow:
+    hidden;
 
-  overflow: hidden;
+  display:
+    flex;
+
+  align-items:
+    center;
+
 }
 
 .final::before {
-  content: "EAT";
 
-  position: absolute;
+  content:
+    "YUM!";
 
-  right: -5%;
-  bottom: -12%;
+  position:
+    absolute;
 
-  font-family: "DM Serif Display", serif;
+  right:
+    -4%;
 
-  font-size: 35vw;
+  bottom:
+    -8%;
 
-  line-height: .7;
+  font-family:
+    "Fredoka",
+    sans-serif;
 
-  color: rgba(255,255,255,.1);
+  font-size:
+    30vw;
+
+  line-height:
+    .7;
+
+  color:
+    rgba(
+      73,
+      38,
+      23,
+      .08
+    );
+
 }
 
 .final-inner {
-  position: relative;
-  z-index: 2;
+
+  position:
+    relative;
+
+  z-index:
+    2;
+
 }
 
 .final-small {
-  font-size: 9px;
-  font-weight: 900;
 
-  letter-spacing: .35em;
+  font-size:
+    9px;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .3em;
+
 }
 
 .final-title {
-  margin-top: 25px;
 
-  font-family: "DM Serif Display", serif;
+  margin-top:
+    25px;
 
-  font-size: clamp(70px, 14vw, 200px);
+  font-family:
+    "Fredoka",
+    sans-serif;
 
-  line-height: .72;
+  font-size:
+    clamp(
+      70px,
+      14vw,
+      200px
+    );
 
-  letter-spacing: -.06em;
+  line-height:
+    .7;
+
+  letter-spacing:
+    -.07em;
+
 }
 
 .final-title span {
-  display: block;
 
-  color: var(--yellow);
+  display:
+    block;
 
-  margin-left: 10vw;
+  color:
+    var(--orange);
+
+  margin-left:
+    12vw;
+
 }
 
 
@@ -1092,36 +1947,63 @@ input {
 ========================================================= */
 
 .footer {
-  padding: 40px 5vw;
 
-  background: var(--brown);
+  padding:
+    35px
+    5vw;
 
-  color: white;
+  background:
+    var(--brown);
 
-  display: flex;
+  color:
+    white;
 
-  justify-content: space-between;
-  align-items: center;
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
 }
 
 .footer-logo {
-  font-weight: 900;
 
-  font-size: 12px;
+  font-family:
+    "Fredoka",
+    sans-serif;
 
-  letter-spacing: .2em;
+  font-weight:
+    700;
+
+  font-size:
+    14px;
+
 }
 
 .footer-logo span {
-  color: var(--orange);
+  color:
+    var(--orange);
 }
 
 .footer-copy {
-  color: rgba(255,255,255,.4);
 
-  font-size: 8px;
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      .45
+    );
 
-  letter-spacing: .15em;
+  font-size:
+    8px;
+
+  letter-spacing:
+    .15em;
+
 }
 
 
@@ -1130,144 +2012,286 @@ input {
 ========================================================= */
 
 .modal {
-  position: fixed;
 
-  inset: 0;
+  position:
+    fixed;
 
-  z-index: 500;
+  inset:
+    0;
 
-  background: rgba(20,10,5,.82);
+  z-index:
+    500;
 
-  backdrop-filter: blur(12px);
+  background:
+    rgba(
+      73,
+      38,
+      23,
+      .7
+    );
 
-  display: none;
+  backdrop-filter:
+    blur(
+      10px
+    );
 
-  align-items: center;
-  justify-content: center;
+  display:
+    none;
 
-  padding: 20px;
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  padding:
+    20px;
+
 }
 
 .modal.show {
-  display: flex;
+  display:
+    flex;
 }
 
 .modal-content {
-  position: relative;
 
-  width: min(900px,100%);
+  position:
+    relative;
 
-  max-height: 90vh;
+  width:
+    min(
+      900px,
+      100%
+    );
 
-  overflow-y: auto;
+  max-height:
+    90vh;
 
-  padding: 55px;
+  overflow-y:
+    auto;
 
-  background: var(--paper);
+  padding:
+    50px;
 
-  color: var(--black);
+  border-radius:
+    30px;
 
-  box-shadow: 15px 20px 50px rgba(0,0,0,.3);
+  background:
+    var(--cream);
+
+  box-shadow:
+    12px
+    15px
+    0
+    rgba(
+      73,
+      38,
+      23,
+      .3
+    );
+
 }
 
 .modal-close {
-  position: absolute;
 
-  top: 18px;
-  right: 22px;
+  position:
+    absolute;
 
-  border: none;
+  top:
+    18px;
 
-  background: none;
+  right:
+    22px;
 
-  font-size: 28px;
+  width:
+    40px;
 
-  cursor: pointer;
+  height:
+    40px;
+
+  border:
+    none;
+
+  border-radius:
+    50%;
+
+  background:
+    var(--orange);
+
+  color:
+    white;
+
+  font-size:
+    24px;
+
+  cursor:
+    pointer;
+
 }
 
 .modal-category {
-  color: var(--orange);
 
-  font-size: 9px;
-  font-weight: 900;
+  color:
+    var(--orange);
 
-  letter-spacing: .3em;
+  font-size:
+    9px;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .25em;
+
 }
 
 .modal-title {
-  margin-top: 12px;
 
-  font-family: "DM Serif Display", serif;
+  margin-top:
+    12px;
 
-  font-size: clamp(42px,7vw,80px);
+  font-family:
+    "Fredoka",
+    sans-serif;
 
-  line-height: .85;
+  font-size:
+    clamp(
+      40px,
+      7vw,
+      80px
+    );
+
+  line-height:
+    .85;
+
 }
 
 .modal-grid {
-  display: grid;
 
-  grid-template-columns: 1fr 1.5fr;
+  display:
+    grid;
 
-  gap: 50px;
+  grid-template-columns:
+    1fr
+    1.5fr;
 
-  margin-top: 50px;
+  gap:
+    50px;
+
+  margin-top:
+    50px;
+
 }
 
 .modal-heading {
-  margin-bottom: 20px;
 
-  color: var(--orange);
+  margin-bottom:
+    20px;
 
-  font-size: 9px;
-  font-weight: 900;
+  color:
+    var(--orange);
 
-  letter-spacing: .25em;
+  font-size:
+    9px;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .2em;
+
 }
 
 .ingredients li {
-  list-style: none;
 
-  padding: 10px 0;
+  list-style:
+    none;
 
-  border-bottom: 1px solid rgba(23,18,15,.1);
+  padding:
+    10px
+    0;
 
-  font-size: 12px;
+  border-bottom:
+    1px
+    solid
+    rgba(
+      73,
+      38,
+      23,
+      .12
+    );
+
+  font-size:
+    12px;
+
 }
 
 .steps {
-  counter-reset: step;
+
+  counter-reset:
+    step;
+
 }
 
 .steps li {
-  list-style: none;
 
-  counter-increment: step;
+  list-style:
+    none;
 
-  position: relative;
+  counter-increment:
+    step;
+
+  position:
+    relative;
 
   padding:
-    0 0 25px 42px;
+    0
+    0
+    25px
+    42px;
 
-  margin-bottom: 25px;
+  margin-bottom:
+    25px;
 
-  border-bottom: 1px solid rgba(23,18,15,.1);
+  border-bottom:
+    1px
+    solid
+    rgba(
+      73,
+      38,
+      23,
+      .12
+    );
 
-  font-size: 12px;
+  font-size:
+    12px;
 
-  line-height: 1.8;
+  line-height:
+    1.8;
+
 }
 
 .steps li::before {
-  content: counter(step,decimal-leading-zero);
 
-  position: absolute;
+  content:
+    counter(
+      step,
+      decimal-leading-zero
+    );
 
-  left: 0;
+  position:
+    absolute;
 
-  color: var(--orange);
+  left:
+    0;
 
-  font-weight: 900;
+  color:
+    var(--orange);
+
+  font-weight:
+    900;
+
 }
 
 
@@ -1278,121 +2302,231 @@ input {
 @media (max-width: 800px) {
 
   .header-nav {
-    display: none;
+    display:
+      none;
   }
 
   .hero {
+
     padding:
-      130px 7vw
+      130px
+      7vw
       80px;
+
   }
 
   .hero-title {
-    font-size: 18vw;
+
+    font-size:
+      18vw;
+
   }
 
-  .hero-title .orange {
-    margin-left: 0;
+  .hero-title .line2,
+  .hero-title .line3 {
+
+    margin-left:
+      0;
+
   }
 
-  .hero-jp {
-    margin-left: 0;
+  .hero-copy {
+
+    margin-left:
+      0;
+
   }
 
   .hero-sticker {
-    width: 100px;
-    height: 100px;
 
-    right: 8%;
-    bottom: 15%;
+    width:
+      105px;
 
-    font-size: 9px;
+    height:
+      105px;
+
+    right:
+      7%;
+
+    bottom:
+      15%;
+
+    font-size:
+      11px;
+
   }
 
-  .collage {
-    min-height: 700px;
+  .playground {
+
+    min-height:
+      700px;
+
   }
 
-  .food-one {
-    width: 210px;
-    height: 280px;
+  .food1 {
 
-    left: 4%;
-    top: 270px;
+    width:
+      210px;
+
+    height:
+      270px;
+
+    left:
+      3%;
+
+    top:
+      300px;
+
   }
 
-  .food-two {
-    width: 180px;
-    height: 240px;
+  .food2 {
 
-    right: 3%;
-    top: 330px;
+    width:
+      170px;
+
+    height:
+      230px;
+
+    right:
+      3%;
+
+    top:
+      370px;
+
   }
 
-  .food-three {
-    width: 150px;
-    height: 190px;
+  .food3 {
 
-    left: 35%;
-    bottom: 50px;
+    width:
+      140px;
+
+    height:
+      180px;
+
+    left:
+      34%;
+
+    bottom:
+      40px;
+
   }
 
-  .label-one {
-    left: 30%;
-    top: 390px;
+  .sticker1 {
+
+    left:
+      30%;
+
+    top:
+      400px;
+
   }
 
-  .label-two {
-    right: 12%;
-    bottom: 180px;
+  .sticker2 {
+
+    right:
+      12%;
+
+    bottom:
+      170px;
+
+  }
+
+  .recipes-heading {
+
+    display:
+      block;
+
+  }
+
+  .recipes-note {
+
+    margin-top:
+      25px;
+
   }
 
   .recipe-grid {
-    grid-template-columns: 1fr;
+
+    grid-template-columns:
+      1fr;
+
   }
 
   .recipe-card,
   .recipe-card:nth-child(n) {
-    grid-column: span 1;
-    min-height: 390px;
+
+    grid-column:
+      span 1;
+
+    min-height:
+      380px;
+
   }
 
   .category-list {
-    grid-template-columns: 1fr 1fr;
+
+    grid-template-columns:
+      1fr
+      1fr;
+
   }
 
   .category-item {
-    min-height: 170px;
 
-    border-bottom: 1px solid rgba(42,25,17,.35);
+    min-height:
+      170px;
+
   }
 
   .category-item:nth-child(2) {
-    border-right: none;
+
+    border-right:
+      none;
+
   }
 
   .archive-item {
-    grid-template-columns: 55px 1fr;
+
+    grid-template-columns:
+      55px
+      1fr;
+
   }
 
   .archive-category {
-    display: none;
+
+    display:
+      none;
+
   }
 
   .modal-content {
-    padding: 40px 22px;
+
+    padding:
+      45px
+      22px;
+
   }
 
   .modal-grid {
-    grid-template-columns: 1fr;
+
+    grid-template-columns:
+      1fr;
+
   }
 
   .footer {
-    display: block;
+
+    display:
+      block;
+
   }
 
   .footer-copy {
-    margin-top: 15px;
+
+    margin-top:
+      12px;
+
   }
 
 }
@@ -1410,21 +2544,34 @@ input {
 
 <div class="opening">
 
-  <div class="opening-inner">
+  <div class="opening-circle"></div>
+
+  <div class="opening-dots">
+
+    <span class="opening-dot dot1"></span>
+    <span class="opening-dot dot2"></span>
+    <span class="opening-dot dot3"></span>
+    <span class="opening-dot dot4"></span>
+    <span class="opening-dot dot5"></span>
+    <span class="opening-dot dot6"></span>
+
+  </div>
+
+
+  <div class="opening-logo-wrap">
 
     <img
       src="logo.png"
-      class="opening-logo"
       alt="CHU dot COOKING"
+      class="opening-logo"
     >
 
-    <div class="opening-small">
-      CHU DOT COOKING
+    <div class="opening-text">
+      CHU dot COOKING
     </div>
 
-    <div class="opening-title">
-      <span>MY FOOD.</span>
-      <span>MY RULES.</span>
+    <div class="opening-sub">
+      MY KITCHEN / MY FOOD
     </div>
 
   </div>
@@ -1440,17 +2587,31 @@ input {
 
   <a
     href="#"
-    class="header-logo"
-  >
-    CHU dot <span>COOKING</span>
+    class="header-logo">
+
+    CHU dot
+    <span>COOKING</span>
+
   </a>
+
 
   <nav class="header-nav">
 
-    <a href="#about">ABOUT</a>
-    <a href="#recipes">RECIPES</a>
-    <a href="#category">CATEGORY</a>
-    <a href="#archive">ARCHIVE</a>
+    <a href="#about">
+      ABOUT
+    </a>
+
+    <a href="#recipes">
+      RECIPES
+    </a>
+
+    <a href="#category">
+      CATEGORY
+    </a>
+
+    <a href="#archive">
+      ARCHIVE
+    </a>
 
   </nav>
 
@@ -1463,44 +2624,59 @@ input {
 
 <section class="hero">
 
-  <div class="hero-bg-word">
+  <div class="hero-bg">
     FOOD
   </div>
 
-  <div class="hero-main">
 
-    <div class="hero-eyebrow">
+  <div class="hero-content">
+
+    <div class="hero-label">
       PERSONAL KITCHEN / 2026
     </div>
 
+
     <h1 class="hero-title">
 
-      NOTHING<br>
+      <span class="line1">
+        NOTHING
+      </span>
 
-      <span class="orange">
+      <span class="line2">
         TASTES
       </span>
 
-      BETTER.
+      <span class="line3">
+        BETTER.
+      </span>
 
     </h1>
 
-    <p class="hero-jp">
-      俺の作る飯が一番美味い。
+
+    <p class="hero-copy">
+
+      俺の作る飯が一番美味い。<br>
+
+      そう思える料理を、
+      ここに残していく。
+
     </p>
 
   </div>
 
 
   <div class="hero-sticker">
+
     MADE<br>
     WITH<br>
-    INSTINCT
+    LOVE<br>
+    &amp; HUNGER
+
   </div>
 
 
-  <div class="scroll-mark">
-    SCROLL TO COOK ↓
+  <div class="hero-scroll">
+    SCROLL ↓
   </div>
 
 </section>
@@ -1514,31 +2690,33 @@ input {
   class="intro"
   id="about">
 
-  <div class="intro-inner">
+  <div class="intro-content">
 
-    <div class="intro-small">
-      01 / THE KITCHEN
+    <div class="section-mini">
+      01 / MY KITCHEN
     </div>
+
 
     <h2 class="intro-title">
 
+      うまいものは、<br>
+
       <span>
-        うまいものは、
-      </span>
-
-      <br>
-
-      <em>
         自分で作る。
-      </em>
+      </span>
 
     </h2>
 
+
     <p class="intro-text">
-      冷蔵庫にあるもの。
-      スーパーで見つけたもの。
-      ふと思いついたもの。
-      その日の気分で、好きに作る。
+
+      冷蔵庫にあるもの。<br>
+      スーパーで買ってきたもの。<br>
+      ふと思いついた組み合わせ。<br><br>
+
+      正解なんて気にしない。<br>
+      うまければ、それでいい。
+
     </p>
 
   </div>
@@ -1547,35 +2725,37 @@ input {
 
 
 <!-- =====================================================
-     COLLAGE
+     PLAYGROUND
 ===================================================== -->
 
-<section class="collage">
+<section class="playground">
 
-  <h2 class="collage-title">
+  <h2 class="playground-title">
 
     COOK<br>
 
-    <span>WHAT</span><br>
+    <span>
+      WHAT
+    </span>
 
     YOU WANT.
 
   </h2>
 
 
-  <div class="food-shape food-one"></div>
+  <div class="food food1"></div>
 
-  <div class="food-shape food-two"></div>
+  <div class="food food2"></div>
 
-  <div class="food-shape food-three"></div>
+  <div class="food food3"></div>
 
 
-  <div class="collage-label label-one">
-    NO RECIPE.
+  <div class="food-sticker sticker1">
+    NO RULES!
   </div>
 
-  <div class="collage-label label-two">
-    JUST GOOD FOOD.
+  <div class="food-sticker sticker2">
+    JUST YUMMY.
   </div>
 
 </section>
@@ -1589,23 +2769,33 @@ input {
   class="recipes"
   id="recipes">
 
-  <div class="section-top">
+  <div class="recipes-heading">
 
     <div>
 
-      <div class="section-number">
+      <div class="section-mini">
         02 / RECIPES
       </div>
 
-      <h2 class="section-title">
-        MY <span>FOOD.</span>
+      <h2 class="recipes-title">
+
+        MY<br>
+
+        <span>
+          RECIPES.
+        </span>
+
       </h2>
 
     </div>
 
-    <p class="section-note">
-      これまで作ってきた料理を
-      ここに残していく。
+
+    <p class="recipes-note">
+
+      その日の気分と
+      冷蔵庫の中身から生まれた、
+      俺の料理アーカイブ。
+
     </p>
 
   </div>
@@ -1627,14 +2817,14 @@ input {
   class="category"
   id="category">
 
-  <div class="category-heading">
+  <div class="category-head">
 
     <h2>
       CATEGORY
     </h2>
 
     <span>
-      COOK BY MOOD
+      WHAT ARE YOU HUNGRY FOR?
     </span>
 
   </div>
@@ -1646,11 +2836,11 @@ input {
       class="category-item"
       data-filter="麺">
 
-      <div class="category-item-number">
+      <div class="category-number">
         01
       </div>
 
-      <div class="category-item-name">
+      <div class="category-name">
         麺
       </div>
 
@@ -1661,11 +2851,11 @@ input {
       class="category-item"
       data-filter="肉">
 
-      <div class="category-item-number">
+      <div class="category-number">
         02
       </div>
 
-      <div class="category-item-name">
+      <div class="category-name">
         肉
       </div>
 
@@ -1676,11 +2866,11 @@ input {
       class="category-item"
       data-filter="ご飯">
 
-      <div class="category-item-number">
+      <div class="category-number">
         03
       </div>
 
-      <div class="category-item-name">
+      <div class="category-name">
         ご飯
       </div>
 
@@ -1691,11 +2881,11 @@ input {
       class="category-item"
       data-filter="副菜">
 
-      <div class="category-item-number">
+      <div class="category-number">
         04
       </div>
 
-      <div class="category-item-name">
+      <div class="category-name">
         副菜
       </div>
 
@@ -1714,18 +2904,20 @@ input {
   class="archive"
   id="archive">
 
-  <div class="archive-header">
-
-    <div class="section-number">
-      03 / ARCHIVE
-    </div>
-
-    <h2>
-      THE<br>
-      <span>ARCHIVE.</span>
-    </h2>
-
+  <div class="section-mini">
+    03 / ARCHIVE
   </div>
+
+
+  <h2 class="archive-title">
+
+    THE<br>
+
+    <span>
+      ARCHIVE.
+    </span>
+
+  </h2>
 
 
   <div
@@ -1747,6 +2939,7 @@ input {
     <div class="final-small">
       CHU DOT COOKING
     </div>
+
 
     <h2 class="final-title">
 
@@ -1770,11 +2963,19 @@ input {
 <footer class="footer">
 
   <div class="footer-logo">
-    CHU dot <span>COOKING</span>
+
+    CHU dot
+    <span>
+      COOKING
+    </span>
+
   </div>
 
+
   <div class="footer-copy">
+
     PERSONAL KITCHEN ARCHIVE / 2026
+
   </div>
 
 </footer>
@@ -1796,10 +2997,12 @@ input {
       ×
     </button>
 
+
     <div
       class="modal-category"
       id="modalCategory">
     </div>
+
 
     <h2
       class="modal-title"
@@ -1808,6 +3011,7 @@ input {
 
 
     <div class="modal-grid">
+
 
       <div>
 
@@ -1836,6 +3040,7 @@ input {
 
       </div>
 
+
     </div>
 
   </div>
@@ -1846,7 +3051,7 @@ input {
 <script>
 
 /* =========================================================
-   RECIPES
+   RECIPE DATA
 ========================================================= */
 
 const recipes = [
@@ -1859,6 +3064,7 @@ const recipes = [
     photo: "photo-shrimp",
 
     ingredients: [
+
       "海老 — 好きなだけ",
       "中華麺 — 2玉",
       "もやし — 1/2袋",
@@ -1874,17 +3080,27 @@ const recipes = [
       "煮干し粉 — 3g",
       "おろしにんにく — 15g",
       "茹で汁 — 25cc ※必要に応じて"
+
     ],
 
     steps: [
+
       "鉄鍋に塩コショウを振った海老をごま油で炒める。火が通ったら汁ごと別容器へ移す。",
+
       "中華麺を別鍋で表示時間通りに茹でる。",
+
       "茹で汁、塩コショウ、黒胡椒、砂糖、醤油、料理酒、鶏ガラの素、煮干し粉、おろしにんにくを混ぜて塩ダレを作る。",
+
       "麺が茹で上がったら流水でぬめりを洗い流す。",
-      "海老を炒めた鉄鍋にごま油を敷き、強火で麺を炒める。",
+
+      "海老を炒めた鉄鍋にごま油を敷き、強火で麺を炒めて焼き目をつける。",
+
       "海老、もやし、ネギ、塩ダレを加えて強火で混ぜ合わせる。",
+
       "仕上げにあげ玉を加えて盛り付ける。"
+
     ]
+
   },
 
 
@@ -1896,21 +3112,26 @@ const recipes = [
     photo: "photo-pasta",
 
     ingredients: [
+
       "スパゲッティ — 200g",
       "玉ねぎ — 1/2個",
       "ウインナー — 4本",
       "ケチャップ — 80g",
       "チーズ — 80g",
       "バター — 10g"
+
     ],
 
     steps: [
+
       "スパゲッティを茹でる。",
       "玉ねぎとウインナーを炒める。",
-      "ケチャップを加えて焼く。",
-      "麺とバターを加えて炒める。",
+      "ケチャップを加える。",
+      "麺とバターを加える。",
       "チーズを乗せて焼く。"
+
     ]
+
   },
 
 
@@ -1922,6 +3143,7 @@ const recipes = [
     photo: "photo-chicken",
 
     ingredients: [
+
       "鶏むね肉 — 1枚",
       "醤油 — 20g",
       "レモン汁 — 15g",
@@ -1929,15 +3151,19 @@ const recipes = [
       "砂糖 — 5g",
       "にんにく — 少々",
       "黒胡椒 — 適量"
+
     ],
 
     steps: [
+
       "鶏むね肉を切る。",
       "調味料を混ぜる。",
       "鶏肉を焼く。",
       "タレを加えて煮詰める。",
-      "黒胡椒を振って完成。"
+      "黒胡椒を振る。"
+
     ]
+
   },
 
 
@@ -1949,6 +3175,7 @@ const recipes = [
     photo: "photo-eggplant",
 
     ingredients: [
+
       "冷凍なす — 250g",
       "豚ひき肉 — 120g",
       "長ネギ — 1/2本",
@@ -1956,15 +3183,19 @@ const recipes = [
       "豆板醤 — 5g",
       "醤油 — 10g",
       "花椒 — 適量"
+
     ],
 
     steps: [
+
       "豚ひき肉を炒める。",
       "豆板醤と甜麺醤を加える。",
       "なすを加える。",
       "スープと醤油を加える。",
       "煮詰めて花椒を加える。"
+
     ]
+
   },
 
 
@@ -1976,21 +3207,26 @@ const recipes = [
     photo: "photo-rice",
 
     ingredients: [
+
       "米 — 2合",
       "鶏もも肉 — 1枚",
       "玉ねぎ — 1/2個",
       "トマト — 1個",
       "カレー粉 — 8g",
       "クミン — 2g"
+
     ],
 
     steps: [
+
       "米を洗う。",
       "調味料を加える。",
       "具材を乗せる。",
       "通常モードで炊飯する。",
       "炊き上がったら混ぜる。"
+
     ]
+
   },
 
 
@@ -2002,6 +3238,7 @@ const recipes = [
     photo: "photo-pork",
 
     ingredients: [
+
       "豚しゃぶ肉 — 200g",
       "ポン酢 — 30g",
       "醤油 — 10g",
@@ -2009,28 +3246,41 @@ const recipes = [
       "砂糖 — 5g",
       "ごま油 — 5g",
       "白ごま — 10g"
+
     ],
 
     steps: [
+
       "豚肉をしゃぶしゃぶする。",
       "調味料を混ぜる。",
       "豚肉の水気を切る。",
       "タレと和える。"
+
     ]
+
   }
 
 ];
 
 
 /* =========================================================
-   RECIPE CARD
+   DOM
 ========================================================= */
 
 const recipeGrid =
-  document.getElementById("recipeGrid");
+  document.getElementById(
+    "recipeGrid"
+  );
 
 const archiveList =
-  document.getElementById("archiveList");
+  document.getElementById(
+    "archiveList"
+  );
+
+
+/* =========================================================
+   RENDER
+========================================================= */
 
 function renderRecipes(list) {
 
@@ -2038,112 +3288,156 @@ function renderRecipes(list) {
 
   archiveList.innerHTML = "";
 
-  list.forEach((recipe, index) => {
 
-    const card =
-      document.createElement("article");
+  list.forEach(
+    (recipe, index) => {
 
-    card.className = "recipe-card";
+      /* ---------- CARD ---------- */
 
-    card.innerHTML = `
+      const card =
+        document.createElement(
+          "article"
+        );
 
-      <div class="recipe-photo ${recipe.photo}">
-      </div>
+      card.className =
+        "recipe-card";
 
-      <div class="recipe-info">
 
-        <div class="recipe-category">
+      card.innerHTML = `
+
+        <div
+          class="recipe-photo ${recipe.photo}">
+        </div>
+
+        <div class="recipe-info">
+
+          <div class="recipe-category">
+            ${recipe.category}
+          </div>
+
+          <h3 class="recipe-name">
+            ${recipe.name}
+          </h3>
+
+          <div class="recipe-meta">
+            ${recipe.time}
+            /
+            ${recipe.servings}
+          </div>
+
+        </div>
+
+      `;
+
+
+      card.addEventListener(
+        "click",
+        () =>
+          openRecipe(recipe)
+      );
+
+
+      recipeGrid.appendChild(
+        card
+      );
+
+
+      /* ---------- ARCHIVE ---------- */
+
+      const archive =
+        document.createElement(
+          "div"
+        );
+
+      archive.className =
+        "archive-item";
+
+
+      archive.innerHTML = `
+
+        <div class="archive-number">
+          ${String(index + 1).padStart(2,"0")}
+        </div>
+
+        <div class="archive-name">
+          ${recipe.name}
+        </div>
+
+        <div class="archive-category">
           ${recipe.category}
         </div>
 
-        <h3 class="recipe-name">
-          ${recipe.name}
-        </h3>
-
-        <div class="recipe-meta">
-          ${recipe.time} / ${recipe.servings}
-        </div>
-
-      </div>
-
-    `;
-
-    card.addEventListener(
-      "click",
-      () => openRecipe(recipe)
-    );
-
-    recipeGrid.appendChild(card);
+      `;
 
 
-    const archive =
-      document.createElement("div");
+      archive.addEventListener(
+        "click",
+        () =>
+          openRecipe(recipe)
+      );
 
-    archive.className = "archive-item";
 
-    archive.innerHTML = `
+      archiveList.appendChild(
+        archive
+      );
 
-      <div class="archive-no">
-        ${String(index + 1).padStart(2,"0")}
-      </div>
-
-      <div class="archive-name">
-        ${recipe.name}
-      </div>
-
-      <div class="archive-category">
-        ${recipe.category}
-      </div>
-
-    `;
-
-    archive.addEventListener(
-      "click",
-      () => openRecipe(recipe)
-    );
-
-    archiveList.appendChild(archive);
-
-  });
+    }
+  );
 
 }
 
-renderRecipes(recipes);
+
+renderRecipes(
+  recipes
+);
 
 
 /* =========================================================
-   CATEGORY
+   CATEGORY FILTER
 ========================================================= */
 
 document
-  .querySelectorAll(".category-item")
-  .forEach(item => {
+  .querySelectorAll(
+    ".category-item"
+  )
+  .forEach(
+    item => {
 
-    item.addEventListener(
-      "click",
-      () => {
+      item.addEventListener(
+        "click",
+        () => {
 
-        const category =
-          item.dataset.filter;
+          const category =
+            item.dataset.filter;
 
-        const filtered =
-          recipes.filter(
-            recipe =>
-              recipe.category === category
+
+          const filtered =
+            recipes.filter(
+              recipe =>
+                recipe.category ===
+                category
+            );
+
+
+          renderRecipes(
+            filtered
           );
 
-        renderRecipes(filtered);
 
-        document
-          .getElementById("recipes")
-          .scrollIntoView({
-            behavior: "smooth"
-          });
+          document
+            .getElementById(
+              "recipes"
+            )
+            .scrollIntoView({
+              behavior:
+                "smooth"
+            });
 
-      }
-    );
+        }
+      );
 
-  });
+    }
+  );
 
 
 /* =========================================================
@@ -2151,22 +3445,34 @@ document
 ========================================================= */
 
 const modal =
-  document.getElementById("recipeModal");
+  document.getElementById(
+    "recipeModal"
+  );
 
 const modalClose =
-  document.getElementById("modalClose");
+  document.getElementById(
+    "modalClose"
+  );
 
 const modalCategory =
-  document.getElementById("modalCategory");
+  document.getElementById(
+    "modalCategory"
+  );
 
 const modalTitle =
-  document.getElementById("modalTitle");
+  document.getElementById(
+    "modalTitle"
+  );
 
 const modalIngredients =
-  document.getElementById("modalIngredients");
+  document.getElementById(
+    "modalIngredients"
+  );
 
 const modalSteps =
-  document.getElementById("modalSteps");
+  document.getElementById(
+    "modalSteps"
+  );
 
 
 function openRecipe(recipe) {
@@ -2174,32 +3480,49 @@ function openRecipe(recipe) {
   modalCategory.textContent =
     recipe.category;
 
+
   modalTitle.textContent =
     recipe.name;
 
+
   modalIngredients.innerHTML =
     recipe.ingredients
-      .map(item => `<li>${item}</li>`)
+      .map(
+        item =>
+          `<li>${item}</li>`
+      )
       .join("");
+
 
   modalSteps.innerHTML =
     recipe.steps
-      .map(step => `<li>${step}</li>`)
+      .map(
+        step =>
+          `<li>${step}</li>`
+      )
       .join("");
 
-  modal.classList.add("show");
+
+  modal.classList.add(
+    "show"
+  );
+
 
   document.body.style.overflow =
     "hidden";
+
 }
 
 
 function closeModal() {
 
-  modal.classList.remove("show");
+  modal.classList.remove(
+    "show"
+  );
 
   document.body.style.overflow =
     "";
+
 }
 
 
@@ -2213,8 +3536,13 @@ modal.addEventListener(
   "click",
   event => {
 
-    if (event.target === modal) {
+    if (
+      event.target ===
+      modal
+    ) {
+
       closeModal();
+
     }
 
   }
@@ -2225,8 +3553,13 @@ document.addEventListener(
   "keydown",
   event => {
 
-    if (event.key === "Escape") {
+    if (
+      event.key ===
+      "Escape"
+    ) {
+
       closeModal();
+
     }
 
   }
