@@ -1639,6 +1639,20 @@ navLinks.forEach(link=>{
       const targetId =
         link.getAttribute("href");
 
+      const isTagPage =
+        document.body.classList.contains(
+          "tag-page-mode"
+        );
+
+      if(isTagPage){
+
+        window.location.href =
+          "index.html" + targetId;
+
+        return;
+
+      }
+
       const target =
         document.querySelector(
           targetId
@@ -1657,7 +1671,6 @@ navLinks.forEach(link=>{
   );
 
 });
-
 
 /* ロゴもトップへ */
 
