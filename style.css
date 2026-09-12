@@ -55,6 +55,10 @@ a{
    ※ここは確定版・変更なし
 ================================= */
 
+html.skip-opening .opening{
+  display:none !important;
+}
+
 .opening{
   position:fixed;
   inset:0;
