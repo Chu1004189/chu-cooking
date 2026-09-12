@@ -1,172 +1,1408 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CHU dot COOKING</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<title>CHU dot COOKING</title>
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
-        "Yu Gothic", sans-serif;
-      background: #f7f4ed;
-      color: #333;
-    }
+<meta name="description" content="CHU dot COOKING｜毎日の料理をもっと楽しく。簡単でおいしいレシピを紹介する料理サイト。">
 
-    header {
-      background: #f28c28;
-      padding: 28px 20px;
-      text-align: center;
-      border-bottom: 1px solid #ddd;
-    }
+<style>
 
-    header h1 {
-      margin: 0;
-      font-size: 32px;
-      letter-spacing: 2px;
-    }
+:root {
+  --orange: #f28c28;
+  --orange-dark: #d96f0c;
+  --cream: #fffaf3;
+  --beige: #f5eee4;
+  --dark: #242424;
+  --gray: #777;
+  --white: #ffffff;
+  --border: #e8e1d8;
+  --shadow: 0 12px 35px rgba(40,30,20,.08);
+}
 
-    header p {
-      margin: 8px 0 0;
-      color: #777;
-      font-size: 14px;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    main {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
+html {
+  scroll-behavior: smooth;
+}
 
-    .hero {
-      text-align: center;
-      padding: 40px 20px;
-    }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--dark);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans",
+    "Yu Gothic",
+    "YuGothic",
+    Meiryo,
+    sans-serif;
+}
 
-    .hero h2 {
-      font-size: 28px;
-      margin-bottom: 12px;
-    }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-    .hero p {
-      color: #666;
-    }
+button {
+  font-family: inherit;
+}
 
-    .recipes {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
+/* =========================
+   HEADER
+========================= */
 
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-    }
+header {
+  background: var(--orange);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 3px 20px rgba(0,0,0,.08);
+}
 
-    .card-image {
-      height: 180px;
-      background: #ddd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #888;
-    }
+.header-inner {
+  max-width: 1200px;
+  margin: auto;
+  height: 78px;
+  padding: 0 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-    .card-content {
-      padding: 20px;
-    }
+.logo {
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
 
-    .card h3 {
-      margin-top: 0;
-      margin-bottom: 8px;
-    }
+.logo span {
+  font-weight: 400;
+}
 
-    .card p {
-      margin: 0;
-      color: #666;
-      font-size: 14px;
-      line-height: 1.7;
-    }
+nav {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
 
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      color: #888;
-      font-size: 13px;
-    }
-  </style>
+nav a {
+  font-size: 14px;
+  font-weight: 700;
+  opacity: .95;
+  transition: .2s;
+}
+
+nav a:hover {
+  opacity: .65;
+}
+
+.header-search {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 70px 25px 55px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 55px;
+  align-items: center;
+}
+
+.hero-text small {
+  display: inline-block;
+  color: var(--orange-dark);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+.hero-text h1 {
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 1.05;
+  margin: 0 0 25px;
+  letter-spacing: -2px;
+}
+
+.hero-text h1 span {
+  color: var(--orange);
+}
+
+.hero-text p {
+  color: var(--gray);
+  line-height: 2;
+  font-size: 16px;
+  max-width: 520px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 24px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 800;
+  transition: .25s;
+}
+
+.btn-primary {
+  background: var(--orange);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--orange-dark);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: white;
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.hero-image {
+  height: 470px;
+  border-radius: 35px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(242,140,40,.85),
+      rgba(180,80,10,.7)
+    ),
+    url("https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85")
+    center / cover;
+  box-shadow: 0 25px 60px rgba(90,50,10,.18);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-label {
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  right: 25px;
+  background: rgba(255,255,255,.93);
+  color: var(--dark);
+  border-radius: 20px;
+  padding: 18px 20px;
+}
+
+.hero-label small {
+  color: var(--orange-dark);
+  font-weight: 800;
+}
+
+.hero-label strong {
+  display: block;
+  font-size: 20px;
+  margin-top: 4px;
+}
+
+/* =========================
+   QUICK MENU
+========================= */
+
+.quick-menu {
+  background: white;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.quick-inner {
+  max-width: 1200px;
+  margin: auto;
+  padding: 18px 25px;
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+}
+
+.quick-item {
+  white-space: nowrap;
+  padding: 10px 18px;
+  border-radius: 30px;
+  background: var(--beige);
+  font-size: 13px;
+  font-weight: 700;
+  transition: .2s;
+}
+
+.quick-item:hover {
+  background: var(--orange);
+  color: white;
+}
+
+/* =========================
+   COMMON
+========================= */
+
+.section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 85px 25px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 35px;
+}
+
+.section-heading small {
+  display: block;
+  color: var(--orange-dark);
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: 900;
+  margin-bottom: 7px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 34px;
+  letter-spacing: -1px;
+}
+
+.section-heading a {
+  color: var(--orange-dark);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+/* =========================
+   FEATURE
+========================= */
+
+.feature {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 25px;
+}
+
+.feature-main {
+  min-height: 430px;
+  border-radius: 28px;
+  padding: 35px;
+  display: flex;
+  align-items: end;
+  color: white;
+  background:
+    linear-gradient(to top, rgba(0,0,0,.7), transparent 60%),
+    url("https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1200&q=85")
+    center / cover;
+  box-shadow: var(--shadow);
+}
+
+.feature-main h3 {
+  font-size: 32px;
+  margin: 8px 0;
+}
+
+.feature-main p {
+  margin: 0;
+  opacity: .9;
+}
+
+.feature-side {
+  display: grid;
+  gap: 25px;
+}
+
+.feature-small {
+  border-radius: 28px;
+  min-height: 202px;
+  padding: 25px;
+  display: flex;
+  align-items: end;
+  color: white;
+  background:
+    linear-gradient(to top, rgba(0,0,0,.7), transparent 65%),
+    url("https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=85")
+    center / cover;
+}
+
+.feature-small:nth-child(2) {
+  background:
+    linear-gradient(to top, rgba(0,0,0,.7), transparent 65%),
+    url("https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=800&q=85")
+    center / cover;
+}
+
+.feature-small h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+/* =========================
+   CATEGORY
+========================= */
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 15px;
+}
+
+.category {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 25px 10px;
+  text-align: center;
+  border-radius: 18px;
+  transition: .25s;
+}
+
+.category:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+  border-color: var(--orange);
+}
+
+.category-icon {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.category strong {
+  display: block;
+  font-size: 13px;
+}
+
+.category span {
+  display: block;
+  color: #999;
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+/* =========================
+   RECIPE CARDS
+========================= */
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.recipe-card {
+  background: white;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 5px 25px rgba(0,0,0,.05);
+  transition: .3s;
+}
+
+.recipe-card:hover {
+  transform: translateY(-7px);
+  box-shadow: var(--shadow);
+}
+
+.recipe-image {
+  height: 220px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.recipe-image.one {
+  background-image: url("https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=85");
+}
+
+.recipe-image.two {
+  background-image: url("https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=85");
+}
+
+.recipe-image.three {
+  background-image: url("https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=85");
+}
+
+.recipe-image.four {
+  background-image: url("https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=85");
+}
+
+.recipe-image.five {
+  background-image: url("https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=85");
+}
+
+.recipe-image.six {
+  background-image: url("https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=800&q=85");
+}
+
+.badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: var(--orange);
+  color: white;
+  padding: 7px 11px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.recipe-content {
+  padding: 22px;
+}
+
+.recipe-category {
+  color: var(--orange-dark);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.recipe-content h3 {
+  margin: 8px 0;
+  font-size: 20px;
+}
+
+.recipe-content p {
+  margin: 0;
+  color: #777;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.recipe-meta {
+  margin-top: 18px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  color: #888;
+  font-size: 12px;
+}
+
+/* =========================
+   ORANGE BANNER
+========================= */
+
+.banner {
+  background: var(--orange);
+  color: white;
+  border-radius: 30px;
+  padding: 55px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+.banner h2 {
+  margin: 0 0 10px;
+  font-size: 32px;
+}
+
+.banner p {
+  margin: 0;
+  opacity: .9;
+  line-height: 1.8;
+}
+
+.banner .btn {
+  background: white;
+  color: var(--orange-dark);
+  flex-shrink: 0;
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.about-image {
+  height: 430px;
+  border-radius: 30px;
+  background:
+    url("https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=85")
+    center / cover;
+}
+
+.about-text h2 {
+  font-size: 38px;
+  margin: 0 0 20px;
+}
+
+.about-text p {
+  color: #666;
+  line-height: 2;
+}
+
+.about-points {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.about-point {
+  background: white;
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+}
+
+.about-point strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.about-point span {
+  color: #888;
+  font-size: 12px;
+}
+
+/* =========================
+   NEWSLETTER
+========================= */
+
+.newsletter {
+  background: #2b2723;
+  color: white;
+  text-align: center;
+  padding: 80px 25px;
+}
+
+.newsletter h2 {
+  font-size: 34px;
+  margin: 0 0 12px;
+}
+
+.newsletter p {
+  color: #bbb;
+  margin-bottom: 28px;
+}
+
+.newsletter-box {
+  max-width: 480px;
+  margin: auto;
+  display: flex;
+  background: white;
+  border-radius: 50px;
+  padding: 5px;
+}
+
+.newsletter-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 12px 18px;
+  border-radius: 50px;
+  font-size: 14px;
+}
+
+.newsletter-box button {
+  border: none;
+  background: var(--orange);
+  color: white;
+  border-radius: 50px;
+  padding: 12px 22px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  background: #1e1b18;
+  color: white;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: auto;
+  padding: 55px 25px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+.footer-logo {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.footer-inner p {
+  color: #999;
+  line-height: 1.8;
+  font-size: 13px;
+}
+
+.footer-column h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.footer-column a {
+  display: block;
+  color: #aaa;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.footer-column a:hover {
+  color: white;
+}
+
+.copyright {
+  border-top: 1px solid #37322e;
+  padding: 20px;
+  text-align: center;
+  color: #777;
+  font-size: 11px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  nav {
+    display: none;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 45px;
+  }
+
+  .hero-image {
+    height: 380px;
+  }
+
+  .feature {
+    grid-template-columns: 1fr;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .recipe-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .header-inner {
+    height: 65px;
+  }
+
+  .logo {
+    font-size: 19px;
+  }
+
+  .hero {
+    padding: 45px 18px;
+  }
+
+  .hero-text h1 {
+    font-size: 44px;
+  }
+
+  .hero-image {
+    height: 330px;
+    border-radius: 25px;
+  }
+
+  .section {
+    padding: 60px 18px;
+  }
+
+  .section-heading {
+    align-items: start;
+  }
+
+  .section-heading h2 {
+    font-size: 28px;
+  }
+
+  .feature-main {
+    min-height: 330px;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .recipe-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .banner {
+    padding: 35px 25px;
+    display: block;
+  }
+
+  .banner .btn {
+    margin-top: 25px;
+  }
+
+  .about-points {
+    grid-template-columns: 1fr;
+  }
+
+  .newsletter-box {
+    display: block;
+    background: transparent;
+  }
+
+  .newsletter-box input {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .newsletter-box button {
+    width: 100%;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
 </head>
+
 
 <body>
 
-  <header>
-    <h1>CHU dot COOKING</h1>
-    <p>毎日の料理を、もっと楽しく。</p>
-  </header>
+<!-- HEADER -->
 
-  <main>
+<header>
 
-    <section class="hero">
-      <h2>Recipe Collection</h2>
-      <p>お気に入りの料理を、ここに集めていきます。</p>
-    </section>
+  <div class="header-inner">
 
-    <section class="recipes">
+    <a href="#" class="logo">
+      CHU <span>dot</span> COOKING
+    </a>
 
-      <article class="card">
-        <div class="card-image">
-          PHOTO
+    <nav>
+      <a href="#recipes">RECIPES</a>
+      <a href="#categories">CATEGORIES</a>
+      <a href="#about">ABOUT</a>
+      <a href="#quick">QUICK</a>
+    </nav>
+
+    <div class="header-search">
+      ⌕
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-text">
+
+    <small>WELCOME TO CHU DOT COOKING</small>
+
+    <h1>
+      Cooking<br>
+      <span>made simple.</span>
+    </h1>
+
+    <p>
+      毎日の料理を、もっと楽しく。
+      ちょっとした工夫でいつもの料理がもっとおいしくなる。
+      CHU dot COOKINGでは、実際に作っておいしかったレシピを紹介します。
+    </p>
+
+    <div class="hero-buttons">
+
+      <a href="#recipes" class="btn btn-primary">
+        レシピを見る →
+      </a>
+
+      <a href="#categories" class="btn btn-secondary">
+        カテゴリー
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="hero-image">
+
+    <div class="hero-label">
+
+      <small>RECIPE OF THE DAY</small>
+
+      <strong>今日、何作る？</strong>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- QUICK MENU -->
+
+<div class="quick-menu" id="quick">
+
+  <div class="quick-inner">
+
+    <a href="#recipes" class="quick-item">⚡ 10分以内</a>
+    <a href="#recipes" class="quick-item">🍳 フライパン</a>
+    <a href="#recipes" class="quick-item">🥗 ヘルシー</a>
+    <a href="#recipes" class="quick-item">🍖 お肉</a>
+    <a href="#recipes" class="quick-item">🐟 魚料理</a>
+    <a href="#recipes" class="quick-item">🍚 ごはん</a>
+    <a href="#recipes" class="quick-item">🍜 麺料理</a>
+
+  </div>
+
+</div>
+
+
+<!-- FEATURE -->
+
+<section class="section">
+
+  <div class="section-heading">
+
+    <div>
+      <small>FEATURED</small>
+      <h2>今週のおすすめ</h2>
+    </div>
+
+    <a href="#recipes">すべて見る →</a>
+
+  </div>
+
+
+  <div class="feature">
+
+    <a href="#recipes" class="feature-main">
+
+      <div>
+
+        <small>EDITOR'S PICK</small>
+
+        <h3>いつもの食卓を<br>ちょっと特別に。</h3>
+
+        <p>
+          手軽なのに、ちゃんとおいしい。
+        </p>
+
+      </div>
+
+    </a>
+
+
+    <div class="feature-side">
+
+      <a href="#recipes" class="feature-small">
+
+        <div>
+          <h3>野菜をおいしく。</h3>
         </div>
 
-        <div class="card-content">
-          <h3>レシピ名</h3>
-          <p>
-            ここに料理の説明を入れます。
-          </p>
-        </div>
-      </article>
+      </a>
 
-      <article class="card">
-        <div class="card-image">
-          PHOTO
+      <a href="#recipes" class="feature-small">
+
+        <div>
+          <h3>今日のごはん、何にする？</h3>
         </div>
 
-        <div class="card-content">
-          <h3>レシピ名</h3>
-          <p>
-            ここに料理の説明を入れます。
-          </p>
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CATEGORIES -->
+
+<section class="section" id="categories">
+
+  <div class="section-heading">
+
+    <div>
+      <small>CATEGORIES</small>
+      <h2>料理を探す</h2>
+    </div>
+
+  </div>
+
+
+  <div class="category-grid">
+
+    <a href="#recipes" class="category">
+      <div class="category-icon">🍳</div>
+      <strong>おかず</strong>
+      <span>MAIN DISH</span>
+    </a>
+
+    <a href="#recipes" class="category">
+      <div class="category-icon">🍚</div>
+      <strong>ごはん</strong>
+      <span>RICE</span>
+    </a>
+
+    <a href="#recipes" class="category">
+      <div class="category-icon">🍜</div>
+      <strong>麺</strong>
+      <span>NOODLES</span>
+    </a>
+
+    <a href="#recipes" class="category">
+      <div class="category-icon">🥗</div>
+      <strong>サラダ</strong>
+      <span>SALAD</span>
+    </a>
+
+    <a href="#recipes" class="category">
+      <div class="category-icon">🥣</div>
+      <strong>スープ</strong>
+      <span>SOUP</span>
+    </a>
+
+    <a href="#recipes" class="category">
+      <div class="category-icon">🍰</div>
+      <strong>スイーツ</strong>
+      <span>SWEETS</span>
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- RECIPES -->
+
+<section class="section" id="recipes">
+
+  <div class="section-heading">
+
+    <div>
+      <small>RECIPES</small>
+      <h2>人気のレシピ</h2>
+    </div>
+
+    <a href="#">VIEW ALL →</a>
+
+  </div>
+
+
+  <div class="recipe-grid">
+
+
+    <article class="recipe-card">
+
+      <div class="recipe-image one">
+        <span class="badge">人気</span>
+      </div>
+
+      <div class="recipe-content">
+
+        <span class="recipe-category">
+          MAIN DISH
+        </span>
+
+        <h3>とろっとチーズの絶品料理</h3>
+
+        <p>
+          とろけるチーズと香ばしい具材を合わせた、
+          食卓の主役になる一皿。
+        </p>
+
+        <div class="recipe-meta">
+          <span>⏱ 15 min</span>
+          <span>★ 4.9</span>
         </div>
-      </article>
 
-      <article class="card">
-        <div class="card-image">
-          PHOTO
+      </div>
+
+    </article>
+
+
+    <article class="recipe-card">
+
+      <div class="recipe-image two">
+        <span class="badge">簡単</span>
+      </div>
+
+      <div class="recipe-content">
+
+        <span class="recipe-category">
+          RICE
+        </span>
+
+        <h3>毎日食べたい炊き込みごはん</h3>
+
+        <p>
+          材料を入れて炊くだけ。
+          忙しい日にもおすすめの簡単レシピ。
+        </p>
+
+        <div class="recipe-meta">
+          <span>⏱ 10 min</span>
+          <span>★ 4.8</span>
         </div>
 
-        <div class="card-content">
-          <h3>レシピ名</h3>
-          <p>
-            ここに料理の説明を入れます。
-          </p>
+      </div>
+
+    </article>
+
+
+    <article class="recipe-card">
+
+      <div class="recipe-image three">
+        <span class="badge">おすすめ</span>
+      </div>
+
+      <div class="recipe-content">
+
+        <span class="recipe-category">
+          SIDE DISH
+        </span>
+
+        <h3>サクッとおいしい一品</h3>
+
+        <p>
+          あと一品欲しいときに。
+          食卓に出すと喜ばれる簡単おかず。
+        </p>
+
+        <div class="recipe-meta">
+          <span>⏱ 12 min</span>
+          <span>★ 4.7</span>
         </div>
-      </article>
 
-    </section>
+      </div>
 
-  </main>
+    </article>
 
-  <footer>
-    © CHU dot COOKING
-  </footer>
+
+    <article class="recipe-card">
+
+      <div class="recipe-image four"></div>
+
+      <div class="recipe-content">
+
+        <span class="recipe-category">
+          JAPANESE
+        </span>
+
+        <h3>ほっとする和食</h3>
+
+        <p>
+          だしと調味料を活かした、
+          毎日食べたくなる家庭料理。
+        </p>
+
+        <div class="recipe-meta">
+          <span>⏱ 20 min</span>
+          <span>★ 4.8</span>
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <article class="recipe-card">
+
+      <div class="recipe-image five"></div>
+
+      <div class="recipe-content">
+
+        <span class="recipe-category">
+          QUICK
+        </span>
+
+        <h3>忙しい日のスピードごはん</h3>
+
+        <p>
+          時間がない日でも、
+          しっかり満足できる一皿。
+        </p>
+
+        <div class="recipe-meta">
+          <span>⏱ 10 min</span>
+          <span>★ 4.6</span>
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <article class="recipe-card">
+
+      <div class="recipe-image six"></div>
+
+      <div class="recipe-content">
+
+        <span class="recipe-category">
+          PASTA
+        </span>
+
+        <h3>休日に作りたいパスタ</h3>
+
+        <p>
+          ちょっとだけ手間をかけて、
+          休日のランチを楽しむレシピ。
+        </p>
+
+        <div class="recipe-meta">
+          <span>⏱ 25 min</span>
+          <span>★ 4.9</span>
+        </div>
+
+      </div>
+
+    </article>
+
+
+  </div>
+
+</section>
+
+
+<!-- ORANGE BANNER -->
+
+<section class="section">
+
+  <div class="banner">
+
+    <div>
+
+      <h2>今日の献立、決まった？</h2>
+
+      <p>
+        冷蔵庫にある食材から、
+        作りたい料理を探してみよう。
+      </p>
+
+    </div>
+
+    <a href="#categories" class="btn">
+      レシピを探す →
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="section" id="about">
+
+  <div class="about">
+
+    <div class="about-image"></div>
+
+    <div class="about-text">
+
+      <small style="color:#d96f0c;font-weight:900;letter-spacing:2px;">
+        ABOUT CHU DOT COOKING
+      </small>
+
+      <h2>
+        料理は、<br>
+        もっと自由でいい。
+      </h2>
+
+      <p>
+        CHU dot COOKINGは、
+        毎日の料理をもっと楽しくするためのレシピサイトです。
+      </p>
+
+      <p>
+        「何を作ろう？」から、
+        「これ作ってみたい！」へ。
+        家にある食材や身近な調味料を使って、
+        無理なく作れる料理を紹介していきます。
+      </p>
+
+
+      <div class="about-points">
+
+        <div class="about-point">
+          <strong>01. わかりやすく</strong>
+          <span>材料と工程をシンプルに。</span>
+        </div>
+
+        <div class="about-point">
+          <strong>02. おいしく</strong>
+          <span>味のバランスを大切に。</span>
+        </div>
+
+        <div class="about-point">
+          <strong>03. 実用的に</strong>
+          <span>家庭で再現しやすく。</span>
+        </div>
+
+        <div class="about-point">
+          <strong>04. 楽しく</strong>
+          <span>料理そのものを楽しむ。</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- NEWSLETTER -->
+
+<section class="newsletter">
+
+  <h2>料理のアイデアを、もっと。</h2>
+
+  <p>
+    CHU dot COOKINGの新しいレシピをチェック。
+  </p>
+
+  <div class="newsletter-box">
+
+    <input
+      type="email"
+      placeholder="メールアドレス"
+    >
+
+    <button>
+      CHECK
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="footer-inner">
+
+    <div>
+
+      <div class="footer-logo">
+        CHU dot COOKING
+      </div>
+
+      <p>
+        毎日の料理を、もっと楽しく。<br>
+        Cook. Eat. Enjoy.
+      </p>
+
+    </div>
+
+
+    <div class="footer-column">
+
+      <h4>MENU</h4>
+
+      <a href="#recipes">レシピ</a>
+      <a href="#categories">カテゴリー</a>
+      <a href="#quick">時短レシピ</a>
+      <a href="#about">CHUについて</a>
+
+    </div>
+
+
+    <div class="footer-column">
+
+      <h4>CATEGORY</h4>
+
+      <a href="#recipes">おかず</a>
+      <a href="#recipes">ごはん</a>
+      <a href="#recipes">麺料理</a>
+      <a href="#recipes">スイーツ</a>
+
+    </div>
+
+
+    <div class="footer-column">
+
+      <h4>FOLLOW</h4>
+
+      <a href="#">Instagram</a>
+      <a href="#">YouTube</a>
+      <a href="#">X / Twitter</a>
+
+    </div>
+
+  </div>
+
+
+  <div class="copyright">
+    © 2026 CHU dot COOKING. All Rights Reserved.
+  </div>
+
+</footer>
+
 
 </body>
 </html>
