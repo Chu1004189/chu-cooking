@@ -1,4 +1,16 @@
 /* =================================
+   OPENING CONTROL
+================================= */
+
+const opening = document.getElementById("opening");
+
+if (sessionStorage.getItem("openingPlayed")) {
+  opening.style.display = "none";
+} else {
+  sessionStorage.setItem("openingPlayed", "true");
+}
+
+/* =================================
    RECIPES DATA
 ================================= */
 
