@@ -1,23 +1,16 @@
-```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="description" content="CHU dot COOKING — 俺の作るメシが、一番うまい。">
 <title>CHU dot COOKING</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&family=M+PLUS+Rounded+1c:wght@400;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-
-/* =========================
-   BASIC
-========================= */
-
 :root{
   --orange:#ff681f;
   --orange2:#ff8a35;
@@ -28,10 +21,14 @@
   --white:#fffdf8;
   --brown:#332018;
   --black:#17120f;
+  --gray:#8b8179;
+  --line:rgba(51,32,24,.14);
 }
 
 *{
   box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 html{
@@ -39,16 +36,23 @@ html{
 }
 
 body{
-  margin:0;
   background:var(--cream);
   color:var(--brown);
-  font-family:"M PLUS Rounded 1c",sans-serif;
+  font-family:"DM Sans","M PLUS Rounded 1c",sans-serif;
   overflow-x:hidden;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
 }
 
 img{
   max-width:100%;
-  display:block;
 }
 
 a{
@@ -56,14 +60,10 @@ a{
   text-decoration:none;
 }
 
-button{
-  font-family:inherit;
-}
 
-
-/* =========================
+/* =========================================================
    OPENING
-========================= */
+========================================================= */
 
 .opening{
   position:fixed;
@@ -74,55 +74,60 @@ button{
   align-items:center;
   justify-content:center;
   overflow:hidden;
-  animation:openingOut 1s 2.8s forwards;
+  animation:openingOut 1s ease 3.5s forwards;
 }
 
 .opening-circle{
   position:absolute;
-  width:10px;
-  height:10px;
-  background:var(--yellow);
+  width:15vw;
+  height:15vw;
+  min-width:160px;
+  min-height:160px;
+  max-width:260px;
+  max-height:260px;
   border-radius:50%;
-  animation:circleGrow 1.1s .2s forwards;
+  background:var(--yellow);
+  animation:openingCircle 1.5s cubic-bezier(.16,1,.3,1) .1s forwards;
 }
 
 .opening-dots{
   position:absolute;
   inset:0;
+  pointer-events:none;
 }
 
-.opening-dots span{
+.opening-dot{
   position:absolute;
-  width:12px;
-  height:12px;
+  width:10px;
+  height:10px;
   background:white;
   border-radius:50%;
-  animation:dotPop .5s forwards;
+  animation:dotPop .7s ease forwards;
   opacity:0;
 }
 
-.opening-dots span:nth-child(1){
+.opening-dot:nth-child(1){
   left:12%;
-  top:20%;
-  animation-delay:.4s;
+  top:18%;
+  animation-delay:.5s;
 }
 
-.opening-dots span:nth-child(2){
-  left:84%;
-  top:26%;
-  animation-delay:.55s;
-}
-
-.opening-dots span:nth-child(3){
-  left:18%;
-  bottom:18%;
+.opening-dot:nth-child(2){
+  left:85%;
+  top:22%;
   animation-delay:.7s;
 }
 
-.opening-dots span:nth-child(4){
-  right:14%;
-  bottom:20%;
-  animation-delay:.85s;
+.opening-dot:nth-child(3){
+  left:20%;
+  top:78%;
+  animation-delay:.9s;
+}
+
+.opening-dot:nth-child(4){
+  left:78%;
+  top:78%;
+  animation-delay:1.1s;
 }
 
 .opening-content{
@@ -131,43 +136,45 @@ button{
   text-align:center;
   color:white;
   opacity:0;
-  transform:scale(.8);
-  animation:openingContent 1s .8s forwards;
+  transform:translateY(20px);
+  animation:openingText 1s cubic-bezier(.16,1,.3,1) .8s forwards;
 }
 
 .opening-logo{
-  width:170px;
-  margin:0 auto 22px;
+  width:min(270px,62vw);
   filter:brightness(0) invert(1);
+  margin-bottom:24px;
 }
 
 .opening-title{
   font-family:"DM Sans",sans-serif;
-  font-size:clamp(42px,8vw,90px);
-  line-height:.9;
+  font-size:clamp(34px,6vw,78px);
   font-weight:900;
-  letter-spacing:-4px;
+  line-height:.95;
+  letter-spacing:-.06em;
+  white-space:nowrap;
 }
 
 .opening-sub{
   margin-top:20px;
-  font-family:"DM Sans",sans-serif;
-  font-size:13px;
-  font-weight:700;
-  letter-spacing:4px;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.16em;
 }
 
-@keyframes circleGrow{
-  to{
-    width:180vmax;
-    height:180vmax;
+@keyframes openingCircle{
+  0%{
+    transform:scale(0);
+  }
+  100%{
+    transform:scale(8);
   }
 }
 
-@keyframes openingContent{
+@keyframes openingText{
   to{
     opacity:1;
-    transform:scale(1);
+    transform:translateY(0);
   }
 }
 
@@ -176,7 +183,10 @@ button{
     opacity:0;
     transform:scale(0);
   }
-
+  70%{
+    opacity:1;
+    transform:scale(1.3);
+  }
   100%{
     opacity:1;
     transform:scale(1);
@@ -192,215 +202,195 @@ button{
 }
 
 
-/* =========================
+/* =========================================================
    HEADER
-========================= */
+========================================================= */
 
 .header{
   position:fixed;
-  z-index:100;
   top:0;
   left:0;
-  width:100%;
-  padding:20px 28px;
+  right:0;
+  z-index:100;
+  padding:20px 4vw;
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
   mix-blend-mode:multiply;
 }
 
 .header-logo{
-  font-family:"DM Sans",sans-serif;
+  font-size:18px;
   font-weight:900;
-  font-size:20px;
-  letter-spacing:-1px;
+  letter-spacing:-.05em;
 }
 
 .header-nav{
   display:flex;
-  gap:25px;
-  font-family:"DM Sans",sans-serif;
+  gap:28px;
   font-size:12px;
-  font-weight:700;
-  letter-spacing:1px;
+  font-weight:900;
+  letter-spacing:.08em;
 }
 
 .header-nav a{
-  transition:.25s;
+  transition:.2s;
 }
 
 .header-nav a:hover{
   color:var(--orange);
-  transform:rotate(-3deg);
 }
 
 
-/* =========================
+/* =========================================================
    HERO
-========================= */
+========================================================= */
 
 .hero{
   min-height:100vh;
-  padding:130px 5vw 70px;
   position:relative;
-  overflow:hidden;
+  padding:150px 5vw 80px;
   display:flex;
   align-items:center;
+  overflow:hidden;
+  background:var(--cream);
 }
 
-.hero-bg-text{
+.hero-bg{
   position:absolute;
-  top:80px;
-  left:-20px;
-  font-family:"DM Sans",sans-serif;
-  font-size:clamp(150px,25vw,380px);
+  left:-3vw;
+  bottom:-4vw;
+  font-size:clamp(180px,30vw,480px);
+  line-height:.7;
   font-weight:900;
-  line-height:.8;
-  color:rgba(255,104,31,.08);
-  letter-spacing:-20px;
-  white-space:nowrap;
+  color:rgba(255,104,31,.06);
+  letter-spacing:-.1em;
   pointer-events:none;
 }
 
-.hero-grid{
-  width:min(1300px,100%);
-  margin:auto;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:50px;
-  align-items:center;
+.hero-content{
+  width:58%;
   position:relative;
   z-index:2;
 }
 
-.hero-copy{
-  position:relative;
-}
-
-.hero-small{
+.hero-kicker{
   display:inline-block;
   background:var(--yellow);
-  padding:8px 14px;
+  padding:8px 15px;
   border-radius:999px;
-  font-size:12px;
-  font-weight:800;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.08em;
   transform:rotate(-3deg);
-  margin-bottom:25px;
+  margin-bottom:24px;
 }
 
 .hero h1{
-  margin:0;
-  font-size:clamp(55px,8vw,120px);
-  line-height:1.02;
-  letter-spacing:-4px;
+  font-family:"M PLUS Rounded 1c",sans-serif;
+  font-size:clamp(58px,8.7vw,145px);
   font-weight:900;
+  line-height:.92;
+  letter-spacing:-.075em;
 }
 
 .hero h1 span{
   display:block;
+  white-space:nowrap;
 }
 
 .hero h1 .accent{
   color:var(--orange);
-  transform:rotate(-2deg);
 }
 
-.hero-en{
-  margin-top:28px;
-  font-family:"DM Sans",sans-serif;
-  font-size:13px;
+.hero-copy{
+  margin-top:34px;
+  font-size:clamp(18px,2vw,28px);
   font-weight:900;
-  letter-spacing:2px;
+  letter-spacing:.02em;
 }
 
-.hero-photo-wrap{
-  position:relative;
+.hero-english{
+  margin-top:15px;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.18em;
 }
 
-.hero-photo{
+.hero-image-wrap{
+  position:absolute;
+  width:42vw;
+  max-width:620px;
+  aspect-ratio:1/1.08;
+  right:4vw;
+  top:50%;
+  transform:translateY(-50%) rotate(4deg);
+  z-index:1;
+}
+
+.hero-image{
   width:100%;
-  aspect-ratio:4/5;
+  height:100%;
   object-fit:cover;
-  border-radius:35px;
-  transform:rotate(3deg);
-  box-shadow:18px 18px 0 var(--orange);
+  border-radius:48% 52% 45% 55%;
+  box-shadow:25px 25px 0 var(--yellow);
 }
 
 .hero-sticker{
   position:absolute;
-  right:-25px;
-  top:20px;
-  width:125px;
-  height:125px;
-  background:var(--yellow);
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  font-size:14px;
-  font-weight:900;
-  line-height:1.2;
-  transform:rotate(12deg);
-  box-shadow:5px 5px 0 var(--brown);
-}
-
-.hero-sticker.small{
-  width:90px;
-  height:90px;
-  left:-30px;
-  right:auto;
-  top:auto;
-  bottom:35px;
   background:var(--pink);
-  transform:rotate(-12deg);
+  padding:16px 20px;
+  border-radius:50%;
+  font-family:"M PLUS Rounded 1c",sans-serif;
+  font-size:16px;
+  font-weight:900;
+  transform:rotate(-10deg);
+}
+
+.hero-sticker.one{
+  top:7%;
+  right:-5%;
+}
+
+.hero-sticker.two{
+  bottom:4%;
+  left:-7%;
+  background:var(--green);
+  transform:rotate(7deg);
 }
 
 
-/* =========================
+/* =========================================================
    MESSAGE
-========================= */
+========================================================= */
 
 .message{
-  background:var(--orange);
-  color:white;
-  padding:110px 5vw;
-  text-align:center;
+  background:var(--white);
+  padding:150px 6vw;
   position:relative;
-  overflow:hidden;
-}
-
-.message:before{
-  content:"YUMMY";
-  position:absolute;
-  font-family:"DM Sans",sans-serif;
-  font-size:25vw;
-  font-weight:900;
-  color:rgba(255,255,255,.07);
-  left:-20px;
-  bottom:-80px;
 }
 
 .message-inner{
-  position:relative;
-  z-index:2;
-  max-width:1000px;
+  max-width:1050px;
   margin:auto;
 }
 
 .message-label{
-  font-family:"DM Sans",sans-serif;
-  font-size:12px;
-  letter-spacing:4px;
-  font-weight:700;
+  display:inline-block;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.15em;
+  border-bottom:3px solid var(--orange);
+  padding-bottom:8px;
 }
 
 .message h2{
-  font-size:clamp(45px,7vw,100px);
-  line-height:1;
-  margin:25px 0 0;
+  margin-top:35px;
+  font-family:"M PLUS Rounded 1c",sans-serif;
+  font-size:clamp(50px,8vw,120px);
+  line-height:.95;
   font-weight:900;
-  letter-spacing:-4px;
+  letter-spacing:-.07em;
 }
 
 .message-sub{
@@ -408,446 +398,378 @@ button{
   font-size:clamp(20px,3vw,32px);
   font-weight:900;
   transform:rotate(-2deg);
+  display:inline-block;
 }
 
 
-/* =========================
-   PHOTO PLAYGROUND
-========================= */
+/* =========================================================
+   MOOD
+========================================================= */
 
-.playground{
-  padding:120px 5vw;
+.mood{
   background:var(--yellow);
+  padding:110px 5vw 130px;
+  position:relative;
   overflow:hidden;
 }
 
-.playground-inner{
-  width:min(1250px,100%);
+.mood-inner{
+  max-width:1200px;
   margin:auto;
 }
 
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:30px;
+.mood-label{
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.15em;
+  margin-bottom:20px;
+}
+
+.mood h2{
+  font-family:"M PLUS Rounded 1c",sans-serif;
+  font-size:clamp(58px,9vw,130px);
+  font-weight:900;
+  line-height:.82;
+  letter-spacing:-.08em;
   margin-bottom:55px;
 }
 
-.section-head h2{
-  margin:0;
-  font-size:clamp(45px,7vw,95px);
-  line-height:.9;
-  letter-spacing:-5px;
+.mood h2 span{
+  display:block;
+}
+
+.category-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  max-width:1000px;
+}
+
+.category-btn{
+  border:3px solid var(--brown);
+  background:var(--white);
+  color:var(--brown);
+  border-radius:999px;
+  padding:13px 22px;
+  font-size:14px;
   font-weight:900;
+  transition:.2s;
 }
 
-.section-head p{
-  max-width:350px;
-  line-height:1.8;
-  font-weight:700;
-}
-
-.photo-collage{
-  display:grid;
-  grid-template-columns:1.1fr .8fr .8fr;
-  grid-template-rows:300px 230px;
-  gap:18px;
-}
-
-.collage-item{
-  overflow:hidden;
-  border:5px solid var(--brown);
-  background:white;
-  position:relative;
-}
-
-.collage-item img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:.5s;
-}
-
-.collage-item:hover img{
-  transform:scale(1.07);
-}
-
-.collage-item:nth-child(1){
-  grid-row:span 2;
-  transform:rotate(-2deg);
-}
-
-.collage-item:nth-child(2){
-  transform:rotate(2deg);
-}
-
-.collage-item:nth-child(3){
-  transform:rotate(-1deg);
-}
-
-.collage-item:nth-child(4){
-  grid-column:span 2;
-  transform:rotate(1deg);
-}
-
-.photo-label{
-  position:absolute;
-  left:15px;
-  bottom:15px;
-  background:white;
-  padding:8px 13px;
-  font-size:12px;
-  font-weight:900;
-  transform:rotate(-3deg);
+.category-btn:hover,
+.category-btn.active{
+  background:var(--brown);
+  color:white;
+  transform:translateY(-3px) rotate(-1deg);
 }
 
 
-/* =========================
+/* =========================================================
    RECIPES
-========================= */
+========================================================= */
 
 .recipes{
-  padding:130px 5vw;
   background:var(--cream);
+  padding:120px 5vw 140px;
 }
 
 .recipes-inner{
-  width:min(1250px,100%);
+  max-width:1250px;
   margin:auto;
 }
 
-.recipe-top{
+.section-top{
   display:flex;
-  justify-content:space-between;
   align-items:flex-end;
-  margin-bottom:60px;
+  justify-content:space-between;
+  gap:30px;
+  margin-bottom:45px;
 }
 
-.recipe-top h2{
-  font-size:clamp(55px,8vw,110px);
-  margin:0;
+.section-title{
+  font-family:"M PLUS Rounded 1c",sans-serif;
+  font-size:clamp(60px,9vw,130px);
+  font-weight:900;
   line-height:.8;
-  letter-spacing:-6px;
+  letter-spacing:-.08em;
 }
 
-.recipe-top span{
-  font-family:"DM Sans",sans-serif;
-  font-weight:700;
+.section-small{
   font-size:12px;
-  letter-spacing:2px;
+  font-weight:900;
+  letter-spacing:.12em;
 }
 
-.recipe-grid{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:22px;
+
+/* SEARCH */
+
+.search-box{
+  margin-bottom:35px;
 }
 
-.recipe-card{
-  grid-column:span 4;
-  background:white;
-  border-radius:25px;
-  overflow:hidden;
-  cursor:pointer;
-  box-shadow:7px 7px 0 rgba(51,32,24,.15);
-  transition:.3s;
-}
-
-.recipe-card:nth-child(1),
-.recipe-card:nth-child(4){
-  grid-column:span 6;
-}
-
-.recipe-card:hover{
-  transform:translateY(-8px) rotate(-1deg);
-  box-shadow:12px 14px 0 rgba(51,32,24,.18);
-}
-
-.recipe-image{
-  aspect-ratio:1.35/1;
-  overflow:hidden;
+.search-wrap{
   position:relative;
 }
 
-.recipe-image img{
+.search-input{
   width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:.5s;
+  border:none;
+  border-bottom:4px solid var(--brown);
+  background:transparent;
+  padding:18px 50px 18px 4px;
+  font-size:20px;
+  font-weight:700;
+  color:var(--brown);
+  outline:none;
 }
 
-.recipe-card:hover .recipe-image img{
+.search-input::placeholder{
+  color:#a99d93;
+}
+
+.search-icon{
+  position:absolute;
+  right:5px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:25px;
+}
+
+
+/* FILTER STATUS */
+
+.filter-status{
+  min-height:25px;
+  margin:20px 0 28px;
+  font-size:13px;
+  font-weight:900;
+}
+
+.clear-filter{
+  border:none;
+  background:none;
+  text-decoration:underline;
+  margin-left:10px;
+  font-weight:900;
+}
+
+
+/* GRID */
+
+.recipes-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:35px 18px;
+}
+
+.recipe-card{
+  min-width:0;
+  cursor:pointer;
+}
+
+.recipe-photo{
+  position:relative;
+  overflow:hidden;
+  aspect-ratio:1/1;
+  background:#ddd;
+}
+
+.recipe-photo img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  transition:transform .5s cubic-bezier(.16,1,.3,1);
+}
+
+.recipe-card:hover .recipe-photo img{
   transform:scale(1.06);
 }
 
-.recipe-tag{
+.recipe-number{
   position:absolute;
-  top:15px;
-  left:15px;
-  background:var(--orange);
-  color:white;
-  padding:7px 12px;
-  border-radius:999px;
+  left:10px;
+  top:10px;
+  width:30px;
+  height:30px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--yellow);
+  border-radius:50%;
   font-size:11px;
   font-weight:900;
 }
 
 .recipe-info{
-  padding:22px;
+  padding:12px 3px 0;
 }
 
-.recipe-info h3{
-  margin:0;
-  font-size:23px;
-  line-height:1.3;
-}
-
-.recipe-info p{
-  margin:10px 0 0;
-  font-size:12px;
-  color:#806d62;
-}
-
-.recipe-arrow{
-  margin-top:20px;
-  font-family:"DM Sans",sans-serif;
-  font-size:12px;
+.recipe-name{
+  font-family:"M PLUS Rounded 1c",sans-serif;
+  font-size:18px;
+  line-height:1.25;
   font-weight:900;
-  letter-spacing:1px;
 }
 
-
-/* =========================
-   CATEGORY
-========================= */
-
-.category{
-  padding:110px 5vw;
-  background:var(--pink);
-}
-
-.category-inner{
-  width:min(1200px,100%);
-  margin:auto;
-}
-
-.category-title{
-  font-size:clamp(45px,7vw,90px);
-  font-weight:900;
-  line-height:.9;
-  letter-spacing:-5px;
-  margin:0 0 50px;
-}
-
-.category-list{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-}
-
-.category-item{
-  min-height:230px;
-  padding:25px;
-  border:4px solid var(--brown);
+.recipe-tags{
   display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  transition:.3s;
+  flex-wrap:wrap;
+  gap:5px;
+  margin-top:8px;
 }
 
-.category-item:nth-child(1){
-  background:var(--orange);
-  color:white;
-}
-
-.category-item:nth-child(2){
-  background:var(--green);
-}
-
-.category-item:nth-child(3){
-  background:var(--yellow);
-}
-
-.category-item:nth-child(4){
-  background:var(--white);
-}
-
-.category-item:hover{
-  transform:rotate(-3deg) translateY(-7px);
-}
-
-.category-number{
-  font-family:"DM Sans",sans-serif;
-  font-size:13px;
+.recipe-tag{
+  font-size:10px;
   font-weight:900;
+  color:var(--orange);
 }
 
-.category-item h3{
-  margin:0;
-  font-size:35px;
+
+/* PAGINATION */
+
+.pagination{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:65px;
+}
+
+.page-btn{
+  min-width:40px;
+  height:40px;
+  border:2px solid var(--brown);
+  background:transparent;
+  border-radius:50%;
+  font-size:12px;
   font-weight:900;
+  transition:.2s;
 }
 
-.category-item span{
-  font-family:"DM Sans",sans-serif;
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:1px;
-}
-
-
-/* =========================
-   ARCHIVE
-========================= */
-
-.archive{
+.page-btn:hover,
+.page-btn.active{
   background:var(--brown);
   color:white;
+}
+
+.page-btn.arrow{
+  border:none;
+  font-size:18px;
+}
+
+
+/* =========================================================
+   ARCHIVE / CATEGORY NOTE
+========================================================= */
+
+.archive{
+  background:var(--orange);
   padding:120px 5vw;
+  color:white;
 }
 
 .archive-inner{
-  width:min(1200px,100%);
+  max-width:1200px;
   margin:auto;
 }
 
-.archive-title{
-  font-size:clamp(50px,8vw,110px);
-  line-height:.8;
-  letter-spacing:-6px;
-  margin:0 0 60px;
-}
-
-.archive-row{
-  border-top:1px solid rgba(255,255,255,.3);
-  padding:22px 0;
-  display:grid;
-  grid-template-columns:120px 1fr 100px;
-  gap:20px;
-  align-items:center;
-}
-
-.archive-row:last-child{
-  border-bottom:1px solid rgba(255,255,255,.3);
-}
-
-.archive-year{
-  color:var(--yellow);
-  font-family:"DM Sans",sans-serif;
-  font-weight:900;
-}
-
-.archive-name{
-  font-size:20px;
-  font-weight:800;
-}
-
-.archive-cat{
-  text-align:right;
-  font-family:"DM Sans",sans-serif;
+.archive-label{
   font-size:11px;
+  font-weight:900;
+  letter-spacing:.15em;
+}
+
+.archive h2{
+  font-family:"M PLUS Rounded 1c",sans-serif;
+  font-size:clamp(60px,11vw,150px);
+  font-weight:900;
+  line-height:.8;
+  letter-spacing:-.08em;
+  margin-top:30px;
+}
+
+.archive-copy{
+  max-width:500px;
+  margin-top:45px;
+  font-size:18px;
+  line-height:1.8;
+  font-weight:700;
 }
 
 
-/* =========================
+/* =========================================================
    FINAL
-========================= */
+========================================================= */
 
 .final{
-  min-height:75vh;
-  background:var(--orange);
+  min-height:70vh;
+  background:var(--brown);
   color:white;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:80px 5vw;
-  position:relative;
-  overflow:hidden;
+  padding:100px 5vw;
+}
+
+.final-small{
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.2em;
 }
 
 .final h2{
-  font-family:"DM Sans",sans-serif;
-  font-size:clamp(80px,15vw,210px);
-  line-height:.78;
-  letter-spacing:-12px;
-  margin:0;
+  margin-top:25px;
+  font-family:"M PLUS Rounded 1c",sans-serif;
+  font-size:clamp(55px,11vw,160px);
   font-weight:900;
+  line-height:.82;
+  letter-spacing:-.08em;
 }
 
-.final-jp{
-  margin-top:45px;
-  font-size:clamp(20px,3vw,38px);
-  font-weight:900;
-}
-
-.final-sticker{
-  position:absolute;
-  background:var(--yellow);
-  color:var(--brown);
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:900;
-  line-height:1.2;
-  transform:rotate(15deg);
-}
-
-.final-sticker.one{
-  top:18%;
-  left:8%;
-}
-
-.final-sticker.two{
-  bottom:15%;
-  right:8%;
-  background:var(--pink);
-  transform:rotate(-12deg);
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-.footer{
-  background:var(--cream);
-  padding:40px 5vw;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-family:"DM Sans",sans-serif;
-  font-size:11px;
-  font-weight:700;
-}
-
-.footer-logo{
+.final p{
+  margin-top:35px;
   font-size:18px;
   font-weight:900;
 }
 
 
-/* =========================
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+  background:var(--brown);
+  color:white;
+  padding:30px 5vw 40px;
+  border-top:1px solid rgba(255,255,255,.15);
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+
+/* =========================================================
    MODAL
-========================= */
+========================================================= */
 
 .modal{
   position:fixed;
   inset:0;
-  z-index:500;
+  z-index:5000;
   background:rgba(23,18,15,.75);
-  backdrop-filter:blur(10px);
   display:none;
   align-items:center;
   justify-content:center;
   padding:25px;
 }
 
-.modal.active{
+.modal.open{
   display:flex;
 }
 
@@ -855,64 +777,123 @@ button{
   width:min(900px,100%);
   max-height:90vh;
   overflow:auto;
-  background:var(--cream);
+  background:var(--white);
   border-radius:30px;
   position:relative;
-  padding:35px;
+  padding:0;
 }
 
 .modal-close{
   position:absolute;
-  top:18px;
+  z-index:3;
   right:18px;
-  width:45px;
-  height:45px;
-  border:0;
+  top:18px;
+  width:42px;
+  height:42px;
+  border:none;
+  background:white;
   border-radius:50%;
-  background:var(--orange);
-  color:white;
-  font-size:25px;
-  cursor:pointer;
+  font-size:22px;
+  font-weight:900;
+  box-shadow:0 5px 20px rgba(0,0,0,.15);
 }
 
-.modal-title{
-  font-size:clamp(35px,5vw,65px);
-  line-height:1;
-  margin:0 50px 30px 0;
-  font-weight:900;
+.modal-image{
+  width:100%;
+  aspect-ratio:16/8;
+  object-fit:cover;
+  display:block;
 }
 
 .modal-content{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
+  padding:40px;
 }
 
-.modal-section h4{
+.modal-title{
+  font-family:"M PLUS Rounded 1c",sans-serif;
+  font-size:clamp(30px,5vw,55px);
+  font-weight:900;
+  line-height:1;
+}
+
+.modal-tags{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+.modal-tag{
+  color:var(--orange);
   font-size:12px;
-  letter-spacing:2px;
+  font-weight:900;
+}
+
+.modal-section{
+  margin-top:35px;
+}
+
+.modal-section h3{
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.1em;
   margin-bottom:15px;
 }
 
-.modal-section ul,
-.modal-section ol{
-  padding-left:20px;
-  line-height:2;
+.ingredients{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  border-top:1px solid var(--line);
 }
 
-.modal-section li{
-  margin-bottom:5px;
+.ingredient{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:11px 0;
+  border-bottom:1px solid var(--line);
+  font-size:13px;
+}
+
+.steps{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.step{
+  display:flex;
+  gap:15px;
+  line-height:1.7;
+  font-size:14px;
+}
+
+.step-number{
+  flex:none;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:var(--yellow);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  font-weight:900;
 }
 
 
-/* =========================
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
-@media(max-width:800px){
+@media(max-width:700px){
 
   .header{
-    padding:17px 18px;
+    padding:15px 18px;
+  }
+
+  .header-logo{
+    font-size:15px;
   }
 
   .header-nav{
@@ -920,180 +901,272 @@ button{
   }
 
   .hero{
-    padding:120px 20px 70px;
-  }
-
-  .hero-grid{
-    grid-template-columns:1fr;
-  }
-
-  .hero h1{
-    font-size:clamp(48px,14vw,72px);
-    line-height:1.05;
-    letter-spacing:-3px;
-  }
-
-  .hero-photo-wrap{
-    width:85%;
-    margin:20px auto 0;
-  }
-
-  .hero-sticker{
-    right:-10px;
-  }
-
-  .section-head{
+    min-height:100svh;
+    padding:125px 20px 50px;
     display:block;
   }
 
-  .section-head p{
-    margin-top:25px;
+  .hero-content{
+    width:100%;
   }
 
-  .photo-collage{
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:240px 180px 180px;
-  }
-
-  .collage-item:nth-child(1){
-    grid-row:span 2;
-  }
-
-  .collage-item:nth-child(4){
-    grid-column:span 2;
-  }
-
-  .recipe-grid{
-    display:grid;
-    grid-template-columns:1fr;
-  }
-
-  .recipe-card,
-  .recipe-card:nth-child(1),
-  .recipe-card:nth-child(4){
-    grid-column:span 1;
-  }
-
-  .category-list{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .archive-row{
-    grid-template-columns:70px 1fr;
-  }
-
-  .archive-cat{
-    display:none;
-  }
-
-  .modal-content{
-    grid-template-columns:1fr;
-    gap:20px;
-  }
-
-  .footer{
-    flex-direction:column;
-    gap:10px;
-  }
-}
-
-
-/* =========================
-   SMALL MOBILE
-========================= */
-
-@media(max-width:480px){
-
-  .hero{
-    padding-top:105px;
-  }
-
-  .hero-small{
-    font-size:10px;
+  .hero-kicker{
+    font-size:9px;
+    margin-bottom:20px;
   }
 
   .hero h1{
-    font-size:clamp(45px,14vw,65px);
+    font-size:clamp(47px,12.7vw,80px);
+    line-height:.94;
+    letter-spacing:-.08em;
   }
 
-  .hero-en{
-    font-size:11px;
+  .hero h1 span:nth-child(3){
+    font-size:.84em;
+    letter-spacing:-.075em;
   }
 
-  .hero-photo{
-    box-shadow:10px 10px 0 var(--orange);
+  .hero-copy{
+    margin-top:24px;
+    font-size:17px;
   }
 
-  .photo-collage{
-    display:flex;
-    flex-direction:column;
+  .hero-english{
+    font-size:9px;
+    letter-spacing:.12em;
   }
 
-  .collage-item{
-    height:260px;
+  .hero-image-wrap{
+    position:relative;
+    width:72vw;
+    right:auto;
+    top:auto;
+    transform:rotate(4deg);
+    margin:45px auto 0;
+  }
+
+  .hero-sticker{
+    font-size:12px;
+    padding:12px 15px;
+  }
+
+  .hero-sticker.one{
+    right:-6%;
+  }
+
+  .hero-sticker.two{
+    left:-8%;
+  }
+
+  .message{
+    padding:90px 20px;
+  }
+
+  .message h2{
+    font-size:clamp(48px,14vw,75px);
+  }
+
+  .message-sub{
+    margin-top:30px;
+    font-size:20px;
+  }
+
+  .mood{
+    padding:80px 20px 90px;
+  }
+
+  .mood h2{
+    font-size:clamp(60px,18vw,100px);
+    margin-bottom:40px;
   }
 
   .category-list{
-    grid-template-columns:1fr;
+    gap:8px;
   }
 
-  .category-item{
-    min-height:180px;
+  .category-btn{
+    padding:11px 16px;
+    font-size:12px;
+    border-width:2px;
+  }
+
+  .recipes{
+    padding:80px 14px 100px;
+  }
+
+  .section-top{
+    margin-bottom:30px;
+    display:block;
+  }
+
+  .section-title{
+    font-size:clamp(60px,18vw,100px);
+  }
+
+  .section-small{
+    margin-top:15px;
+    font-size:9px;
+  }
+
+  .search-input{
+    font-size:15px;
+    padding:15px 40px 15px 2px;
+  }
+
+  .search-icon{
+    font-size:20px;
+  }
+
+  .filter-status{
+    font-size:11px;
+  }
+
+  .recipes-grid{
+    grid-template-columns:repeat(3,1fr);
+    gap:28px 7px;
+  }
+
+  .recipe-info{
+    padding-top:7px;
+  }
+
+  .recipe-name{
+    font-size:11px;
+    line-height:1.3;
+  }
+
+  .recipe-tags{
+    gap:2px;
+    margin-top:5px;
+  }
+
+  .recipe-tag{
+    font-size:7px;
+  }
+
+  .recipe-number{
+    width:23px;
+    height:23px;
+    left:5px;
+    top:5px;
+    font-size:8px;
+  }
+
+  .pagination{
+    margin-top:45px;
+    gap:4px;
+  }
+
+  .page-btn{
+    min-width:34px;
+    width:34px;
+    height:34px;
+    font-size:10px;
+  }
+
+  .archive{
+    padding:90px 20px;
+  }
+
+  .archive h2{
+    font-size:clamp(65px,20vw,110px);
+  }
+
+  .archive-copy{
+    font-size:15px;
+    line-height:1.7;
+  }
+
+  .final{
+    min-height:65vh;
   }
 
   .final h2{
-    letter-spacing:-6px;
+    font-size:clamp(60px,18vw,110px);
+  }
+
+  .final p{
+    font-size:15px;
+  }
+
+  .footer{
+    padding:25px 18px 30px;
+    font-size:8px;
+  }
+
+  .modal{
+    padding:12px;
+  }
+
+  .modal-box{
+    border-radius:20px;
+    max-height:94vh;
+  }
+
+  .modal-image{
+    aspect-ratio:1/1;
+  }
+
+  .modal-content{
+    padding:25px 20px 35px;
+  }
+
+  .ingredients{
+    grid-template-columns:1fr;
+  }
+
+  .ingredient{
+    font-size:12px;
+  }
+
+  .step{
+    font-size:13px;
   }
 
 }
-
 </style>
 </head>
 
 
 <body>
 
-
-<!-- =========================
+<!-- ======================================================
      OPENING
-========================= -->
+====================================================== -->
 
 <div class="opening">
-
   <div class="opening-circle"></div>
 
   <div class="opening-dots">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
+    <span class="opening-dot"></span>
+    <span class="opening-dot"></span>
+    <span class="opening-dot"></span>
+    <span class="opening-dot"></span>
   </div>
 
   <div class="opening-content">
 
     <img
       src="logo.png"
-      class="opening-logo"
       alt="CHU dot COOKING"
+      class="opening-logo"
     >
 
     <div class="opening-title">
-      CHU dot<br>
-      COOKING
+      CHU dot COOKING
     </div>
 
     <div class="opening-sub">
-      MY FOOD / MY RULES
+      MY KITCHEN / MY RULES
     </div>
 
   </div>
-
 </div>
 
 
-<!-- =========================
+<!-- ======================================================
      HEADER
-========================= -->
+====================================================== -->
 
 <header class="header">
 
@@ -1103,63 +1176,61 @@ button{
 
   <nav class="header-nav">
     <a href="#about">ABOUT</a>
-    <a href="#recipes">RECIPES</a>
-    <a href="#category">CATEGORY</a>
-    <a href="#archive">ARCHIVE</a>
+    <a href="#recipes">レシピ</a>
+    <a href="#mood">CATEGORY</a>
   </nav>
 
 </header>
 
 
-<!-- =========================
+<main>
+
+<!-- ======================================================
      HERO
-========================= -->
+====================================================== -->
 
-<section class="hero" id="about">
+<section class="hero">
 
-  <div class="hero-bg-text">
+  <div class="hero-bg">
     FOOD
   </div>
 
-  <div class="hero-grid">
+  <div class="hero-content">
 
-    <div class="hero-copy">
-
-      <div class="hero-small">
-        MY KITCHEN / MY RULES
-      </div>
-
-      <h1>
-        <span>俺の作る</span>
-        <span class="accent">メシが、</span>
-        <span class="accent">いちばんうまい！</span>
-      </h1>
-
-      <div class="hero-en">
-        COOK IT. EAT IT. LOVE IT.
-      </div>
-
+    <div class="hero-kicker">
+      MY KITCHEN / MY RULES
     </div>
 
+    <h1>
+      <span>俺の作る</span>
+      <span class="accent">メシが、</span>
+      <span class="accent">一番うまい！</span>
+    </h1>
 
-    <div class="hero-photo-wrap">
+    <div class="hero-copy">
+      今日も、自分の好きなものを作る。
+    </div>
 
-      <img
-        class="hero-photo"
-        src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=85"
-        alt="料理のイメージ"
-      >
+    <div class="hero-english">
+      COOK IT. EAT IT. LOVE IT.
+    </div>
 
-      <div class="hero-sticker">
-        うまいは<br>
-        正義。
-      </div>
+  </div>
 
-      <div class="hero-sticker small">
-        LET'S<br>
-        EAT!
-      </div>
+  <div class="hero-image-wrap">
 
+    <img
+      class="hero-image"
+      src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=85"
+      alt="料理"
+    >
+
+    <div class="hero-sticker one">
+      うまいは<br>正義。
+    </div>
+
+    <div class="hero-sticker two">
+      LET'S EAT!
     </div>
 
   </div>
@@ -1167,11 +1238,11 @@ button{
 </section>
 
 
-<!-- =========================
-     MESSAGE
-========================= -->
+<!-- ======================================================
+     ABOUT
+====================================================== -->
 
-<section class="message">
+<section class="message" id="about">
 
   <div class="message-inner">
 
@@ -1193,85 +1264,25 @@ button{
 </section>
 
 
-<!-- =========================
-     PHOTO PLAYGROUND
-========================= -->
+<!-- ======================================================
+     MOOD / CATEGORY
+====================================================== -->
 
-<section class="playground">
+<section class="mood" id="mood">
 
-  <div class="playground-inner">
+  <div class="mood-inner">
 
-    <div class="section-head">
-
-      <h2>
-        今日の<br>
-        うまい。
-      </h2>
-
-      <p>
-        COOK / EAT / REPEAT
-      </p>
-
+    <div class="mood-label">
+      CHOOSE YOUR MOOD
     </div>
 
+    <h2>
+      <span>今日の</span>
+      <span>気分は？</span>
+    </h2>
 
-    <div class="photo-collage">
-
-      <div class="collage-item">
-
-        <img
-          src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1000&q=85"
-          alt="麺料理"
-        >
-
-        <div class="photo-label">
-          NOODLES
-        </div>
-
-      </div>
-
-
-      <div class="collage-item">
-
-        <img
-          src="https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=85"
-          alt="肉料理"
-        >
-
-        <div class="photo-label">
-          MEAT
-        </div>
-
-      </div>
-
-
-      <div class="collage-item">
-
-        <img
-          src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85"
-          alt="ご飯料理"
-        >
-
-        <div class="photo-label">
-          RICE
-        </div>
-
-      </div>
-
-
-      <div class="collage-item">
-
-        <img
-          src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=85"
-          alt="料理"
-        >
-
-        <div class="photo-label">
-          SIDE DISH
-        </div>
-
-      </div>
-
+    <div class="category-list" id="categoryList">
+      <!-- JavaScriptで自動生成 -->
     </div>
 
   </div>
@@ -1279,488 +1290,198 @@ button{
 </section>
 
 
-<!-- =========================
+<!-- ======================================================
      RECIPES
-========================= -->
+====================================================== -->
 
 <section class="recipes" id="recipes">
 
   <div class="recipes-inner">
 
-    <div class="recipe-top">
+    <div class="section-top">
 
-      <h2>
-        RECIPES
+      <h2 class="section-title">
+        レシピ
       </h2>
 
-      <span>
-        COOK / EAT / REPEAT
-      </span>
+      <div class="section-small">
+        COOK IT. EAT IT. LOVE IT.
+      </div>
 
     </div>
 
 
-    <div class="recipe-grid">
+    <!-- SEARCH -->
 
+    <div class="search-box">
 
-      <article
-        class="recipe-card"
-        onclick="openRecipe(0)"
-      >
+      <div class="search-wrap">
 
-        <div class="recipe-image">
+        <input
+          type="search"
+          id="searchInput"
+          class="search-input"
+          placeholder="料理名・食材・タグで検索"
+          autocomplete="off"
+        >
 
-          <img
-            src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1200&q=85"
-            alt="海老塩焼きそば"
-          >
+        <span class="search-icon">
+          ⌕
+        </span>
 
-          <div class="recipe-tag">
-            麺
-          </div>
-
-        </div>
-
-        <div class="recipe-info">
-
-          <h3>
-            海老塩焼きそば
-          </h3>
-
-          <p>
-            海老の旨味と黒胡椒を効かせた塩焼きそば。
-          </p>
-
-          <div class="recipe-arrow">
-            VIEW RECIPE →
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <article
-        class="recipe-card"
-        onclick="openRecipe(1)"
-      >
-
-        <div class="recipe-image">
-
-          <img
-            src="https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=85"
-            alt="チキンソテー"
-          >
-
-          <div class="recipe-tag">
-            肉
-          </div>
-
-        </div>
-
-        <div class="recipe-info">
-
-          <h3>
-            鶏むね肉のレモン醤油ソテー
-          </h3>
-
-          <p>
-            さっぱりだけど、ご飯が進む。
-          </p>
-
-          <div class="recipe-arrow">
-            VIEW RECIPE →
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <article
-        class="recipe-card"
-        onclick="openRecipe(2)"
-      >
-
-        <div class="recipe-image">
-
-          <img
-            src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=85"
-            alt="麻婆なす"
-          >
-
-          <div class="recipe-tag">
-            副菜
-          </div>
-
-        </div>
-
-        <div class="recipe-info">
-
-          <h3>
-            とろ旨麻婆なす
-          </h3>
-
-          <p>
-            とろっとした茄子にピリ辛の旨味。
-          </p>
-
-          <div class="recipe-arrow">
-            VIEW RECIPE →
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <article
-        class="recipe-card"
-        onclick="openRecipe(3)"
-      >
-
-        <div class="recipe-image">
-
-          <img
-            src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1200&q=85"
-            alt="チキンライス"
-          >
-
-          <div class="recipe-tag">
-            ご飯
-          </div>
-
-        </div>
-
-        <div class="recipe-info">
-
-          <h3>
-            炊飯器スパイスチキンライス
-          </h3>
-
-          <p>
-            炊飯器に入れて炊くだけのごちそうご飯。
-          </p>
-
-          <div class="recipe-arrow">
-            VIEW RECIPE →
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <article
-        class="recipe-card"
-        onclick="openRecipe(4)"
-      >
-
-        <div class="recipe-image">
-
-          <img
-            src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1000&q=85"
-            alt="ナポリタン"
-          >
-
-          <div class="recipe-tag">
-            麺
-          </div>
-
-        </div>
-
-        <div class="recipe-info">
-
-          <h3>
-            とろけるチーズの焼きナポリタン
-          </h3>
-
-          <p>
-            チーズをのせて最後まで熱々。
-          </p>
-
-          <div class="recipe-arrow">
-            VIEW RECIPE →
-          </div>
-
-        </div>
-
-      </article>
-
+      </div>
 
     </div>
+
+
+    <div class="filter-status" id="filterStatus"></div>
+
+
+    <!-- RECIPE GRID -->
+
+    <div class="recipes-grid" id="recipesGrid"></div>
+
+
+    <!-- PAGINATION -->
+
+    <div class="pagination" id="pagination"></div>
 
   </div>
 
 </section>
 
 
-<!-- =========================
-     CATEGORY
-========================= -->
-
-<section class="category" id="category">
-
-  <div class="category-inner">
-
-    <h2 class="category-title">
-      なに食べる？
-    </h2>
-
-    <div class="category-list">
-
-      <div class="category-item">
-
-        <div class="category-number">
-          01
-        </div>
-
-        <h3>
-          麺
-        </h3>
-
-        <span>
-          NOODLES
-        </span>
-
-      </div>
-
-
-      <div class="category-item">
-
-        <div class="category-number">
-          02
-        </div>
-
-        <h3>
-          肉
-        </h3>
-
-        <span>
-          MEAT
-        </span>
-
-      </div>
-
-
-      <div class="category-item">
-
-        <div class="category-number">
-          03
-        </div>
-
-        <h3>
-          ご飯
-        </h3>
-
-        <span>
-          RICE
-        </span>
-
-      </div>
-
-
-      <div class="category-item">
-
-        <div class="category-number">
-          04
-        </div>
-
-        <h3>
-          副菜
-        </h3>
-
-        <span>
-          SIDE DISH
-        </span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
+<!-- ======================================================
      ARCHIVE
-========================= -->
+====================================================== -->
 
-<section class="archive" id="archive">
+<section class="archive">
 
   <div class="archive-inner">
 
-    <h2 class="archive-title">
-      FOOD<br>
-      ARCHIVE
+    <div class="archive-label">
+      FOOD ARCHIVE
+    </div>
+
+    <h2>
+      EAT.<br>
+      MAKE.<br>
+      AGAIN.
     </h2>
 
-
-    <div class="archive-row">
-
-      <div class="archive-year">
-        001
-      </div>
-
-      <div class="archive-name">
-        海老塩焼きそば
-      </div>
-
-      <div class="archive-cat">
-        NOODLES
-      </div>
-
-    </div>
-
-
-    <div class="archive-row">
-
-      <div class="archive-year">
-        002
-      </div>
-
-      <div class="archive-name">
-        鶏むね肉のレモン醤油ソテー
-      </div>
-
-      <div class="archive-cat">
-        MEAT
-      </div>
-
-    </div>
-
-
-    <div class="archive-row">
-
-      <div class="archive-year">
-        003
-      </div>
-
-      <div class="archive-name">
-        とろ旨麻婆なす
-      </div>
-
-      <div class="archive-cat">
-        SIDE DISH
-      </div>
-
-    </div>
-
-
-    <div class="archive-row">
-
-      <div class="archive-year">
-        004
-      </div>
-
-      <div class="archive-name">
-        炊飯器スパイスチキンライス
-      </div>
-
-      <div class="archive-cat">
-        RICE
-      </div>
-
-    </div>
+    <p class="archive-copy">
+      作った料理を残していく。
+      また食べたいと思ったものも、
+      ちょっと失敗したものも、
+      ここに全部置いておく。
+    </p>
 
   </div>
 
 </section>
 
 
-<!-- =========================
+<!-- ======================================================
      FINAL
-========================= -->
+====================================================== -->
 
 <section class="final">
 
-  <div class="final-sticker one">
-    お腹<br>
-    すいた？
-  </div>
-
-  <div class="final-sticker two">
-    EAT<br>
-    MORE!
-  </div>
-
   <div>
+
+    <div class="final-small">
+      CHU dot COOKING
+    </div>
 
     <h2>
       MAKE IT.<br>
       EAT IT.
     </h2>
 
-    <div class="final-jp">
+    <p>
       今日も、自分の飯が一番うまい。
-    </div>
+    </p>
 
   </div>
 
 </section>
 
+</main>
 
-<!-- =========================
+
+<!-- ======================================================
      FOOTER
-========================= -->
+====================================================== -->
 
 <footer class="footer">
 
-  <div class="footer-logo">
-    CHU dot COOKING
+  <div>
+    © CHU dot COOKING
   </div>
 
   <div>
-    © 2026 CHU dot COOKING
-  </div>
-
-  <div>
-    MADE WITH HUNGER.
+    MY KITCHEN / MY RULES
   </div>
 
 </footer>
 
 
-<!-- =========================
-     MODAL
-========================= -->
+<!-- ======================================================
+     RECIPE MODAL
+====================================================== -->
 
 <div class="modal" id="recipeModal">
 
   <div class="modal-box">
 
-    <button
-      class="modal-close"
-      onclick="closeRecipe()"
-    >
+    <button class="modal-close" id="modalClose">
       ×
     </button>
 
-    <h2
-      class="modal-title"
-      id="modalTitle"
-    ></h2>
+    <img
+      id="modalImage"
+      class="modal-image"
+      src=""
+      alt=""
+    >
 
     <div class="modal-content">
 
+      <h2
+        class="modal-title"
+        id="modalTitle"
+      ></h2>
+
+      <div
+        class="modal-tags"
+        id="modalTags"
+      ></div>
+
+
       <div class="modal-section">
 
-        <h4>
+        <h3>
           INGREDIENTS
-        </h4>
+        </h3>
 
-        <ul id="modalIngredients"></ul>
+        <div
+          class="ingredients"
+          id="modalIngredients"
+        ></div>
 
       </div>
 
+
       <div class="modal-section">
 
-        <h4>
+        <h3>
           HOW TO COOK
-        </h4>
+        </h3>
 
-        <ol id="modalSteps"></ol>
+        <div
+          class="steps"
+          id="modalSteps"
+        ></div>
 
       </div>
 
@@ -1773,31 +1494,44 @@ button{
 
 <script>
 
-/* =========================
+/* =========================================================
    RECIPE DATA
-========================= */
+
+   今後レシピを追加するときは、ここに追加するだけ。
+========================================================= */
 
 const recipes = [
 
   {
-    title:"海老塩焼きそば",
+    name:"海老塩焼きそば",
+
+    image:"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1000&q=85",
+
+    tags:[
+      "麺類",
+      "ガッツリ",
+      "海鮮"
+    ],
+
+    searchText:
+      "海老 塩焼きそば 麺類 ガッツリ 海鮮 もやし ネギ 中華麺",
 
     ingredients:[
-      "海老 — 好きなだけ",
-      "中華麺 — 2玉",
-      "もやし — 1/2袋",
-      "長ネギ or 小口ネギ — 適量",
-      "あげ玉 — 適量",
-      "ごま油 — 適量",
-      "塩コショウ — 3g",
-      "黒胡椒 — 適量・強気",
-      "砂糖 — 7g",
-      "醤油 — 2g",
-      "料理酒 — 15g",
-      "鶏ガラの素 — 4g",
-      "煮干し粉 — 3g",
-      "おろしにんにく — 15g",
-      "茹で汁 — 25cc"
+      ["海老","好きなだけ"],
+      ["中華麺","2玉"],
+      ["もやし","1/2袋"],
+      ["長ネギ or 小口ネギ","適量"],
+      ["あげ玉","適量"],
+      ["ごま油","適量"],
+      ["塩コショウ","3g"],
+      ["黒胡椒","適量・強気"],
+      ["砂糖","7g"],
+      ["醤油","2g"],
+      ["料理酒","15g"],
+      ["鶏ガラの素","4g"],
+      ["煮干し粉","3g"],
+      ["おろしにんにく","15g"],
+      ["茹で汁","25cc"]
     ],
 
     steps:[
@@ -1813,172 +1547,782 @@ const recipes = [
 
 
   {
-    title:"鶏むね肉のレモン醤油ソテー",
+    name:"鶏むね肉のレモン醤油ソテー",
+
+    image:"https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=85",
+
+    tags:[
+      "肉",
+      "鶏肉",
+      "簡単"
+    ],
+
+    searchText:
+      "鶏むね肉 レモン 醤油 ソテー 肉 鶏肉 簡単",
 
     ingredients:[
-      "鶏むね肉 — 1枚",
-      "醤油 — 適量",
-      "レモン汁 — 適量",
-      "にんにく — 少々",
-      "黒胡椒 — 少々"
+      ["鶏むね肉","1枚"],
+      ["醤油","大さじ1"],
+      ["レモン汁","大さじ1"],
+      ["砂糖","小さじ1"],
+      ["にんにく","少々"],
+      ["塩コショウ","適量"]
     ],
 
     steps:[
-      "鶏むね肉を食べやすい厚さに切る。",
-      "調味料を合わせて下味をつける。",
+      "鶏むね肉を食べやすい大きさに切り、塩コショウをする。",
       "フライパンで両面を焼く。",
-      "仕上げにレモン汁と黒胡椒を加える。"
+      "醤油、レモン汁、砂糖、にんにくを加える。",
+      "全体にタレを絡めて完成。"
     ]
   },
 
 
   {
-    title:"とろ旨麻婆なす",
+    name:"とろ旨麻婆なす",
+
+    image:"https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=85",
+
+    tags:[
+      "肉",
+      "野菜",
+      "中華",
+      "ガッツリ"
+    ],
+
+    searchText:
+      "麻婆なす 茄子 なす 豚肉 中華 肉 野菜 ガッツリ",
 
     ingredients:[
-      "なす — 適量",
-      "豚ひき肉 — 適量",
-      "長ネギ — 適量",
-      "甜麺醤 — 適量",
-      "豆板醤 — 適量",
-      "花椒 — 適量"
+      ["なす","3本"],
+      ["豚ひき肉","150g"],
+      ["長ネギ","1/2本"],
+      ["甜麺醤","大さじ1"],
+      ["豆板醤","小さじ1"],
+      ["醤油","小さじ1"],
+      ["鶏ガラスープ","100ml"]
     ],
 
     steps:[
       "なすを食べやすい大きさに切る。",
-      "ひき肉を炒める。",
-      "豆板醤と甜麺醤を加える。",
-      "なすを加えて火を通す。",
-      "仕上げに花椒を振る。"
+      "フライパンでなすを焼く。",
+      "豚ひき肉、長ネギ、豆板醤を炒める。",
+      "甜麺醤、醤油、鶏ガラスープを加える。",
+      "なすを戻し入れて、とろみがつくまで煮る。"
     ]
   },
 
 
   {
-    title:"炊飯器スパイスチキンライス",
+    name:"炊飯器スパイスチキンライス",
+
+    image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
+
+    tags:[
+      "ご飯",
+      "鶏肉",
+      "炊飯器",
+      "簡単"
+    ],
+
+    searchText:
+      "炊飯器 チキンライス スパイス ご飯 鶏肉 簡単 カレー",
 
     ingredients:[
-      "米 — 2合",
-      "鶏肉 — 適量",
-      "カレー粉 — 適量",
-      "クミン — 適量",
-      "ヨーグルト — 適量",
-      "にんにく — 適量",
-      "しょうが — 適量",
-      "トマト — 適量"
+      ["米","2合"],
+      ["鶏もも肉","1枚"],
+      ["カレー粉","大さじ1"],
+      ["ヨーグルト","大さじ2"],
+      ["トマト","1個"],
+      ["にんにく","少々"],
+      ["しょうが","少々"],
+      ["塩","適量"]
     ],
 
     steps:[
-      "米を研いで炊飯器に入れる。",
-      "調味料と具材を加える。",
-      "通常炊飯する。",
-      "炊き上がったら全体を混ぜる。"
+      "米を洗って炊飯器に入れる。",
+      "カレー粉、ヨーグルト、にんにく、しょうが、塩を加える。",
+      "トマトと鶏肉をのせる。",
+      "通常通り炊飯する。",
+      "炊き上がったら鶏肉をほぐし、全体を混ぜる。"
     ]
   },
 
 
   {
-    title:"とろけるチーズの焼きナポリタン",
+    name:"とろけるチーズの焼きナポリタン",
+
+    image:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=85",
+
+    tags:[
+      "麺類",
+      "パスタ",
+      "チーズ",
+      "ガッツリ"
+    ],
+
+    searchText:
+      "ナポリタン パスタ チーズ 麺類 ガッツリ トマト",
 
     ingredients:[
-      "スパゲッティ — 1人前",
-      "ウインナー — 適量",
-      "玉ねぎ — 適量",
-      "ケチャップ — 適量",
-      "チーズ — 好きなだけ"
+      ["パスタ","100g"],
+      ["玉ねぎ","1/4個"],
+      ["ウインナー","3本"],
+      ["ケチャップ","大さじ3"],
+      ["チーズ","好きなだけ"],
+      ["バター","10g"],
+      ["塩コショウ","適量"]
     ],
 
     steps:[
-      "スパゲッティを茹でる。",
-      "具材を炒める。",
-      "ケチャップを加えて炒める。",
-      "麺を加えて混ぜる。",
-      "チーズをのせて焼く。"
+      "パスタを茹でる。",
+      "玉ねぎとウインナーを炒める。",
+      "ケチャップとバターを加える。",
+      "茹でたパスタを加えて炒める。",
+      "耐熱皿に盛り、チーズをのせて焼く。"
+    ]
+  },
+
+
+  {
+    name:"ごろごろ野菜サラダ",
+
+    image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=85",
+
+    tags:[
+      "野菜",
+      "副菜",
+      "簡単"
+    ],
+
+    searchText:
+      "野菜 サラダ 副菜 簡単 レタス トマト",
+
+    ingredients:[
+      ["レタス","適量"],
+      ["トマト","1個"],
+      ["きゅうり","1本"],
+      ["オリーブオイル","大さじ1"],
+      ["酢","大さじ1"],
+      ["塩","少々"]
+    ],
+
+    steps:[
+      "野菜を食べやすい大きさに切る。",
+      "調味料を混ぜる。",
+      "野菜と和えて完成。"
     ]
   }
 
 ];
 
 
-/* =========================
-   MODAL
-========================= */
+/* =========================================================
+   CATEGORY
 
-function openRecipe(index){
+   タグから自動生成
+========================================================= */
 
-  const recipe = recipes[index];
+const categoryList =
+  document.getElementById("categoryList");
 
-  document.getElementById("modalTitle").textContent =
-    recipe.title;
+const allTags = [
+  ...new Set(
+    recipes.flatMap(recipe => recipe.tags)
+  )
+];
 
-  const ingredients =
-    document.getElementById("modalIngredients");
+allTags.forEach(tag => {
 
-  const steps =
-    document.getElementById("modalSteps");
+  const button =
+    document.createElement("button");
 
-  ingredients.innerHTML = "";
-  steps.innerHTML = "";
+  button.className = "category-btn";
 
-  recipe.ingredients.forEach(item => {
+  button.textContent = "#" + tag;
 
-    const li = document.createElement("li");
+  button.dataset.tag = tag;
 
-    li.textContent = item;
+  button.addEventListener("click", () => {
 
-    ingredients.appendChild(li);
+    if(activeTag === tag){
+
+      activeTag = "";
+
+      button.classList.remove("active");
+
+    }else{
+
+      document
+        .querySelectorAll(".category-btn")
+        .forEach(btn =>
+          btn.classList.remove("active")
+        );
+
+      activeTag = tag;
+
+      button.classList.add("active");
+    }
+
+    currentPage = 1;
+
+    renderRecipes();
+
+    document
+      .getElementById("recipes")
+      .scrollIntoView({
+        behavior:"smooth"
+      });
 
   });
 
-  recipe.steps.forEach(item => {
+  categoryList.appendChild(button);
 
-    const li = document.createElement("li");
+});
 
-    li.textContent = item;
 
-    steps.appendChild(li);
+/* =========================================================
+   STATE
+========================================================= */
+
+const perPage = 15;
+
+let currentPage = 1;
+
+let activeTag = "";
+
+let searchKeyword = "";
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const recipesGrid =
+  document.getElementById("recipesGrid");
+
+const pagination =
+  document.getElementById("pagination");
+
+const searchInput =
+  document.getElementById("searchInput");
+
+const filterStatus =
+  document.getElementById("filterStatus");
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function getFilteredRecipes(){
+
+  return recipes.filter(recipe => {
+
+    const tagMatch =
+      !activeTag ||
+      recipe.tags.includes(activeTag);
+
+    const keyword =
+      searchKeyword.trim().toLowerCase();
+
+    const searchMatch =
+      !keyword ||
+      recipe.name.toLowerCase().includes(keyword) ||
+      recipe.searchText.toLowerCase().includes(keyword) ||
+      recipe.tags.some(tag =>
+        tag.toLowerCase().includes(keyword)
+      );
+
+    return tagMatch && searchMatch;
 
   });
+
+}
+
+
+/* =========================================================
+   RENDER RECIPES
+========================================================= */
+
+function renderRecipes(){
+
+  const filtered =
+    getFilteredRecipes();
+
+  const totalPages =
+    Math.max(
+      1,
+      Math.ceil(filtered.length / perPage)
+    );
+
+  if(currentPage > totalPages){
+    currentPage = totalPages;
+  }
+
+  const start =
+    (currentPage - 1) * perPage;
+
+  const currentRecipes =
+    filtered.slice(
+      start,
+      start + perPage
+    );
+
+
+  recipesGrid.innerHTML = "";
+
+
+  if(currentRecipes.length === 0){
+
+    recipesGrid.innerHTML = `
+      <div style="
+        grid-column:1/-1;
+        padding:80px 10px;
+        text-align:center;
+        font-weight:900;
+        font-size:18px;
+      ">
+        その条件のレシピはまだないみたい。
+      </div>
+    `;
+
+  }else{
+
+    currentRecipes.forEach(
+      (recipe,index) => {
+
+        const globalIndex =
+          start + index + 1;
+
+        const card =
+          document.createElement("article");
+
+        card.className =
+          "recipe-card";
+
+        card.innerHTML = `
+
+          <div class="recipe-photo">
+
+            <img
+              src="${recipe.image}"
+              alt="${recipe.name}"
+              loading="lazy"
+            >
+
+            <div class="recipe-number">
+              ${globalIndex}
+            </div>
+
+          </div>
+
+          <div class="recipe-info">
+
+            <h3 class="recipe-name">
+              ${recipe.name}
+            </h3>
+
+            <div class="recipe-tags">
+
+              ${recipe.tags.map(tag => `
+                <span class="recipe-tag">
+                  #${tag}
+                </span>
+              `).join("")}
+
+            </div>
+
+          </div>
+        `;
+
+        card.addEventListener(
+          "click",
+          () => openRecipe(recipe)
+        );
+
+        recipesGrid.appendChild(card);
+
+      }
+    );
+
+  }
+
+
+  renderPagination(
+    totalPages,
+    filtered.length
+  );
+
+  renderFilterStatus(
+    filtered.length
+  );
+
+}
+
+
+/* =========================================================
+   FILTER STATUS
+========================================================= */
+
+function renderFilterStatus(count){
+
+  const conditions = [];
+
+  if(activeTag){
+    conditions.push("#" + activeTag);
+  }
+
+  if(searchKeyword){
+    conditions.push(
+      `"${searchKeyword}"`
+    );
+  }
+
+  if(conditions.length){
+
+    filterStatus.innerHTML = `
+      ${conditions.join(" ＋ ")}
+      ／ ${count}件
+      <button
+        class="clear-filter"
+        onclick="clearFilters()"
+      >
+        すべて解除
+      </button>
+    `;
+
+  }else{
+
+    filterStatus.textContent =
+      `${recipes.length}件のレシピ`;
+
+  }
+
+}
+
+
+/* =========================================================
+   CLEAR FILTER
+========================================================= */
+
+function clearFilters(){
+
+  activeTag = "";
+
+  searchKeyword = "";
+
+  searchInput.value = "";
 
   document
-    .getElementById("recipeModal")
-    .classList.add("active");
+    .querySelectorAll(".category-btn")
+    .forEach(btn =>
+      btn.classList.remove("active")
+    );
 
-  document.body.style.overflow = "hidden";
+  currentPage = 1;
+
+  renderRecipes();
+
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+function renderPagination(
+  totalPages,
+  totalItems
+){
+
+  pagination.innerHTML = "";
+
+  if(totalPages <= 1){
+    return;
+  }
+
+
+  /* PREV */
+
+  const prev =
+    document.createElement("button");
+
+  prev.className =
+    "page-btn arrow";
+
+  prev.innerHTML = "‹";
+
+  prev.disabled =
+    currentPage === 1;
+
+  prev.addEventListener(
+    "click",
+    () => {
+
+      if(currentPage > 1){
+
+        currentPage--;
+
+        renderRecipes();
+
+        scrollToRecipes();
+
+      }
+
+    }
+  );
+
+  pagination.appendChild(prev);
+
+
+  /* PAGE NUMBERS */
+
+  for(
+    let page = 1;
+    page <= totalPages;
+    page++
+  ){
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "page-btn";
+
+    if(page === currentPage){
+      button.classList.add("active");
+    }
+
+    button.textContent = page;
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        currentPage = page;
+
+        renderRecipes();
+
+        scrollToRecipes();
+
+      }
+    );
+
+    pagination.appendChild(button);
+
+  }
+
+
+  /* NEXT */
+
+  const next =
+    document.createElement("button");
+
+  next.className =
+    "page-btn arrow";
+
+  next.innerHTML = "›";
+
+  next.disabled =
+    currentPage === totalPages;
+
+  next.addEventListener(
+    "click",
+    () => {
+
+      if(currentPage < totalPages){
+
+        currentPage++;
+
+        renderRecipes();
+
+        scrollToRecipes();
+
+      }
+
+    }
+  );
+
+  pagination.appendChild(next);
+
+}
+
+
+/* =========================================================
+   SCROLL
+========================================================= */
+
+function scrollToRecipes(){
+
+  const section =
+    document.getElementById("recipes");
+
+  const y =
+    section.getBoundingClientRect().top +
+    window.scrollY -
+    20;
+
+  window.scrollTo({
+    top:y,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+searchInput.addEventListener(
+  "input",
+  event => {
+
+    searchKeyword =
+      event.target.value;
+
+    currentPage = 1;
+
+    renderRecipes();
+
+  }
+);
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+const modal =
+  document.getElementById("recipeModal");
+
+const modalClose =
+  document.getElementById("modalClose");
+
+const modalImage =
+  document.getElementById("modalImage");
+
+const modalTitle =
+  document.getElementById("modalTitle");
+
+const modalTags =
+  document.getElementById("modalTags");
+
+const modalIngredients =
+  document.getElementById("modalIngredients");
+
+const modalSteps =
+  document.getElementById("modalSteps");
+
+
+function openRecipe(recipe){
+
+  modalImage.src =
+    recipe.image;
+
+  modalImage.alt =
+    recipe.name;
+
+  modalTitle.textContent =
+    recipe.name;
+
+
+  modalTags.innerHTML =
+    recipe.tags.map(tag => `
+      <span class="modal-tag">
+        #${tag}
+      </span>
+    `).join("");
+
+
+  modalIngredients.innerHTML =
+    recipe.ingredients.map(
+      item => `
+        <div class="ingredient">
+          <span>${item[0]}</span>
+          <strong>${item[1]}</strong>
+        </div>
+      `
+    ).join("");
+
+
+  modalSteps.innerHTML =
+    recipe.steps.map(
+      (step,index) => `
+        <div class="step">
+
+          <div class="step-number">
+            ${index + 1}
+          </div>
+
+          <div>
+            ${step}
+          </div>
+
+        </div>
+      `
+    ).join("");
+
+
+  modal.classList.add("open");
+
+  document.body.style.overflow =
+    "hidden";
+
 }
 
 
 function closeRecipe(){
 
-  document
-    .getElementById("recipeModal")
-    .classList.remove("active");
+  modal.classList.remove("open");
 
-  document.body.style.overflow = "";
+  document.body.style.overflow =
+    "";
+
 }
 
 
-document
-  .getElementById("recipeModal")
-  .addEventListener("click", function(e){
+modalClose.addEventListener(
+  "click",
+  closeRecipe
+);
 
-    if(e.target === this){
+
+modal.addEventListener(
+  "click",
+  event => {
+
+    if(event.target === modal){
       closeRecipe();
     }
 
-  });
-
-
-document.addEventListener("keydown", function(e){
-
-  if(e.key === "Escape"){
-    closeRecipe();
   }
+);
 
-});
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if(
+      event.key === "Escape" &&
+      modal.classList.contains("open")
+    ){
+      closeRecipe();
+    }
+
+  }
+);
+
+
+/* =========================================================
+   INITIAL
+========================================================= */
+
+renderRecipes();
 
 </script>
 
 </body>
 </html>
-```
