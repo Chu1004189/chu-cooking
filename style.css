@@ -330,25 +330,6 @@ html.skip-opening .opening{
   letter-spacing:.16em;
 }
 
-.hero-sticker{
-  position:absolute;
-  right:0;
-  bottom:30px;
-  width:145px;
-  height:145px;
-  border-radius:50%;
-  background:var(--yellow);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  font-size:12px;
-  line-height:1.3;
-  font-weight:900;
-  transform:rotate(10deg);
-  z-index:7;
-}
-
 .hero-visual{
   position:absolute;
   width:min(58vw,720px);
@@ -1231,14 +1212,6 @@ body.tag-page-mode .tag-page{
   z-index:1;
   opacity:.98;
 }
-
-  .hero-sticker{
-    width:100px;
-    height:100px;
-    right:0;
-    bottom:40px;
-    font-size:9px;
-  }
 
   .about{
     padding-top:70px;
