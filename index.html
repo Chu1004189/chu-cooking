@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CHU dot COOKING</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   BASIC
+========================= */
+
+:root{
+  --orange:#ff681f;
+  --orange2:#ff8a35;
+  --yellow:#ffd84d;
+  --pink:#ffaaa5;
+  --green:#b9d77a;
+  --cream:#fff6e9;
+  --white:#fffdf8;
+  --brown:#332018;
+  --black:#17120f;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--brown);
+  font-family:
+    "M PLUS Rounded 1c",
+    sans-serif;
+  overflow-x:hidden;
+}
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button{
+  font-family:inherit;
+}
+
+/* =========================
+   OPENING
+========================= */
+
+.opening{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:var(--orange);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  animation:openingOut 1s 2.8s forwards;
+}
+
+.opening-circle{
+  position:absolute;
+  width:10px;
+  height:10px;
+  background:var(--yellow);
+  border-radius:50%;
+  animation:circleGrow 1.1s .2s forwards;
+}
+
+.opening-dots{
+  position:absolute;
+  inset:0;
+}
+
+.opening-dots span{
+  position:absolute;
+  width:12px;
+  height:12px;
+  background:white;
+  border-radius:50%;
+  animation:dotPop .5s forwards;
+  opacity:0;
+}
+
+.opening-dots span:nth-child(1){
+  left:12%;
+  top:20%;
+  animation-delay:.4s;
+}
+
+.opening-dots span:nth-child(2){
+  left:84%;
+  top:26%;
+  animation-delay:.55s;
+}
+
+.opening-dots span:nth-child(3){
+  left:18%;
+  bottom:18%;
+  animation-delay:.7s;
+}
+
+.opening-dots span:nth-child(4){
+  right:14%;
+  bottom:20%;
+  animation-delay:.85s;
+}
+
+.opening-content{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  color:white;
+  opacity:0;
+  transform:scale(.8);
+  animation:openingContent 1s .8s forwards;
+}
+
+.opening-logo{
+  width:170px;
+  margin:0 auto 22px;
+  filter:brightness(0) invert(1);
+}
+
+.opening-title{
+  font-size:clamp(42px,8vw,90px);
+  line-height:.9;
+  font-weight:900;
+  letter-spacing:-4px;
+}
+
+.opening-sub{
+  margin-top:20px;
+  font-family:"DM Sans",sans-serif;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:4px;
+}
+
+@keyframes circleGrow{
+  to{
+    width:180vmax;
+    height:180vmax;
+  }
+}
+
+@keyframes openingContent{
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+@keyframes dotPop{
+  0%{
+    opacity:0;
+    transform:scale(0);
+  }
+  100%{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+@keyframes openingOut{
+  to{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+  }
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+  position:fixed;
+  z-index:100;
+  top:0;
+  left:0;
+  width:100%;
+  padding:20px 28px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  mix-blend-mode:multiply;
+}
+
+.header-logo{
+  font-family:"DM Sans",sans-serif;
+  font-weight:900;
+  font-size:20px;
+  letter-spacing:-1px;
+}
+
+.header-nav{
+  display:flex;
+  gap:25px;
+  font-family:"DM Sans",sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1px;
+}
+
+.header-nav a{
+  transition:.25s;
+}
+
+.header-nav a:hover{
+  color:var(--orange);
+  transform:rotate(-3deg);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  min-height:100vh;
+  padding:130px 5vw 70px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+}
+
+.hero-bg-text{
+  position:absolute;
+  top:80px;
+  left:-20px;
+  font-family:"DM Sans",sans-serif;
+  font-size:clamp(150px,25vw,380px);
+  font-weight:900;
+  line-height:.8;
+  color:rgba(255,104,31,.08);
+  letter-spacing:-20px;
+  white-space:nowrap;
+  pointer-events:none;
+}
+
+.hero-grid{
+  width:min(1300px,100%);
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  align-items:center;
+  position:relative;
+  z-index:2;
+}
+
+.hero-copy{
+  position:relative;
+}
+
+.hero-small{
+  display:inline-block;
+  background:var(--yellow);
+  padding:8px 14px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:800;
+  transform:rotate(-3deg);
+  margin-bottom:25px;
+}
+
+.hero h1{
+  margin:0;
+  font-size:clamp(55px,8vw,120px);
+  line-height:.95;
+  letter-spacing:-5px;
+  font-weight:900;
+}
+
+.hero h1 .accent{
+  color:var(--orange);
+  display:block;
+  transform:rotate(-2deg);
+}
+
+.hero-lead{
+  margin-top:30px;
+  max-width:560px;
+  font-size:18px;
+  line-height:1.9;
+  font-weight:700;
+}
+
+.hero-en{
+  margin-top:20px;
+  font-family:"DM Sans",sans-serif;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.hero-photo-wrap{
+  position:relative;
+}
+
+.hero-photo{
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  border-radius:35px;
+  transform:rotate(3deg);
+  box-shadow:18px 18px 0 var(--orange);
+}
+
+.hero-sticker{
+  position:absolute;
+  right:-25px;
+  top:20px;
+  width:125px;
+  height:125px;
+  background:var(--yellow);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-size:14px;
+  font-weight:900;
+  line-height:1.2;
+  transform:rotate(12deg);
+  box-shadow:5px 5px 0 var(--brown);
+}
+
+.hero-sticker.small{
+  width:90px;
+  height:90px;
+  left:-30px;
+  right:auto;
+  top:auto;
+  bottom:35px;
+  background:var(--pink);
+  transform:rotate(-12deg);
+}
+
+/* =========================
+   ORANGE MESSAGE
+========================= */
+
+.message{
+  background:var(--orange);
+  color:white;
+  padding:110px 5vw;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.message:before{
+  content:"YUMMY";
+  position:absolute;
+  font-family:"DM Sans",sans-serif;
+  font-size:25vw;
+  font-weight:900;
+  color:rgba(255,255,255,.07);
+  left:-20px;
+  bottom:-80px;
+}
+
+.message-inner{
+  position:relative;
+  z-index:2;
+  max-width:1000px;
+  margin:auto;
+}
+
+.message-label{
+  font-family:"DM Sans",sans-serif;
+  font-size:12px;
+  letter-spacing:4px;
+  font-weight:700;
+}
+
+.message h2{
+  font-size:clamp(45px,7vw,100px);
+  line-height:1;
+  margin:25px 0;
+  font-weight:900;
+  letter-spacing:-4px;
+}
+
+.message p{
+  font-size:17px;
+  line-height:2;
+  font-weight:700;
+}
+
+/* =========================
+   PHOTO PLAYGROUND
+========================= */
+
+.playground{
+  padding:120px 5vw;
+  background:var(--yellow);
+  overflow:hidden;
+}
+
+.playground-inner{
+  width:min(1250px,100%);
+  margin:auto;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:30px;
+  margin-bottom:55px;
+}
+
+.section-head h2{
+  margin:0;
+  font-size:clamp(45px,7vw,95px);
+  line-height:.9;
+  letter-spacing:-5px;
+  font-weight:900;
+}
+
+.section-head p{
+  max-width:350px;
+  line-height:1.8;
+  font-weight:700;
+}
+
+.photo-collage{
+  display:grid;
+  grid-template-columns:1.1fr .8fr .8fr;
+  grid-template-rows:300px 230px;
+  gap:18px;
+}
+
+.collage-item{
+  overflow:hidden;
+  border:5px solid var(--brown);
+  background:white;
+  position:relative;
+}
+
+.collage-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.5s;
+}
+
+.collage-item:hover img{
+  transform:scale(1.07);
+}
+
+.collage-item:nth-child(1){
+  grid-row:span 2;
+  transform:rotate(-2deg);
+}
+
+.collage-item:nth-child(2){
+  transform:rotate(2deg);
+}
+
+.collage-item:nth-child(3){
+  transform:rotate(-1deg);
+}
+
+.collage-item:nth-child(4){
+  grid-column:span 2;
+  transform:rotate(1deg);
+}
+
+.photo-label{
+  position:absolute;
+  left:15px;
+  bottom:15px;
+  background:white;
+  padding:8px 13px;
+  font-size:12px;
+  font-weight:900;
+  transform:rotate(-3deg);
+}
+
+/* =========================
+   RECIPES
+========================= */
+
+.recipes{
+  padding:130px 5vw;
+  background:var(--cream);
+}
+
+.recipes-inner{
+  width:min(1250px,100%);
+  margin:auto;
+}
+
+.recipe-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-bottom:60px;
+}
+
+.recipe-top h2{
+  font-size:clamp(55px,8vw,110px);
+  margin:0;
+  line-height:.8;
+  letter-spacing:-6px;
+}
+
+.recipe-top span{
+  font-family:"DM Sans",sans-serif;
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:2px;
+}
+
+.recipe-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:22px;
+}
+
+.recipe-card{
+  grid-column:span 4;
+  background:white;
+  border-radius:25px;
+  overflow:hidden;
+  cursor:pointer;
+  box-shadow:7px 7px 0 rgba(51,32,24,.15);
+  transition:.3s;
+}
+
+.recipe-card:nth-child(1),
+.recipe-card:nth-child(4){
+  grid-column:span 6;
+}
+
+.recipe-card:hover{
+  transform:translateY(-8px) rotate(-1deg);
+  box-shadow:12px 14px 0 rgba(51,32,24,.18);
+}
+
+.recipe-image{
+  aspect-ratio:1.35/1;
+  overflow:hidden;
+  position:relative;
+}
+
+.recipe-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.5s;
+}
+
+.recipe-card:hover .recipe-image img{
+  transform:scale(1.06);
+}
+
+.recipe-tag{
+  position:absolute;
+  top:15px;
+  left:15px;
+  background:var(--orange);
+  color:white;
+  padding:7px 12px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:900;
+}
+
+.recipe-info{
+  padding:22px;
+}
+
+.recipe-info h3{
+  margin:0;
+  font-size:23px;
+  line-height:1.3;
+}
+
+.recipe-info p{
+  margin:10px 0 0;
+  font-size:12px;
+  color:#806d62;
+}
+
+.recipe-arrow{
+  margin-top:20px;
+  font-family:"DM Sans",sans-serif;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+/* =========================
+   CATEGORY
+========================= */
+
+.category{
+  padding:110px 5vw;
+  background:var(--pink);
+}
+
+.category-inner{
+  width:min(1200px,100%);
+  margin:auto;
+}
+
+.category-title{
+  font-size:clamp(45px,7vw,90px);
+  font-weight:900;
+  line-height:.9;
+  letter-spacing:-5px;
+  margin:0 0 50px;
+}
+
+.category-list{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.category-item{
+  min-height:230px;
+  padding:25px;
+  border:4px solid var(--brown);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:.3s;
+}
+
+.category-item:nth-child(1){
+  background:var(--orange);
+  color:white;
+}
+
+.category-item:nth-child(2){
+  background:var(--green);
+}
+
+.category-item:nth-child(3){
+  background:var(--yellow);
+}
+
+.category-item:nth-child(4){
+  background:var(--white);
+}
+
+.category-item:hover{
+  transform:rotate(-3deg) translateY(-7px);
+}
+
+.category-number{
+  font-family:"DM Sans",sans-serif;
+  font-size:13px;
+  font-weight:900;
+}
+
+.category-item h3{
+  margin:0;
+  font-size:35px;
+  font-weight:900;
+}
+
+.category-item span{
+  font-family:"DM Sans",sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:1px;
+}
+
+/* =========================
+   ARCHIVE
+========================= */
+
+.archive{
+  background:var(--brown);
+  color:white;
+  padding:120px 5vw;
+}
+
+.archive-inner{
+  width:min(1200px,100%);
+  margin:auto;
+}
+
+.archive-title{
+  font-size:clamp(50px,8vw,110px);
+  line-height:.8;
+  letter-spacing:-6px;
+  margin:0 0 60px;
+}
+
+.archive-row{
+  border-top:1px solid rgba(255,255,255,.3);
+  padding:22px 0;
+  display:grid;
+  grid-template-columns:120px 1fr 100px;
+  gap:20px;
+  align-items:center;
+}
+
+.archive-row:last-child{
+  border-bottom:1px solid rgba(255,255,255,.3);
+}
+
+.archive-year{
+  color:var(--yellow);
+  font-family:"DM Sans",sans-serif;
+  font-weight:900;
+}
+
+.archive-name{
+  font-size:20px;
+  font-weight:800;
+}
+
+.archive-cat{
+  text-align:right;
+  font-family:"DM Sans",sans-serif;
+  font-size:11px;
+}
+
+/* =========================
+   FINAL
+========================= */
+
+.final{
+  min-height:75vh;
+  background:var(--orange);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:80px 5vw;
+  position:relative;
+  overflow:hidden;
+}
+
+.final h2{
+  font-family:"DM Sans",sans-serif;
+  font-size:clamp(80px,15vw,210px);
+  line-height:.78;
+  letter-spacing:-12px;
+  margin:0;
+  font-weight:900;
+}
+
+.final-jp{
+  margin-top:45px;
+  font-size:clamp(20px,3vw,38px);
+  font-weight:900;
+}
+
+.final-sticker{
+  position:absolute;
+  background:var(--yellow);
+  color:var(--brown);
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  line-height:1.2;
+  transform:rotate(15deg);
+}
+
+.final-sticker.one{
+  top:18%;
+  left:8%;
+}
+
+.final-sticker.two{
+  bottom:15%;
+  right:8%;
+  background:var(--pink);
+  transform:rotate(-12deg);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  background:var(--cream);
+  padding:40px 5vw;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-family:"DM Sans",sans-serif;
+  font-size:11px;
+  font-weight:700;
+}
+
+.footer-logo{
+  font-size:18px;
+  font-weight:900;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:500;
+  background:rgba(23,18,15,.75);
+  backdrop-filter:blur(10px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+}
+
+.modal.active{
+  display:flex;
+}
+
+.modal-box{
+  width:min(900px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:var(--cream);
+  border-radius:30px;
+  position:relative;
+  padding:35px;
+}
+
+.modal-close{
+  position:absolute;
+  top:18px;
+  right:18px;
+  width:45px;
+  height:45px;
+  border:0;
+  border-radius:50%;
+  background:var(--orange);
+  color:white;
+  font-size:25px;
+  cursor:pointer;
+}
+
+.modal-title{
+  font-size:clamp(35px,5vw,65px);
+  line-height:1;
+  margin:0 50px 30px 0;
+  font-weight:900;
+}
+
+.modal-content{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+}
+
+.modal-section h4{
+  font-size:12px;
+  letter-spacing:2px;
+  margin-bottom:15px;
+}
+
+.modal-section ul,
+.modal-section ol{
+  padding-left:20px;
+  line-height:2;
+}
+
+.modal-section li{
+  margin-bottom:5px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:800px){
+
+  .header{
+    padding:17px 18px;
+  }
+
+  .header-nav{
+    display:none;
+  }
+
+  .hero{
+    padding:120px 20px 70px;
+  }
+
+  .hero-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    letter-spacing:-3px;
+  }
+
+  .hero-photo-wrap{
+    width:85%;
+    margin:20px auto 0;
+  }
+
+  .hero-sticker{
+    right:-10px;
+  }
+
+  .photo-collage{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:240px 180px 180px;
+  }
+
+  .collage-item:nth-child(1){
+    grid-row:span 2;
+  }
+
+  .collage-item:nth-child(4){
+    grid-column:span 2;
+  }
+
+  .recipe-grid{
+    display:grid;
+    grid-template-columns:1fr;
+  }
+
+  .recipe-card,
+  .recipe-card:nth-child(1),
+  .recipe-card:nth-child(4){
+    grid-column:span 1;
+  }
+
+  .category-list{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .archive-row{
+    grid-template-columns:70px 1fr;
+  }
+
+  .archive-cat{
+    display:none;
+  }
+
+  .modal-content{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+
+  .footer{
+    flex-direction:column;
+    gap:10px;
+  }
+}
+
+@media(max-width:480px){
+
+  .hero-photo{
+    box-shadow:10px 10px 0 var(--orange);
+  }
+
+  .photo-collage{
+    display:flex;
+    flex-direction:column;
+  }
+
+  .collage-item{
+    height:260px;
+  }
+
+  .category-list{
+    grid-template-columns:1fr;
+  }
+
+  .category-item{
+    min-height:180px;
+  }
+
+  .final h2{
+    letter-spacing:-6px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     OPENING
+========================= -->
+
+<div class="opening">
+
+  <div class="opening-circle"></div>
+
+  <div class="opening-dots">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="opening-content">
+
+    <img
+      src="logo.png"
+      class="opening-logo"
+      alt="CHU dot COOKING"
+    >
+
+    <div class="opening-title">
+      CHU dot<br>
+      COOKING
+    </div>
+
+    <div class="opening-sub">
+      MY FOOD / MY RULES
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+  <a href="#" class="header-logo">
+    CHU dot COOKING
+  </a>
+
+  <nav class="header-nav">
+    <a href="#about">ABOUT</a>
+    <a href="#recipes">RECIPES</a>
+    <a href="#category">CATEGORY</a>
+    <a href="#archive">ARCHIVE</a>
+  </nav>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="about">
+
+  <div class="hero-bg-text">
+    FOOD
+  </div>
+
+  <div class="hero-grid">
+
+    <div class="hero-copy">
+
+      <div class="hero-small">
+        MY KITCHEN / MY RULES
+      </div>
+
+      <h1>
+        俺の作る
+        <span class="accent">
+          飯が一番美味い！
+        </span>
+      </h1>
+
+      <p class="hero-lead">
+        好きなものを、好きなように。
+        ちょっとこだわって、ちゃんと美味しく。
+        日々の「うまい」を残していく料理サイト。
+      </p>
+
+      <div class="hero-en">
+        COOK IT. EAT IT. LOVE IT.
+      </div>
+
+    </div>
+
+
+    <div class="hero-photo-wrap">
+
+      <!-- 仮画像 -->
+      <img
+        class="hero-photo"
+        src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=85"
+        alt="料理のイメージ"
+      >
+
+      <div class="hero-sticker">
+        うまいは<br>
+        正義。
+      </div>
+
+      <div class="hero-sticker small">
+        LET'S<br>
+        EAT!
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     MESSAGE
+========================= -->
+
+<section class="message">
+
+  <div class="message-inner">
+
+    <div class="message-label">
+      ABOUT CHU dot COOKING
+    </div>
+
+    <h2>
+      うまいものは、<br>
+      自分で作る。
+    </h2>
+
+    <p>
+      レシピ通りじゃなくてもいい。<br>
+      ちょっと味を濃くしてもいい。<br>
+      最後に黒胡椒を多めに振ってもいい。<br><br>
+
+      「自分が一番うまいと思う飯」を<br>
+      自分のキッチンから。
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PHOTO PLAYGROUND
+========================= -->
+
+<section class="playground">
+
+  <div class="playground-inner">
+
+    <div class="section-head">
+
+      <h2>
+        今日の<br>
+        うまい。
+      </h2>
+
+      <p>
+        料理は味だけじゃない。<br>
+        焼ける音、立ち上がる湯気、<br>
+        盛り付ける瞬間まで全部楽しい。
+      </p>
+
+    </div>
+
+
+    <div class="photo-collage">
+
+      <div class="collage-item">
+
+        <img
+          src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1000&q=85"
+          alt="麺料理"
+        >
+
+        <div class="photo-label">
+          NOODLES
+        </div>
+
+      </div>
+
+
+      <div class="collage-item">
+
+        <img
+          src="https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=85"
+          alt="チキン料理"
+        >
+
+        <div class="photo-label">
+          MEAT
+        </div>
+
+      </div>
+
+
+      <div class="collage-item">
+
+        <img
+          src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85"
+          alt="ご飯料理"
+        >
+
+        <div class="photo-label">
+          RICE
+        </div>
+
+      </div>
+
+
+      <div class="collage-item">
+
+        <img
+          src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=85"
+          alt="野菜料理"
+        >
+
+        <div class="photo-label">
+          SIDE DISH
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     RECIPES
+========================= -->
+
+<section class="recipes" id="recipes">
+
+  <div class="recipes-inner">
+
+    <div class="recipe-top">
+
+      <h2>
+        RECIPES
+      </h2>
+
+      <span>
+        COOK / EAT / REPEAT
+      </span>
+
+    </div>
+
+
+    <div class="recipe-grid">
+
+
+      <!-- 01 -->
+
+      <article
+        class="recipe-card"
+        onclick="openRecipe(0)"
+      >
+
+        <div class="recipe-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1200&q=85"
+            alt="海老塩焼きそば"
+          >
+
+          <div class="recipe-tag">
+            麺
+          </div>
+
+        </div>
+
+        <div class="recipe-info">
+
+          <h3>
+            海老塩焼きそば
+          </h3>
+
+          <p>
+            海老の旨味と黒胡椒を効かせた塩焼きそば。
+          </p>
+
+          <div class="recipe-arrow">
+            VIEW RECIPE →
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- 02 -->
+
+      <article
+        class="recipe-card"
+        onclick="openRecipe(1)"
+      >
+
+        <div class="recipe-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=85"
+            alt="チキンソテー"
+          >
+
+          <div class="recipe-tag">
+            肉
+          </div>
+
+        </div>
+
+        <div class="recipe-info">
+
+          <h3>
+            鶏むね肉のレモン醤油ソテー
+          </h3>
+
+          <p>
+            さっぱりだけど、ご飯が進む。
+          </p>
+
+          <div class="recipe-arrow">
+            VIEW RECIPE →
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- 03 -->
+
+      <article
+        class="recipe-card"
+        onclick="openRecipe(2)"
+      >
+
+        <div class="recipe-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=85"
+            alt="野菜料理"
+          >
+
+          <div class="recipe-tag">
+            副菜
+          </div>
+
+        </div>
+
+        <div class="recipe-info">
+
+          <h3>
+            とろ旨麻婆なす
+          </h3>
+
+          <p>
+            とろっとした茄子にピリ辛の旨味。
+          </p>
+
+          <div class="recipe-arrow">
+            VIEW RECIPE →
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- 04 -->
+
+      <article
+        class="recipe-card"
+        onclick="openRecipe(3)"
+      >
+
+        <div class="recipe-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1200&q=85"
+            alt="チキンライス"
+          >
+
+          <div class="recipe-tag">
+            ご飯
+          </div>
+
+        </div>
+
+        <div class="recipe-info">
+
+          <h3>
+            炊飯器スパイスチキンライス
+          </h3>
+
+          <p>
+            炊飯器に入れて炊くだけのごちそうご飯。
+          </p>
+
+          <div class="recipe-arrow">
+            VIEW RECIPE →
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- 05 -->
+
+      <article
+        class="recipe-card"
+        onclick="openRecipe(4)"
+      >
+
+        <div class="recipe-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1000&q=85"
+            alt="パスタ"
+          >
+
+          <div class="recipe-tag">
+            麺
+          </div>
+
+        </div>
+
+        <div class="recipe-info">
+
+          <h3>
+            とろけるチーズの焼きナポリタン
+          </h3>
+
+          <p>
+            チーズをのせて最後まで熱々。
+          </p>
+
+          <div class="recipe-arrow">
+            VIEW RECIPE →
+          </div>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CATEGORY
+========================= -->
+
+<section class="category" id="category">
+
+  <div class="category-inner">
+
+    <h2 class="category-title">
+      なに食べる？
+    </h2>
+
+    <div class="category-list">
+
+      <div class="category-item">
+
+        <div class="category-number">
+          01
+        </div>
+
+        <h3>
+          麺
+        </h3>
+
+        <span>
+          NOODLES
+        </span>
+
+      </div>
+
+
+      <div class="category-item">
+
+        <div class="category-number">
+          02
+        </div>
+
+        <h3>
+          肉
+        </h3>
+
+        <span>
+          MEAT
+        </span>
+
+      </div>
+
+
+      <div class="category-item">
+
+        <div class="category-number">
+          03
+        </div>
+
+        <h3>
+          ご飯
+        </h3>
+
+        <span>
+          RICE
+        </span>
+
+      </div>
+
+
+      <div class="category-item">
+
+        <div class="category-number">
+          04
+        </div>
+
+        <h3>
+          副菜
+        </h3>
+
+        <span>
+          SIDE DISH
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ARCHIVE
+========================= -->
+
+<section class="archive" id="archive">
+
+  <div class="archive-inner">
+
+    <h2 class="archive-title">
+      FOOD<br>
+      ARCHIVE
+    </h2>
+
+
+    <div class="archive-row">
+
+      <div class="archive-year">
+        001
+      </div>
+
+      <div class="archive-name">
+        海老塩焼きそば
+      </div>
+
+      <div class="archive-cat">
+        NOODLES
+      </div>
+
+    </div>
+
+
+    <div class="archive-row">
+
+      <div class="archive-year">
+        002
+      </div>
+
+      <div class="archive-name">
+        鶏むね肉のレモン醤油ソテー
+      </div>
+
+      <div class="archive-cat">
+        MEAT
+      </div>
+
+    </div>
+
+
+    <div class="archive-row">
+
+      <div class="archive-year">
+        003
+      </div>
+
+      <div class="archive-name">
+        とろ旨麻婆なす
+      </div>
+
+      <div class="archive-cat">
+        SIDE DISH
+      </div>
+
+    </div>
+
+
+    <div class="archive-row">
+
+      <div class="archive-year">
+        004
+      </div>
+
+      <div class="archive-name">
+        炊飯器スパイスチキンライス
+      </div>
+
+      <div class="archive-cat">
+        RICE
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FINAL
+========================= -->
+
+<section class="final">
+
+  <div class="final-sticker one">
+    お腹<br>
+    すいた？
+  </div>
+
+  <div class="final-sticker two">
+    EAT<br>
+    MORE!
+  </div>
+
+  <div>
+
+    <h2>
+      MAKE IT.<br>
+      EAT IT.
+    </h2>
+
+    <div class="final-jp">
+      今日も、自分の飯が一番うまい。
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+  <div class="footer-logo">
+    CHU dot COOKING
+  </div>
+
+  <div>
+    © 2026 CHU dot COOKING
+  </div>
+
+  <div>
+    MADE WITH HUNGER.
+  </div>
+
+</footer>
+
+
+<!-- =========================
+     MODAL
+========================= -->
+
+<div class="modal" id="recipeModal">
+
+  <div class="modal-box">
+
+    <button
+      class="modal-close"
+      onclick="closeRecipe()"
+    >
+      ×
+    </button>
+
+    <h2
+      class="modal-title"
+      id="modalTitle"
+    ></h2>
+
+    <div class="modal-content">
+
+      <div class="modal-section">
+
+        <h4>
+          INGREDIENTS
+        </h4>
+
+        <ul id="modalIngredients"></ul>
+
+      </div>
+
+      <div class="modal-section">
+
+        <h4>
+          HOW TO COOK
+        </h4>
+
+        <ol id="modalSteps"></ol>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   RECIPE DATA
+========================= */
+
+const recipes = [
+
+  {
+    title:"海老塩焼きそば",
+
+    ingredients:[
+      "海老 — 好きなだけ",
+      "中華麺 — 2玉",
+      "もやし — 1/2袋",
+      "長ネギ or 小口ネギ — 適量",
+      "あげ玉 — 適量",
+      "ごま油 — 適量",
+      "塩コショウ — 3g",
+      "黒胡椒 — 適量・強気",
+      "砂糖 — 7g",
+      "醤油 — 2g",
+      "料理酒 — 15g",
+      "鶏ガラの素 — 4g",
+      "煮干し粉 — 3g",
+      "おろしにんにく — 15g",
+      "茹で汁 — 25cc"
+    ],
+
+    steps:[
+      "鉄鍋に塩コショウを振った海老をごま油で炒め、汁ごと別容器へ移す。",
+      "中華麺を別鍋で表示時間通りに茹でる。",
+      "茹で汁、塩コショウ、黒胡椒、砂糖、醤油、料理酒、鶏ガラの素、煮干し粉、おろしにんにくを混ぜる。",
+      "麺が茹で上がったら流水でぬめりを洗い流す。",
+      "海老を炒めた鉄鍋にごま油を敷き、強火で麺を炒めて焼き目をつける。",
+      "海老、もやし、ネギ、塩ダレを加えて強火で混ぜる。",
+      "仕上げにあげ玉を加えて盛り付ける。"
+    ]
+  },
+
+
+  {
+    title:"鶏むね肉のレモン醤油ソテー",
+
+    ingredients:[
+      "鶏むね肉 — 1枚",
+      "醤油 — 適量",
+      "レモン汁 — 適量",
+      "にんにく — 少々",
+      "黒胡椒 — 少々"
+    ],
+
+    steps:[
+      "鶏むね肉を食べやすい厚さに切る。",
+      "調味料を合わせて下味をつける。",
+      "フライパンで両面を焼く。",
+      "仕上げにレモン汁と黒胡椒を加える。"
+    ]
+  },
+
+
+  {
+    title:"とろ旨麻婆なす",
+
+    ingredients:[
+      "なす — 適量",
+      "豚ひき肉 — 適量",
+      "長ネギ — 適量",
+      "甜麺醤 — 適量",
+      "豆板醤 — 適量",
+      "花椒 — 適量"
+    ],
+
+    steps:[
+      "なすを食べやすい大きさに切る。",
+      "ひき肉を炒める。",
+      "豆板醤と甜麺醤を加える。",
+      "なすを加えて火を通す。",
+      "仕上げに花椒を振る。"
+    ]
+  },
+
+
+  {
+    title:"炊飯器スパイスチキンライス",
+
+    ingredients:[
+      "米 — 2合",
+      "鶏肉 — 適量",
+      "カレー粉 — 適量",
+      "クミン — 適量",
+      "ヨーグルト — 適量",
+      "にんにく — 適量",
+      "しょうが — 適量",
+      "トマト — 適量"
+    ],
+
+    steps:[
+      "米を研いで炊飯器に入れる。",
+      "調味料と具材を加える。",
+      "通常炊飯する。",
+      "炊き上がったら全体を混ぜる。"
+    ]
+  },
+
+
+  {
+    title:"とろけるチーズの焼きナポリタン",
+
+    ingredients:[
+      "スパゲッティ — 1人前",
+      "ウインナー — 適量",
+      "玉ねぎ — 適量",
+      "ケチャップ — 適量",
+      "チーズ — 好きなだけ"
+    ],
+
+    steps:[
+      "スパゲッティを茹でる。",
+      "具材を炒める。",
+      "ケチャップを加えて炒める。",
+      "麺を加えて混ぜる。",
+      "チーズをのせて焼く。"
+    ]
+  }
+
+];
+
+
+/* =========================
+   MODAL
+========================= */
+
+function openRecipe(index){
+
+  const recipe = recipes[index];
+
+  document.getElementById("modalTitle").textContent =
+    recipe.title;
+
+  const ingredients =
+    document.getElementById("modalIngredients");
+
+  const steps =
+    document.getElementById("modalSteps");
+
+  ingredients.innerHTML = "";
+  steps.innerHTML = "";
+
+  recipe.ingredients.forEach(item => {
+
+    const li = document.createElement("li");
+
+    li.textContent = item;
+
+    ingredients.appendChild(li);
+
+  });
+
+  recipe.steps.forEach(item => {
+
+    const li = document.createElement("li");
+
+    li.textContent = item;
+
+    steps.appendChild(li);
+
+  });
+
+  document
+    .getElementById("recipeModal")
+    .classList.add("active");
+
+  document.body.style.overflow = "hidden";
+}
+
+
+function closeRecipe(){
+
+  document
+    .getElementById("recipeModal")
+    .classList.remove("active");
+
+  document.body.style.overflow = "";
+}
+
+
+document
+  .getElementById("recipeModal")
+  .addEventListener("click", function(e){
+
+    if(e.target === this){
+      closeRecipe();
+    }
+
+  });
+
+
+document.addEventListener("keydown", function(e){
+
+  if(e.key === "Escape"){
+    closeRecipe();
+  }
+
+});
+
+
+</script>
+
+</body>
+</html>
