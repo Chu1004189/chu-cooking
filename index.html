@@ -24,9 +24,14 @@ body {
     "Hiragino Kaku Gothic ProN",
     "Yu Gothic",
     sans-serif;
-  background: #f7f5f0;
+  background: #f5f3ee;
   color: #171717;
   overflow-x: hidden;
+}
+
+button,
+input {
+  font: inherit;
 }
 
 /* =========================
@@ -46,16 +51,15 @@ body {
 
 .opening-inner {
   text-align: center;
-  animation: logoIn 1.4s cubic-bezier(.16,1,.3,1) forwards;
 }
 
 .opening-logo {
-  width: min(70vw, 430px);
+  width: min(72vw, 440px);
   max-height: 180px;
   object-fit: contain;
   opacity: 0;
   filter: brightness(0) invert(1);
-  animation: logoAppear 1.5s cubic-bezier(.16,1,.3,1) .2s forwards;
+  animation: logoAppear 1.4s cubic-bezier(.16,1,.3,1) .2s forwards;
 }
 
 .opening-line {
@@ -63,13 +67,13 @@ body {
   height: 1px;
   background: #fff;
   margin: 28px auto 0;
-  animation: lineGrow 1.2s ease 1.1s forwards;
+  animation: lineGrow 1.1s ease 1.1s forwards;
 }
 
 .opening-text {
   margin-top: 18px;
   color: #fff;
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: .45em;
   opacity: 0;
   animation: textAppear 1s ease 1.6s forwards;
@@ -78,8 +82,8 @@ body {
 @keyframes logoAppear {
   0% {
     opacity: 0;
-    transform: scale(.85);
-    filter: brightness(0) invert(1) blur(10px);
+    transform: scale(.82);
+    filter: brightness(0) invert(1) blur(12px);
   }
   100% {
     opacity: 1;
@@ -93,15 +97,11 @@ body {
 }
 
 @keyframes textAppear {
-  to { opacity: .7; }
+  to { opacity: .65; }
 }
 
 @keyframes openingOut {
-  0% {
-    opacity: 1;
-    visibility: visible;
-  }
-  100% {
+  to {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -118,17 +118,18 @@ header {
   left: 0;
   width: 100%;
   z-index: 1000;
-  padding: 22px 5vw;
+  padding: 20px 5vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  mix-blend-mode: difference;
-  color: white;
+  background: rgba(245,243,238,.72);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0,0,0,.06);
 }
 
 .header-logo {
-  font-size: 15px;
-  font-weight: 800;
+  font-size: 14px;
+  font-weight: 900;
   letter-spacing: .12em;
 }
 
@@ -138,15 +139,19 @@ nav {
 }
 
 nav a {
-  color: white;
+  color: #171717;
   text-decoration: none;
-  font-size: 11px;
-  letter-spacing: .15em;
-  transition: opacity .3s;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .18em;
 }
 
-nav a:hover {
-  opacity: .5;
+.menu-button {
+  display: none;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-size: 20px;
 }
 
 /* =========================
@@ -155,27 +160,27 @@ nav a:hover {
 
 .hero {
   min-height: 100vh;
-  background:
-    radial-gradient(circle at 75% 25%, rgba(210,180,130,.22), transparent 30%),
-    radial-gradient(circle at 15% 75%, rgba(0,0,0,.06), transparent 30%),
-    #eeeae1;
+  padding: 150px 7vw 90px;
   display: flex;
   align-items: center;
-  padding: 130px 7vw 80px;
   position: relative;
   overflow: hidden;
+  background:
+    radial-gradient(circle at 75% 25%, rgba(183,147,103,.22), transparent 28%),
+    radial-gradient(circle at 10% 80%, rgba(0,0,0,.06), transparent 30%),
+    #eeeae1;
 }
 
 .hero::before {
   content: "COOK";
   position: absolute;
   right: -4vw;
-  bottom: -7vw;
-  font-size: clamp(150px, 25vw, 420px);
+  bottom: -5vw;
+  font-size: clamp(150px, 25vw, 430px);
   font-weight: 900;
   line-height: .8;
   color: rgba(0,0,0,.035);
-  letter-spacing: -.08em;
+  letter-spacing: -.09em;
 }
 
 .hero-content {
@@ -185,16 +190,16 @@ nav a:hover {
 }
 
 .eyebrow {
-  font-size: 11px;
-  letter-spacing: .35em;
+  font-size: 10px;
+  letter-spacing: .38em;
+  opacity: .5;
   margin-bottom: 25px;
-  opacity: .55;
 }
 
 .hero h1 {
-  font-size: clamp(52px, 9vw, 130px);
-  line-height: .88;
-  letter-spacing: -.07em;
+  font-size: clamp(55px, 9vw, 135px);
+  line-height: .84;
+  letter-spacing: -.08em;
   font-weight: 900;
 }
 
@@ -203,24 +208,25 @@ nav a:hover {
 }
 
 .hero-description {
-  margin-top: 40px;
+  margin-top: 42px;
   max-width: 500px;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 2;
-  color: #555;
+  color: #666;
 }
 
 .scroll {
   position: absolute;
-  bottom: 35px;
   left: 7vw;
+  bottom: 30px;
+  writing-mode: vertical-rl;
   font-size: 9px;
   letter-spacing: .3em;
-  writing-mode: vertical-rl;
+  opacity: .5;
 }
 
 /* =========================
-   SECTION
+   COMMON
 ========================= */
 
 section {
@@ -235,15 +241,204 @@ section {
 }
 
 .section-number {
-  font-size: 10px;
+  font-size: 9px;
   letter-spacing: .3em;
   opacity: .45;
+  margin-bottom: 12px;
 }
 
 .section-title {
-  font-size: clamp(35px, 5vw, 70px);
-  letter-spacing: -.06em;
-  line-height: 1;
+  font-size: clamp(40px, 6vw, 75px);
+  line-height: .9;
+  letter-spacing: -.07em;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-section {
+  background: #f5f3ee;
+  padding-bottom: 80px;
+}
+
+.search-area {
+  max-width: 900px;
+  margin: auto;
+}
+
+.search-box {
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 22px 5px;
+  border: 0;
+  border-bottom: 1px solid #222;
+  outline: none;
+  background: transparent;
+  font-size: 20px;
+}
+
+.search-box input::placeholder {
+  color: #aaa;
+}
+
+.category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 25px;
+}
+
+.category-button {
+  border: 1px solid #bbb;
+  background: transparent;
+  padding: 9px 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 10px;
+  letter-spacing: .08em;
+  transition: .25s;
+}
+
+.category-button:hover,
+.category-button.active {
+  background: #171717;
+  color: #fff;
+  border-color: #171717;
+}
+
+/* =========================
+   RECIPES
+========================= */
+
+.recipes-section {
+  background: #f5f3ee;
+  padding-top: 20px;
+}
+
+.recipe-count {
+  font-size: 10px;
+  opacity: .45;
+}
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.recipe-card {
+  background: #fff;
+  cursor: pointer;
+  overflow: hidden;
+  transition: .4s ease;
+  border: 1px solid rgba(0,0,0,.04);
+}
+
+.recipe-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 60px rgba(0,0,0,.10);
+}
+
+.recipe-photo {
+  height: 290px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 仮料理ビジュアル */
+
+.photo-shrimp {
+  background:
+    radial-gradient(ellipse at center, #d99555 0 13%, transparent 14%),
+    radial-gradient(ellipse at 30% 40%, #e5a76d 0 10%, transparent 11%),
+    radial-gradient(ellipse at 70% 55%, #d68a4e 0 11%, transparent 12%),
+    radial-gradient(ellipse at center, #927458 0 35%, #493b32 36% 70%, #252525 71%);
+}
+
+.photo-pasta {
+  background:
+    radial-gradient(ellipse at center, #e3a83e 0 32%, #b66e1e 33% 39%, transparent 40%),
+    linear-gradient(135deg, #bda078, #5e4938);
+}
+
+.photo-chicken {
+  background:
+    radial-gradient(ellipse at center, #d8aa65 0 28%, #987046 29% 38%, transparent 39%),
+    linear-gradient(135deg, #d6c6a8, #655743);
+}
+
+.photo-mabo {
+  background:
+    radial-gradient(ellipse at center, #963d29 0 30%, #54221b 31% 40%, transparent 41%),
+    linear-gradient(135deg, #aa8a6b, #493b31);
+}
+
+.photo-rice {
+  background:
+    radial-gradient(ellipse at center, #d8c78f 0 33%, #96784d 34% 40%, transparent 41%),
+    linear-gradient(135deg, #c1a477, #514331);
+}
+
+.photo-pork {
+  background:
+    radial-gradient(ellipse at center, #d58f72 0 30%, #8d5141 31% 39%, transparent 40%),
+    linear-gradient(135deg, #d0b99a, #625143);
+}
+
+.photo-label {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  color: white;
+  font-size: 8px;
+  letter-spacing: .3em;
+  text-shadow: 0 1px 5px rgba(0,0,0,.5);
+}
+
+.recipe-info {
+  padding: 24px;
+}
+
+.recipe-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  letter-spacing: .12em;
+  color: #999;
+}
+
+.recipe-info h3 {
+  margin-top: 12px;
+  font-size: 22px;
+  letter-spacing: -.05em;
+}
+
+.recipe-info p {
+  margin-top: 10px;
+  font-size: 11px;
+  line-height: 1.8;
+  color: #777;
+}
+
+.recipe-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 16px;
+}
+
+.recipe-tag {
+  padding: 5px 8px;
+  background: #f1efe9;
+  font-size: 8px;
+  color: #777;
 }
 
 /* =========================
@@ -251,8 +446,8 @@ section {
 ========================= */
 
 .categories {
-  background: #151515;
-  color: white;
+  background: #171717;
+  color: #fff;
 }
 
 .category-grid {
@@ -263,107 +458,35 @@ section {
 }
 
 .category {
-  min-height: 260px;
-  background: #151515;
-  padding: 35px;
+  min-height: 250px;
+  padding: 30px;
+  background: #171717;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: .5s ease;
-  cursor: pointer;
+  transition: .4s;
 }
 
 .category:hover {
-  background: #252525;
-  transform: translateY(-8px);
+  background: #292929;
+  transform: translateY(-5px);
 }
 
 .category-number {
-  font-size: 10px;
+  font-size: 9px;
   opacity: .4;
 }
 
 .category h3 {
-  font-size: 27px;
+  font-size: 25px;
   letter-spacing: -.04em;
 }
 
 .category p {
-  font-size: 11px;
+  font-size: 10px;
   opacity: .5;
   margin-top: 8px;
-}
-
-/* =========================
-   FEATURED RECIPES
-========================= */
-
-.recipe-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-}
-
-.recipe-card {
-  background: white;
-  overflow: hidden;
-  transition: transform .4s ease, box-shadow .4s ease;
-  cursor: pointer;
-}
-
-.recipe-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(0,0,0,.1);
-}
-
-.recipe-image {
-  height: 280px;
-  background:
-    linear-gradient(135deg, #d8d0c4, #aaa092);
-  position: relative;
-  overflow: hidden;
-}
-
-.recipe-image::after {
-  content: "RECIPE";
-  position: absolute;
-  bottom: 18px;
-  left: 18px;
-  font-size: 9px;
-  letter-spacing: .25em;
-  color: white;
-  opacity: .8;
-}
-
-.recipe-card:nth-child(2) .recipe-image {
-  background: linear-gradient(135deg, #b9b0a4, #716b63);
-}
-
-.recipe-card:nth-child(3) .recipe-image {
-  background: linear-gradient(135deg, #d4c0a8, #8b735b);
-}
-
-.recipe-info {
-  padding: 25px;
-}
-
-.recipe-tag {
-  font-size: 9px;
-  letter-spacing: .2em;
-  opacity: .45;
-}
-
-.recipe-info h3 {
-  margin-top: 12px;
-  font-size: 22px;
-  letter-spacing: -.04em;
-}
-
-.recipe-info p {
-  margin-top: 10px;
-  color: #777;
-  font-size: 11px;
-  line-height: 1.8;
 }
 
 /* =========================
@@ -371,11 +494,11 @@ section {
 ========================= */
 
 .about {
-  background: #ded8cd;
+  background: #ddd6ca;
 }
 
 .about-inner {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -384,49 +507,150 @@ section {
 }
 
 .about-big {
-  font-size: clamp(45px, 7vw, 95px);
-  line-height: .9;
+  font-size: clamp(45px, 7vw, 100px);
   font-weight: 900;
-  letter-spacing: -.07em;
+  line-height: .86;
+  letter-spacing: -.08em;
 }
 
 .about-text {
-  font-size: 14px;
-  line-height: 2.2;
+  font-size: 13px;
+  line-height: 2.3;
   color: #555;
 }
 
 /* =========================
-   SEARCH
+   DETAIL MODAL
 ========================= */
 
-.search-section {
-  background: #f7f5f0;
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  background: rgba(0,0,0,.72);
+  backdrop-filter: blur(10px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
 }
 
-.search-box {
-  max-width: 800px;
-  margin: 0 auto;
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: #f8f6f1;
+  width: min(1000px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
   position: relative;
+  animation: modalIn .45s cubic-bezier(.16,1,.3,1);
 }
 
-.search-box input {
-  width: 100%;
-  border: none;
-  border-bottom: 1px solid #222;
-  background: transparent;
-  padding: 20px 5px;
-  font-size: 22px;
-  outline: none;
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-.search-box input::placeholder {
-  color: #aaa;
+.close-modal {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: #171717;
+  color: #fff;
+  cursor: pointer;
+  z-index: 5;
+  font-size: 20px;
 }
 
-.search-note {
-  margin-top: 15px;
+.detail-photo {
+  height: 300px;
+}
+
+.detail-body {
+  padding: 45px;
+}
+
+.detail-category {
+  font-size: 9px;
+  letter-spacing: .25em;
+  color: #999;
+}
+
+.detail-title {
+  margin-top: 10px;
+  font-size: clamp(35px, 5vw, 60px);
+  line-height: 1;
+  letter-spacing: -.07em;
+}
+
+.detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 22px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #ddd;
   font-size: 10px;
+  color: #777;
+}
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 55px;
+  margin-top: 35px;
+}
+
+.detail-heading {
+  font-size: 18px;
+  margin-bottom: 20px;
+  letter-spacing: -.03em;
+}
+
+.ingredients li {
+  list-style: none;
+  padding: 11px 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.steps {
+  counter-reset: recipeStep;
+}
+
+.steps li {
+  list-style: none;
+  counter-increment: recipeStep;
+  position: relative;
+  padding: 0 0 25px 48px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  font-size: 12px;
+  line-height: 2;
+}
+
+.steps li::before {
+  content: counter(recipeStep, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 10px;
+  font-weight: bold;
   color: #999;
 }
 
@@ -436,14 +660,15 @@ section {
 
 footer {
   background: #050505;
-  color: white;
+  color: #fff;
   padding: 80px 7vw 35px;
 }
 
 .footer-logo {
-  font-size: clamp(40px, 7vw, 90px);
+  font-size: clamp(40px, 7vw, 95px);
   font-weight: 900;
-  letter-spacing: -.07em;
+  line-height: .85;
+  letter-spacing: -.08em;
 }
 
 .footer-bottom {
@@ -452,64 +677,60 @@ footer {
   border-top: 1px solid #333;
   display: flex;
   justify-content: space-between;
-  color: #777;
   font-size: 9px;
   letter-spacing: .15em;
+  color: #777;
 }
 
 /* =========================
-   RESPONSIVE
+   MOBILE
 ========================= */
 
-@media (max-width: 800px) {
-
-  header {
-    padding: 18px 5vw;
-  }
+@media (max-width: 850px) {
 
   nav {
-    gap: 15px;
+    display: none;
   }
 
-  nav a {
-    font-size: 9px;
+  .menu-button {
+    display: block;
   }
 
-  .hero {
-    padding: 120px 6vw 70px;
-  }
-
-  section {
-    padding: 80px 6vw;
+  .recipe-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .category-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .recipe-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .recipe-image {
-    height: 240px;
-  }
-
   .about-inner {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .detail-layout {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-
-  .footer-bottom {
-    flex-direction: column;
-    gap: 10px;
-  }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 560px) {
 
-  nav {
-    display: none;
+  header {
+    padding: 17px 5vw;
+  }
+
+  .hero {
+    padding: 125px 6vw 80px;
+  }
+
+  section {
+    padding: 80px 6vw;
+  }
+
+  .recipe-grid {
+    grid-template-columns: 1fr;
   }
 
   .category-grid {
@@ -517,7 +738,32 @@ footer {
   }
 
   .category {
-    min-height: 200px;
+    min-height: 190px;
+  }
+
+  .recipe-photo {
+    height: 260px;
+  }
+
+  .modal {
+    padding: 10px;
+  }
+
+  .modal-content {
+    max-height: 94vh;
+  }
+
+  .detail-body {
+    padding: 30px 22px;
+  }
+
+  .detail-photo {
+    height: 220px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
   }
 }
 </style>
@@ -525,46 +771,29 @@ footer {
 
 <body>
 
-<!-- =========================
-     OPENING
-========================= -->
-
+<!-- OPENING -->
 <div id="opening">
   <div class="opening-inner">
-    <img
-      src="logo.png"
-      alt="CHU dot COOKING"
-      class="opening-logo"
-    >
+    <img src="logo.png" class="opening-logo" alt="CHU dot COOKING">
     <div class="opening-line"></div>
-    <div class="opening-text">
-      FOOD / RECIPE / LIFE
-    </div>
+    <div class="opening-text">FOOD / RECIPE / LIFE</div>
   </div>
 </div>
 
-<!-- =========================
-     HEADER
-========================= -->
-
+<!-- HEADER -->
 <header>
-  <div class="header-logo">
-    CHU dot COOKING
-  </div>
+  <div class="header-logo">CHU dot COOKING</div>
 
   <nav>
     <a href="#recipes">RECIPES</a>
     <a href="#categories">CATEGORY</a>
     <a href="#about">ABOUT</a>
   </nav>
+
+  <button class="menu-button" onclick="scrollToRecipes()">☰</button>
 </header>
 
-<!-- =========================
-     HERO
-========================= -->
-
-<main>
-
+<!-- HERO -->
 <section class="hero">
 
   <div class="hero-content">
@@ -580,136 +809,123 @@ footer {
     </h1>
 
     <p class="hero-description">
-      毎日の料理を、もっと自由に。
-      <br>
-      作りたいものから探すのではなく、
-      「今あるもの」から料理を見つける。
+      毎日の料理を、もっと自由に。<br>
+      「今あるもの」から、今日の一皿を見つける。
     </p>
 
   </div>
 
-  <div class="scroll">
-    SCROLL DOWN
+  <div class="scroll">SCROLL DOWN</div>
+
+</section>
+
+<!-- SEARCH -->
+<section class="search-section">
+
+  <div class="section-heading">
+    <div>
+      <div class="section-number">01 / SEARCH</div>
+      <h2 class="section-title">Find Food.</h2>
+    </div>
+  </div>
+
+  <div class="search-area">
+
+    <div class="search-box">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="料理名・食材を検索..."
+      >
+    </div>
+
+    <div class="category-buttons">
+      <button class="category-button active" data-category="all">
+        ALL
+      </button>
+
+      <button class="category-button" data-category="麺">
+        麺
+      </button>
+
+      <button class="category-button" data-category="肉">
+        肉
+      </button>
+
+      <button class="category-button" data-category="ご飯">
+        ご飯
+      </button>
+
+      <button class="category-button" data-category="副菜">
+        副菜
+      </button>
+    </div>
+
   </div>
 
 </section>
 
-<!-- =========================
-     RECIPES
-========================= -->
-
-<section id="recipes">
+<!-- RECIPES -->
+<section id="recipes" class="recipes-section">
 
   <div class="section-heading">
 
     <div>
-      <div class="section-number">01 / RECIPES</div>
+      <div class="section-number">02 / RECIPES</div>
       <h2 class="section-title">Recipes</h2>
     </div>
 
-    <div class="section-number">
-      NEW / 03
+    <div class="recipe-count">
+      <span id="recipeCount">6</span> RECIPES
     </div>
 
   </div>
 
-  <div class="recipe-grid">
-
-    <article class="recipe-card">
-
-      <div class="recipe-image"></div>
-
-      <div class="recipe-info">
-        <div class="recipe-tag">MAIN DISH</div>
-        <h3>甘酢あんかけ焼きそば</h3>
-        <p>
-          香ばしい麺に具材と甘酢あんを合わせた、
-          食べ応えのある一皿。
-        </p>
-      </div>
-
-    </article>
-
-    <article class="recipe-card">
-
-      <div class="recipe-image"></div>
-
-      <div class="recipe-info">
-        <div class="recipe-tag">SIDE DISH</div>
-        <h3>麻婆なす</h3>
-        <p>
-          なすとひき肉を使った、
-          ご飯が進む定番おかず。
-        </p>
-      </div>
-
-    </article>
-
-    <article class="recipe-card">
-
-      <div class="recipe-image"></div>
-
-      <div class="recipe-info">
-        <div class="recipe-tag">RICE</div>
-        <h3>炊飯器ビリヤニ</h3>
-        <p>
-          特別な調理器具を使わず、
-          炊飯器で作るスパイスごはん。
-        </p>
-      </div>
-
-    </article>
-
-  </div>
+  <div class="recipe-grid" id="recipeGrid"></div>
 
 </section>
 
-<!-- =========================
-     CATEGORY
-========================= -->
-
+<!-- CATEGORY -->
 <section id="categories" class="categories">
 
   <div class="section-heading">
-
     <div>
-      <div class="section-number">02 / CATEGORY</div>
+      <div class="section-number">03 / CATEGORY</div>
       <h2 class="section-title">Category</h2>
     </div>
-
   </div>
 
   <div class="category-grid">
 
-    <div class="category">
+    <div class="category" onclick="filterCategory('麺')">
       <div class="category-number">01</div>
       <div>
-        <h3>MAIN</h3>
-        <p>メイン料理</p>
+        <h3>NOODLES</h3>
+        <p>麺料理</p>
       </div>
     </div>
 
-    <div class="category">
+    <div class="category" onclick="filterCategory('肉')">
       <div class="category-number">02</div>
       <div>
-        <h3>SIDE</h3>
-        <p>副菜・おつまみ</p>
+        <h3>MEAT</h3>
+        <p>肉料理</p>
       </div>
     </div>
 
-    <div class="category">
+    <div class="category" onclick="filterCategory('ご飯')">
       <div class="category-number">03</div>
       <div>
         <h3>RICE</h3>
-        <p>ご飯・丼・麺</p>
+        <p>ご飯・丼</p>
       </div>
     </div>
 
-    <div class="category">
+    <div class="category" onclick="filterCategory('副菜')">
       <div class="category-number">04</div>
       <div>
-        <h3>QUICK</h3>
-        <p>簡単・時短</p>
+        <h3>SIDE</h3>
+        <p>副菜・おかず</p>
       </div>
     </div>
 
@@ -717,41 +933,7 @@ footer {
 
 </section>
 
-<!-- =========================
-     SEARCH
-========================= -->
-
-<section class="search-section">
-
-  <div class="section-heading">
-
-    <div>
-      <div class="section-number">03 / SEARCH</div>
-      <h2 class="section-title">Find Food.</h2>
-    </div>
-
-  </div>
-
-  <div class="search-box">
-
-    <input
-      type="text"
-      id="recipeSearch"
-      placeholder="料理名・食材を検索..."
-    >
-
-    <div class="search-note">
-      ※現在はデザイン確認用の検索UIです
-    </div>
-
-  </div>
-
-</section>
-
-<!-- =========================
-     ABOUT
-========================= -->
-
+<!-- ABOUT -->
 <section id="about" class="about">
 
   <div class="about-inner">
@@ -774,8 +956,8 @@ footer {
       <br>
 
       <p>
-        家にある食材。
-        いつもの調味料。
+        家にある食材。<br>
+        いつもの調味料。<br>
         ちょっとした思いつき。
       </p>
 
@@ -792,12 +974,7 @@ footer {
 
 </section>
 
-</main>
-
-<!-- =========================
-     FOOTER
-========================= -->
-
+<!-- FOOTER -->
 <footer>
 
   <div class="footer-logo">
@@ -812,29 +989,459 @@ footer {
 
 </footer>
 
+<!-- RECIPE MODAL -->
+<div class="modal" id="recipeModal">
+
+  <div class="modal-content">
+
+    <button class="close-modal" onclick="closeModal()">×</button>
+
+    <div class="detail-photo" id="detailPhoto"></div>
+
+    <div class="detail-body">
+
+      <div class="detail-category" id="detailCategory"></div>
+
+      <h2 class="detail-title" id="detailTitle"></h2>
+
+      <div class="detail-meta">
+        <span id="detailServings"></span>
+        <span id="detailTime"></span>
+        <span id="detailTags"></span>
+      </div>
+
+      <div class="detail-layout">
+
+        <div>
+          <h3 class="detail-heading">Ingredients</h3>
+          <ul class="ingredients" id="detailIngredients"></ul>
+        </div>
+
+        <div>
+          <h3 class="detail-heading">How to Cook</h3>
+          <ol class="steps" id="detailSteps"></ol>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
 <script>
 
 /* =========================
-   SEARCH DEMO
+   RECIPE DATA
 ========================= */
 
-const searchInput = document.getElementById("recipeSearch");
+const recipes = [
 
-searchInput.addEventListener("keydown", function(event) {
+  {
+    id: 1,
+    title: "海老塩焼きそば",
+    category: "麺",
+    time: "約20分",
+    servings: "2人前",
+    photo: "photo-shrimp",
+    description: "海老の旨味と強火で焼き付けた麺が決め手。",
+    tags: ["海老", "中華麺", "鉄鍋", "強火"],
 
-  if (event.key === "Enter") {
+    ingredients: [
+      ["海老", "好きなだけ"],
+      ["中華麺", "2玉"],
+      ["もやし", "1/2袋"],
+      ["長ネギor小口ネギ", "適量"],
+      ["あげ玉", "適量"],
+      ["ごま油", "適量"],
+      ["塩コショウ", "3g"],
+      ["黒胡椒", "適量・強気"],
+      ["砂糖", "7g"],
+      ["醤油", "2g"],
+      ["料理酒", "15g"],
+      ["鶏ガラの素", "4g"],
+      ["煮干し粉", "3g"],
+      ["おろしにんにく", "15g"],
+      ["茹で汁", "25cc ※必要に応じて"]
+    ],
 
-    const keyword = searchInput.value.trim();
+    steps: [
+      "鉄鍋に海老を入れ、塩コショウを満遍なく振り、ごま油で炒める。炒めた海老は汁ごと別容器へ移す。",
+      "中華麺を別の鍋で表記通り茹でる。",
+      "麺を茹でている間に、茹で汁、塩コショウ、黒胡椒、砂糖、醤油、料理酒、鶏ガラの素、煮干し粉、おろしにんにくを混ぜ合わせる。エビの汁気が多ければ茹で汁は省く。",
+      "麺が茹で上がったら流水でぬめりを洗い流す。",
+      "海老を炒めた鉄鍋にごま油を敷き、強火で麺に焼き目が付くように炒める。",
+      "炒めた海老、もやし、長ネギまたは小口ネギ、混ぜておいた塩ダレを加え、強火で一気に混ぜ合わせる。",
+      "仕上げにあげ玉を混ぜ合わせ、盛り付けて完成。"
+    ]
+  },
 
-    if (keyword !== "") {
-      alert(
-        "「" + keyword + "」のレシピ検索機能は、次のステップで実装します。"
+  {
+    id: 2,
+    title: "とろけるチーズの焼きナポリタン",
+    category: "麺",
+    time: "約25分",
+    servings: "2人前",
+    photo: "photo-pasta",
+    description: "香ばしく焼いたナポリタンにチーズをたっぷり。",
+    tags: ["パスタ", "チーズ", "洋食"],
+
+    ingredients: [
+      ["スパゲッティ", "200g"],
+      ["玉ねぎ", "1/2個"],
+      ["ウインナー", "4本"],
+      ["ケチャップ", "大さじ5"],
+      ["ウスターソース", "小さじ2"],
+      ["ピザ用チーズ", "80g"],
+      ["バター", "10g"],
+      ["塩", "適量"],
+      ["黒胡椒", "適量"]
+    ],
+
+    steps: [
+      "スパゲッティを塩を加えた湯で茹でる。",
+      "玉ねぎとウインナーを食べやすく切る。",
+      "フライパンにバターを溶かし、玉ねぎとウインナーを炒める。",
+      "ケチャップとウスターソースを加えて炒める。",
+      "茹で上がったパスタを加えて全体を炒め合わせる。",
+      "チーズをのせ、蓋をしてチーズが溶けたら完成。"
+    ]
+  },
+
+  {
+    id: 3,
+    title: "鶏むね肉のレモン醤油ソテー",
+    category: "肉",
+    time: "約20分",
+    servings: "2人前",
+    photo: "photo-chicken",
+    description: "さっぱりレモン醤油で食べるジューシーな鶏むね肉。",
+    tags: ["鶏むね", "レモン", "簡単"],
+
+    ingredients: [
+      ["鶏むね肉", "1枚 約300g"],
+      ["醤油", "大さじ1"],
+      ["レモン汁", "大さじ1"],
+      ["みりん", "大さじ1"],
+      ["砂糖", "小さじ1"],
+      ["にんにく", "少々"],
+      ["片栗粉", "適量"],
+      ["油", "適量"]
+    ],
+
+    steps: [
+      "鶏むね肉をそぎ切りにする。",
+      "片栗粉を薄くまぶす。",
+      "フライパンに油を熱し、鶏肉を両面焼く。",
+      "醤油、レモン汁、みりん、砂糖、にんにくを加える。",
+      "タレを煮絡めて照りが出たら完成。"
+    ]
+  },
+
+  {
+    id: 4,
+    title: "とろ旨麻婆なす",
+    category: "副菜",
+    time: "約25分",
+    servings: "2人前",
+    photo: "photo-mabo",
+    description: "とろっとしたなすにピリ辛の肉味噌を絡めた一皿。",
+    tags: ["なす", "ひき肉", "中華"],
+
+    ingredients: [
+      ["なす", "3本"],
+      ["豚ひき肉", "150g"],
+      ["長ネギ", "1/2本"],
+      ["甜麺醤", "大さじ1"],
+      ["豆板醤", "小さじ1"],
+      ["醤油", "小さじ2"],
+      ["鶏ガラスープ", "150ml"],
+      ["にんにく", "少々"],
+      ["しょうが", "少々"],
+      ["ごま油", "適量"]
+    ],
+
+    steps: [
+      "なすを食べやすい大きさに切る。",
+      "フライパンでなすを焼き、一度取り出す。",
+      "ひき肉、にんにく、しょうがを炒める。",
+      "甜麺醤と豆板醤を加えて炒める。",
+      "鶏ガラスープと醤油を加える。",
+      "なすを戻し、タレを煮絡めて完成。"
+    ]
+  },
+
+  {
+    id: 5,
+    title: "炊飯器スパイスチキンライス",
+    category: "ご飯",
+    time: "約50分",
+    servings: "2〜3人前",
+    photo: "photo-rice",
+    description: "炊飯器ひとつで作れる香り豊かなスパイスごはん。",
+    tags: ["炊飯器", "鶏肉", "スパイス"],
+
+    ingredients: [
+      ["米", "2合"],
+      ["鶏もも肉", "1枚"],
+      ["玉ねぎ", "1/2個"],
+      ["カレー粉", "大さじ1"],
+      ["クミン", "小さじ1"],
+      ["ヨーグルト", "大さじ2"],
+      ["にんにく", "1片"],
+      ["しょうが", "1片"],
+      ["トマト", "1/2個"],
+      ["塩", "小さじ1"]
+    ],
+
+    steps: [
+      "米を洗い、炊飯器に入れる。",
+      "鶏肉にヨーグルト、カレー粉、クミン、塩、にんにく、しょうがを絡める。",
+      "炊飯器に玉ねぎとトマトを加える。",
+      "通常の2合の水加減を目安にセットする。",
+      "鶏肉を上にのせて通常炊飯する。",
+      "炊き上がったら全体を混ぜて完成。"
+    ]
+  },
+
+  {
+    id: 6,
+    title: "豚しゃぶの香味ごまポン",
+    category: "肉",
+    time: "約15分",
+    servings: "2人前",
+    photo: "photo-pork",
+    description: "さっと茹でた豚肉を香味ごまだれでさっぱりと。",
+    tags: ["豚肉", "ごま", "時短"],
+
+    ingredients: [
+      ["豚しゃぶ肉", "250g"],
+      ["醤油", "大さじ2"],
+      ["酢", "大さじ2"],
+      ["砂糖", "大さじ1"],
+      ["ごま油", "大さじ1"],
+      ["レモン汁", "大さじ1"],
+      ["にんにく", "2cm"],
+      ["しょうが", "2cm"],
+      ["白ごま", "大さじ1"],
+      ["ブラックペッパー", "少々"]
+    ],
+
+    steps: [
+      "豚肉を食べやすい大きさにする。",
+      "鍋に湯を沸かし、豚肉を火が通るまで茹でる。",
+      "醤油、酢、砂糖、ごま油、レモン汁、にんにく、しょうが、白ごまを混ぜる。",
+      "豚肉の水気を切る。",
+      "たれをかけ、ブラックペッパーを振って完成。"
+    ]
+  }
+
+];
+
+/* =========================
+   RENDER
+========================= */
+
+const recipeGrid = document.getElementById("recipeGrid");
+const recipeCount = document.getElementById("recipeCount");
+const searchInput = document.getElementById("searchInput");
+
+let currentCategory = "all";
+
+function renderRecipes() {
+
+  const keyword = searchInput.value.toLowerCase().trim();
+
+  const filtered = recipes.filter(recipe => {
+
+    const categoryMatch =
+      currentCategory === "all" ||
+      recipe.category === currentCategory;
+
+    const searchTarget =
+      recipe.title +
+      recipe.description +
+      recipe.category +
+      recipe.tags.join("") +
+      recipe.ingredients.map(item => item.join("")).join("");
+
+    const searchMatch =
+      keyword === "" ||
+      searchTarget.toLowerCase().includes(keyword);
+
+    return categoryMatch && searchMatch;
+  });
+
+  recipeCount.textContent = filtered.length;
+
+  if (filtered.length === 0) {
+    recipeGrid.innerHTML = `
+      <div style="
+        grid-column:1/-1;
+        padding:80px 20px;
+        text-align:center;
+        color:#999;
+      ">
+        該当するレシピがありません。
+      </div>
+    `;
+    return;
+  }
+
+  recipeGrid.innerHTML = filtered.map(recipe => `
+
+    <article class="recipe-card"
+      onclick="openRecipe(${recipe.id})">
+
+      <div class="recipe-photo ${recipe.photo}">
+        <div class="photo-label">
+          CHU dot COOKING
+        </div>
+      </div>
+
+      <div class="recipe-info">
+
+        <div class="recipe-meta">
+          <span>${recipe.category}</span>
+          <span>${recipe.time}</span>
+        </div>
+
+        <h3>${recipe.title}</h3>
+
+        <p>${recipe.description}</p>
+
+        <div class="recipe-tags">
+          ${recipe.tags.map(tag =>
+            `<span class="recipe-tag">#${tag}</span>`
+          ).join("")}
+        </div>
+
+      </div>
+
+    </article>
+
+  `).join("");
+}
+
+/* =========================
+   DETAIL
+========================= */
+
+function openRecipe(id) {
+
+  const recipe = recipes.find(item => item.id === id);
+
+  if (!recipe) return;
+
+  document.getElementById("detailPhoto").className =
+    "detail-photo " + recipe.photo;
+
+  document.getElementById("detailCategory").textContent =
+    recipe.category;
+
+  document.getElementById("detailTitle").textContent =
+    recipe.title;
+
+  document.getElementById("detailServings").textContent =
+    "👤 " + recipe.servings;
+
+  document.getElementById("detailTime").textContent =
+    "⏱ " + recipe.time;
+
+  document.getElementById("detailTags").textContent =
+    recipe.tags.map(tag => "#" + tag).join(" ");
+
+  document.getElementById("detailIngredients").innerHTML =
+    recipe.ingredients.map(item => `
+      <li>
+        <span>${item[0]}</span>
+        <strong>${item[1]}</strong>
+      </li>
+    `).join("");
+
+  document.getElementById("detailSteps").innerHTML =
+    recipe.steps.map(step => `
+      <li>${step}</li>
+    `).join("");
+
+  document.getElementById("recipeModal").classList.add("show");
+
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal() {
+  document.getElementById("recipeModal").classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+/* =========================
+   CATEGORY
+========================= */
+
+function filterCategory(category) {
+
+  currentCategory = category;
+
+  document.querySelectorAll(".category-button")
+    .forEach(button => {
+
+      button.classList.toggle(
+        "active",
+        button.dataset.category === category
       );
+
+    });
+
+  renderRecipes();
+
+  document.getElementById("recipes")
+    .scrollIntoView({ behavior: "smooth" });
+}
+
+document.querySelectorAll(".category-button")
+  .forEach(button => {
+
+    button.addEventListener("click", () => {
+      filterCategory(button.dataset.category);
+    });
+
+  });
+
+/* =========================
+   SEARCH
+========================= */
+
+searchInput.addEventListener("input", renderRecipes);
+
+/* =========================
+   OTHER
+========================= */
+
+function scrollToRecipes() {
+  document.getElementById("recipes")
+    .scrollIntoView({ behavior: "smooth" });
+}
+
+document.getElementById("recipeModal")
+  .addEventListener("click", function(event) {
+
+    if (event.target === this) {
+      closeModal();
     }
 
+  });
+
+document.addEventListener("keydown", function(event) {
+
+  if (event.key === "Escape") {
+    closeModal();
   }
 
 });
+
+/* 初期表示 */
+renderRecipes();
 
 </script>
 
