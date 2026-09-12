@@ -1,0 +1,137 @@
+// サンプルレシピデータ
+const recipes = [
+  {
+    id: 1,
+    title: "極旨ガーリックステーキ丼",
+    tags: ["ガッツリ", "肉", "時短"],
+    img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80",
+    ingredients: ["牛ステーキ肉 200g", "ニンニク 2片", "醤油 大さじ2", "バター 10g", "ご飯 1膳"],
+    steps: ["ニンニクをスライスしてフライパンで狐色になるまで炒める。", "肉を強火で両面香ばしく焼き上げる。", "醤油とバターを絡めてご飯の上にのせて完成！"]
+  },
+  {
+    id: 2,
+    title: "濃厚パスタパラダイス",
+    tags: ["麺", "チーズ", "ご褒美"],
+    img: "https://images.unsplash.com/photo-1621996346565-e3d5d6281316?auto=format&fit=crop&w=600&q=80",
+    ingredients: ["パスタ 100g", "生クリーム 100ml", "粉チーズ たっぷり", "黒コショウ 少々"],
+    steps: ["パスタを表記通り茹でる。", "フライパンで生クリームとチーズを温めソースを作る。", "茹で上がったパスタを絡めコショウを振る。"]
+  },
+  {
+    id: 3,
+    title: "爆速パラパラ黄金炒飯",
+    tags: ["時短", "中華", "定番"],
+    img: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=600&q=80",
+    ingredients: ["ご飯 1皿", "卵 1個", "長ネギ 1/2本", "鶏ガラスープの素 小さじ1"],
+    steps: ["卵とご飯をあらかじめ混ぜておく。", "強火で一気に炒め、ネギと調味料を加える。"]
+  }
+];
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  // 1. オープニングアニメーション（初回訪問時のみ再生）
+  const openingAnim = document.getElementById("opening-anim");
+  const hasVisited = sessionStorage.getItem("hasVisited");
+
+  if (!hasVisited && openingAnim) {
+    // 初回アクセス時
+    setTimeout(() => {
+      openingAnim.classList.add("hide");
+      sessionStorage.setItem("hasVisited", "true");
+    }, 1800);
+  } else if (openingAnim) {
+    // 2回目以降（ページ遷移・戻る時含む）
+    openingAnim.style.display = "none";
+  }
+
+  // 2. タグ＆レシピ生成
+  const tagCloud = document.getElementById("tag-cloud");
+  const recipeGrid = document.getElementById("recipe-grid");
+  const searchInput = document.getElementById("search-input");
+
+  // タグ生成
+  const allTags = [...new Set(recipes.flatMap(r => r.tags))];
+  if (tagCloud) {
+    tagCloud.innerHTML = allTags.map(tag => `<button class="tag-btn" data-tag="${tag}"># ${tag}</button>`).join('');
+  }
+
+  // レシピカード描画
+  function renderRecipes(filterText = "", filterTag = "") {
+    if (!recipeGrid) return;
+    recipeGrid.innerHTML = "";
+
+    const filtered = recipes.filter(r => {
+      const matchText = r.title.includes(filterText) || r.ingredients.some(i => i.includes(filterText));
+      const matchTag = filterTag ? r.tags.includes(filterTag) : true;
+      return matchText && matchTag;
+    });
+
+    filtered.forEach(recipe => {
+      const card = document.createElement("div");
+      card.className = "recipe-card";
+      card.innerHTML = `
+        <img src="${recipe.img}" alt="${recipe.title}" class="recipe-card-img">
+        <div class="recipe-card-content">
+          <h3 class="recipe-card-title">${recipe.title}</h3>
+          <div>${recipe.tags.map(t => `<span style="font-size:0.8rem; color:#888; margin-right:5px;">#${t}</span>`).join('')}</div>
+        </div>
+      `;
+      card.addEventListener("click", () => openModal(recipe));
+      recipeGrid.appendChild(card);
+    });
+  }
+
+  renderRecipes();
+
+  // 検索・タグイベント
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => renderRecipes(e.target.value));
+  }
+  if (tagCloud) {
+    tagCloud.addEventListener("click", (e) => {
+      if (e.target.classList.contains("tag-btn")) {
+        document.querySelectorAll(".tag-btn").forEach(btn => btn.classList.remove("active"));
+        e.target.classList.add("active");
+        renderRecipes("", e.target.dataset.tag);
+      }
+    });
+  }
+
+  // 3. レシピ詳細モーダル制御（スクロール位置リセット ＆ コンロ・家電・特記事項削除済み）
+  const modal = document.getElementById("recipe-modal");
+  const modalContent = document.getElementById("modal-content");
+  const modalBody = document.getElementById("modal-body");
+  const modalClose = document.getElementById("modal-close");
+  const modalOverlay = document.getElementById("modal-overlay");
+
+  function openModal(recipe) {
+    // ガスコンロ・家電・特記事項を削除したすっきりレイアウト
+    modalBody.innerHTML = `
+      <h2 style="font-size:1.8rem; margin-bottom:1rem;">${recipe.title}</h2>
+      <img src="${recipe.img}" style="width:100%; height:250px; object-fit:cover; border-radius:12px; margin-bottom:1.5rem;">
+      
+      <h3 style="font-size:1.2rem; border-left:4px solid var(--primary); padding-left:8px; margin-bottom:0.5rem;">材料</h3>
+      <ul style="margin-bottom:1.5rem; padding-left:1.2rem;">
+        ${recipe.ingredients.map(i => `<li>${i}</li>`).join('')}
+      </ul>
+
+      <h3 style="font-size:1.2rem; border-left:4px solid var(--primary); padding-left:8px; margin-bottom:0.5rem;">作り方</h3>
+      <ol style="padding-left:1.2rem;">
+        ${recipe.steps.map(s => `<li style="margin-bottom:0.5rem;">${s}</li>`).join('')}
+      </ol>
+    `;
+
+    // 開く前にスクロール位置を最上部にリセット
+    if (modalContent) modalContent.scrollTop = 0;
+    modal.classList.add("active");
+  }
+
+  function closeModal() {
+    modal.classList.remove("active");
+    // 閉じた際にもスクロール位置を最上部にリセット
+    if (modalContent) modalContent.scrollTop = 0;
+  }
+
+  if (modalClose) modalClose.addEventListener("click", closeModal);
+  if (modalOverlay) modalOverlay.addEventListener("click", closeModal);
+
+});
