@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -41,9 +42,7 @@ body{
   margin:0;
   background:var(--cream);
   color:var(--brown);
-  font-family:
-    "M PLUS Rounded 1c",
-    sans-serif;
+  font-family:"M PLUS Rounded 1c",sans-serif;
   overflow-x:hidden;
 }
 
@@ -60,6 +59,7 @@ a{
 button{
   font-family:inherit;
 }
+
 
 /* =========================
    OPENING
@@ -142,6 +142,7 @@ button{
 }
 
 .opening-title{
+  font-family:"DM Sans",sans-serif;
   font-size:clamp(42px,8vw,90px);
   line-height:.9;
   font-weight:900;
@@ -175,6 +176,7 @@ button{
     opacity:0;
     transform:scale(0);
   }
+
   100%{
     opacity:1;
     transform:scale(1);
@@ -188,6 +190,7 @@ button{
     pointer-events:none;
   }
 }
+
 
 /* =========================
    HEADER
@@ -230,6 +233,7 @@ button{
   color:var(--orange);
   transform:rotate(-3deg);
 }
+
 
 /* =========================
    HERO
@@ -287,27 +291,22 @@ button{
 .hero h1{
   margin:0;
   font-size:clamp(55px,8vw,120px);
-  line-height:.95;
-  letter-spacing:-5px;
+  line-height:1.02;
+  letter-spacing:-4px;
   font-weight:900;
+}
+
+.hero h1 span{
+  display:block;
 }
 
 .hero h1 .accent{
   color:var(--orange);
-  display:block;
   transform:rotate(-2deg);
 }
 
-.hero-lead{
-  margin-top:30px;
-  max-width:560px;
-  font-size:18px;
-  line-height:1.9;
-  font-weight:700;
-}
-
 .hero-en{
-  margin-top:20px;
+  margin-top:28px;
   font-family:"DM Sans",sans-serif;
   font-size:13px;
   font-weight:900;
@@ -357,8 +356,9 @@ button{
   transform:rotate(-12deg);
 }
 
+
 /* =========================
-   ORANGE MESSAGE
+   MESSAGE
 ========================= */
 
 .message{
@@ -398,16 +398,18 @@ button{
 .message h2{
   font-size:clamp(45px,7vw,100px);
   line-height:1;
-  margin:25px 0;
+  margin:25px 0 0;
   font-weight:900;
   letter-spacing:-4px;
 }
 
-.message p{
-  font-size:17px;
-  line-height:2;
-  font-weight:700;
+.message-sub{
+  margin:40px 0 0;
+  font-size:clamp(20px,3vw,32px);
+  font-weight:900;
+  transform:rotate(-2deg);
 }
+
 
 /* =========================
    PHOTO PLAYGROUND
@@ -499,6 +501,7 @@ button{
   font-weight:900;
   transform:rotate(-3deg);
 }
+
 
 /* =========================
    RECIPES
@@ -614,6 +617,7 @@ button{
   letter-spacing:1px;
 }
 
+
 /* =========================
    CATEGORY
 ========================= */
@@ -692,6 +696,7 @@ button{
   letter-spacing:1px;
 }
 
+
 /* =========================
    ARCHIVE
 ========================= */
@@ -743,6 +748,7 @@ button{
   font-family:"DM Sans",sans-serif;
   font-size:11px;
 }
+
 
 /* =========================
    FINAL
@@ -803,6 +809,7 @@ button{
   transform:rotate(-12deg);
 }
 
+
 /* =========================
    FOOTER
 ========================= */
@@ -822,6 +829,7 @@ button{
   font-size:18px;
   font-weight:900;
 }
+
 
 /* =========================
    MODAL
@@ -896,8 +904,9 @@ button{
   margin-bottom:5px;
 }
 
+
 /* =========================
-   RESPONSIVE
+   MOBILE
 ========================= */
 
 @media(max-width:800px){
@@ -919,6 +928,8 @@ button{
   }
 
   .hero h1{
+    font-size:clamp(48px,14vw,72px);
+    line-height:1.05;
     letter-spacing:-3px;
   }
 
@@ -929,6 +940,14 @@ button{
 
   .hero-sticker{
     right:-10px;
+  }
+
+  .section-head{
+    display:block;
+  }
+
+  .section-head p{
+    margin-top:25px;
   }
 
   .photo-collage{
@@ -978,7 +997,28 @@ button{
   }
 }
 
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
 @media(max-width:480px){
+
+  .hero{
+    padding-top:105px;
+  }
+
+  .hero-small{
+    font-size:10px;
+  }
+
+  .hero h1{
+    font-size:clamp(45px,14vw,65px);
+  }
+
+  .hero-en{
+    font-size:11px;
+  }
 
   .hero-photo{
     box-shadow:10px 10px 0 var(--orange);
@@ -1010,7 +1050,9 @@ button{
 </style>
 </head>
 
+
 <body>
+
 
 <!-- =========================
      OPENING
@@ -1088,17 +1130,10 @@ button{
       </div>
 
       <h1>
-        俺の作る
-        <span class="accent">
-          飯が一番美味い！
-        </span>
+        <span>俺の作る</span>
+        <span class="accent">メシが、</span>
+        <span class="accent">いちばんうまい！</span>
       </h1>
-
-      <p class="hero-lead">
-        好きなものを、好きなように。
-        ちょっとこだわって、ちゃんと美味しく。
-        日々の「うまい」を残していく料理サイト。
-      </p>
 
       <div class="hero-en">
         COOK IT. EAT IT. LOVE IT.
@@ -1109,7 +1144,6 @@ button{
 
     <div class="hero-photo-wrap">
 
-      <!-- 仮画像 -->
       <img
         class="hero-photo"
         src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=85"
@@ -1150,13 +1184,8 @@ button{
       自分で作る。
     </h2>
 
-    <p>
-      レシピ通りじゃなくてもいい。<br>
-      ちょっと味を濃くしてもいい。<br>
-      最後に黒胡椒を多めに振ってもいい。<br><br>
-
-      「自分が一番うまいと思う飯」を<br>
-      自分のキッチンから。
+    <p class="message-sub">
+      「こういうのでいいんだよ。」
     </p>
 
   </div>
@@ -1180,9 +1209,7 @@ button{
       </h2>
 
       <p>
-        料理は味だけじゃない。<br>
-        焼ける音、立ち上がる湯気、<br>
-        盛り付ける瞬間まで全部楽しい。
+        COOK / EAT / REPEAT
       </p>
 
     </div>
@@ -1208,7 +1235,7 @@ button{
 
         <img
           src="https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=85"
-          alt="チキン料理"
+          alt="肉料理"
         >
 
         <div class="photo-label">
@@ -1236,7 +1263,7 @@ button{
 
         <img
           src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=85"
-          alt="野菜料理"
+          alt="料理"
         >
 
         <div class="photo-label">
@@ -1276,8 +1303,6 @@ button{
     <div class="recipe-grid">
 
 
-      <!-- 01 -->
-
       <article
         class="recipe-card"
         onclick="openRecipe(0)"
@@ -1314,8 +1339,6 @@ button{
 
       </article>
 
-
-      <!-- 02 -->
 
       <article
         class="recipe-card"
@@ -1354,8 +1377,6 @@ button{
       </article>
 
 
-      <!-- 03 -->
-
       <article
         class="recipe-card"
         onclick="openRecipe(2)"
@@ -1365,7 +1386,7 @@ button{
 
           <img
             src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=85"
-            alt="野菜料理"
+            alt="麻婆なす"
           >
 
           <div class="recipe-tag">
@@ -1392,8 +1413,6 @@ button{
 
       </article>
 
-
-      <!-- 04 -->
 
       <article
         class="recipe-card"
@@ -1432,8 +1451,6 @@ button{
       </article>
 
 
-      <!-- 05 -->
-
       <article
         class="recipe-card"
         onclick="openRecipe(4)"
@@ -1443,7 +1460,7 @@ button{
 
           <img
             src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1000&q=85"
-            alt="パスタ"
+            alt="ナポリタン"
           >
 
           <div class="recipe-tag">
@@ -1960,8 +1977,8 @@ document.addEventListener("keydown", function(e){
 
 });
 
-
 </script>
 
 </body>
 </html>
+```
