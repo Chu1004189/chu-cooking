@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHU dot COOKING</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+        "Yu Gothic", sans-serif;
+      background: #f7f4ed;
+      color: #333;
+    }
+
+    header {
+      background: #fff;
+      padding: 28px 20px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+      color: #777;
+      font-size: 14px;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .hero h2 {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      color: #666;
+    }
+
+    .recipes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .card-image {
+      height: 180px;
+      background: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #888;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>CHU dot COOKING</h1>
+    <p>毎日の料理を、もっと楽しく。</p>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <h2>Recipe Collection</h2>
+      <p>お気に入りの料理を、ここに集めていきます。</p>
+    </section>
+
+    <section class="recipes">
+
+      <article class="card">
+        <div class="card-image">
+          PHOTO
+        </div>
+
+        <div class="card-content">
+          <h3>レシピ名</h3>
+          <p>
+            ここに料理の説明を入れます。
+          </p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-image">
+          PHOTO
+        </div>
+
+        <div class="card-content">
+          <h3>レシピ名</h3>
+          <p>
+            ここに料理の説明を入れます。
+          </p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-image">
+          PHOTO
+        </div>
+
+        <div class="card-content">
+          <h3>レシピ名</h3>
+          <p>
+            ここに料理の説明を入れます。
+          </p>
+        </div>
+      </article>
+
+    </section>
+
+  </main>
+
+  <footer>
+    © CHU dot COOKING
+  </footer>
+
+</body>
+</html>
