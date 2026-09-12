@@ -67,6 +67,7 @@ a{
 
 /* =================================
    OPENING
+   ※ここは確定版・変更なし
 ================================= */
 
 .opening{
@@ -211,11 +212,11 @@ a{
   left:0;
   width:100%;
   z-index:1000;
-  padding:12px 24px;
+  padding:7px 20px;
   background:rgba(255,253,248,.94);
   backdrop-filter:blur(12px);
-  border-bottom:3px solid var(--orange);
-  box-shadow:0 4px 18px rgba(51,32,24,.08);
+  border-bottom:2px solid var(--orange);
+  box-shadow:0 3px 14px rgba(51,32,24,.07);
 }
 
 .header-inner{
@@ -224,7 +225,7 @@ a{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:20px;
+  gap:16px;
 }
 
 .header-logo{
@@ -234,7 +235,7 @@ a{
 }
 
 .header-logo img{
-  width:82px;
+  width:68px;
   height:auto;
   display:block;
 }
@@ -242,13 +243,13 @@ a{
 .header-nav{
   display:flex;
   align-items:center;
-  gap:6px;
+  gap:4px;
 }
 
 .header-nav a{
-  padding:9px 14px;
+  padding:7px 11px;
   border-radius:999px;
-  font-size:12px;
+  font-size:11px;
   font-weight:900;
   white-space:nowrap;
   transition:.2s ease;
@@ -361,9 +362,9 @@ a{
 
 .hero-visual{
   position:absolute;
-  width:min(52vw,650px);
-  height:min(52vw,650px);
-  right:-4%;
+  width:min(56vw,690px);
+  height:min(56vw,690px);
+  right:1%;
   top:50%;
   transform:translateY(-50%);
   border-radius:50%;
@@ -385,13 +386,15 @@ a{
 ================================= */
 
 .about{
-  background:var(--white);
+  background:#ffe7c7;
+  padding-top:85px;
+  padding-bottom:85px;
 }
 
 .about-grid{
   display:grid;
   grid-template-columns:1.1fr .9fr;
-  gap:70px;
+  gap:55px;
   align-items:center;
 }
 
@@ -410,9 +413,9 @@ a{
 }
 
 .about-shape{
-  margin-top:40px;
-  width:180px;
-  height:180px;
+  margin-top:30px;
+  width:150px;
+  height:150px;
   border-radius:40% 60% 55% 45%;
   background:var(--pink);
   transform:rotate(-12deg);
@@ -425,6 +428,74 @@ a{
 
 .recipes{
   background:var(--white);
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+}
+
+.recipes::before,
+.recipes::after,
+.recipes .section-inner::before{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:-1;
+  filter:blur(1px);
+}
+
+.recipes::before{
+  width:280px;
+  height:280px;
+  background:rgba(255,216,77,.24);
+  left:-80px;
+  top:260px;
+  animation:recipeFloatOne 13s ease-in-out infinite alternate;
+}
+
+.recipes::after{
+  width:360px;
+  height:360px;
+  background:rgba(255,170,165,.17);
+  right:-120px;
+  top:520px;
+  animation:recipeFloatTwo 17s ease-in-out infinite alternate;
+}
+
+.recipes .section-inner::before{
+  width:190px;
+  height:190px;
+  background:rgba(185,215,122,.19);
+  right:20%;
+  top:180px;
+  animation:recipeFloatThree 11s ease-in-out infinite alternate;
+}
+
+@keyframes recipeFloatOne{
+  0%{
+    transform:translate(0,0) rotate(0deg);
+  }
+  100%{
+    transform:translate(90px,80px) rotate(35deg);
+  }
+}
+
+@keyframes recipeFloatTwo{
+  0%{
+    transform:translate(0,0) rotate(0deg);
+  }
+  100%{
+    transform:translate(-80px,-100px) rotate(-30deg);
+  }
+}
+
+@keyframes recipeFloatThree{
+  0%{
+    transform:translate(0,0) scale(1);
+  }
+  100%{
+    transform:translate(-70px,80px) scale(1.18);
+  }
 }
 
 .section-heading{
@@ -588,31 +659,82 @@ a{
 .tag-list{
   display:flex;
   flex-wrap:wrap;
-  gap:10px;
-  margin-top:50px;
+  gap:7px;
+  margin-top:42px;
+  max-width:1100px;
 }
 
 .tag-button{
-  padding:12px 18px;
-  border:2px solid var(--brown);
+  padding:9px 14px;
+  border:1.5px solid var(--brown);
   border-radius:999px;
   background:#fff;
   color:var(--brown);
-  font-size:12px;
+  font-size:10px;
   font-weight:900;
   cursor:pointer;
   transition:.2s ease;
 }
 
-.tag-button:hover,
-.tag-button.active{
+.tag-button:hover{
   background:var(--orange);
   border-color:var(--orange);
   color:#fff;
 }
 
-.mood-results{
-  margin-top:55px;
+
+/* =================================
+   TAG LIST PAGE
+================================= */
+
+.tag-page{
+  display:none;
+  min-height:100vh;
+  padding-top:150px;
+  background:var(--cream);
+}
+
+body.tag-page-mode main > section:not(.tag-page){
+  display:none;
+}
+
+body.tag-page-mode .tag-page{
+  display:block;
+}
+
+.tag-page-heading{
+  margin-bottom:42px;
+}
+
+.tag-page-heading small{
+  display:block;
+  color:var(--orange);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.18em;
+  margin-bottom:12px;
+}
+
+.tag-page-heading h1{
+  font-size:clamp(55px,8vw,110px);
+  line-height:.85;
+  letter-spacing:-.08em;
+  font-weight:900;
+}
+
+.tag-page-heading h1 span{
+  color:var(--orange);
+}
+
+.tag-page-back{
+  display:inline-flex;
+  margin-top:24px;
+  padding:10px 15px;
+  border-radius:999px;
+  background:var(--yellow);
+  font-size:11px;
+  font-weight:900;
+  cursor:pointer;
 }
 
 
@@ -636,17 +758,18 @@ a{
 }
 
 .final-cta-title{
-  font-size:clamp(60px,9vw,140px);
-  line-height:.85;
-  letter-spacing:-.085em;
+  font-size:min(5.8vw,88px);
+  line-height:1;
+  letter-spacing:-.075em;
   font-weight:900;
+  white-space:nowrap;
 }
 
 .final-cta-title span{
-  display:block;
+  display:inline;
 }
 
-.final-cta-title span:nth-child(2){
+.final-cta-title .accent{
   color:var(--yellow);
 }
 
@@ -705,10 +828,52 @@ a{
   box-shadow:0 30px 80px rgba(0,0,0,.3);
 }
 
+.modal.show .modal-box{
+  animation:modalPopIn .38s cubic-bezier(.22,1.2,.35,1) forwards;
+}
+
+.modal.closing .modal-box{
+  animation:modalZipOut .25s cubic-bezier(.7,0,.9,.4) forwards;
+}
+
+@keyframes modalPopIn{
+  0%{
+    opacity:0;
+    transform:translateY(18px) scale(.94) rotate(-.7deg);
+  }
+  65%{
+    opacity:1;
+    transform:translateY(-4px) scale(1.015) rotate(.2deg);
+  }
+  100%{
+    opacity:1;
+    transform:translateY(0) scale(1) rotate(0);
+  }
+}
+
+@keyframes modalZipOut{
+  0%{
+    opacity:1;
+    transform:scale(1) translateY(0);
+  }
+  45%{
+    opacity:1;
+    transform:scale(1.02) translateY(-4px);
+  }
+  100%{
+    opacity:0;
+    transform:scale(.88) translateY(35px) rotate(1deg);
+  }
+}
+
 .modal-close{
-  position:absolute;
-  top:18px;
-  right:18px;
+  position:sticky;
+  top:12px;
+  display:block;
+  margin-left:auto;
+  margin-right:18px;
+  margin-top:12px;
+  margin-bottom:-56px;
   width:44px;
   height:44px;
   border-radius:50%;
@@ -717,7 +882,8 @@ a{
   font-size:24px;
   font-weight:900;
   cursor:pointer;
-  z-index:10;
+  z-index:100;
+  box-shadow:0 5px 15px rgba(51,32,24,.15);
 }
 
 .modal-top{
@@ -761,6 +927,34 @@ a{
   font-size:11px;
   font-weight:900;
   cursor:pointer;
+}
+
+.recipe-meta{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  margin-top:18px;
+}
+
+.recipe-meta-item{
+  display:grid;
+  grid-template-columns:105px 1fr;
+  gap:10px;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#fff;
+  border:1px solid var(--line);
+  font-size:11px;
+  font-weight:800;
+}
+
+.recipe-meta-label{
+  color:var(--orange);
+  font-weight:900;
+}
+
+.recipe-meta-value{
+  font-weight:800;
 }
 
 .modal-section{
@@ -973,26 +1167,26 @@ a{
 @media(max-width:800px){
 
   .site-header{
-    padding:9px 10px;
+    padding:6px 9px;
   }
 
   .header-inner{
-    gap:7px;
+    gap:5px;
   }
 
   .header-logo img{
-    width:58px;
+    width:48px;
   }
 
   .header-nav{
-    gap:2px;
+    gap:1px;
     flex:1;
     justify-content:flex-end;
   }
 
   .header-nav a{
-    padding:7px 8px;
-    font-size:9px;
+    padding:6px 7px;
+    font-size:8px;
   }
 
   .section{
@@ -1033,10 +1227,10 @@ a{
   }
 
   .hero-visual{
-    width:74vw;
-    height:74vw;
-    right:-3%;
-    top:57%;
+    width:78vw;
+    height:78vw;
+    right:-2%;
+    top:49%;
     transform:none;
     border-width:7px;
     box-shadow:12px 15px 0 var(--yellow);
@@ -1052,9 +1246,14 @@ a{
     font-size:9px;
   }
 
+  .about{
+    padding-top:70px;
+    padding-bottom:70px;
+  }
+
   .about-grid{
     grid-template-columns:1fr;
-    gap:45px;
+    gap:35px;
   }
 
   .about-title{
@@ -1065,6 +1264,12 @@ a{
 
   .about-copy{
     font-size:26px;
+  }
+
+  .about-shape{
+    margin-top:25px;
+    width:120px;
+    height:120px;
   }
 
   .section-heading{
@@ -1124,21 +1329,40 @@ a{
   }
 
   .tag-list{
-    margin-top:35px;
-    gap:7px;
+    margin-top:30px;
+    gap:5px;
   }
 
   .tag-button{
-    padding:10px 13px;
-    font-size:10px;
+    padding:7px 10px;
+    font-size:8px;
+    border-width:1px;
+  }
+
+  .tag-page{
+    padding-top:120px;
+  }
+
+  .tag-page-heading{
+    margin-bottom:28px;
+  }
+
+  .tag-page-heading h1{
+    font-size:18vw;
   }
 
   .final-cta{
-    min-height:60vh;
+    min-height:55vh;
   }
 
   .final-cta-title{
-    font-size:17vw;
+    font-size:5.8vw;
+    letter-spacing:-.08em;
+  }
+
+  .final-cta-mark{
+    margin-top:35px;
+    font-size:10px;
   }
 
   .modal{
@@ -1165,6 +1389,25 @@ a{
 
   .modal-title{
     font-size:42px;
+  }
+
+  .modal-tags{
+    margin-top:18px;
+  }
+
+  .modal-tag{
+    padding:7px 10px;
+    font-size:10px;
+  }
+
+  .recipe-meta{
+    margin-top:14px;
+  }
+
+  .recipe-meta-item{
+    grid-template-columns:90px 1fr;
+    padding:8px 10px;
+    font-size:10px;
   }
 
   .modal-section{
@@ -1240,7 +1483,7 @@ a{
 
   .modal-close{
     top:10px;
-    right:10px;
+    margin-right:10px;
     width:38px;
     height:38px;
     font-size:20px;
@@ -1269,12 +1512,12 @@ a{
 @media(max-width:360px){
 
   .header-logo img{
-    width:48px;
+    width:44px;
   }
 
   .header-nav a{
-    padding:6px 6px;
-    font-size:8px;
+    padding:5px 5px;
+    font-size:7px;
   }
 
   .recipe-title{
@@ -1341,7 +1584,7 @@ a{
 
 
 <!-- =========================
-     HERO
+     MAIN
 ========================= -->
 
 <main>
@@ -1465,9 +1708,34 @@ a{
 
     <div class="tag-list" id="tagList"></div>
 
-    <div class="mood-results">
-      <div class="recipe-grid" id="moodGrid"></div>
+  </div>
+
+</section>
+
+
+<!-- =========================
+     TAG PAGE
+========================= -->
+
+<section class="section tag-page" id="tagPage">
+
+  <div class="section-inner">
+
+    <div class="tag-page-heading">
+
+      <small>RECIPE COLLECTION</small>
+
+      <h1 id="tagPageTitle">
+        #<span>レシピ</span>
+      </h1>
+
+      <a class="tag-page-back" href="index.html">
+        ← CHU dot COOKING に戻る
+      </a>
+
     </div>
+
+    <div class="recipe-grid" id="tagRecipeGrid"></div>
 
   </div>
 
@@ -1483,9 +1751,7 @@ a{
   <div class="final-cta-inner">
 
     <h2 class="final-cta-title">
-      <span>今日も、</span>
-      <span>自分のメシが</span>
-      <span>一番うまい。</span>
+      <span>今日も </span><span class="accent">俺のメシがうまい！</span>
     </h2>
 
     <div class="final-cta-mark">
@@ -1542,6 +1808,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1000&q=85",
     tags:["麺類","海鮮","ガッツリ"],
     searchText:"海老 塩 焼きそば 麺 もやし キャベツ",
+    gas:1,
     ingredients:[
       ["中華麺","2玉"],
       ["むき海老","120g"],
@@ -1566,6 +1833,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=85",
     tags:["鶏肉","さっぱり","おかず"],
     searchText:"鶏むね肉 レモン 醤油 ソテー",
+    gas:1,
     ingredients:[
       ["鶏むね肉","300g"],
       ["塩","2g"],
@@ -1589,6 +1857,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
     tags:["なす","中華","ご飯"],
     searchText:"麻婆なす なす 豚ひき肉 豆板醤 甜麺醤",
+    gas:1,
     ingredients:[
       ["冷凍なす","300g"],
       ["豚ひき肉","120g"],
@@ -1617,6 +1886,8 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
     tags:["ご飯","鶏肉","スパイス"],
     searchText:"炊飯器 チキンライス カレー粉 クミン ヨーグルト",
+    appliance:"炊飯器",
+    note:"通常炊飯でOK",
     ingredients:[
       ["米","2合"],
       ["鶏もも肉","250g"],
@@ -1645,6 +1916,9 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=85",
     tags:["パスタ","チーズ","洋食"],
     searchText:"ナポリタン パスタ チーズ ケチャップ ウインナー",
+    gas:1,
+    appliance:"オーブン",
+    note:"チーズに焼き色がつくまで焼く",
     ingredients:[
       ["スパゲッティ","200g"],
       ["玉ねぎ","100g"],
@@ -1694,6 +1968,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=900&q=85",
     tags:["丼","豚肉","辛い"],
     searchText:"豚キムチ 豚肉 キムチ 丼 ご飯",
+    gas:1,
     ingredients:[
       ["豚バラ肉","150g"],
       ["キムチ","120g"],
@@ -1718,6 +1993,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
     tags:["丼","鶏肉","甘辛"],
     searchText:"照り焼き チキン 鶏肉 丼 醤油 みりん",
+    gas:1,
     ingredients:[
       ["鶏もも肉","250g"],
       ["醤油","20g"],
@@ -1741,6 +2017,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
     tags:["丼","豚肉","ガッツリ"],
     searchText:"ねぎ塩 豚カルビ 豚肉 丼 レモン",
+    gas:1,
     ingredients:[
       ["豚バラ肉","180g"],
       ["長ねぎ","80g"],
@@ -1765,6 +2042,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=85",
     tags:["魚","和食","バター"],
     searchText:"鮭 バター 醤油 焼き魚",
+    gas:1,
     ingredients:[
       ["鮭","2切れ"],
       ["塩","2g"],
@@ -1786,6 +2064,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1534256958597-7fe685cbd745?auto=format&fit=crop&w=900&q=85",
     tags:["魚","和食","煮物"],
     searchText:"さば 味噌煮 味噌 生姜",
+    gas:1,
     ingredients:[
       ["さば","2切れ"],
       ["味噌","35g"],
@@ -1810,6 +2089,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=900&q=85",
     tags:["麺類","豚肉","さっぱり"],
     searchText:"豚しゃぶ うどん 冷やし めんつゆ",
+    gas:1,
     ingredients:[
       ["冷凍うどん","2玉"],
       ["豚しゃぶ肉","150g"],
@@ -1834,6 +2114,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=85",
     tags:["パスタ","クリーム","明太子"],
     searchText:"明太子 クリーム パスタ 豆乳 牛乳",
+    gas:1,
     ingredients:[
       ["スパゲッティ","200g"],
       ["明太子","80g"],
@@ -1858,6 +2139,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
     tags:["ご飯","肉","ガッツリ"],
     searchText:"焼肉 チャーハン 牛肉 ご飯",
+    gas:1,
     ingredients:[
       ["ご飯","300g"],
       ["牛こま肉","100g"],
@@ -1882,6 +2164,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
     tags:["ご飯","にんにく","ガッツリ"],
     searchText:"にんにく 醤油 チャーハン 卵",
+    gas:1,
     ingredients:[
       ["ご飯","300g"],
       ["卵","2個"],
@@ -1905,6 +2188,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
     tags:["豆腐","中華","チーズ"],
     searchText:"麻婆豆腐 チーズ 豆腐 豚ひき肉",
+    gas:1,
     ingredients:[
       ["豆腐","300g"],
       ["豚ひき肉","100g"],
@@ -1931,6 +2215,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85",
     tags:["鶏肉","辛い","中華"],
     searchText:"よだれ鶏 鶏むね肉 ラー油 ごま",
+    gas:1,
     ingredients:[
       ["鶏むね肉","300g"],
       ["醤油","20g"],
@@ -1956,6 +2241,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85",
     tags:["なす","和食","副菜"],
     searchText:"なす 揚げ浸し めんつゆ 生姜",
+    gas:1,
     ingredients:[
       ["なす","300g"],
       ["めんつゆ","50g"],
@@ -2016,6 +2302,8 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1572449043416-55f4685c9bb7?auto=format&fit=crop&w=900&q=85",
     tags:["洋食","卵","チーズ"],
     searchText:"キッシュ ベーコン ほうれん草 卵 チーズ",
+    appliance:"オーブン",
+    note:"180℃に予熱してから焼く",
     ingredients:[
       ["卵","3個"],
       ["ベーコン","70g"],
@@ -2039,6 +2327,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
     tags:["豚肉","和食","ご飯"],
     searchText:"生姜焼き 豚肉 玉ねぎ 生姜 醤油",
+    gas:1,
     ingredients:[
       ["豚ロース","200g"],
       ["玉ねぎ","100g"],
@@ -2062,6 +2351,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=85",
     tags:["パスタ","チーズ","濃厚"],
     searchText:"カルボナーラ パスタ 卵 チーズ ベーコン",
+    gas:1,
     ingredients:[
       ["スパゲッティ","200g"],
       ["ベーコン","80g"],
@@ -2086,6 +2376,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
     tags:["豚肉","野菜","簡単"],
     searchText:"豚肉 キャベツ 塩炒め にんにく",
+    gas:1,
     ingredients:[
       ["豚こま肉","180g"],
       ["キャベツ","200g"],
@@ -2109,6 +2400,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=900&q=85",
     tags:["麺類","簡単","ツナ"],
     searchText:"ツナマヨ うどん 醤油 めんつゆ",
+    gas:1,
     ingredients:[
       ["冷凍うどん","2玉"],
       ["ツナ","70g"],
@@ -2131,6 +2423,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
     tags:["丼","豚肉","味噌"],
     searchText:"豚丼 にんにく 味噌 豚肉 ご飯",
+    gas:1,
     ingredients:[
       ["豚バラ肉","180g"],
       ["味噌","20g"],
@@ -2176,6 +2469,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=900&q=85",
     tags:["じゃがいも","カレー","副菜"],
     searchText:"じゃがいも カレー粉 ポテト 炒め",
+    gas:1,
     ingredients:[
       ["じゃがいも","300g"],
       ["玉ねぎ","80g"],
@@ -2223,6 +2517,8 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85",
     tags:["ご飯","カレー","チーズ"],
     searchText:"チーズカレー 焼きカレー ご飯 チーズ",
+    appliance:"トースター",
+    note:"チーズに焼き色がつくまで焼く",
     ingredients:[
       ["ご飯","300g"],
       ["カレー","250g"],
@@ -2245,6 +2541,7 @@ const recipes = [
     image:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
     tags:["丼","豚肉","塩だれ"],
     searchText:"豚キャベツ 丼 塩だれ ご飯 ごま油",
+    gas:1,
     ingredients:[
       ["豚バラ肉","180g"],
       ["キャベツ","180g"],
@@ -2275,8 +2572,8 @@ const recipes = [
 const perPage = 15;
 
 let currentPage = 1;
-let activeTag = "すべて";
 let currentRecipe = null;
+let tagPageCurrentPage = 1;
 
 
 /* =================================
@@ -2286,11 +2583,12 @@ let currentRecipe = null;
 const recipeGrid = document.getElementById("recipeGrid");
 const pagination = document.getElementById("pagination");
 const tagList = document.getElementById("tagList");
-const moodGrid = document.getElementById("moodGrid");
 const searchInput = document.getElementById("searchInput");
 const modal = document.getElementById("recipeModal");
 const modalContent = document.getElementById("modalContent");
 const modalClose = document.getElementById("modalClose");
+const tagRecipeGrid = document.getElementById("tagRecipeGrid");
+const tagPageTitle = document.getElementById("tagPageTitle");
 
 
 /* =================================
@@ -2319,28 +2617,16 @@ function renderTags(){
     const button = document.createElement("button");
 
     button.className = "tag-button";
-
-    if(tag === activeTag){
-      button.classList.add("active");
-    }
-
+    button.type = "button";
     button.textContent = "#" + tag;
 
     button.addEventListener("click",()=>{
 
-      activeTag = tag;
-      currentPage = 1;
+      const url =
+        "index.html?tag=" +
+        encodeURIComponent(tag);
 
-      renderTags();
-      renderMoodRecipes();
-
-      if(tag !== "すべて"){
-        setTimeout(()=>{
-          document.getElementById("mood").scrollIntoView({
-            behavior:"smooth"
-          });
-        },50);
-      }
+      window.location.href = url;
 
     });
 
@@ -2357,13 +2643,10 @@ function renderTags(){
 
 function getFilteredRecipes(){
 
-  const keyword = searchInput.value.trim().toLowerCase();
+  const keyword =
+    searchInput.value.trim().toLowerCase();
 
   return recipes.filter(recipe=>{
-
-    const tagMatch =
-      activeTag === "すべて" ||
-      recipe.tags.includes(activeTag);
 
     const ingredientText =
       recipe.ingredients
@@ -2380,11 +2663,7 @@ function getFilteredRecipes(){
       ingredientText
     ).toLowerCase();
 
-    const keywordMatch =
-      !keyword ||
-      searchable.includes(keyword);
-
-    return tagMatch && keywordMatch;
+    return !keyword || searchable.includes(keyword);
 
   });
 
@@ -2397,24 +2676,31 @@ function getFilteredRecipes(){
 
 function createRecipeCard(recipe){
 
-  const card = document.createElement("article");
+  const card =
+    document.createElement("article");
 
   card.className = "recipe-card";
 
   card.innerHTML = `
     <div class="recipe-image">
-      <img src="${recipe.image}" alt="${recipe.name}" loading="lazy">
+      <img
+        src="${recipe.image}"
+        alt="${escapeHtml(recipe.name)}"
+        loading="lazy"
+      >
     </div>
 
     <div class="recipe-info">
 
       <h3 class="recipe-title">
-        ${recipe.name}
+        ${escapeHtml(recipe.name)}
       </h3>
 
       <div class="recipe-tags">
         ${recipe.tags.map(tag=>`
-          <span class="recipe-tag">#${tag}</span>
+          <span class="recipe-tag">
+            #${escapeHtml(tag)}
+          </span>
         `).join("")}
       </div>
 
@@ -2436,10 +2722,14 @@ function createRecipeCard(recipe){
 
 function renderRecipes(){
 
-  const filtered = getFilteredRecipes();
+  const filtered =
+    getFilteredRecipes();
 
   const totalPages =
-    Math.max(1,Math.ceil(filtered.length / perPage));
+    Math.max(
+      1,
+      Math.ceil(filtered.length / perPage)
+    );
 
   if(currentPage > totalPages){
     currentPage = totalPages;
@@ -2490,14 +2780,18 @@ function renderPagination(totalPages){
 
   for(let page=1; page<=totalPages; page++){
 
-    const button = document.createElement("button");
+    const button =
+      document.createElement("button");
 
     button.type = "button";
     button.textContent = page;
 
     if(page === currentPage){
       button.classList.add("active");
-      button.setAttribute("aria-current","page");
+      button.setAttribute(
+        "aria-current",
+        "page"
+      );
     }
 
     button.addEventListener("click",()=>{
@@ -2506,10 +2800,11 @@ function renderPagination(totalPages){
 
       renderRecipes();
 
-      document.getElementById("recipes").scrollIntoView({
-        behavior:"smooth",
-        block:"start"
-      });
+      document.getElementById("recipes")
+        .scrollIntoView({
+          behavior:"smooth",
+          block:"start"
+        });
 
     });
 
@@ -2521,29 +2816,72 @@ function renderPagination(totalPages){
 
 
 /* =================================
-   MOOD RECIPES
+   TAG PAGE
 ================================= */
 
-function renderMoodRecipes(){
+function getTagFromUrl(){
 
-  moodGrid.innerHTML = "";
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
 
-  const filtered =
-    getFilteredRecipes().slice(0,6);
+  return params.get("tag");
 
-  if(!filtered.length){
+}
 
-    moodGrid.innerHTML = `
+
+function getTagRecipes(tag){
+
+  if(!tag || tag === "すべて"){
+    return recipes;
+  }
+
+  return recipes.filter(recipe=>
+    recipe.tags.includes(tag)
+  );
+
+}
+
+
+function renderTagPage(){
+
+  const tag =
+    getTagFromUrl();
+
+  if(!tag){
+    return;
+  }
+
+  document.body.classList.add(
+    "tag-page-mode"
+  );
+
+  document.title =
+    "CHU dot COOKING | #" + tag;
+
+  tagPageTitle.innerHTML =
+    "#" + escapeHtml(tag);
+
+
+  const matched =
+    getTagRecipes(tag);
+
+  tagRecipeGrid.innerHTML = "";
+
+  if(!matched.length){
+
+    tagRecipeGrid.innerHTML = `
       <div class="empty">
-        該当するレシピがありません。
+        このタグのレシピはありません。
       </div>
     `;
 
     return;
   }
 
-  filtered.forEach(recipe=>{
-    moodGrid.appendChild(
+  matched.forEach(recipe=>{
+    tagRecipeGrid.appendChild(
       createRecipeCard(recipe)
     );
   });
@@ -2573,7 +2911,11 @@ function makeIngredientMap(recipe){
    各材料につき最初の1回だけ
 ================================= */
 
-function makeClickableIngredients(text,ingredientMap,usedIngredients){
+function makeClickableIngredients(
+  text,
+  ingredientMap,
+  usedIngredients
+){
 
   let result = text;
 
@@ -2587,26 +2929,41 @@ function makeClickableIngredients(text,ingredientMap,usedIngredients){
       return;
     }
 
-    const index = result.indexOf(name);
+    const index =
+      result.indexOf(
+        escapeHtml(name)
+      );
 
     if(index === -1){
       return;
     }
 
-    const amount = ingredientMap.get(name);
+    const safeName =
+      escapeHtml(name);
 
-    const before = result.slice(0,index);
-    const after = result.slice(index + name.length);
+    const amount =
+      ingredientMap.get(name);
+
+    const before =
+      result.slice(0,index);
+
+    const after =
+      result.slice(
+        index + safeName.length
+      );
 
     result =
       before +
       `
         <span
           class="cooking-ingredient"
-          data-ingredient="${escapeHtml(name)}"
+          data-ingredient="${safeName}"
         >
-          ${escapeHtml(name)}
-          <span class="ingredient-bubble" style="display:none;">
+          ${safeName}
+          <span
+            class="ingredient-bubble"
+            style="display:none;"
+          >
             ${escapeHtml(amount)}
           </span>
         </span>
@@ -2640,54 +2997,95 @@ function escapeHtml(value){
 
 /* =================================
    RELATED RECIPES
+   副菜系からランダム3品固定
 ================================= */
 
 function getRelatedRecipes(current){
 
-  const currentIngredients =
-    new Set(
-      current.ingredients.map(item=>item[0])
-    );
+  const sideDishPool =
+    recipes.filter(recipe=>{
 
-  const candidates =
-    recipes
-      .filter(recipe=>recipe !== current)
-      .map(recipe=>{
+      if(recipe === current){
+        return false;
+      }
 
-        const ingredients =
-          recipe.ingredients.map(item=>item[0]);
+      return recipe.tags.some(tag=>
+        [
+          "副菜",
+          "サラダ",
+          "野菜",
+          "おかず"
+        ].includes(tag)
+      );
 
-        const common =
-          ingredients.filter(
-            item=>currentIngredients.has(item)
-          ).length;
+    });
 
-        return {
-          recipe,
-          common
-        };
 
-      })
-      .filter(item=>item.common > 0)
-      .sort((a,b)=>b.common-a.common);
+  const shuffled =
+    [...sideDishPool]
+      .sort(()=>Math.random() - .5);
 
-  if(!candidates.length){
-    return [];
+  return shuffled.slice(0,3);
+
+}
+
+
+/* =================================
+   RECIPE META
+================================= */
+
+function renderRecipeMeta(recipe){
+
+  const items = [];
+
+  if(recipe.gas){
+    items.push(`
+      <div class="recipe-meta-item">
+        <span class="recipe-meta-label">
+          ガスコンロ
+        </span>
+        <span class="recipe-meta-value">
+          ${recipe.gas}口
+        </span>
+      </div>
+    `);
   }
 
-  const topCount =
-    Math.min(8,candidates.length);
+  if(recipe.appliance){
+    items.push(`
+      <div class="recipe-meta-item">
+        <span class="recipe-meta-label">
+          調理家電
+        </span>
+        <span class="recipe-meta-value">
+          ${escapeHtml(recipe.appliance)}
+        </span>
+      </div>
+    `);
+  }
 
-  const topCandidates =
-    candidates.slice(0,topCount);
+  if(recipe.note){
+    items.push(`
+      <div class="recipe-meta-item">
+        <span class="recipe-meta-label">
+          特記事項
+        </span>
+        <span class="recipe-meta-value">
+          ${escapeHtml(recipe.note)}
+        </span>
+      </div>
+    `);
+  }
 
-  topCandidates.sort(
-    ()=>Math.random() - .5
-  );
+  if(!items.length){
+    return "";
+  }
 
-  return topCandidates
-    .slice(0,3)
-    .map(item=>item.recipe);
+  return `
+    <div class="recipe-meta">
+      ${items.join("")}
+    </div>
+  `;
 
 }
 
@@ -2705,6 +3103,7 @@ function openRecipe(recipe){
 
   const usedIngredients =
     new Set();
+
 
   const stepsHtml =
     recipe.steps.map((step,index)=>{
@@ -2743,8 +3142,15 @@ function openRecipe(recipe){
         <section class="more-recipes">
 
           <div class="more-heading">
-            <small>MORE RECIPES</small>
-            <h3>こんなのもどう？</h3>
+
+            <small>
+              MORE RECIPES
+            </small>
+
+            <h3>
+              こんなのもどう？
+            </h3>
+
           </div>
 
           <div class="more-grid">
@@ -2759,7 +3165,7 @@ function openRecipe(recipe){
                 <div class="more-card-image">
                   <img
                     src="${item.image}"
-                    alt="${item.name}"
+                    alt="${escapeHtml(item.name)}"
                     loading="lazy"
                   >
                 </div>
@@ -2767,11 +3173,14 @@ function openRecipe(recipe){
                 <div class="more-card-info">
 
                   <div class="more-card-title">
-                    ${item.name}
+                    ${escapeHtml(item.name)}
                   </div>
 
                   <div class="more-card-tags">
-                    ${item.tags.map(tag=>"#"+tag).join(" ")}
+                    ${item.tags
+                      .map(tag=>"#"+escapeHtml(tag))
+                      .join(" ")
+                    }
                   </div>
 
                 </div>
@@ -2792,16 +3201,18 @@ function openRecipe(recipe){
     <div class="modal-top">
 
       <div class="modal-image">
+
         <img
           src="${recipe.image}"
-          alt="${recipe.name}"
+          alt="${escapeHtml(recipe.name)}"
         >
+
       </div>
 
       <div class="modal-intro">
 
         <h2 class="modal-title">
-          ${recipe.name}
+          ${escapeHtml(recipe.name)}
         </h2>
 
         <div class="modal-tags">
@@ -2813,12 +3224,14 @@ function openRecipe(recipe){
               type="button"
               data-tag="${escapeHtml(tag)}"
             >
-              #${tag}
+              #${escapeHtml(tag)}
             </button>
 
           `).join("")}
 
         </div>
+
+        ${renderRecipeMeta(recipe)}
 
       </div>
 
@@ -2871,7 +3284,9 @@ function openRecipe(recipe){
   `;
 
 
+  modal.classList.remove("closing");
   modal.classList.add("show");
+
   document.body.style.overflow = "hidden";
 
 
@@ -2881,27 +3296,37 @@ function openRecipe(recipe){
     .querySelectorAll(".cooking-ingredient")
     .forEach(element=>{
 
-      element.addEventListener("click",event=>{
+      element.addEventListener(
+        "click",
+        event=>{
 
-        event.stopPropagation();
+          event.stopPropagation();
 
-        const bubble =
-          element.querySelector(".ingredient-bubble");
+          const bubble =
+            element.querySelector(
+              ".ingredient-bubble"
+            );
 
-        modalContent
-          .querySelectorAll(".ingredient-bubble")
-          .forEach(item=>{
-            if(item !== bubble){
-              item.style.display = "none";
-            }
-          });
+          modalContent
+            .querySelectorAll(
+              ".ingredient-bubble"
+            )
+            .forEach(item=>{
 
-        bubble.style.display =
-          bubble.style.display === "none"
-            ? "block"
-            : "none";
+              if(item !== bubble){
+                item.style.display = "none";
+              }
 
-      });
+            });
+
+
+          bubble.style.display =
+            bubble.style.display === "none"
+              ? "block"
+              : "none";
+
+        }
+      );
 
     });
 
@@ -2917,23 +3342,9 @@ function openRecipe(recipe){
         const tag =
           button.dataset.tag;
 
-        closeModal();
-
-        activeTag = tag;
-        currentPage = 1;
-
-        renderTags();
-        renderRecipes();
-        renderMoodRecipes();
-
-        setTimeout(()=>{
-
-          document.getElementById("mood")
-            .scrollIntoView({
-              behavior:"smooth"
-            });
-
-        },100);
+        window.location.href =
+          "index.html?tag=" +
+          encodeURIComponent(tag);
 
       });
 
@@ -2949,10 +3360,14 @@ function openRecipe(recipe){
       card.addEventListener("click",()=>{
 
         const index =
-          Number(card.dataset.relatedIndex);
+          Number(
+            card.dataset.relatedIndex
+          );
 
         if(related[index]){
-          openRecipe(related[index]);
+          openRecipe(
+            related[index]
+          );
         }
 
       });
@@ -2968,57 +3383,144 @@ function openRecipe(recipe){
 
 function closeModal(){
 
-  modal.classList.remove("show");
-  document.body.style.overflow = "";
+  if(!modal.classList.contains("show")){
+    return;
+  }
 
-  currentRecipe = null;
+  modal.classList.add("closing");
+
+  setTimeout(()=>{
+
+    modal.classList.remove(
+      "show",
+      "closing"
+    );
+
+    document.body.style.overflow = "";
+
+    currentRecipe = null;
+
+  },250);
 
 }
 
 
 /* =================================
-   EVENTS
+   HEADER NAV
+   ページ遷移・履歴追加なし
 ================================= */
 
-modalClose.addEventListener("click",closeModal);
+const navLinks =
+  document.querySelectorAll(
+    ".header-nav a"
+  );
 
-modal.addEventListener("click",event=>{
+navLinks.forEach(link=>{
 
-  if(event.target === modal){
-    closeModal();
+  link.addEventListener(
+    "click",
+    event=>{
+
+      event.preventDefault();
+
+      const targetId =
+        link.getAttribute("href");
+
+      const target =
+        document.querySelector(
+          targetId
+        );
+
+      if(target){
+
+        target.scrollIntoView({
+          behavior:"smooth",
+          block:"start"
+        });
+
+      }
+
+    }
+  );
+
+});
+
+
+/* ロゴもトップへ */
+
+document
+  .querySelector(".header-logo")
+  .addEventListener("click",event=>{
+
+    event.preventDefault();
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+  });
+
+
+/* =================================
+   MODAL EVENTS
+================================= */
+
+modalClose.addEventListener(
+  "click",
+  closeModal
+);
+
+
+modal.addEventListener(
+  "click",
+  event=>{
+
+    if(event.target === modal){
+      closeModal();
+    }
+
   }
+);
 
-});
 
-document.addEventListener("keydown",event=>{
+document.addEventListener(
+  "keydown",
+  event=>{
 
-  if(event.key === "Escape"){
-    closeModal();
+    if(event.key === "Escape"){
+      closeModal();
+    }
+
   }
+);
 
-});
 
-searchInput.addEventListener("input",()=>{
+/* =================================
+   SEARCH
+================================= */
 
-  currentPage = 1;
+searchInput.addEventListener(
+  "input",
+  ()=>{
 
-  renderRecipes();
-  renderMoodRecipes();
+    currentPage = 1;
 
-});
+    renderRecipes();
+
+  }
+);
 
 
 /* =================================
    NAV ACTIVE
 ================================= */
 
-const navLinks =
-  document.querySelectorAll(".header-nav a");
-
 const sections =
   document.querySelectorAll(
     "#home,#about,#recipes,#mood"
   );
+
 
 function updateActiveNav(){
 
@@ -3029,7 +3531,10 @@ function updateActiveNav(){
 
   sections.forEach(section=>{
 
-    if(scrollPosition >= section.offsetTop){
+    if(
+      scrollPosition >=
+      section.offsetTop
+    ){
       activeId = section.id;
     }
 
@@ -3046,6 +3551,7 @@ function updateActiveNav(){
 
 }
 
+
 window.addEventListener(
   "scroll",
   updateActiveNav,
@@ -3059,7 +3565,7 @@ window.addEventListener(
 
 renderTags();
 renderRecipes();
-renderMoodRecipes();
+renderTagPage();
 updateActiveNav();
 
 </script>
