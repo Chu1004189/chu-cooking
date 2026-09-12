@@ -9,2524 +9,1000 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
-/* =========================================================
-   COLOR
-========================================================= */
+/* =========================
+   BASIC
+========================= */
 
-:root {
-  --orange: #ff6b22;
-  --orange-dark: #df4d0c;
-  --cream: #fff4e7;
-  --yellow: #ffd84d;
-  --pink: #ffaaa0;
-  --green: #b9d77b;
-  --blue: #8ed8e8;
-  --brown: #492617;
-  --white: #fffdf9;
-  --text: #302017;
+:root{
+  --orange:#ff681f;
+  --orange2:#ff8a35;
+  --yellow:#ffd84d;
+  --pink:#ffaaa5;
+  --green:#b9d77a;
+  --cream:#fff6e9;
+  --white:#fffdf8;
+  --brown:#332018;
+  --black:#17120f;
 }
 
-
-/* =========================================================
-   RESET
-========================================================= */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{
+  box-sizing:border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+html{
+  scroll-behavior:smooth;
 }
 
-body {
-  background: var(--cream);
-  color: var(--text);
-
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--brown);
   font-family:
-    "Inter",
-    "Noto Sans JP",
+    "M PLUS Rounded 1c",
     sans-serif;
-
-  overflow-x: hidden;
+  overflow-x:hidden;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+img{
+  max-width:100%;
+  display:block;
 }
 
-button,
-input {
-  font-family: inherit;
+a{
+  color:inherit;
+  text-decoration:none;
 }
 
-img {
-  display: block;
-  max-width: 100%;
+button{
+  font-family:inherit;
 }
 
-
-/* =========================================================
+/* =========================
    OPENING
-========================================================= */
+========================= */
 
-.opening {
-  position: fixed;
-  inset: 0;
-
-  z-index: 9999;
-
-  background: var(--orange);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
-
-  animation:
-    openingDisappear
-    1s
-    cubic-bezier(.76,0,.24,1)
-    3.7s
-    forwards;
+.opening{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:var(--orange);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  animation:openingOut 1s 2.8s forwards;
 }
 
-
-/* 大きなオレンジの円 */
-
-.opening-circle {
-  position: absolute;
-
-  width: 20px;
-  height: 20px;
-
-  border-radius: 50%;
-
-  background: var(--yellow);
-
-  animation:
-    circleExpand
-    1.3s
-    cubic-bezier(.16,1,.3,1)
-    .15s
-    forwards;
+.opening-circle{
+  position:absolute;
+  width:10px;
+  height:10px;
+  background:var(--yellow);
+  border-radius:50%;
+  animation:circleGrow 1.1s .2s forwards;
 }
 
-
-/* 小さなドット */
-
-.opening-dots {
-  position: absolute;
-
-  inset: 0;
-
-  pointer-events: none;
+.opening-dots{
+  position:absolute;
+  inset:0;
 }
 
-.opening-dot {
-  position: absolute;
-
-  width: 12px;
-  height: 12px;
-
-  border-radius: 50%;
-
-  background: white;
-
-  opacity: 0;
-
-  animation:
-    dotPop
-    .7s
-    cubic-bezier(.16,1,.3,1)
-    forwards;
+.opening-dots span{
+  position:absolute;
+  width:12px;
+  height:12px;
+  background:white;
+  border-radius:50%;
+  animation:dotPop .5s forwards;
+  opacity:0;
 }
 
-.dot1 {
-  top: 20%;
-  left: 15%;
-  animation-delay: .7s;
+.opening-dots span:nth-child(1){
+  left:12%;
+  top:20%;
+  animation-delay:.4s;
 }
 
-.dot2 {
-  top: 17%;
-  right: 20%;
-  width: 20px;
-  height: 20px;
-  animation-delay: .9s;
+.opening-dots span:nth-child(2){
+  left:84%;
+  top:26%;
+  animation-delay:.55s;
 }
 
-.dot3 {
-  bottom: 22%;
-  left: 18%;
-  width: 17px;
-  height: 17px;
-  animation-delay: 1.05s;
+.opening-dots span:nth-child(3){
+  left:18%;
+  bottom:18%;
+  animation-delay:.7s;
 }
 
-.dot4 {
-  bottom: 17%;
-  right: 15%;
-  animation-delay: .8s;
+.opening-dots span:nth-child(4){
+  right:14%;
+  bottom:20%;
+  animation-delay:.85s;
 }
 
-.dot5 {
-  top: 35%;
-  left: 8%;
-  width: 8px;
-  height: 8px;
-  animation-delay: 1.2s;
+.opening-content{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  color:white;
+  opacity:0;
+  transform:scale(.8);
+  animation:openingContent 1s .8s forwards;
 }
 
-.dot6 {
-  bottom: 40%;
-  right: 8%;
-  width: 9px;
-  height: 9px;
-  animation-delay: 1.15s;
+.opening-logo{
+  width:170px;
+  margin:0 auto 22px;
+  filter:brightness(0) invert(1);
 }
 
-
-/* ロゴ */
-
-.opening-logo-wrap {
-  position: relative;
-
-  z-index: 5;
-
-  text-align: center;
-
-  animation:
-    openingLogo
-    1s
-    cubic-bezier(.16,1,.3,1)
-    .65s
-    both;
+.opening-title{
+  font-size:clamp(42px,8vw,90px);
+  line-height:.9;
+  font-weight:900;
+  letter-spacing:-4px;
 }
 
-.opening-logo {
-  width: 125px;
-
-  margin: 0 auto 22px;
-
-  filter:
-    brightness(0)
-    invert(1);
-
-  animation:
-    logoBounce
-    1.3s
-    cubic-bezier(.16,1,.3,1)
-    .6s
-    both;
+.opening-sub{
+  margin-top:20px;
+  font-family:"DM Sans",sans-serif;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:4px;
 }
 
-.opening-text {
-  color: white;
-
-  font-family: "Fredoka", sans-serif;
-
-  font-size: 13px;
-  font-weight: 700;
-
-  letter-spacing: .18em;
-}
-
-.opening-sub {
-  margin-top: 9px;
-
-  color: rgba(255,255,255,.8);
-
-  font-size: 8px;
-  font-weight: 700;
-
-  letter-spacing: .25em;
-}
-
-
-/* アニメーション */
-
-@keyframes circleExpand {
-
-  0% {
-    width: 20px;
-    height: 20px;
+@keyframes circleGrow{
+  to{
+    width:180vmax;
+    height:180vmax;
   }
-
-  100% {
-    width: 180vw;
-    height: 180vw;
-  }
-
 }
 
-@keyframes dotPop {
-
-  0% {
-    opacity: 0;
-    transform: scale(0);
+@keyframes openingContent{
+  to{
+    opacity:1;
+    transform:scale(1);
   }
-
-  60% {
-    opacity: 1;
-    transform: scale(1.3);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
 }
 
-@keyframes openingLogo {
-
-  from {
-    opacity: 0;
-    transform: translateY(40px) rotate(-5deg);
+@keyframes dotPop{
+  0%{
+    opacity:0;
+    transform:scale(0);
   }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) rotate(0);
+  100%{
+    opacity:1;
+    transform:scale(1);
   }
-
 }
 
-@keyframes logoBounce {
-
-  0% {
-    transform: scale(.4) rotate(-12deg);
+@keyframes openingOut{
+  to{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
   }
-
-  60% {
-    transform: scale(1.08) rotate(3deg);
-  }
-
-  100% {
-    transform: scale(1) rotate(0);
-  }
-
 }
 
-@keyframes openingDisappear {
-
-  to {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-}
-
-
-/* =========================================================
+/* =========================
    HEADER
-========================================================= */
+========================= */
 
-.header {
-
-  position: absolute;
-
-  top: 0;
-  left: 0;
-
-  width: 100%;
-
-  padding:
-    25px
-    5vw;
-
-  z-index: 100;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: space-between;
+.header{
+  position:fixed;
+  z-index:100;
+  top:0;
+  left:0;
+  width:100%;
+  padding:20px 28px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  mix-blend-mode:multiply;
 }
 
-.header-logo {
-
-  font-family:
-    "Fredoka",
-    sans-serif;
-
-  font-size: 17px;
-
-  font-weight: 700;
-
-  letter-spacing: -.02em;
-
+.header-logo{
+  font-family:"DM Sans",sans-serif;
+  font-weight:900;
+  font-size:20px;
+  letter-spacing:-1px;
 }
 
-.header-logo span {
-  color: var(--orange);
+.header-nav{
+  display:flex;
+  gap:25px;
+  font-family:"DM Sans",sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1px;
 }
 
-.header-nav {
-
-  display: flex;
-
-  gap: 25px;
+.header-nav a{
+  transition:.25s;
 }
 
-.header-nav a {
-
-  font-size: 9px;
-
-  font-weight: 900;
-
-  letter-spacing: .14em;
-
-  transition: .25s;
-
+.header-nav a:hover{
+  color:var(--orange);
+  transform:rotate(-3deg);
 }
 
-.header-nav a:hover {
-  color: var(--orange);
-}
-
-
-/* =========================================================
+/* =========================
    HERO
-========================================================= */
+========================= */
 
-.hero {
-
-  position: relative;
-
-  min-height: 100svh;
-
-  padding:
-    150px
-    6vw
-    80px;
-
-  display: flex;
-
-  align-items: center;
-
-  background:
-    var(--cream);
-
-  overflow: hidden;
-
+.hero{
+  min-height:100vh;
+  padding:130px 5vw 70px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
 }
 
-
-/* 背景の巨大文字 */
-
-.hero-bg {
-
-  position: absolute;
-
-  left: -3%;
-  top: 18%;
-
-  font-family:
-    "Fredoka",
-    sans-serif;
-
-  font-size:
-    clamp(
-      170px,
-      27vw,
-      420px
-    );
-
-  font-weight: 700;
-
-  line-height: .7;
-
-  color:
-    rgba(
-      255,
-      107,
-      34,
-      .07
-    );
-
-  pointer-events: none;
-
+.hero-bg-text{
+  position:absolute;
+  top:80px;
+  left:-20px;
+  font-family:"DM Sans",sans-serif;
+  font-size:clamp(150px,25vw,380px);
+  font-weight:900;
+  line-height:.8;
+  color:rgba(255,104,31,.08);
+  letter-spacing:-20px;
+  white-space:nowrap;
+  pointer-events:none;
 }
 
-
-/* HERO CONTENT */
-
-.hero-content {
-
-  position: relative;
-
-  z-index: 3;
-
-  width: 100%;
-
+.hero-grid{
+  width:min(1300px,100%);
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  align-items:center;
+  position:relative;
+  z-index:2;
 }
 
-.hero-label {
-
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 9px;
-
-  margin-bottom: 25px;
-
-  color:
-    var(--orange);
-
-  font-size: 9px;
-
-  font-weight: 900;
-
-  letter-spacing: .25em;
-
+.hero-copy{
+  position:relative;
 }
 
-.hero-label::before {
-
-  content: "";
-
-  width: 28px;
-  height: 4px;
-
-  border-radius: 10px;
-
-  background:
-    var(--orange);
-
+.hero-small{
+  display:inline-block;
+  background:var(--yellow);
+  padding:8px 14px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:800;
+  transform:rotate(-3deg);
+  margin-bottom:25px;
 }
 
-
-/* メインコピー */
-
-.hero-title {
-
-  max-width: 1000px;
-
-  font-family:
-    "Fredoka",
-    sans-serif;
-
-  font-size:
-    clamp(
-      65px,
-      12vw,
-      170px
-    );
-
-  font-weight: 700;
-
-  line-height: .78;
-
-  letter-spacing:
-    -.065em;
-
+.hero h1{
+  margin:0;
+  font-size:clamp(55px,8vw,120px);
+  line-height:.95;
+  letter-spacing:-5px;
+  font-weight:900;
 }
 
-.hero-title .line1 {
-  display: block;
+.hero h1 .accent{
+  color:var(--orange);
+  display:block;
+  transform:rotate(-2deg);
 }
 
-.hero-title .line2 {
-
-  display: block;
-
-  color:
-    var(--orange);
-
-  margin-left:
-    10vw;
-
+.hero-lead{
+  margin-top:30px;
+  max-width:560px;
+  font-size:18px;
+  line-height:1.9;
+  font-weight:700;
 }
 
-.hero-title .line3 {
-
-  display: block;
-
-  margin-left:
-    4vw;
-
+.hero-en{
+  margin-top:20px;
+  font-family:"DM Sans",sans-serif;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:2px;
 }
 
-
-/* 日本語 */
-
-.hero-copy {
-
-  margin:
-    45px
-    0
-    0
-    14vw;
-
-  max-width: 390px;
-
-  font-size: 14px;
-
-  font-weight: 700;
-
-  line-height: 1.8;
-
+.hero-photo-wrap{
+  position:relative;
 }
 
-
-/* スタンプ */
-
-.hero-sticker {
-
-  position: absolute;
-
-  right: 10%;
-  bottom: 18%;
-
-  width: 145px;
-  height: 145px;
-
-  border-radius: 50%;
-
-  background:
-    var(--yellow);
-
-  border:
-    4px solid
-    var(--brown);
-
-  color:
-    var(--brown);
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-
-  font-family:
-    "Fredoka",
-    sans-serif;
-
-  font-size: 15px;
-
-  font-weight: 700;
-
-  line-height: 1.05;
-
-  transform:
-    rotate(10deg);
-
-  box-shadow:
-    7px 8px 0
-    var(--brown);
-
-  animation:
-    stickerFloat
-    3s
-    ease-in-out
-    infinite;
-
+.hero-photo{
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  border-radius:35px;
+  transform:rotate(3deg);
+  box-shadow:18px 18px 0 var(--orange);
 }
 
-@keyframes stickerFloat {
-
-  0%,
-  100% {
-    transform:
-      rotate(10deg)
-      translateY(0);
-  }
-
-  50% {
-    transform:
-      rotate(4deg)
-      translateY(-10px);
-  }
-
+.hero-sticker{
+  position:absolute;
+  right:-25px;
+  top:20px;
+  width:125px;
+  height:125px;
+  background:var(--yellow);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-size:14px;
+  font-weight:900;
+  line-height:1.2;
+  transform:rotate(12deg);
+  box-shadow:5px 5px 0 var(--brown);
 }
 
-
-/* scroll */
-
-.hero-scroll {
-
-  position: absolute;
-
-  left: 50%;
-  bottom: 25px;
-
-  transform:
-    translateX(-50%);
-
-  font-size: 8px;
-
-  font-weight: 900;
-
-  letter-spacing: .25em;
-
-  color:
-    rgba(
-      48,
-      32,
-      23,
-      .45
-    );
-
+.hero-sticker.small{
+  width:90px;
+  height:90px;
+  left:-30px;
+  right:auto;
+  top:auto;
+  bottom:35px;
+  background:var(--pink);
+  transform:rotate(-12deg);
 }
 
+/* =========================
+   ORANGE MESSAGE
+========================= */
 
-/* =========================================================
-   ORANGE INTRO
-========================================================= */
-
-.intro {
-
-  position: relative;
-
-  padding:
-    150px
-    7vw;
-
-  background:
-    var(--orange);
-
-  color:
-    white;
-
-  overflow: hidden;
-
+.message{
+  background:var(--orange);
+  color:white;
+  padding:110px 5vw;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
 }
 
-
-/* ドットパターン */
-
-.intro::before {
-
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  opacity: .16;
-
-  background-image:
-    radial-gradient(
-      white 2px,
-      transparent 2px
-    );
-
-  background-size:
-    25px
-    25px;
-
+.message:before{
+  content:"YUMMY";
+  position:absolute;
+  font-family:"DM Sans",sans-serif;
+  font-size:25vw;
+  font-weight:900;
+  color:rgba(255,255,255,.07);
+  left:-20px;
+  bottom:-80px;
 }
 
-
-/* 巨大文字 */
-
-.intro::after {
-
-  content:
-    "YUMMY!";
-
-  position: absolute;
-
-  right: -3%;
-  bottom: -10%;
-
-  font-family:
-    "Fredoka",
-    sans-serif;
-
-  font-size:
-    25vw;
-
-  font-weight: 700;
-
-  line-height: .7;
-
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      .08
-    );
-
+.message-inner{
+  position:relative;
+  z-index:2;
+  max-width:1000px;
+  margin:auto;
 }
 
-.intro-content {
-
-  position: relative;
-
-  z-index: 2;
-
-  max-width: 900px;
-
+.message-label{
+  font-family:"DM Sans",sans-serif;
+  font-size:12px;
+  letter-spacing:4px;
+  font-weight:700;
 }
 
-.section-mini {
-
-  font-size: 9px;
-
-  font-weight: 900;
-
-  letter-spacing: .3em;
-
-  margin-bottom: 30px;
-
+.message h2{
+  font-size:clamp(45px,7vw,100px);
+  line-height:1;
+  margin:25px 0;
+  font-weight:900;
+  letter-spacing:-4px;
 }
 
-.intro-title {
-
-  font-family:
-    "Fredoka",
-    sans-serif;
-
-  font-size:
-    clamp(
-      55px,
-      9vw,
-      120px
-    );
-
-  line-height: .85;
-
-  letter-spacing:
-    -.05em;
-
+.message p{
+  font-size:17px;
+  line-height:2;
+  font-weight:700;
 }
 
-.intro-title span {
+/* =========================
+   PHOTO PLAYGROUND
+========================= */
 
-  color:
-    var(--yellow);
-
+.playground{
+  padding:120px 5vw;
+  background:var(--yellow);
+  overflow:hidden;
 }
 
-.intro-text {
-
-  max-width: 470px;
-
-  margin-top: 40px;
-
-  font-size: 12px;
-
-  line-height: 2;
-
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      .8
-    );
-
+.playground-inner{
+  width:min(1250px,100%);
+  margin:auto;
 }
 
-
-/* =========================================================
-   FOOD PLAYGROUND
-========================================================= */
-
-.playground {
-
-  position: relative;
-
-  min-height:
-    850px;
-
-  padding:
-    100px
-    5vw;
-
-  background:
-    var(--yellow);
-
-  overflow: hidden;
-
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:30px;
+  margin-bottom:55px;
 }
 
-
-/* 見出し */
-
-.playground-title {
-
-  position: relative;
-
-  z-index: 5;
-
-  text-align:
-    center;
-
-  font-family:
-    "Fredoka",
-    sans-serif;
-
-  font-size:
-    clamp(
-      65px,
-      13vw,
-      180px
-    );
-
-  font-weight: 700;
-
-  line-height: .7;
-
-  letter-spacing:
-    -.06em;
-
+.section-head h2{
+  margin:0;
+  font-size:clamp(45px,7vw,95px);
+  line-height:.9;
+  letter-spacing:-5px;
+  font-weight:900;
 }
 
-.playground-title span {
-
-  color:
-    var(--orange);
-
+.section-head p{
+  max-width:350px;
+  line-height:1.8;
+  font-weight:700;
 }
 
-
-/* 仮料理写真 */
-
-.food {
-
-  position: absolute;
-
-  overflow: hidden;
-
-  border:
-    7px solid
-    var(--white);
-
-  box-shadow:
-    10px 14px 0
-    rgba(
-      48,
-      32,
-      23,
-      .15
-    );
-
+.photo-collage{
+  display:grid;
+  grid-template-columns:1.1fr .8fr .8fr;
+  grid-template-rows:300px 230px;
+  gap:18px;
 }
 
-.food::after {
-
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(
-        255,
-        255,
-        255,
-        .2
-      ),
-      transparent
-    );
-
+.collage-item{
+  overflow:hidden;
+  border:5px solid var(--brown);
+  background:white;
+  position:relative;
 }
 
-
-/* 海老 */
-
-.food1 {
-
-  width: 300px;
-  height: 370px;
-
-  left: 8%;
-  top: 300px;
-
-  background:
-    radial-gradient(
-      circle at 35% 45%,
-      #f38b4e
-      0 8%,
-      transparent 9%
-    ),
-    radial-gradient(
-      circle at 60% 55%,
-      #df5a28
-      0 10%,
-      transparent 11%
-    ),
-    radial-gradient(
-      circle at 50% 35%,
-      #ffb06c
-      0 6%,
-      transparent 7%
-    ),
-    #b7441a;
-
-  transform:
-    rotate(-7deg);
-
+.collage-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.5s;
 }
 
-
-/* パスタ */
-
-.food2 {
-
-  width: 250px;
-  height: 320px;
-
-  right: 9%;
-  top: 260px;
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      #f2a25f
-      0 18%,
-      #c25b27
-      19% 39%,
-      transparent 40%
-    ),
-    #713016;
-
-  transform:
-    rotate(8deg);
-
+.collage-item:hover img{
+  transform:scale(1.07);
 }
 
-
-/* ご飯 */
-
-.food3 {
-
-  width: 210px;
-  height: 260px;
-
-  left: 43%;
-  bottom: 55px;
-
-  background:
-    radial-gradient(
-      circle at center,
-      #e6ad58
-      0 20%,
-      #9a4e20
-      21% 42%,
-      transparent 43%
-    ),
-    #5a2b14;
-
-  transform:
-    rotate(4deg);
-
+.collage-item:nth-child(1){
+  grid-row:span 2;
+  transform:rotate(-2deg);
 }
 
-
-/* シール */
-
-.food-sticker {
-
-  position: absolute;
-
-  z-index: 10;
-
-  padding:
-    14px
-    20px;
-
-  border-radius:
-    50px;
-
-  background:
-    var(--pink);
-
-  color:
-    var(--brown);
-
-  font-family:
-    "Fredoka",
-    sans-serif;
-
-  font-size:
-    14px;
-
-  font-weight:
-    700;
-
-  transform:
-    rotate(-8deg);
-
+.collage-item:nth-child(2){
+  transform:rotate(2deg);
 }
 
-.sticker1 {
-
-  top: 370px;
-  left: 31%;
-
+.collage-item:nth-child(3){
+  transform:rotate(-1deg);
 }
 
-.sticker2 {
-
-  right: 25%;
-  bottom: 160px;
-
-  background:
-    var(--green);
-
-  transform:
-    rotate(7deg);
-
+.collage-item:nth-child(4){
+  grid-column:span 2;
+  transform:rotate(1deg);
 }
 
+.photo-label{
+  position:absolute;
+  left:15px;
+  bottom:15px;
+  background:white;
+  padding:8px 13px;
+  font-size:12px;
+  font-weight:900;
+  transform:rotate(-3deg);
+}
 
-/* =========================================================
+/* =========================
    RECIPES
-========================================================= */
+========================= */
 
-.recipes {
-
-  padding:
-    130px
-    6vw;
-
-  background:
-    var(--cream);
-
+.recipes{
+  padding:130px 5vw;
+  background:var(--cream);
 }
 
-.recipes-heading {
-
-  display:
-    flex;
-
-  justify-content:
-    space-between;
-
-  align-items:
-    flex-end;
-
-  margin-bottom:
-    70px;
-
+.recipes-inner{
+  width:min(1250px,100%);
+  margin:auto;
 }
 
-.recipes-title {
-
-  font-family:
-    "Fredoka",
-    sans-serif;
-
-  font-size:
-    clamp(
-      60px,
-      11vw,
-      150px
-    );
-
-  line-height:
-    .72;
-
-  letter-spacing:
-    -.06em;
-
+.recipe-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-bottom:60px;
 }
 
-.recipes-title span {
-
-  color:
-    var(--orange);
-
+.recipe-top h2{
+  font-size:clamp(55px,8vw,110px);
+  margin:0;
+  line-height:.8;
+  letter-spacing:-6px;
 }
 
-.recipes-note {
-
-  max-width:
-    250px;
-
-  font-size:
-    10px;
-
-  font-weight:
-    600;
-
-  line-height:
-    1.8;
-
+.recipe-top span{
+  font-family:"DM Sans",sans-serif;
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:2px;
 }
 
-
-/* カード */
-
-.recipe-grid {
-
-  display:
-    grid;
-
-  grid-template-columns:
-    repeat(12, 1fr);
-
-  gap:
-    20px;
-
+.recipe-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:22px;
 }
 
-.recipe-card {
-
-  position:
-    relative;
-
-  min-height:
-    430px;
-
-  overflow:
-    hidden;
-
-  border-radius:
-    28px;
-
-  cursor:
-    pointer;
-
-  background:
-    var(--orange);
-
-  transition:
-    transform
-    .4s
-    cubic-bezier(
-      .16,
-      1,
-      .3,
-      1
-    );
-
+.recipe-card{
+  grid-column:span 4;
+  background:white;
+  border-radius:25px;
+  overflow:hidden;
+  cursor:pointer;
+  box-shadow:7px 7px 0 rgba(51,32,24,.15);
+  transition:.3s;
 }
 
-.recipe-card:hover {
-
-  transform:
-    rotate(
-      -1deg
-    )
-    translateY(
-      -8px
-    );
-
+.recipe-card:nth-child(1),
+.recipe-card:nth-child(4){
+  grid-column:span 6;
 }
 
-
-/* サイズ */
-
-.recipe-card:nth-child(1) {
-  grid-column:
-    span 7;
+.recipe-card:hover{
+  transform:translateY(-8px) rotate(-1deg);
+  box-shadow:12px 14px 0 rgba(51,32,24,.18);
 }
 
-.recipe-card:nth-child(2) {
-  grid-column:
-    span 5;
+.recipe-image{
+  aspect-ratio:1.35/1;
+  overflow:hidden;
+  position:relative;
 }
 
-.recipe-card:nth-child(3) {
-  grid-column:
-    span 5;
+.recipe-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.5s;
 }
 
-.recipe-card:nth-child(4) {
-  grid-column:
-    span 7;
+.recipe-card:hover .recipe-image img{
+  transform:scale(1.06);
 }
 
-.recipe-card:nth-child(5),
-.recipe-card:nth-child(6) {
-  grid-column:
-    span 6;
+.recipe-tag{
+  position:absolute;
+  top:15px;
+  left:15px;
+  background:var(--orange);
+  color:white;
+  padding:7px 12px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:900;
 }
 
-
-/* 写真 */
-
-.recipe-photo {
-
-  position:
-    absolute;
-
-  inset:
-    0;
-
-  transition:
-    transform
-    .6s
-    cubic-bezier(
-      .16,
-      1,
-      .3,
-      1
-    );
-
+.recipe-info{
+  padding:22px;
 }
 
-.recipe-card:hover
-.recipe-photo {
-
-  transform:
-    scale(
-      1.08
-    );
-
+.recipe-info h3{
+  margin:0;
+  font-size:23px;
+  line-height:1.3;
 }
 
-.recipe-photo::after {
-
-  content: "";
-
-  position:
-    absolute;
-
-  inset:
-    0;
-
-  background:
-    linear-gradient(
-      to top,
-      rgba(
-        48,
-        25,
-        10,
-        .85
-      ),
-      transparent
-      65%
-    );
-
+.recipe-info p{
+  margin:10px 0 0;
+  font-size:12px;
+  color:#806d62;
 }
 
-
-/* 仮料理 */
-
-.photo-shrimp {
-
-  background:
-    radial-gradient(
-      circle at 40% 45%,
-      #f58c4c
-      0 8%,
-      transparent 9%
-    ),
-    radial-gradient(
-      circle at 65% 55%,
-      #dc5929
-      0 10%,
-      transparent 11%
-    ),
-    #a73e18;
-
+.recipe-arrow{
+  margin-top:20px;
+  font-family:"DM Sans",sans-serif;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1px;
 }
 
-.photo-pasta {
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      #efa466
-      0 20%,
-      #c35b2c
-      21% 40%,
-      transparent 41%
-    ),
-    #713016;
-
-}
-
-.photo-chicken {
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      #e1a16b
-      0 20%,
-      #9b4b27
-      21% 42%,
-      transparent 43%
-    ),
-    #653018;
-
-}
-
-.photo-eggplant {
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      #8a5271
-      0 22%,
-      #47213c
-      23% 43%,
-      transparent 44%
-    ),
-    #301427;
-
-}
-
-.photo-rice {
-
-  background:
-    radial-gradient(
-      circle at center,
-      #e4a95a
-      0 23%,
-      #9c4d1d
-      24% 44%,
-      transparent 45%
-    ),
-    #56270f;
-
-}
-
-.photo-pork {
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      #df9c7a
-      0 20%,
-      #9a4930
-      21% 42%,
-      transparent 43%
-    ),
-    #5c281b;
-
-}
-
-
-/* カード文字 */
-
-.recipe-info {
-
-  position:
-    absolute;
-
-  z-index:
-    3;
-
-  left:
-    28px;
-
-  right:
-    28px;
-
-  bottom:
-    28px;
-
-  color:
-    white;
-
-}
-
-.recipe-category {
-
-  display:
-    inline-block;
-
-  padding:
-    6px
-    12px;
-
-  border-radius:
-    30px;
-
-  background:
-    var(--yellow);
-
-  color:
-    var(--brown);
-
-  font-size:
-    8px;
-
-  font-weight:
-    900;
-
-  margin-bottom:
-    12px;
-
-}
-
-.recipe-name {
-
-  font-family:
-    "Fredoka",
-    sans-serif;
-
-  font-size:
-    clamp(
-      27px,
-      4vw,
-      50px
-    );
-
-  line-height:
-    .95;
-
-}
-
-.recipe-meta {
-
-  margin-top:
-    12px;
-
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      .65
-    );
-
-  font-size:
-    9px;
-
-}
-
-
-/* =========================================================
+/* =========================
    CATEGORY
-========================================================= */
+========================= */
 
-.category {
-
-  padding:
-    140px
-    5vw;
-
-  background:
-    var(--pink);
-
-  overflow:
-    hidden;
-
+.category{
+  padding:110px 5vw;
+  background:var(--pink);
 }
 
-.category-head {
-
-  display:
-    flex;
-
-  align-items:
-    baseline;
-
-  gap:
-    20px;
-
-  margin-bottom:
-    70px;
-
+.category-inner{
+  width:min(1200px,100%);
+  margin:auto;
 }
 
-.category-head h2 {
-
-  font-family:
-    "Fredoka",
-    sans-serif;
-
-  font-size:
-    clamp(
-      60px,
-      11vw,
-      150px
-    );
-
-  line-height:
-    .7;
-
-  letter-spacing:
-    -.06em;
-
+.category-title{
+  font-size:clamp(45px,7vw,90px);
+  font-weight:900;
+  line-height:.9;
+  letter-spacing:-5px;
+  margin:0 0 50px;
 }
 
-.category-head span {
-
-  font-size:
-    9px;
-
-  font-weight:
-    900;
-
-  letter-spacing:
-    .2em;
-
+.category-list{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
 }
 
-.category-list {
-
-  display:
-    grid;
-
-  grid-template-columns:
-    repeat(
-      4,
-      1fr
-    );
-
-  border-top:
-    3px
-    solid
-    var(--brown);
-
-  border-bottom:
-    3px
-    solid
-    var(--brown);
-
+.category-item{
+  min-height:230px;
+  padding:25px;
+  border:4px solid var(--brown);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:.3s;
 }
 
-.category-item {
-
-  position:
-    relative;
-
-  min-height:
-    230px;
-
-  padding:
-    30px;
-
-  display:
-    flex;
-
-  align-items:
-    flex-end;
-
-  border-right:
-    1px
-    solid
-    rgba(
-      73,
-      38,
-      23,
-      .3
-    );
-
-  cursor:
-    pointer;
-
-  transition:
-    .35s;
-
+.category-item:nth-child(1){
+  background:var(--orange);
+  color:white;
 }
 
-.category-item:last-child {
-  border-right:
-    none;
+.category-item:nth-child(2){
+  background:var(--green);
 }
 
-.category-item:hover {
-
-  background:
-    var(--orange);
-
-  color:
-    white;
-
+.category-item:nth-child(3){
+  background:var(--yellow);
 }
 
-.category-number {
-
-  position:
-    absolute;
-
-  top:
-    25px;
-
-  left:
-    30px;
-
-  font-size:
-    9px;
-
-  font-weight:
-    900;
-
+.category-item:nth-child(4){
+  background:var(--white);
 }
 
-.category-name {
-
-  font-family:
-    "Fredoka",
-    sans-serif;
-
-  font-size:
-    55px;
-
-  font-weight:
-    700;
-
+.category-item:hover{
+  transform:rotate(-3deg) translateY(-7px);
 }
 
+.category-number{
+  font-family:"DM Sans",sans-serif;
+  font-size:13px;
+  font-weight:900;
+}
 
-/* =========================================================
+.category-item h3{
+  margin:0;
+  font-size:35px;
+  font-weight:900;
+}
+
+.category-item span{
+  font-family:"DM Sans",sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:1px;
+}
+
+/* =========================
    ARCHIVE
-========================================================= */
+========================= */
 
-.archive {
-
-  padding:
-    140px
-    6vw;
-
-  background:
-    var(--white);
-
+.archive{
+  background:var(--brown);
+  color:white;
+  padding:120px 5vw;
 }
 
-.archive-title {
-
-  font-family:
-    "Fredoka",
-    sans-serif;
-
-  font-size:
-    clamp(
-      60px,
-      11vw,
-      150px
-    );
-
-  line-height:
-    .72;
-
-  letter-spacing:
-    -.06em;
-
-  margin-bottom:
-    70px;
-
+.archive-inner{
+  width:min(1200px,100%);
+  margin:auto;
 }
 
-.archive-title span {
-
-  color:
-    var(--orange);
-
+.archive-title{
+  font-size:clamp(50px,8vw,110px);
+  line-height:.8;
+  letter-spacing:-6px;
+  margin:0 0 60px;
 }
 
-.archive-list {
-
-  border-top:
-    2px
-    solid
-    var(--brown);
-
+.archive-row{
+  border-top:1px solid rgba(255,255,255,.3);
+  padding:22px 0;
+  display:grid;
+  grid-template-columns:120px 1fr 100px;
+  gap:20px;
+  align-items:center;
 }
 
-.archive-item {
-
-  display:
-    grid;
-
-  grid-template-columns:
-    80px
-    1fr
-    100px;
-
-  align-items:
-    center;
-
-  padding:
-    25px
-    0;
-
-  border-bottom:
-    1px
-    solid
-    rgba(
-      73,
-      38,
-      23,
-      .25
-    );
-
-  cursor:
-    pointer;
-
-  transition:
-    .3s;
-
+.archive-row:last-child{
+  border-bottom:1px solid rgba(255,255,255,.3);
 }
 
-.archive-item:hover {
-
-  padding-left:
-    20px;
-
-  color:
-    var(--orange);
-
+.archive-year{
+  color:var(--yellow);
+  font-family:"DM Sans",sans-serif;
+  font-weight:900;
 }
 
-.archive-number {
-
-  font-size:
-    9px;
-
-  font-weight:
-    900;
-
+.archive-name{
+  font-size:20px;
+  font-weight:800;
 }
 
-.archive-name {
-
-  font-family:
-    "Fredoka",
-    sans-serif;
-
-  font-size:
-    clamp(
-      25px,
-      3vw,
-      42px
-    );
-
+.archive-cat{
+  text-align:right;
+  font-family:"DM Sans",sans-serif;
+  font-size:11px;
 }
 
-.archive-category {
-
-  text-align:
-    right;
-
-  font-size:
-    8px;
-
-  font-weight:
-    900;
-
-  letter-spacing:
-    .15em;
-
-}
-
-
-/* =========================================================
+/* =========================
    FINAL
-========================================================= */
+========================= */
 
-.final {
-
-  position:
-    relative;
-
-  min-height:
-    80vh;
-
-  padding:
-    130px
-    7vw;
-
-  background:
-    var(--green);
-
-  overflow:
-    hidden;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
+.final{
+  min-height:75vh;
+  background:var(--orange);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:80px 5vw;
+  position:relative;
+  overflow:hidden;
 }
 
-.final::before {
-
-  content:
-    "YUM!";
-
-  position:
-    absolute;
-
-  right:
-    -4%;
-
-  bottom:
-    -8%;
-
-  font-family:
-    "Fredoka",
-    sans-serif;
-
-  font-size:
-    30vw;
-
-  line-height:
-    .7;
-
-  color:
-    rgba(
-      73,
-      38,
-      23,
-      .08
-    );
-
+.final h2{
+  font-family:"DM Sans",sans-serif;
+  font-size:clamp(80px,15vw,210px);
+  line-height:.78;
+  letter-spacing:-12px;
+  margin:0;
+  font-weight:900;
 }
 
-.final-inner {
-
-  position:
-    relative;
-
-  z-index:
-    2;
-
+.final-jp{
+  margin-top:45px;
+  font-size:clamp(20px,3vw,38px);
+  font-weight:900;
 }
 
-.final-small {
-
-  font-size:
-    9px;
-
-  font-weight:
-    900;
-
-  letter-spacing:
-    .3em;
-
+.final-sticker{
+  position:absolute;
+  background:var(--yellow);
+  color:var(--brown);
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  line-height:1.2;
+  transform:rotate(15deg);
 }
 
-.final-title {
-
-  margin-top:
-    25px;
-
-  font-family:
-    "Fredoka",
-    sans-serif;
-
-  font-size:
-    clamp(
-      70px,
-      14vw,
-      200px
-    );
-
-  line-height:
-    .7;
-
-  letter-spacing:
-    -.07em;
-
+.final-sticker.one{
+  top:18%;
+  left:8%;
 }
 
-.final-title span {
-
-  display:
-    block;
-
-  color:
-    var(--orange);
-
-  margin-left:
-    12vw;
-
+.final-sticker.two{
+  bottom:15%;
+  right:8%;
+  background:var(--pink);
+  transform:rotate(-12deg);
 }
 
-
-/* =========================================================
+/* =========================
    FOOTER
-========================================================= */
+========================= */
 
-.footer {
-
-  padding:
-    35px
-    5vw;
-
-  background:
-    var(--brown);
-
-  color:
-    white;
-
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    space-between;
-
+.footer{
+  background:var(--cream);
+  padding:40px 5vw;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-family:"DM Sans",sans-serif;
+  font-size:11px;
+  font-weight:700;
 }
 
-.footer-logo {
-
-  font-family:
-    "Fredoka",
-    sans-serif;
-
-  font-weight:
-    700;
-
-  font-size:
-    14px;
-
+.footer-logo{
+  font-size:18px;
+  font-weight:900;
 }
 
-.footer-logo span {
-  color:
-    var(--orange);
-}
-
-.footer-copy {
-
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      .45
-    );
-
-  font-size:
-    8px;
-
-  letter-spacing:
-    .15em;
-
-}
-
-
-/* =========================================================
+/* =========================
    MODAL
-========================================================= */
+========================= */
 
-.modal {
-
-  position:
-    fixed;
-
-  inset:
-    0;
-
-  z-index:
-    500;
-
-  background:
-    rgba(
-      73,
-      38,
-      23,
-      .7
-    );
-
-  backdrop-filter:
-    blur(
-      10px
-    );
-
-  display:
-    none;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
-  padding:
-    20px;
-
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:500;
+  background:rgba(23,18,15,.75);
+  backdrop-filter:blur(10px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
 }
 
-.modal.show {
-  display:
-    flex;
+.modal.active{
+  display:flex;
 }
 
-.modal-content {
-
-  position:
-    relative;
-
-  width:
-    min(
-      900px,
-      100%
-    );
-
-  max-height:
-    90vh;
-
-  overflow-y:
-    auto;
-
-  padding:
-    50px;
-
-  border-radius:
-    30px;
-
-  background:
-    var(--cream);
-
-  box-shadow:
-    12px
-    15px
-    0
-    rgba(
-      73,
-      38,
-      23,
-      .3
-    );
-
+.modal-box{
+  width:min(900px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:var(--cream);
+  border-radius:30px;
+  position:relative;
+  padding:35px;
 }
 
-.modal-close {
-
-  position:
-    absolute;
-
-  top:
-    18px;
-
-  right:
-    22px;
-
-  width:
-    40px;
-
-  height:
-    40px;
-
-  border:
-    none;
-
-  border-radius:
-    50%;
-
-  background:
-    var(--orange);
-
-  color:
-    white;
-
-  font-size:
-    24px;
-
-  cursor:
-    pointer;
-
+.modal-close{
+  position:absolute;
+  top:18px;
+  right:18px;
+  width:45px;
+  height:45px;
+  border:0;
+  border-radius:50%;
+  background:var(--orange);
+  color:white;
+  font-size:25px;
+  cursor:pointer;
 }
 
-.modal-category {
-
-  color:
-    var(--orange);
-
-  font-size:
-    9px;
-
-  font-weight:
-    900;
-
-  letter-spacing:
-    .25em;
-
+.modal-title{
+  font-size:clamp(35px,5vw,65px);
+  line-height:1;
+  margin:0 50px 30px 0;
+  font-weight:900;
 }
 
-.modal-title {
-
-  margin-top:
-    12px;
-
-  font-family:
-    "Fredoka",
-    sans-serif;
-
-  font-size:
-    clamp(
-      40px,
-      7vw,
-      80px
-    );
-
-  line-height:
-    .85;
-
+.modal-content{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
 }
 
-.modal-grid {
-
-  display:
-    grid;
-
-  grid-template-columns:
-    1fr
-    1.5fr;
-
-  gap:
-    50px;
-
-  margin-top:
-    50px;
-
+.modal-section h4{
+  font-size:12px;
+  letter-spacing:2px;
+  margin-bottom:15px;
 }
 
-.modal-heading {
-
-  margin-bottom:
-    20px;
-
-  color:
-    var(--orange);
-
-  font-size:
-    9px;
-
-  font-weight:
-    900;
-
-  letter-spacing:
-    .2em;
-
+.modal-section ul,
+.modal-section ol{
+  padding-left:20px;
+  line-height:2;
 }
 
-.ingredients li {
-
-  list-style:
-    none;
-
-  padding:
-    10px
-    0;
-
-  border-bottom:
-    1px
-    solid
-    rgba(
-      73,
-      38,
-      23,
-      .12
-    );
-
-  font-size:
-    12px;
-
+.modal-section li{
+  margin-bottom:5px;
 }
 
-.steps {
+/* =========================
+   RESPONSIVE
+========================= */
 
-  counter-reset:
-    step;
+@media(max-width:800px){
 
-}
-
-.steps li {
-
-  list-style:
-    none;
-
-  counter-increment:
-    step;
-
-  position:
-    relative;
-
-  padding:
-    0
-    0
-    25px
-    42px;
-
-  margin-bottom:
-    25px;
-
-  border-bottom:
-    1px
-    solid
-    rgba(
-      73,
-      38,
-      23,
-      .12
-    );
-
-  font-size:
-    12px;
-
-  line-height:
-    1.8;
-
-}
-
-.steps li::before {
-
-  content:
-    counter(
-      step,
-      decimal-leading-zero
-    );
-
-  position:
-    absolute;
-
-  left:
-    0;
-
-  color:
-    var(--orange);
-
-  font-weight:
-    900;
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 800px) {
-
-  .header-nav {
-    display:
-      none;
+  .header{
+    padding:17px 18px;
   }
 
-  .hero {
-
-    padding:
-      130px
-      7vw
-      80px;
-
+  .header-nav{
+    display:none;
   }
 
-  .hero-title {
-
-    font-size:
-      18vw;
-
+  .hero{
+    padding:120px 20px 70px;
   }
 
-  .hero-title .line2,
-  .hero-title .line3 {
-
-    margin-left:
-      0;
-
+  .hero-grid{
+    grid-template-columns:1fr;
   }
 
-  .hero-copy {
-
-    margin-left:
-      0;
-
+  .hero h1{
+    letter-spacing:-3px;
   }
 
-  .hero-sticker {
-
-    width:
-      105px;
-
-    height:
-      105px;
-
-    right:
-      7%;
-
-    bottom:
-      15%;
-
-    font-size:
-      11px;
-
+  .hero-photo-wrap{
+    width:85%;
+    margin:20px auto 0;
   }
 
-  .playground {
-
-    min-height:
-      700px;
-
+  .hero-sticker{
+    right:-10px;
   }
 
-  .food1 {
-
-    width:
-      210px;
-
-    height:
-      270px;
-
-    left:
-      3%;
-
-    top:
-      300px;
-
+  .photo-collage{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:240px 180px 180px;
   }
 
-  .food2 {
-
-    width:
-      170px;
-
-    height:
-      230px;
-
-    right:
-      3%;
-
-    top:
-      370px;
-
+  .collage-item:nth-child(1){
+    grid-row:span 2;
   }
 
-  .food3 {
-
-    width:
-      140px;
-
-    height:
-      180px;
-
-    left:
-      34%;
-
-    bottom:
-      40px;
-
+  .collage-item:nth-child(4){
+    grid-column:span 2;
   }
 
-  .sticker1 {
-
-    left:
-      30%;
-
-    top:
-      400px;
-
-  }
-
-  .sticker2 {
-
-    right:
-      12%;
-
-    bottom:
-      170px;
-
-  }
-
-  .recipes-heading {
-
-    display:
-      block;
-
-  }
-
-  .recipes-note {
-
-    margin-top:
-      25px;
-
-  }
-
-  .recipe-grid {
-
-    grid-template-columns:
-      1fr;
-
+  .recipe-grid{
+    display:grid;
+    grid-template-columns:1fr;
   }
 
   .recipe-card,
-  .recipe-card:nth-child(n) {
-
-    grid-column:
-      span 1;
-
-    min-height:
-      380px;
-
+  .recipe-card:nth-child(1),
+  .recipe-card:nth-child(4){
+    grid-column:span 1;
   }
 
-  .category-list {
-
-    grid-template-columns:
-      1fr
-      1fr;
-
+  .category-list{
+    grid-template-columns:1fr 1fr;
   }
 
-  .category-item {
-
-    min-height:
-      170px;
-
+  .archive-row{
+    grid-template-columns:70px 1fr;
   }
 
-  .category-item:nth-child(2) {
-
-    border-right:
-      none;
-
+  .archive-cat{
+    display:none;
   }
 
-  .archive-item {
-
-    grid-template-columns:
-      55px
-      1fr;
-
+  .modal-content{
+    grid-template-columns:1fr;
+    gap:20px;
   }
 
-  .archive-category {
+  .footer{
+    flex-direction:column;
+    gap:10px;
+  }
+}
 
-    display:
-      none;
+@media(max-width:480px){
 
+  .hero-photo{
+    box-shadow:10px 10px 0 var(--orange);
   }
 
-  .modal-content {
-
-    padding:
-      45px
-      22px;
-
+  .photo-collage{
+    display:flex;
+    flex-direction:column;
   }
 
-  .modal-grid {
-
-    grid-template-columns:
-      1fr;
-
+  .collage-item{
+    height:260px;
   }
 
-  .footer {
-
-    display:
-      block;
-
+  .category-list{
+    grid-template-columns:1fr;
   }
 
-  .footer-copy {
+  .category-item{
+    min-height:180px;
+  }
 
-    margin-top:
-      12px;
-
+  .final h2{
+    letter-spacing:-6px;
   }
 
 }
@@ -2534,44 +1010,38 @@ img {
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
+<!-- =========================
      OPENING
-===================================================== -->
+========================= -->
 
 <div class="opening">
 
   <div class="opening-circle"></div>
 
   <div class="opening-dots">
-
-    <span class="opening-dot dot1"></span>
-    <span class="opening-dot dot2"></span>
-    <span class="opening-dot dot3"></span>
-    <span class="opening-dot dot4"></span>
-    <span class="opening-dot dot5"></span>
-    <span class="opening-dot dot6"></span>
-
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
 
-
-  <div class="opening-logo-wrap">
+  <div class="opening-content">
 
     <img
       src="logo.png"
-      alt="CHU dot COOKING"
       class="opening-logo"
+      alt="CHU dot COOKING"
     >
 
-    <div class="opening-text">
-      CHU dot COOKING
+    <div class="opening-title">
+      CHU dot<br>
+      COOKING
     </div>
 
     <div class="opening-sub">
-      MY KITCHEN / MY FOOD
+      MY FOOD / MY RULES
     </div>
 
   </div>
@@ -2579,144 +1049,114 @@ img {
 </div>
 
 
-<!-- =====================================================
+<!-- =========================
      HEADER
-===================================================== -->
+========================= -->
 
 <header class="header">
 
-  <a
-    href="#"
-    class="header-logo">
-
-    CHU dot
-    <span>COOKING</span>
-
+  <a href="#" class="header-logo">
+    CHU dot COOKING
   </a>
 
-
   <nav class="header-nav">
-
-    <a href="#about">
-      ABOUT
-    </a>
-
-    <a href="#recipes">
-      RECIPES
-    </a>
-
-    <a href="#category">
-      CATEGORY
-    </a>
-
-    <a href="#archive">
-      ARCHIVE
-    </a>
-
+    <a href="#about">ABOUT</a>
+    <a href="#recipes">RECIPES</a>
+    <a href="#category">CATEGORY</a>
+    <a href="#archive">ARCHIVE</a>
   </nav>
 
 </header>
 
 
-<!-- =====================================================
+<!-- =========================
      HERO
-===================================================== -->
+========================= -->
 
-<section class="hero">
+<section class="hero" id="about">
 
-  <div class="hero-bg">
+  <div class="hero-bg-text">
     FOOD
   </div>
 
+  <div class="hero-grid">
 
-  <div class="hero-content">
+    <div class="hero-copy">
 
-    <div class="hero-label">
-      PERSONAL KITCHEN / 2026
+      <div class="hero-small">
+        MY KITCHEN / MY RULES
+      </div>
+
+      <h1>
+        俺の作る
+        <span class="accent">
+          飯が一番美味い！
+        </span>
+      </h1>
+
+      <p class="hero-lead">
+        好きなものを、好きなように。
+        ちょっとこだわって、ちゃんと美味しく。
+        日々の「うまい」を残していく料理サイト。
+      </p>
+
+      <div class="hero-en">
+        COOK IT. EAT IT. LOVE IT.
+      </div>
+
     </div>
 
 
-    <h1 class="hero-title">
+    <div class="hero-photo-wrap">
 
-      <span class="line1">
-        NOTHING
-      </span>
+      <!-- 仮画像 -->
+      <img
+        class="hero-photo"
+        src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=85"
+        alt="料理のイメージ"
+      >
 
-      <span class="line2">
-        TASTES
-      </span>
+      <div class="hero-sticker">
+        うまいは<br>
+        正義。
+      </div>
 
-      <span class="line3">
-        BETTER.
-      </span>
+      <div class="hero-sticker small">
+        LET'S<br>
+        EAT!
+      </div>
 
-    </h1>
+    </div>
 
-
-    <p class="hero-copy">
-
-      俺の作る飯が一番美味い。<br>
-
-      そう思える料理を、
-      ここに残していく。
-
-    </p>
-
-  </div>
-
-
-  <div class="hero-sticker">
-
-    MADE<br>
-    WITH<br>
-    LOVE<br>
-    &amp; HUNGER
-
-  </div>
-
-
-  <div class="hero-scroll">
-    SCROLL ↓
   </div>
 
 </section>
 
 
-<!-- =====================================================
-     INTRO
-===================================================== -->
+<!-- =========================
+     MESSAGE
+========================= -->
 
-<section
-  class="intro"
-  id="about">
+<section class="message">
 
-  <div class="intro-content">
+  <div class="message-inner">
 
-    <div class="section-mini">
-      01 / MY KITCHEN
+    <div class="message-label">
+      ABOUT CHU dot COOKING
     </div>
 
-
-    <h2 class="intro-title">
-
+    <h2>
       うまいものは、<br>
-
-      <span>
-        自分で作る。
-      </span>
-
+      自分で作る。
     </h2>
 
+    <p>
+      レシピ通りじゃなくてもいい。<br>
+      ちょっと味を濃くしてもいい。<br>
+      最後に黒胡椒を多めに振ってもいい。<br><br>
 
-    <p class="intro-text">
-
-      冷蔵庫にあるもの。<br>
-      スーパーで買ってきたもの。<br>
-      ふと思いついた組み合わせ。<br><br>
-
-      正解なんて気にしない。<br>
-      うまければ、それでいい。
-
+      「自分が一番うまいと思う飯」を<br>
+      自分のキッチンから。
     </p>
 
   </div>
@@ -2724,169 +1164,399 @@ img {
 </section>
 
 
-<!-- =====================================================
-     PLAYGROUND
-===================================================== -->
+<!-- =========================
+     PHOTO PLAYGROUND
+========================= -->
 
 <section class="playground">
 
-  <h2 class="playground-title">
+  <div class="playground-inner">
 
-    COOK<br>
+    <div class="section-head">
 
-    <span>
-      WHAT
-    </span>
-
-    YOU WANT.
-
-  </h2>
-
-
-  <div class="food food1"></div>
-
-  <div class="food food2"></div>
-
-  <div class="food food3"></div>
-
-
-  <div class="food-sticker sticker1">
-    NO RULES!
-  </div>
-
-  <div class="food-sticker sticker2">
-    JUST YUMMY.
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     RECIPES
-===================================================== -->
-
-<section
-  class="recipes"
-  id="recipes">
-
-  <div class="recipes-heading">
-
-    <div>
-
-      <div class="section-mini">
-        02 / RECIPES
-      </div>
-
-      <h2 class="recipes-title">
-
-        MY<br>
-
-        <span>
-          RECIPES.
-        </span>
-
+      <h2>
+        今日の<br>
+        うまい。
       </h2>
 
+      <p>
+        料理は味だけじゃない。<br>
+        焼ける音、立ち上がる湯気、<br>
+        盛り付ける瞬間まで全部楽しい。
+      </p>
+
     </div>
 
 
-    <p class="recipes-note">
+    <div class="photo-collage">
 
-      その日の気分と
-      冷蔵庫の中身から生まれた、
-      俺の料理アーカイブ。
+      <div class="collage-item">
 
-    </p>
+        <img
+          src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1000&q=85"
+          alt="麺料理"
+        >
 
-  </div>
+        <div class="photo-label">
+          NOODLES
+        </div>
+
+      </div>
 
 
-  <div
-    class="recipe-grid"
-    id="recipeGrid">
+      <div class="collage-item">
+
+        <img
+          src="https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=85"
+          alt="チキン料理"
+        >
+
+        <div class="photo-label">
+          MEAT
+        </div>
+
+      </div>
+
+
+      <div class="collage-item">
+
+        <img
+          src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85"
+          alt="ご飯料理"
+        >
+
+        <div class="photo-label">
+          RICE
+        </div>
+
+      </div>
+
+
+      <div class="collage-item">
+
+        <img
+          src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=85"
+          alt="野菜料理"
+        >
+
+        <div class="photo-label">
+          SIDE DISH
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
+     RECIPES
+========================= -->
+
+<section class="recipes" id="recipes">
+
+  <div class="recipes-inner">
+
+    <div class="recipe-top">
+
+      <h2>
+        RECIPES
+      </h2>
+
+      <span>
+        COOK / EAT / REPEAT
+      </span>
+
+    </div>
+
+
+    <div class="recipe-grid">
+
+
+      <!-- 01 -->
+
+      <article
+        class="recipe-card"
+        onclick="openRecipe(0)"
+      >
+
+        <div class="recipe-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1200&q=85"
+            alt="海老塩焼きそば"
+          >
+
+          <div class="recipe-tag">
+            麺
+          </div>
+
+        </div>
+
+        <div class="recipe-info">
+
+          <h3>
+            海老塩焼きそば
+          </h3>
+
+          <p>
+            海老の旨味と黒胡椒を効かせた塩焼きそば。
+          </p>
+
+          <div class="recipe-arrow">
+            VIEW RECIPE →
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- 02 -->
+
+      <article
+        class="recipe-card"
+        onclick="openRecipe(1)"
+      >
+
+        <div class="recipe-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=1000&q=85"
+            alt="チキンソテー"
+          >
+
+          <div class="recipe-tag">
+            肉
+          </div>
+
+        </div>
+
+        <div class="recipe-info">
+
+          <h3>
+            鶏むね肉のレモン醤油ソテー
+          </h3>
+
+          <p>
+            さっぱりだけど、ご飯が進む。
+          </p>
+
+          <div class="recipe-arrow">
+            VIEW RECIPE →
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- 03 -->
+
+      <article
+        class="recipe-card"
+        onclick="openRecipe(2)"
+      >
+
+        <div class="recipe-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=85"
+            alt="野菜料理"
+          >
+
+          <div class="recipe-tag">
+            副菜
+          </div>
+
+        </div>
+
+        <div class="recipe-info">
+
+          <h3>
+            とろ旨麻婆なす
+          </h3>
+
+          <p>
+            とろっとした茄子にピリ辛の旨味。
+          </p>
+
+          <div class="recipe-arrow">
+            VIEW RECIPE →
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- 04 -->
+
+      <article
+        class="recipe-card"
+        onclick="openRecipe(3)"
+      >
+
+        <div class="recipe-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1200&q=85"
+            alt="チキンライス"
+          >
+
+          <div class="recipe-tag">
+            ご飯
+          </div>
+
+        </div>
+
+        <div class="recipe-info">
+
+          <h3>
+            炊飯器スパイスチキンライス
+          </h3>
+
+          <p>
+            炊飯器に入れて炊くだけのごちそうご飯。
+          </p>
+
+          <div class="recipe-arrow">
+            VIEW RECIPE →
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- 05 -->
+
+      <article
+        class="recipe-card"
+        onclick="openRecipe(4)"
+      >
+
+        <div class="recipe-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1000&q=85"
+            alt="パスタ"
+          >
+
+          <div class="recipe-tag">
+            麺
+          </div>
+
+        </div>
+
+        <div class="recipe-info">
+
+          <h3>
+            とろけるチーズの焼きナポリタン
+          </h3>
+
+          <p>
+            チーズをのせて最後まで熱々。
+          </p>
+
+          <div class="recipe-arrow">
+            VIEW RECIPE →
+          </div>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
      CATEGORY
-===================================================== -->
+========================= -->
 
-<section
-  class="category"
-  id="category">
+<section class="category" id="category">
 
-  <div class="category-head">
+  <div class="category-inner">
 
-    <h2>
-      CATEGORY
+    <h2 class="category-title">
+      なに食べる？
     </h2>
 
-    <span>
-      WHAT ARE YOU HUNGRY FOR?
-    </span>
+    <div class="category-list">
 
-  </div>
+      <div class="category-item">
 
+        <div class="category-number">
+          01
+        </div>
 
-  <div class="category-list">
+        <h3>
+          麺
+        </h3>
 
-    <div
-      class="category-item"
-      data-filter="麺">
+        <span>
+          NOODLES
+        </span>
 
-      <div class="category-number">
-        01
       </div>
 
-      <div class="category-name">
-        麺
+
+      <div class="category-item">
+
+        <div class="category-number">
+          02
+        </div>
+
+        <h3>
+          肉
+        </h3>
+
+        <span>
+          MEAT
+        </span>
+
       </div>
 
-    </div>
 
+      <div class="category-item">
 
-    <div
-      class="category-item"
-      data-filter="肉">
+        <div class="category-number">
+          03
+        </div>
 
-      <div class="category-number">
-        02
+        <h3>
+          ご飯
+        </h3>
+
+        <span>
+          RICE
+        </span>
+
       </div>
 
-      <div class="category-name">
-        肉
-      </div>
 
-    </div>
+      <div class="category-item">
 
+        <div class="category-number">
+          04
+        </div>
 
-    <div
-      class="category-item"
-      data-filter="ご飯">
+        <h3>
+          副菜
+        </h3>
 
-      <div class="category-number">
-        03
-      </div>
+        <span>
+          SIDE DISH
+        </span>
 
-      <div class="category-name">
-        ご飯
-      </div>
-
-    </div>
-
-
-    <div
-      class="category-item"
-      data-filter="副菜">
-
-      <div class="category-number">
-        04
-      </div>
-
-      <div class="category-name">
-        副菜
       </div>
 
     </div>
@@ -2896,150 +1566,186 @@ img {
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      ARCHIVE
-===================================================== -->
+========================= -->
 
-<section
-  class="archive"
-  id="archive">
+<section class="archive" id="archive">
 
-  <div class="section-mini">
-    03 / ARCHIVE
-  </div>
+  <div class="archive-inner">
 
-
-  <h2 class="archive-title">
-
-    THE<br>
-
-    <span>
-      ARCHIVE.
-    </span>
-
-  </h2>
+    <h2 class="archive-title">
+      FOOD<br>
+      ARCHIVE
+    </h2>
 
 
-  <div
-    class="archive-list"
-    id="archiveList">
+    <div class="archive-row">
+
+      <div class="archive-year">
+        001
+      </div>
+
+      <div class="archive-name">
+        海老塩焼きそば
+      </div>
+
+      <div class="archive-cat">
+        NOODLES
+      </div>
+
+    </div>
+
+
+    <div class="archive-row">
+
+      <div class="archive-year">
+        002
+      </div>
+
+      <div class="archive-name">
+        鶏むね肉のレモン醤油ソテー
+      </div>
+
+      <div class="archive-cat">
+        MEAT
+      </div>
+
+    </div>
+
+
+    <div class="archive-row">
+
+      <div class="archive-year">
+        003
+      </div>
+
+      <div class="archive-name">
+        とろ旨麻婆なす
+      </div>
+
+      <div class="archive-cat">
+        SIDE DISH
+      </div>
+
+    </div>
+
+
+    <div class="archive-row">
+
+      <div class="archive-year">
+        004
+      </div>
+
+      <div class="archive-name">
+        炊飯器スパイスチキンライス
+      </div>
+
+      <div class="archive-cat">
+        RICE
+      </div>
+
+    </div>
+
   </div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      FINAL
-===================================================== -->
+========================= -->
 
 <section class="final">
 
-  <div class="final-inner">
+  <div class="final-sticker one">
+    お腹<br>
+    すいた？
+  </div>
 
-    <div class="final-small">
-      CHU DOT COOKING
-    </div>
+  <div class="final-sticker two">
+    EAT<br>
+    MORE!
+  </div>
 
+  <div>
 
-    <h2 class="final-title">
-
-      MAKE IT.
-
-      <span>
-        EAT IT.
-      </span>
-
+    <h2>
+      MAKE IT.<br>
+      EAT IT.
     </h2>
+
+    <div class="final-jp">
+      今日も、自分の飯が一番うまい。
+    </div>
 
   </div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      FOOTER
-===================================================== -->
+========================= -->
 
 <footer class="footer">
 
   <div class="footer-logo">
-
-    CHU dot
-    <span>
-      COOKING
-    </span>
-
+    CHU dot COOKING
   </div>
 
+  <div>
+    © 2026 CHU dot COOKING
+  </div>
 
-  <div class="footer-copy">
-
-    PERSONAL KITCHEN ARCHIVE / 2026
-
+  <div>
+    MADE WITH HUNGER.
   </div>
 
 </footer>
 
 
-<!-- =====================================================
+<!-- =========================
      MODAL
-===================================================== -->
+========================= -->
 
-<div
-  class="modal"
-  id="recipeModal">
+<div class="modal" id="recipeModal">
 
-  <div class="modal-content">
+  <div class="modal-box">
 
     <button
       class="modal-close"
-      id="modalClose">
+      onclick="closeRecipe()"
+    >
       ×
     </button>
 
-
-    <div
-      class="modal-category"
-      id="modalCategory">
-    </div>
-
-
     <h2
       class="modal-title"
-      id="modalTitle">
-    </h2>
+      id="modalTitle"
+    ></h2>
 
+    <div class="modal-content">
 
-    <div class="modal-grid">
+      <div class="modal-section">
 
-
-      <div>
-
-        <div class="modal-heading">
+        <h4>
           INGREDIENTS
-        </div>
+        </h4>
 
-        <ul
-          class="ingredients"
-          id="modalIngredients">
-        </ul>
+        <ul id="modalIngredients"></ul>
 
       </div>
 
+      <div class="modal-section">
 
-      <div>
+        <h4>
+          HOW TO COOK
+        </h4>
 
-        <div class="modal-heading">
-          METHOD
-        </div>
-
-        <ol
-          class="steps"
-          id="modalSteps">
-        </ol>
+        <ol id="modalSteps"></ol>
 
       </div>
-
 
     </div>
 
@@ -3050,21 +1756,16 @@ img {
 
 <script>
 
-/* =========================================================
+/* =========================
    RECIPE DATA
-========================================================= */
+========================= */
 
 const recipes = [
 
   {
-    name: "海老塩焼きそば",
-    category: "麺",
-    time: "約20分",
-    servings: "2人前",
-    photo: "photo-shrimp",
+    title:"海老塩焼きそば",
 
-    ingredients: [
-
+    ingredients:[
       "海老 — 好きなだけ",
       "中華麺 — 2玉",
       "もやし — 1/2袋",
@@ -3079,491 +1780,186 @@ const recipes = [
       "鶏ガラの素 — 4g",
       "煮干し粉 — 3g",
       "おろしにんにく — 15g",
-      "茹で汁 — 25cc ※必要に応じて"
-
+      "茹で汁 — 25cc"
     ],
 
-    steps: [
-
-      "鉄鍋に塩コショウを振った海老をごま油で炒める。火が通ったら汁ごと別容器へ移す。",
-
+    steps:[
+      "鉄鍋に塩コショウを振った海老をごま油で炒め、汁ごと別容器へ移す。",
       "中華麺を別鍋で表示時間通りに茹でる。",
-
-      "茹で汁、塩コショウ、黒胡椒、砂糖、醤油、料理酒、鶏ガラの素、煮干し粉、おろしにんにくを混ぜて塩ダレを作る。",
-
+      "茹で汁、塩コショウ、黒胡椒、砂糖、醤油、料理酒、鶏ガラの素、煮干し粉、おろしにんにくを混ぜる。",
       "麺が茹で上がったら流水でぬめりを洗い流す。",
-
       "海老を炒めた鉄鍋にごま油を敷き、強火で麺を炒めて焼き目をつける。",
-
-      "海老、もやし、ネギ、塩ダレを加えて強火で混ぜ合わせる。",
-
+      "海老、もやし、ネギ、塩ダレを加えて強火で混ぜる。",
       "仕上げにあげ玉を加えて盛り付ける。"
-
     ]
-
   },
 
 
   {
-    name: "とろけるチーズの焼きナポリタン",
-    category: "麺",
-    time: "約25分",
-    servings: "2人前",
-    photo: "photo-pasta",
+    title:"鶏むね肉のレモン醤油ソテー",
 
-    ingredients: [
-
-      "スパゲッティ — 200g",
-      "玉ねぎ — 1/2個",
-      "ウインナー — 4本",
-      "ケチャップ — 80g",
-      "チーズ — 80g",
-      "バター — 10g"
-
-    ],
-
-    steps: [
-
-      "スパゲッティを茹でる。",
-      "玉ねぎとウインナーを炒める。",
-      "ケチャップを加える。",
-      "麺とバターを加える。",
-      "チーズを乗せて焼く。"
-
-    ]
-
-  },
-
-
-  {
-    name: "鶏むね肉のレモン醤油ソテー",
-    category: "肉",
-    time: "約20分",
-    servings: "2人前",
-    photo: "photo-chicken",
-
-    ingredients: [
-
+    ingredients:[
       "鶏むね肉 — 1枚",
-      "醤油 — 20g",
-      "レモン汁 — 15g",
-      "酒 — 15g",
-      "砂糖 — 5g",
+      "醤油 — 適量",
+      "レモン汁 — 適量",
       "にんにく — 少々",
-      "黒胡椒 — 適量"
-
+      "黒胡椒 — 少々"
     ],
 
-    steps: [
-
-      "鶏むね肉を切る。",
-      "調味料を混ぜる。",
-      "鶏肉を焼く。",
-      "タレを加えて煮詰める。",
-      "黒胡椒を振る。"
-
+    steps:[
+      "鶏むね肉を食べやすい厚さに切る。",
+      "調味料を合わせて下味をつける。",
+      "フライパンで両面を焼く。",
+      "仕上げにレモン汁と黒胡椒を加える。"
     ]
-
   },
 
 
   {
-    name: "とろ旨麻婆なす",
-    category: "副菜",
-    time: "約25分",
-    servings: "2人前",
-    photo: "photo-eggplant",
+    title:"とろ旨麻婆なす",
 
-    ingredients: [
-
-      "冷凍なす — 250g",
-      "豚ひき肉 — 120g",
-      "長ネギ — 1/2本",
-      "甜麺醤 — 15g",
-      "豆板醤 — 5g",
-      "醤油 — 10g",
+    ingredients:[
+      "なす — 適量",
+      "豚ひき肉 — 適量",
+      "長ネギ — 適量",
+      "甜麺醤 — 適量",
+      "豆板醤 — 適量",
       "花椒 — 適量"
-
     ],
 
-    steps: [
-
-      "豚ひき肉を炒める。",
+    steps:[
+      "なすを食べやすい大きさに切る。",
+      "ひき肉を炒める。",
       "豆板醤と甜麺醤を加える。",
-      "なすを加える。",
-      "スープと醤油を加える。",
-      "煮詰めて花椒を加える。"
-
+      "なすを加えて火を通す。",
+      "仕上げに花椒を振る。"
     ]
-
   },
 
 
   {
-    name: "炊飯器スパイスチキンライス",
-    category: "ご飯",
-    time: "約60分",
-    servings: "2〜3人前",
-    photo: "photo-rice",
+    title:"炊飯器スパイスチキンライス",
 
-    ingredients: [
-
+    ingredients:[
       "米 — 2合",
-      "鶏もも肉 — 1枚",
-      "玉ねぎ — 1/2個",
-      "トマト — 1個",
-      "カレー粉 — 8g",
-      "クミン — 2g"
-
+      "鶏肉 — 適量",
+      "カレー粉 — 適量",
+      "クミン — 適量",
+      "ヨーグルト — 適量",
+      "にんにく — 適量",
+      "しょうが — 適量",
+      "トマト — 適量"
     ],
 
-    steps: [
-
-      "米を洗う。",
-      "調味料を加える。",
-      "具材を乗せる。",
-      "通常モードで炊飯する。",
-      "炊き上がったら混ぜる。"
-
+    steps:[
+      "米を研いで炊飯器に入れる。",
+      "調味料と具材を加える。",
+      "通常炊飯する。",
+      "炊き上がったら全体を混ぜる。"
     ]
-
   },
 
 
   {
-    name: "豚しゃぶの香味ごまポン",
-    category: "肉",
-    time: "約15分",
-    servings: "2人前",
-    photo: "photo-pork",
+    title:"とろけるチーズの焼きナポリタン",
 
-    ingredients: [
-
-      "豚しゃぶ肉 — 200g",
-      "ポン酢 — 30g",
-      "醤油 — 10g",
-      "酢 — 10g",
-      "砂糖 — 5g",
-      "ごま油 — 5g",
-      "白ごま — 10g"
-
+    ingredients:[
+      "スパゲッティ — 1人前",
+      "ウインナー — 適量",
+      "玉ねぎ — 適量",
+      "ケチャップ — 適量",
+      "チーズ — 好きなだけ"
     ],
 
-    steps: [
-
-      "豚肉をしゃぶしゃぶする。",
-      "調味料を混ぜる。",
-      "豚肉の水気を切る。",
-      "タレと和える。"
-
+    steps:[
+      "スパゲッティを茹でる。",
+      "具材を炒める。",
+      "ケチャップを加えて炒める。",
+      "麺を加えて混ぜる。",
+      "チーズをのせて焼く。"
     ]
-
   }
 
 ];
 
 
-/* =========================================================
-   DOM
-========================================================= */
+/* =========================
+   MODAL
+========================= */
 
-const recipeGrid =
-  document.getElementById(
-    "recipeGrid"
-  );
+function openRecipe(index){
 
-const archiveList =
-  document.getElementById(
-    "archiveList"
-  );
+  const recipe = recipes[index];
 
+  document.getElementById("modalTitle").textContent =
+    recipe.title;
 
-/* =========================================================
-   RENDER
-========================================================= */
+  const ingredients =
+    document.getElementById("modalIngredients");
 
-function renderRecipes(list) {
+  const steps =
+    document.getElementById("modalSteps");
 
-  recipeGrid.innerHTML = "";
+  ingredients.innerHTML = "";
+  steps.innerHTML = "";
 
-  archiveList.innerHTML = "";
+  recipe.ingredients.forEach(item => {
 
+    const li = document.createElement("li");
 
-  list.forEach(
-    (recipe, index) => {
+    li.textContent = item;
 
-      /* ---------- CARD ---------- */
+    ingredients.appendChild(li);
 
-      const card =
-        document.createElement(
-          "article"
-        );
+  });
 
-      card.className =
-        "recipe-card";
+  recipe.steps.forEach(item => {
 
+    const li = document.createElement("li");
 
-      card.innerHTML = `
+    li.textContent = item;
 
-        <div
-          class="recipe-photo ${recipe.photo}">
-        </div>
+    steps.appendChild(li);
 
-        <div class="recipe-info">
+  });
 
-          <div class="recipe-category">
-            ${recipe.category}
-          </div>
+  document
+    .getElementById("recipeModal")
+    .classList.add("active");
 
-          <h3 class="recipe-name">
-            ${recipe.name}
-          </h3>
-
-          <div class="recipe-meta">
-            ${recipe.time}
-            /
-            ${recipe.servings}
-          </div>
-
-        </div>
-
-      `;
-
-
-      card.addEventListener(
-        "click",
-        () =>
-          openRecipe(recipe)
-      );
-
-
-      recipeGrid.appendChild(
-        card
-      );
-
-
-      /* ---------- ARCHIVE ---------- */
-
-      const archive =
-        document.createElement(
-          "div"
-        );
-
-      archive.className =
-        "archive-item";
-
-
-      archive.innerHTML = `
-
-        <div class="archive-number">
-          ${String(index + 1).padStart(2,"0")}
-        </div>
-
-        <div class="archive-name">
-          ${recipe.name}
-        </div>
-
-        <div class="archive-category">
-          ${recipe.category}
-        </div>
-
-      `;
-
-
-      archive.addEventListener(
-        "click",
-        () =>
-          openRecipe(recipe)
-      );
-
-
-      archiveList.appendChild(
-        archive
-      );
-
-    }
-  );
-
+  document.body.style.overflow = "hidden";
 }
 
 
-renderRecipes(
-  recipes
-);
+function closeRecipe(){
 
+  document
+    .getElementById("recipeModal")
+    .classList.remove("active");
 
-/* =========================================================
-   CATEGORY FILTER
-========================================================= */
+  document.body.style.overflow = "";
+}
+
 
 document
-  .querySelectorAll(
-    ".category-item"
-  )
-  .forEach(
-    item => {
+  .getElementById("recipeModal")
+  .addEventListener("click", function(e){
 
-      item.addEventListener(
-        "click",
-        () => {
-
-          const category =
-            item.dataset.filter;
-
-
-          const filtered =
-            recipes.filter(
-              recipe =>
-                recipe.category ===
-                category
-            );
-
-
-          renderRecipes(
-            filtered
-          );
-
-
-          document
-            .getElementById(
-              "recipes"
-            )
-            .scrollIntoView({
-              behavior:
-                "smooth"
-            });
-
-        }
-      );
-
-    }
-  );
-
-
-/* =========================================================
-   MODAL
-========================================================= */
-
-const modal =
-  document.getElementById(
-    "recipeModal"
-  );
-
-const modalClose =
-  document.getElementById(
-    "modalClose"
-  );
-
-const modalCategory =
-  document.getElementById(
-    "modalCategory"
-  );
-
-const modalTitle =
-  document.getElementById(
-    "modalTitle"
-  );
-
-const modalIngredients =
-  document.getElementById(
-    "modalIngredients"
-  );
-
-const modalSteps =
-  document.getElementById(
-    "modalSteps"
-  );
-
-
-function openRecipe(recipe) {
-
-  modalCategory.textContent =
-    recipe.category;
-
-
-  modalTitle.textContent =
-    recipe.name;
-
-
-  modalIngredients.innerHTML =
-    recipe.ingredients
-      .map(
-        item =>
-          `<li>${item}</li>`
-      )
-      .join("");
-
-
-  modalSteps.innerHTML =
-    recipe.steps
-      .map(
-        step =>
-          `<li>${step}</li>`
-      )
-      .join("");
-
-
-  modal.classList.add(
-    "show"
-  );
-
-
-  document.body.style.overflow =
-    "hidden";
-
-}
-
-
-function closeModal() {
-
-  modal.classList.remove(
-    "show"
-  );
-
-  document.body.style.overflow =
-    "";
-
-}
-
-
-modalClose.addEventListener(
-  "click",
-  closeModal
-);
-
-
-modal.addEventListener(
-  "click",
-  event => {
-
-    if (
-      event.target ===
-      modal
-    ) {
-
-      closeModal();
-
+    if(e.target === this){
+      closeRecipe();
     }
 
+  });
+
+
+document.addEventListener("keydown", function(e){
+
+  if(e.key === "Escape"){
+    closeRecipe();
   }
-);
 
+});
 
-document.addEventListener(
-  "keydown",
-  event => {
-
-    if (
-      event.key ===
-      "Escape"
-    ) {
-
-      closeModal();
-
-    }
-
-  }
-);
 
 </script>
 
