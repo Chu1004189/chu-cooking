@@ -406,3 +406,24 @@
   }
 
 }
+
+@media(max-width:800px){
+
+  .opening-circle{
+    width:0;
+    height:0;
+    animation-name:circleOpenMobile;
+  }
+
+  @keyframes circleOpenMobile{
+    from{
+      width:0;
+      height:0;
+    }
+    to{
+      width:500vh;
+      height:500vh;
+    }
+  }
+
+}
