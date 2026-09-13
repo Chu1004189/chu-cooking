@@ -234,6 +234,7 @@ html.skip-opening .opening{
   align-items:center;
   gap:0;
   margin-left:auto;
+  margin-right:max(calc((1280px - 100vw) / 2), 0px);
 }
 
 .header-nav a{
@@ -1474,7 +1475,7 @@ body.tag-page-mode .tag-page{
   }
 
   .header-nav a{
-    padding:5px 5px;
+    padding:5px 1px;
     font-size:7px;
   }
 
