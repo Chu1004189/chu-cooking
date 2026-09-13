@@ -378,7 +378,7 @@
 @media(max-width:800px){
 
 .opening{
-  animation:openingOut 1s 3s forwards;
+  animation:openingOut 1.2s 2.6s forwards;
 }
 
   @keyframes circleOpenMobile{
