@@ -1183,9 +1183,9 @@ body.tag-page-mode .tag-page{
 　}
 
   .hero-copy{
-    width:100%;
-    padding-top:90px;
-    z-index:5;
+   width:100%;
+   padding-top:30px;
+   z-index:5;
   }
 
   .hero-title{
