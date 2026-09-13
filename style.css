@@ -1,10 +1,7 @@
 :root{
   --orange:#ff681f;
-  --orange2:#ff8a35;
   --yellow:#ffd84d;
   --pale-yellow:#fff1b8;
-  --pink:#ffaaa5;
-  --green:#b9d77a;
   --cream:#fff6e9;
   --white:#fffdf8;
   --brown:#332018;
@@ -164,6 +161,7 @@ html.skip-opening .opening{
     width:0;
     height:0;
   }
+
   to{
     width:180vw;
     height:180vw;
@@ -398,12 +396,6 @@ html.skip-opening .opening{
   white-space:nowrap;
 }
 
-.about-copy{
-  font-size:clamp(24px,3vw,42px);
-  line-height:1.25;
-  font-weight:900;
-}
-
 
 /* =================================
    RECIPES
@@ -458,6 +450,7 @@ html.skip-opening .opening{
   0%{
     transform:translate(0,0) rotate(0deg);
   }
+
   100%{
     transform:translate(90px,80px) rotate(35deg);
   }
@@ -467,6 +460,7 @@ html.skip-opening .opening{
   0%{
     transform:translate(0,0) rotate(0deg);
   }
+
   100%{
     transform:translate(-80px,-100px) rotate(-30deg);
   }
@@ -476,6 +470,7 @@ html.skip-opening .opening{
   0%{
     transform:translate(0,0) scale(1);
   }
+
   100%{
     transform:translate(-70px,80px) scale(1.18);
   }
@@ -761,13 +756,6 @@ body.tag-page-mode .tag-page{
   color:var(--yellow);
 }
 
-.final-cta-mark{
-  margin-top:55px;
-  font-size:13px;
-  font-weight:900;
-  letter-spacing:.18em;
-}
-
 
 /* =================================
    FOOTER
@@ -829,10 +817,12 @@ body.tag-page-mode .tag-page{
     opacity:0;
     transform:translateY(18px) scale(.94) rotate(-.7deg);
   }
+
   65%{
     opacity:1;
     transform:translateY(-4px) scale(1.015) rotate(.2deg);
   }
+
   100%{
     opacity:1;
     transform:translateY(0) scale(1) rotate(0);
@@ -844,10 +834,12 @@ body.tag-page-mode .tag-page{
     opacity:1;
     transform:scale(1) translateY(0);
   }
+
   45%{
     opacity:1;
     transform:scale(1.02) translateY(-4px);
   }
+
   100%{
     opacity:0;
     transform:scale(.88) translateY(35px) rotate(1deg);
@@ -1146,4 +1138,3 @@ body.tag-page-mode .tag-page{
   font-weight:800;
   color:var(--gray);
 }
-
