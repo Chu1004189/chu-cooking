@@ -1173,7 +1173,7 @@ body.tag-page-mode .tag-page{
 
 .hero{
   min-height:0;
-  height:470px;
+  height:100svh;
   padding:0 5vw;
   display:block;
   position:relative;
@@ -1190,40 +1190,24 @@ body.tag-page-mode .tag-page{
 
 .hero-copy{
   position:absolute;
-  top:85px;
+  top:50%;
   left:0;
   width:100%;
   padding:0;
   z-index:5;
+  transform:translateY(-50%);
 }
 
-  .hero-title{
-    position:relative;
-    z-index:5;
-    font-size:clamp(54px,14vw,82px);
-    line-height:.84;
-  }
-
-  .hero-title span:last-child{
-    font-size:13vw;
-    white-space:nowrap;
-  }
-
-  .hero-english{
-    margin-top:24px;
-    font-size:10px;
-  }
-
 .hero-visual{
-    width:78vw;
-    height:78vw;
-    right:-40%;
-    top:18%;
-    transform:none;
-    border-width:7px;
-    box-shadow:12px 15px 0 var(--yellow);
-    z-index:1;
-    opacity:.98;
+  width:78vw;
+  height:78vw;
+  right:-40%;
+  top:28%;
+  transform:none;
+  border-width:7px;
+  box-shadow:12px 15px 0 var(--yellow);
+  z-index:1;
+  opacity:.98;
 }
 
   .about{
