@@ -1138,9 +1138,9 @@ body.tag-page-mode .tag-page{
 
 @media(max-width:800px){
 
-  .site-header{
-  padding:6px 2px 6px 9px;
-  }
+ .site-header{
+  padding:6px 0 6px 14px;
+}
 
   .header-inner{
   gap:0;
@@ -1155,6 +1155,7 @@ body.tag-page-mode .tag-page{
   gap:0;
   flex:1;
   justify-content:flex-end;
+  padding-right:0;
 }
 
 .header-nav a{
