@@ -72,7 +72,7 @@
   width:75%;
   height:120%;
   transform:translateY(-50%);
-  background:rgba(255,246,233,.72);
+  background:rgba(255,246,233,.85);
   filter:blur(18px);
   border-radius:40px;
   z-index:-1;
