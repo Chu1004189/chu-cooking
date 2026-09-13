@@ -10,6 +10,7 @@ if (sessionStorage.getItem("openingPlayed")) {
   sessionStorage.setItem("openingPlayed", "true");
 }
 
+
 /* =================================
    RECIPES DATA
 ================================= */
@@ -785,8 +786,6 @@ const recipes = [
 const perPage = 15;
 
 let currentPage = 1;
-let currentRecipe = null;
-let tagPageCurrentPage = 1;
 
 
 /* =================================
@@ -1210,7 +1209,7 @@ function escapeHtml(value){
 
 /* =================================
    RELATED RECIPES
-   副菜系からランダム3品固定
+   副菜系からランダム3品
 ================================= */
 
 function getRelatedRecipes(current){
@@ -1309,8 +1308,6 @@ function renderRecipeMeta(recipe){
 
 function openRecipe(recipe){
 
-  currentRecipe = recipe;
-   
   const ingredientMap =
     makeIngredientMap(recipe);
 
@@ -1497,12 +1494,13 @@ function openRecipe(recipe){
   `;
 
 
-modal.classList.remove("closing");
-modal.classList.add("show");
+  modal.classList.remove("closing");
+  modal.classList.add("show");
 
-modal.querySelector(".modal-box").scrollTop = 0;
+  modal.querySelector(".modal-box").scrollTop = 0;
 
-document.body.style.overflow = "hidden";
+  document.body.style.overflow = "hidden";
+
 
   /* 材料タップ */
 
@@ -1612,8 +1610,6 @@ function closeModal(){
 
     document.body.style.overflow = "";
 
-    currentRecipe = null;
-
   },250);
 
 }
@@ -1672,6 +1668,7 @@ navLinks.forEach(link=>{
   );
 
 });
+
 
 /* ロゴもトップへ */
 
