@@ -54,16 +54,17 @@
     display:block;
   }
 
-  .hero-copy{
-    position:absolute;
-    top:50%;
-    left:0;
-    width:100%;
-    padding:0;
-    z-index:5;
-    transform:translateY(-50%);
-  }
-
+　.hero-copy{
+　  position:absolute;
+　  top:50%;
+ 　 left:0;
+ 　 width:100%;
+ 　 padding:0;
+ 　 z-index:5;
+ 　 transform:translateY(-50%);
+ 　 text-shadow:0 2px 8px rgba(255,246,233,.7);
+　　}
+   
   .hero-title{
     position:relative;
     z-index:5;
