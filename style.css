@@ -376,6 +376,7 @@ html.skip-opening .opening{
   line-height:.9;
   letter-spacing:-.08em;
   font-weight:900;
+  white-space:nowrap;
 }
 
 .about-copy{
