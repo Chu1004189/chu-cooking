@@ -394,3 +394,15 @@
   }
 
 }
+
+@media(max-width:800px){
+
+  .opening{
+    background:var(--yellow);
+  }
+
+  .opening-circle{
+    background:var(--yellow);
+  }
+
+}
