@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ff681f">
 
 <link rel="icon" type="image/png" href="images/common/logov2.png">
   <link rel="apple-touch-icon" href="images/common/logov2.png">
@@ -14,8 +15,21 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
 <script>
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+
   if (sessionStorage.getItem("openingPlayed")) {
     document.documentElement.classList.add("skip-opening");
+
+    if (themeColor) {
+      themeColor.setAttribute("content", "#ffd84d");
+    }
+
+  } else {
+    setTimeout(() => {
+      if (themeColor) {
+        themeColor.setAttribute("content", "#ffd84d");
+      }
+    }, 1600);
   }
 </script>
      
