@@ -1,297 +1,333 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#ff681f">
 
-<link rel="icon" type="image/png" href="images/common/logov2.png">
+  <link rel="icon" type="image/png" href="images/common/logov2.png">
   <link rel="apple-touch-icon" href="images/common/logov2.png">
 
-<title>CHU dot COOKING</title>
+  <title>CHU dot COOKING</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap"
+    rel="stylesheet"
+  >
 
-<script>
-  const themeColor = document.querySelector('meta[name="theme-color"]');
+  <script>
+    const themeColor = document.querySelector('meta[name="theme-color"]');
 
-  if (sessionStorage.getItem("openingPlayed")) {
-    document.documentElement.classList.add("skip-opening");
+    if (sessionStorage.getItem("openingPlayed")) {
+      document.documentElement.classList.add("skip-opening");
 
-    if (themeColor) {
-      themeColor.setAttribute("content", "#ffd84d");
-    }
-
-  } else {
-    setTimeout(() => {
       if (themeColor) {
         themeColor.setAttribute("content", "#ffd84d");
       }
-    }, 1600);
-  }
-</script>
-     
+    } else {
+      setTimeout(() => {
+        if (themeColor) {
+          themeColor.setAttribute("content", "#ffd84d");
+        }
+      }, 1600);
+    }
+  </script>
+
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="mobile.css">
-     
 </head>
 
 <body>
 
-<!-- =========================
-     OPENING
-========================= -->
+  <!-- =========================
+       OPENING
+  ========================= -->
 
-<div class="opening" id="opening">
-  <div class="opening-circle"></div>
+  <div class="opening" id="opening">
+    <div class="opening-circle"></div>
 
-  <div class="opening-dots">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-
-  <div class="opening-inner">
-    <img class="opening-logo" src="images/common/logo.png" alt="CHU dot COOKING">
-
-    <div class="opening-kicker">
-      MY KITCHEN / MY RULES
+    <div class="opening-dots">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
 
-    <div class="opening-title">
-      CHU dot COOKING
-    </div>
+    <div class="opening-inner">
+      <img
+        class="opening-logo"
+        src="images/common/logo.png"
+        alt="CHU dot COOKING"
+      >
 
-    <div class="opening-sub">
-      COOK IT. EAT IT. LOVE IT.
-    </div>
-  </div>
-</div>
-
-
-<!-- =========================
-     HEADER
-========================= -->
-
-<header class="site-header">
-  <div class="header-inner">
-
-    <a href="#home" class="header-logo">
-      <img src="images/common/logov2.png" alt="CHU dot COOKING">
-    </a>
-
-　　　<nav class="header-nav">
-　　　  <a href="#home" data-nav="home">HOME</a>
- 　　　 <a href="#recipes" data-nav="recipes">レシピ</a>
- 　　　 <a href="#mood" data-nav="mood">タグ</a>
-　　　</nav>
-    
-  </div>
-</header>
-
-
-<!-- =========================
-     MAIN
-========================= -->
-
-<main>
-
-<section class="hero" id="home">
-
-  <div class="hero-inner">
-
-    <div class="hero-copy">
-
-      <span class="eyebrow">
+      <div class="opening-kicker">
         MY KITCHEN / MY RULES
-      </span>
+      </div>
 
-      <h1 class="hero-title">
-        <span>俺の作る</span>
-        <span class="accent">メシが、</span>
-        <span class="accent">一番うまい！</span>
-      </h1>
+      <div class="opening-title">
+        CHU dot COOKING
+      </div>
 
-      <div class="hero-english">
+      <div class="opening-sub">
         COOK IT. EAT IT. LOVE IT.
       </div>
-
     </div>
-
-    <div class="hero-visual">
-      <img
-        src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=85"
-        alt="food"
-      >
-    </div>
-
   </div>
 
-</section>
 
+  <!-- =========================
+       HEADER
+  ========================= -->
 
-<!-- =========================
-     ABOUT
-========================= -->
+  <header class="site-header">
+    <div class="header-inner">
 
-<section class="section about" id="about">
-
-  <div class="section-inner about-grid">
-
-    <div>
-      <span class="eyebrow">ABOUT ME / FOOD</span>
-
-      <h2 class="about-title">
-        <span>うまいものは、</span><br>
-        <span>自分で作る。</span>
-      </h2>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     RECIPES
-========================= -->
-
-<section class="section recipes" id="recipes">
-
-  <div class="section-inner">
-
-    <div class="section-heading">
-
-      <h2 class="section-title">
-        <small>COOKING ARCHIVE</small>
-        レシピ
-      </h2>
-
-      <div class="search-box">
-        <input
-          type="search"
-          id="searchInput"
-          placeholder="料理名・材料を検索"
-          autocomplete="off"
+      <a href="#home" class="header-logo">
+        <img
+          src="images/common/logov2.png"
+          alt="CHU dot COOKING"
         >
+      </a>
+
+      <nav class="header-nav">
+        <a href="#home" data-nav="home">HOME</a>
+        <a href="#recipes" data-nav="recipes">レシピ</a>
+        <a href="#mood" data-nav="mood">タグ</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- =========================
+       MAIN
+  ========================= -->
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+      <div class="hero-inner">
+
+        <div class="hero-copy">
+
+          <span class="eyebrow">
+            MY KITCHEN / MY RULES
+          </span>
+
+          <h1 class="hero-title">
+            <span>俺の作る</span>
+            <span class="accent">メシが、</span>
+            <span class="accent">一番うまい！</span>
+          </h1>
+
+          <div class="hero-english">
+            COOK IT. EAT IT. LOVE IT.
+          </div>
+
+        </div>
+
+        <div class="hero-visual">
+          <img
+            src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=85"
+            alt="food"
+          >
+        </div>
+
       </div>
 
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section class="section about" id="about">
+
+      <div class="section-inner about-grid">
+
+        <div>
+
+          <span class="eyebrow">
+            ABOUT ME / FOOD
+          </span>
+
+          <h2 class="about-title">
+            <span>うまいものは、</span><br>
+            <span>自分で作る。</span>
+          </h2>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- RECIPES -->
+
+    <section class="section recipes" id="recipes">
+
+      <div class="section-inner">
+
+        <div class="section-heading">
+
+          <h2 class="section-title">
+            <small>COOKING ARCHIVE</small>
+            レシピ
+          </h2>
+
+          <div class="search-box">
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="料理名・材料を検索"
+              autocomplete="off"
+            >
+          </div>
+
+        </div>
+
+        <div
+          class="recipe-grid"
+          id="recipeGrid"
+        ></div>
+
+        <div
+          class="pagination"
+          id="pagination"
+        ></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- MOOD -->
+
+    <section class="section mood" id="mood">
+
+      <div class="section-inner">
+
+        <h2 class="mood-title">
+          <span>今日の</span>
+          <span>気分は？</span>
+        </h2>
+
+        <div
+          class="tag-list"
+          id="tagList"
+        ></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- TAG PAGE -->
+
+    <section
+      class="section tag-page"
+      id="tagPage"
+    >
+
+      <div class="section-inner">
+
+        <div class="tag-page-heading">
+
+          <small>RECIPE COLLECTION</small>
+
+          <h1 id="tagPageTitle">
+            #<span>レシピ</span>
+          </h1>
+
+          <a
+            class="tag-page-back"
+            href="index.html#mood"
+          >
+            タグ選択に戻る
+          </a>
+
+        </div>
+
+        <div
+          class="recipe-grid"
+          id="tagRecipeGrid"
+        ></div>
+
+        <a
+          class="tag-page-back tag-page-back-bottom"
+          href="index.html#mood"
+        >
+          タグ選択に戻る
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- FINAL CTA -->
+
+    <section class="section final-cta">
+
+      <div class="final-cta-inner">
+
+        <h2 class="final-cta-title">
+          <span>今日も </span>
+          <span class="accent">俺のメシがうまい！</span>
+        </h2>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer class="site-footer">
+
+    <div class="footer-copy">
+      © 2026 CHU dot COOKING
     </div>
 
-    <div class="recipe-grid" id="recipeGrid"></div>
-
-    <div class="pagination" id="pagination"></div>
-
-  </div>
-
-</section>
+  </footer>
 
 
-<!-- =========================
-     MOOD
-========================= -->
+  <!-- =========================
+       RECIPE MODAL
+  ========================= -->
 
-<section class="section mood" id="mood">
+  <div
+    class="modal"
+    id="recipeModal"
+  >
 
-  <div class="section-inner">
+    <div class="modal-box">
 
-    <h2 class="mood-title">
-      <span>今日の</span>
-      <span>気分は？</span>
-    </h2>
+      <button
+        class="modal-close"
+        id="modalClose"
+        aria-label="close"
+      >
+        ×
+      </button>
 
-    <div class="tag-list" id="tagList"></div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     TAG PAGE
-========================= -->
-
-<section class="section tag-page" id="tagPage">
-
-  <div class="section-inner">
-
-    <div class="tag-page-heading">
-
-      <small>RECIPE COLLECTION</small>
-
-      <h1 id="tagPageTitle">
-        #<span>レシピ</span>
-      </h1>
-
-      <a class="tag-page-back" href="index.html#mood">
-  タグ選択に戻る
-</a>
+      <div id="modalContent"></div>
 
     </div>
 
-    <div class="recipe-grid" id="tagRecipeGrid"></div>
-
-   <a class="tag-page-back tag-page-back-bottom" href="index.html#mood">
-  タグ選択に戻る
-</a>
-
   </div>
 
-</section>
 
+  <script src="script.js"></script>
 
-<!-- =========================
-     FINAL CTA
-========================= -->
-
-<section class="section final-cta">
-
-  <div class="final-cta-inner">
-
-    <h2 class="final-cta-title">
-      <span>今日も </span><span class="accent">俺のメシがうまい！</span>
-    </h2>
-
-  </div>
-
-</section>
-
-</main>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer class="site-footer">
-  <div class="footer-copy">
-    © 2026 CHU dot COOKING
-  </div>
-</footer>
-
-
-<!-- =========================
-     RECIPE MODAL
-========================= -->
-
-<div class="modal" id="recipeModal">
-
-  <div class="modal-box">
-
-    <button class="modal-close" id="modalClose" aria-label="close">
-      ×
-    </button>
-
-    <div id="modalContent"></div>
-
-  </div>
-
-</div>
-     
-<script src="script.js"></script>
-     
 </body>
 </html>
