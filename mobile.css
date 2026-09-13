@@ -21,21 +21,21 @@
     width:44px;
   }
 
-  .header-nav{
-    display:flex;
-    align-items:center;
-    gap:0;
-    flex:0 0 auto;
-    justify-content:flex-end;
-    margin-left:auto;
-    margin-right:-24px;
-  }
+.header-nav{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex:0 0 auto;
+  justify-content:flex-end;
+  margin-left:auto;
+  margin-right:10px;
+}
 
-  .header-nav a{
-    padding:6px 7px;
-    margin-left:-17px;
-    font-size:9px;
-  }
+.header-nav a{
+  padding:6px 7px;
+  margin-left:0;
+  font-size:9px;
+}
 
 
   /* ===============================
