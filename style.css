@@ -1168,11 +1168,11 @@ body.tag-page-mode .tag-page{
 }
 
   .section{
-    padding:65px 5vw;
+    padding:100px 5vw;
   }
 
   .hero{
-    min-height:100svh;
+    min-height:65svh;
     padding:105px 5vw 45px;
   }
 
