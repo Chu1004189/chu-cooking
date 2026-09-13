@@ -1498,9 +1498,11 @@ function openRecipe(recipe){
 
 
   modal.classList.remove("closing");
-  modal.classList.add("show");
+modal.classList.add("show");
 
-  document.body.style.overflow = "hidden";
+modalContent.scrollTop = 0;
+
+document.body.style.overflow = "hidden";
 
 
   /* 材料タップ */
