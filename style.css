@@ -1196,15 +1196,15 @@ body.tag-page-mode .tag-page{
   }
 
 .hero-visual{
-  width:78vw;
-  height:78vw;
-  right:8%;
-  top:12%;
-  transform:none;
-  border-width:7px;
-  box-shadow:12px 15px 0 var(--yellow);
-  z-index:1;
-  opacity:.98;
+    width:78vw;
+    height:78vw;
+    right:-8%;
+    top:12%;
+    transform:none;
+    border-width:7px;
+    box-shadow:12px 15px 0 var(--yellow);
+    z-index:1;
+    opacity:.98;
 }
 
   .about{
