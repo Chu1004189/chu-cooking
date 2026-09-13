@@ -334,9 +334,10 @@ html.skip-opening .opening{
   position:absolute;
   width:min(58vw,720px);
   height:min(58vw,720px);
-  left:50%;
+  left:auto;
+  right:-12%;
   top:50%;
-  transform:translate(-50%,-50%);
+  transform:translateY(-50%);
   border-radius:50%;
   overflow:hidden;
   border:12px solid #fff;
