@@ -246,7 +246,7 @@ html.skip-opening .opening{
 .header-nav{
   display:flex;
   align-items:center;
-  gap:0;
+  gap:20px;
   margin-left:auto;
   margin-right:max(calc((1280px - 100vw) / 2), 0px);
 }
