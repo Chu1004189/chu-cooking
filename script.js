@@ -1315,6 +1315,8 @@ function openRecipe(recipe){
     behavior:"instant"
   });
 
+  modalContent.scrollTop = 0;
+
   currentRecipe = recipe;
    
   const ingredientMap =
