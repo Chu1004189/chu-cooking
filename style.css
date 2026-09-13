@@ -1143,11 +1143,12 @@ body.tag-page-mode .tag-page{
   }
 
   .header-inner{
-    gap:5px;
-  }
+  gap:0;
+  width:100%;
+　}
 
   .header-logo img{
-    width:48px;
+    width:44px;
   }
 
 .header-nav{
