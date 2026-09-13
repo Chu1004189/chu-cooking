@@ -1198,6 +1198,18 @@ body.tag-page-mode .tag-page{
   transform:translateY(-50%);
 }
 
+  .hero-title{
+  position:relative;
+  z-index:5;
+  font-size:clamp(54px,14vw,82px);
+  line-height:.84;
+}
+
+.hero-title span:last-child{
+  font-size:13vw;
+  white-space:nowrap;
+}
+
 .hero-visual{
   width:78vw;
   height:78vw;
