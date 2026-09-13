@@ -1243,49 +1243,6 @@ function getRelatedRecipes(current){
 
 
 /* =================================
-   RECIPE META
-================================= */
-
-  if(recipe.appliance){
-    items.push(`
-      <div class="recipe-meta-item">
-        <span class="recipe-meta-label">
-          調理家電
-        </span>
-        <span class="recipe-meta-value">
-          ${escapeHtml(recipe.appliance)}
-        </span>
-      </div>
-    `);
-  }
-
-  if(recipe.note){
-    items.push(`
-      <div class="recipe-meta-item">
-        <span class="recipe-meta-label">
-          特記事項
-        </span>
-        <span class="recipe-meta-value">
-          ${escapeHtml(recipe.note)}
-        </span>
-      </div>
-    `);
-  }
-
-  if(!items.length){
-    return "";
-  }
-
-  return `
-    <div class="recipe-meta">
-      ${items.join("")}
-    </div>
-  `;
-
-}
-
-
-/* =================================
    MODAL
 ================================= */
 
@@ -1423,8 +1380,6 @@ function openRecipe(recipe){
           `).join("")}
 
         </div>
-
-      
 
       </div>
 
