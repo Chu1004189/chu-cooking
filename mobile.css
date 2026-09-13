@@ -377,6 +377,10 @@
 
 @media(max-width:800px){
 
+  .opening{
+    animation:openingOut 1s 3s forwards, openingYellow 0s 1.7s forwards;
+  }
+
   @keyframes circleOpenMobile{
     from{
       width:0;
@@ -385,6 +389,12 @@
     to{
       width:160vmax;
       height:160vmax;
+    }
+  }
+
+  @keyframes openingYellow{
+    to{
+      background:var(--yellow);
     }
   }
 
