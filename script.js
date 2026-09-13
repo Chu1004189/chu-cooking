@@ -1497,13 +1497,12 @@ function openRecipe(recipe){
   `;
 
 
-  modal.classList.remove("closing");
+modal.classList.remove("closing");
 modal.classList.add("show");
 
-modalContent.scrollTop = 0;
+modal.querySelector(".modal-box").scrollTop = 0;
 
 document.body.style.overflow = "hidden";
-
 
   /* 材料タップ */
 
