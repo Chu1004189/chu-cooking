@@ -54,16 +54,29 @@
     display:block;
   }
 
-　.hero-copy{
-　  position:absolute;
-　  top:50%;
- 　 left:0;
- 　 width:100%;
- 　 padding:0;
- 　 z-index:5;
- 　 transform:translateY(-50%);
- 　 text-shadow:0 2px 8px rgba(255,246,233,.7);
-　　}
+.hero-copy{
+  position:absolute;
+  top:50%;
+  left:0;
+  width:100%;
+  padding:0;
+  z-index:5;
+  transform:translateY(-50%);
+}
+
+   .hero-copy::before{
+  content:"";
+  position:absolute;
+  top:50%;
+  left:-5%;
+  width:75%;
+  height:120%;
+  transform:translateY(-50%);
+  background:rgba(255,246,233,.72);
+  filter:blur(18px);
+  border-radius:40px;
+  z-index:-1;
+}
    
   .hero-title{
     position:relative;
