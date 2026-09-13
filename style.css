@@ -1168,7 +1168,7 @@ body.tag-page-mode .tag-page{
 }
 
   .section{
-    padding:100px 5vw;
+    padding:65px 5vw;
   }
 
   .hero{
@@ -1208,7 +1208,7 @@ body.tag-page-mode .tag-page{
     width:78vw;
     height:78vw;
     right:-40%;
-    top:24%;
+    top:18%;
     transform:none;
     border-width:7px;
     box-shadow:12px 15px 0 var(--yellow);
