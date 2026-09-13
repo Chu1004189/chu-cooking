@@ -1173,7 +1173,7 @@ body.tag-page-mode .tag-page{
 
 .hero{
   min-height:0;
-  height:520px;
+  height:470px;
   padding:0 5vw;
   display:block;
   position:relative;
@@ -1190,7 +1190,7 @@ body.tag-page-mode .tag-page{
 
 .hero-copy{
   position:absolute;
-  top:55px;
+  top:85px;
   left:0;
   width:100%;
   padding:0;
