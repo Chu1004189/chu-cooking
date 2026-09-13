@@ -1155,12 +1155,12 @@ body.tag-page-mode .tag-page{
   gap:0;
   flex:1;
   justify-content:flex-end;
-  margin-right:0;
+  margin-right:-5px;
 }
 
 .header-nav a{
-  padding:6px 1px;
-  margin-left:-1px;
+  padding:6px 0;
+  margin-left:-2px;
   font-size:9px;
 }
 
