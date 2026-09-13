@@ -190,6 +190,22 @@ html.skip-opening .opening{
   }
 }
 
+@media(max-width:800px){
+
+  .opening{
+    animation:
+      openingYellowMobile 0s 1.6s forwards,
+      openingOut 1s 3s forwards;
+  }
+
+  @keyframes openingYellowMobile{
+    to{
+      background:var(--yellow);
+    }
+  }
+
+}
+
 
 /* =================================
    HEADER
