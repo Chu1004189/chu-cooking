@@ -1207,8 +1207,8 @@ body.tag-page-mode .tag-page{
 .hero-visual{
     width:78vw;
     height:78vw;
-    right:-20%;
-    top:12%;
+    right:-40%;
+    top:24%;
     transform:none;
     border-width:7px;
     box-shadow:12px 15px 0 var(--yellow);
