@@ -1152,15 +1152,18 @@ body.tag-page-mode .tag-page{
   }
 
 .header-nav{
+  display:flex;
+  align-items:center;
   gap:0;
-  flex:1;
+  flex:0 0 auto;
   justify-content:flex-end;
-  margin-right:-5px;
+  margin-left:auto;
+  margin-right:-8px;
 }
 
 .header-nav a{
   padding:6px 0;
-  margin-left:-2px;
+  margin-left:-4px;
   font-size:9px;
 }
 
