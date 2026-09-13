@@ -1309,8 +1309,14 @@ function renderRecipeMeta(recipe){
 
 function openRecipe(recipe){
 
-  currentRecipe = recipe;
+  window.scrollTo({
+    top:0,
+    left:0,
+    behavior:"instant"
+  });
 
+  currentRecipe = recipe;
+   
   const ingredientMap =
     makeIngredientMap(recipe);
 
