@@ -1246,23 +1246,6 @@ function getRelatedRecipes(current){
    RECIPE META
 ================================= */
 
-function renderRecipeMeta(recipe){
-
-  const items = [];
-
-  if(recipe.gas){
-    items.push(`
-      <div class="recipe-meta-item">
-        <span class="recipe-meta-label">
-          ガスコンロ
-        </span>
-        <span class="recipe-meta-value">
-          ${recipe.gas}口
-        </span>
-      </div>
-    `);
-  }
-
   if(recipe.appliance){
     items.push(`
       <div class="recipe-meta-item">
@@ -1441,7 +1424,7 @@ function openRecipe(recipe){
 
         </div>
 
-        ${renderRecipeMeta(recipe)}
+      
 
       </div>
 
