@@ -1144,26 +1144,3 @@ body.tag-page-mode .tag-page{
     recipeDetailIn .65s cubic-bezier(.22,.8,.2,1) .52s
     both;
 }
-
-
-/* =================================
-   REDUCED MOTION
-================================= */
-
-@media(prefers-reduced-motion:reduce){
-
-  #recipeDetail{
-    opacity:1;
-  }
-
-  #recipeDetail.recipe-detail-loaded .modal-image img,
-  #recipeDetail.recipe-detail-loaded .modal-intro,
-  #recipeDetail.recipe-detail-loaded .modal-section:nth-of-type(1),
-  #recipeDetail.recipe-detail-loaded .modal-section:nth-of-type(2),
-  #recipeDetail.recipe-detail-loaded .more-recipes{
-    animation:none;
-    opacity:1;
-    transform:none;
-  }
-
-}
