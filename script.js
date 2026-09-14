@@ -154,8 +154,10 @@ function createRecipeCard(recipe){
   `;
 
   card.addEventListener("click",()=>{
-    openRecipe(recipe);
-  });
+  window.location.href =
+    "recipe.html?id=" +
+    encodeURIComponent(recipe.id);
+});
 
   return card;
 
