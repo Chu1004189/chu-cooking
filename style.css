@@ -1051,3 +1051,113 @@ body.tag-page-mode .tag-page{
   font-weight:800;
   color:var(--gray);
 }
+
+
+/* =================================
+   RECIPE DETAIL ANIMATION
+   ふわっ + ポンッ
+================================= */
+
+@keyframes recipeDetailImageIn{
+
+  0%{
+    opacity:0;
+    transform:scale(.92);
+  }
+
+  70%{
+    opacity:1;
+    transform:scale(1.025);
+  }
+
+  100%{
+    opacity:1;
+    transform:scale(1);
+  }
+
+}
+
+@keyframes recipeDetailFadeUp{
+
+  0%{
+    opacity:0;
+    transform:translateY(28px);
+  }
+
+  100%{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+@keyframes recipeDetailPop{
+
+  0%{
+    opacity:0;
+    transform:translateY(18px) scale(.96);
+  }
+
+  70%{
+    opacity:1;
+    transform:translateY(0) scale(1.02);
+  }
+
+  100%{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+
+}
+
+
+/* レシピ画像 */
+
+.modal-image{
+  animation:recipeDetailImageIn .7s cubic-bezier(.2,.8,.2,1) both;
+}
+
+
+/* レシピ名・タグ */
+
+.modal-intro{
+  animation:recipeDetailFadeUp .65s .12s cubic-bezier(.2,.8,.2,1) both;
+}
+
+
+/* 材料 */
+
+.modal-section:nth-of-type(1){
+  animation:recipeDetailFadeUp .6s .25s cubic-bezier(.2,.8,.2,1) both;
+}
+
+
+/* つくりかた */
+
+.modal-section:nth-of-type(2){
+  animation:recipeDetailFadeUp .6s .38s cubic-bezier(.2,.8,.2,1) both;
+}
+
+
+/* こんなのもどう？ */
+
+.more-recipes{
+  animation:recipeDetailPop .65s .52s cubic-bezier(.2,.8,.2,1) both;
+}
+
+
+/* =================================
+   REDUCED MOTION
+================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  .modal-image,
+  .modal-intro,
+  .modal-section:nth-of-type(1),
+  .modal-section:nth-of-type(2),
+  .more-recipes{
+    animation:none;
+  }
+
+}
