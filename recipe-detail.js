@@ -2,29 +2,18 @@
    RECIPE DETAIL
 ================================= */
 
-const params =
-  new URLSearchParams(
-    window.location.search
-  );
+const params = new URLSearchParams(
+  window.location.search
+);
 
-const recipeId =
-  params.get("id");
+const recipeId = params.get("id");
 
-
-/* =================================
-   FIND RECIPE
-================================= */
-
-const recipe =
-  recipes.find(
-    recipe => recipe.id === recipeId
-  );
-
+const recipe = recipes.find(
+  recipe => recipe.id === recipeId
+);
 
 const recipeDetail =
-  document.getElementById(
-    "recipeDetail"
-  );
+  document.getElementById("recipeDetail");
 
 
 /* =================================
@@ -51,7 +40,7 @@ function makeIngredientMap(recipe){
 
   const map = new Map();
 
-  recipe.ingredients.forEach(item=>{
+  recipe.ingredients.forEach(item => {
     map.set(item[0],item[1]);
   });
 
@@ -74,23 +63,12 @@ function makeClickableIngredients(
 
   const names =
     Array.from(ingredientMap.keys())
-      .sort((a,b)=>b.length-a.length);
+      .sort((a,b) => b.length - a.length);
 
 
-  names.forEach(name=>{
+  names.forEach(name => {
 
     if(usedIngredients.has(name)){
-      return;
-    }
-
-
-    const index =
-      result.indexOf(
-        escapeHtml(name)
-      );
-
-
-    if(index === -1){
       return;
     }
 
@@ -98,14 +76,20 @@ function makeClickableIngredients(
     const safeName =
       escapeHtml(name);
 
+    const index =
+      result.indexOf(safeName);
+
+
+    if(index === -1){
+      return;
+    }
+
 
     const amount =
       ingredientMap.get(name);
 
-
     const before =
       result.slice(0,index);
-
 
     const after =
       result.slice(
@@ -116,10 +100,8 @@ function makeClickableIngredients(
     result =
       before +
       `
-        <span
-          class="cooking-ingredient"
-          data-ingredient="${safeName}"
-        >
+        <span class="cooking-ingredient">
+
           ${safeName}
 
           <span
@@ -151,13 +133,13 @@ function makeClickableIngredients(
 function getRelatedRecipes(current){
 
   const sideDishPool =
-    recipes.filter(recipe=>{
+    recipes.filter(recipe => {
 
       if(recipe === current){
         return false;
       }
 
-      return recipe.tags.some(tag=>
+      return recipe.tags.some(tag =>
         [
           "副菜",
           "サラダ",
@@ -169,14 +151,9 @@ function getRelatedRecipes(current){
     });
 
 
-  const shuffled =
-    [...sideDishPool]
-      .sort(
-        ()=>Math.random() - .5
-      );
-
-
-  return shuffled.slice(0,3);
+  return [...sideDishPool]
+    .sort(() => Math.random() - .5)
+    .slice(0,3);
 
 }
 
@@ -204,7 +181,6 @@ if(!recipe){
 
 }else{
 
-
   /* =================================
      PREPARE STEPS
   ================================= */
@@ -212,14 +188,12 @@ if(!recipe){
   const ingredientMap =
     makeIngredientMap(recipe);
 
-
   const usedIngredients =
     new Set();
 
-
   const stepsHtml =
-    recipe.steps.map(
-      (step,index)=>{
+    recipe.steps
+      .map((step,index) => {
 
         const clickable =
           makeClickableIngredients(
@@ -233,7 +207,7 @@ if(!recipe){
           <div class="step">
 
             <div class="step-number">
-              ${String(index+1).padStart(2,"0")}
+              ${String(index + 1).padStart(2,"0")}
             </div>
 
             <div class="step-text">
@@ -243,8 +217,8 @@ if(!recipe){
           </div>
         `;
 
-      }
-    ).join("");
+      })
+      .join("");
 
 
   /* =================================
@@ -254,11 +228,9 @@ if(!recipe){
   const related =
     getRelatedRecipes(recipe);
 
-
   const relatedHtml =
     related.length
       ? `
-
         <section class="more-recipes">
 
           <div class="more-heading">
@@ -276,7 +248,7 @@ if(!recipe){
 
           <div class="more-grid">
 
-            ${related.map(item=>`
+            ${related.map(item => `
 
               <a
                 class="more-card"
@@ -305,9 +277,7 @@ if(!recipe){
 
                     ${item.tags
                       .map(
-                        tag =>
-                          "#" +
-                          escapeHtml(tag)
+                        tag => "#" + escapeHtml(tag)
                       )
                       .join(" ")
                     }
@@ -323,7 +293,6 @@ if(!recipe){
           </div>
 
         </section>
-
       `
       : "";
 
@@ -355,7 +324,7 @@ if(!recipe){
 
         <div class="modal-tags">
 
-          ${recipe.tags.map(tag=>`
+          ${recipe.tags.map(tag => `
 
             <button
               class="modal-tag"
@@ -383,14 +352,13 @@ if(!recipe){
 
       <div class="ingredients-list">
 
-        ${recipe.ingredients.map(item=>`
+        ${recipe.ingredients.map(item => `
 
           <div class="ingredient-item">
 
             <span class="ingredient-name">
               ${escapeHtml(item[0])}
             </span>
-
 
             <span class="ingredient-amount">
               ${escapeHtml(item[1])}
@@ -431,14 +399,12 @@ if(!recipe){
   ================================= */
 
   recipeDetail
-    .querySelectorAll(
-      ".cooking-ingredient"
-    )
-    .forEach(element=>{
+    .querySelectorAll(".cooking-ingredient")
+    .forEach(element => {
 
       element.addEventListener(
         "click",
-        event=>{
+        event => {
 
           event.stopPropagation();
 
@@ -450,10 +416,8 @@ if(!recipe){
 
 
           recipeDetail
-            .querySelectorAll(
-              ".ingredient-bubble"
-            )
-            .forEach(item=>{
+            .querySelectorAll(".ingredient-bubble")
+            .forEach(item => {
 
               if(item !== bubble){
                 item.style.display = "none";
@@ -478,18 +442,15 @@ if(!recipe){
   ================================= */
 
   recipeDetail
-    .querySelectorAll(
-      ".modal-tag"
-    )
-    .forEach(button=>{
+    .querySelectorAll(".modal-tag")
+    .forEach(button => {
 
       button.addEventListener(
         "click",
-        ()=>{
+        () => {
 
           const tag =
             button.dataset.tag;
-
 
           window.location.href =
             "index.html?tag=" +
