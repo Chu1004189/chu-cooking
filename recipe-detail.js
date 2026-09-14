@@ -332,6 +332,7 @@ if(!recipe){
               data-tag="${escapeHtml(tag)}"
             >
               #${escapeHtml(tag)}
+
             </button>
 
           `).join("")}
@@ -392,6 +393,23 @@ if(!recipe){
     ${relatedHtml}
 
   `;
+
+
+  /* =================================
+     RECIPE DETAIL ANIMATION
+  ================================= */
+
+  requestAnimationFrame(() => {
+
+    requestAnimationFrame(() => {
+
+      recipeDetail.classList.add(
+        "recipe-detail-loaded"
+      );
+
+    });
+
+  });
 
 
   /* =================================
