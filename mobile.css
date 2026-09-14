@@ -21,21 +21,21 @@
     width:44px;
   }
 
-.header-nav{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  flex:0 0 auto;
-  justify-content:flex-end;
-  margin-left:auto;
-  margin-right:10px;
-}
+  .header-nav{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex:0 0 auto;
+    justify-content:flex-end;
+    margin-left:auto;
+    margin-right:10px;
+  }
 
-.header-nav a{
-  padding:6px 7px;
-  margin-left:0;
-  font-size:9px;
-}
+  .header-nav a{
+    padding:6px 7px;
+    margin-left:0;
+    font-size:9px;
+  }
 
 
   /* ===============================
@@ -247,17 +247,8 @@
 
 
   /* ===============================
-     MODAL
+     RECIPE DETAIL
   =============================== */
-
-  .modal{
-    padding:10px;
-  }
-
-  .modal-box{
-    border-radius:22px;
-    max-height:94vh;
-  }
 
   .modal-top{
     display:block;
@@ -369,19 +360,6 @@
 
   .more-card-tags{
     font-size:7px;
-  }
-
-
-  /* ===============================
-     MODAL CLOSE
-  =============================== */
-
-  .modal-close{
-    top:10px;
-    margin-right:10px;
-    width:38px;
-    height:38px;
-    font-size:20px;
   }
 
 
