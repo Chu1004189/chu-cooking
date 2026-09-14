@@ -1092,61 +1092,57 @@ body.tag-page-mode .tag-page{
 }
 
 
-/*
-  詳細ページ全体をふわっと表示
-*/
+/* =================================
+   RECIPE DETAIL
+================================= */
 
 #recipeDetail{
-  animation:recipeDetailIn .7s cubic-bezier(.22,.8,.2,1) both;
+  opacity:0;
 }
 
+#recipeDetail.recipe-detail-loaded{
+  animation:
+    recipeDetailIn .7s cubic-bezier(.22,.8,.2,1)
+    both;
+}
 
-/*
-  メイン画像だけ少しポンッと表示
-*/
 
 #recipeDetail .modal-image{
   overflow:hidden;
 }
 
-#recipeDetail .modal-image img{
-  animation:recipeImagePop .75s cubic-bezier(.2,.85,.2,1) .08s both;
+#recipeDetail.recipe-detail-loaded .modal-image img{
+  animation:
+    recipeImagePop .75s cubic-bezier(.2,.85,.2,1) .08s
+    both;
 }
 
 
-/*
-  レシピ名・タグ
-*/
-
-#recipeDetail .modal-intro{
-  animation:recipeDetailIn .6s cubic-bezier(.22,.8,.2,1) .15s both;
+#recipeDetail.recipe-detail-loaded .modal-intro{
+  animation:
+    recipeDetailIn .6s cubic-bezier(.22,.8,.2,1) .15s
+    both;
 }
 
 
-/*
-  材料
-*/
-
-#recipeDetail .modal-section:nth-of-type(1){
-  animation:recipeDetailIn .6s cubic-bezier(.22,.8,.2,1) .28s both;
+#recipeDetail.recipe-detail-loaded .modal-section:nth-of-type(1){
+  animation:
+    recipeDetailIn .6s cubic-bezier(.22,.8,.2,1) .28s
+    both;
 }
 
 
-/*
-  つくりかた
-*/
-
-#recipeDetail .modal-section:nth-of-type(2){
-  animation:recipeDetailIn .6s cubic-bezier(.22,.8,.2,1) .4s both;
+#recipeDetail.recipe-detail-loaded .modal-section:nth-of-type(2){
+  animation:
+    recipeDetailIn .6s cubic-bezier(.22,.8,.2,1) .4s
+    both;
 }
 
 
-/*
-  関連レシピ
-*/
-
-#recipeDetail .more-recipes{
-  animation:recipeDetailIn .65s cubic-bezier(.22,.8,.2,1) .52s both;
+#recipeDetail.recipe-detail-loaded .more-recipes{
+  animation:
+    recipeDetailIn .65s cubic-bezier(.22,.8,.2,1) .52s
+    both;
 }
 
 
@@ -1156,13 +1152,18 @@ body.tag-page-mode .tag-page{
 
 @media(prefers-reduced-motion:reduce){
 
-  #recipeDetail,
-  #recipeDetail .modal-image img,
-  #recipeDetail .modal-intro,
-  #recipeDetail .modal-section:nth-of-type(1),
-  #recipeDetail .modal-section:nth-of-type(2),
-  #recipeDetail .more-recipes{
+  #recipeDetail{
+    opacity:1;
+  }
+
+  #recipeDetail.recipe-detail-loaded .modal-image img,
+  #recipeDetail.recipe-detail-loaded .modal-intro,
+  #recipeDetail.recipe-detail-loaded .modal-section:nth-of-type(1),
+  #recipeDetail.recipe-detail-loaded .modal-section:nth-of-type(2),
+  #recipeDetail.recipe-detail-loaded .more-recipes{
     animation:none;
+    opacity:1;
+    transform:none;
   }
 
 }
