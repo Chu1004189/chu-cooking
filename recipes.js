@@ -2,6 +2,7 @@ const recipes = [
 
   {
     name:"海老塩焼きそば",
+    id: "ebi-shio-yakisoba",
     image:"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1000&q=85",
     tags:["麺類","海鮮","ガッツリ"],
     searchText:"海老 塩 焼きそば 麺 もやし キャベツ",
