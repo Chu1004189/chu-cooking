@@ -17,6 +17,18 @@ const recipeDetail =
 
 
 /* =================================
+   RECIPE PARTS
+================================= */
+
+function getRecipePart(partId){
+
+  return recipeParts.find(
+    part => part.id === partId
+  );
+
+}
+
+/* =================================
    ESCAPE
 ================================= */
 
