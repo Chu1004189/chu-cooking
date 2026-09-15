@@ -307,6 +307,32 @@ if(!recipe){
         </section>
       `
       : "";
+      
+      /* =================================
+   RECIPE PARTS HTML
+================================= */
+
+const recipePartsHtml =
+  recipe.parts?.map(partId => {
+
+    const part =
+      getRecipePart(partId);
+
+    if(!part){
+      return "";
+    }
+
+    return `
+      <button
+        class="recipe-part-button"
+        type="button"
+        data-part-id="${escapeHtml(part.id)}"
+      >
+        ${escapeHtml(part.name)}
+      </button>
+    `;
+
+  }).join("") || "";
 
 
   /* =================================
@@ -350,6 +376,8 @@ if(!recipe){
           `).join("")}
 
         </div>
+        
+        ${recipePartsHtml}
 
       </div>
 
@@ -490,5 +518,33 @@ if(!recipe){
       );
 
     });
+
+/* =================================
+   RECIPE PART POPUP
+================================= */
+
+recipeDetail
+  .querySelectorAll(".recipe-part-button")
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        const part =
+          getRecipePart(
+            button.dataset.partId
+          );
+
+        if(!part){
+          return;
+        }
+
+        alert(part.name);
+
+      }
+    );
+
+  });
 
 }
