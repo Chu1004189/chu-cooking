@@ -519,32 +519,4 @@ const recipePartsHtml =
 
     });
 
-/* =================================
-   RECIPE PART POPUP
-================================= */
-
-recipeDetail
-  .querySelectorAll(".recipe-part-button")
-  .forEach(button => {
-
-    button.addEventListener(
-      "click",
-      () => {
-
-        const part =
-          getRecipePart(
-            button.dataset.partId
-          );
-
-        if(!part){
-          return;
-        }
-
-        alert(part.name);
-
-      }
-    );
-
-  });
-
 }
