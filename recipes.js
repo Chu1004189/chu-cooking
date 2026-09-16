@@ -450,6 +450,7 @@ const recipes = [
     gas:1,
     ingredients:[
       ["鶏むね肉","300g"],
+      ["ピリ辛だれ","50g"],
       ["ねぎ","50g"]
     ],
     steps:[
