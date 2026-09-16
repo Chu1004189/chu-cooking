@@ -28,6 +28,7 @@ function getRecipePart(partId){
 
 }
 
+
 /* =================================
    ESCAPE
 ================================= */
@@ -307,32 +308,33 @@ if(!recipe){
         </section>
       `
       : "";
-      
-      /* =================================
-   RECIPE PARTS HTML
-================================= */
 
-const recipePartsHtml =
-  recipe.parts?.map(partId => {
 
-    const part =
-      getRecipePart(partId);
+  /* =================================
+     RECIPE PARTS HTML
+  ================================= */
 
-    if(!part){
-      return "";
-    }
+  const recipePartsHtml =
+    recipe.parts?.map(partId => {
 
-    return `
-      <button
-        class="recipe-part-button"
-        type="button"
-        data-part-id="${escapeHtml(part.id)}"
-      >
-        ${escapeHtml(part.name)}
-      </button>
-    `;
+      const part =
+        getRecipePart(partId);
 
-  }).join("") || "";
+      if(!part){
+        return "";
+      }
+
+      return `
+        <button
+          class="recipe-part-button"
+          type="button"
+          data-part-id="${escapeHtml(part.id)}"
+        >
+          ${escapeHtml(part.name)}
+        </button>
+      `;
+
+    }).join("") || "";
 
 
   /* =================================
@@ -358,7 +360,7 @@ const recipePartsHtml =
         <h1 class="modal-title">
           ${escapeHtml(recipe.name)}
         </h1>
-        
+
 
         <div class="modal-tags">
 
@@ -376,7 +378,8 @@ const recipePartsHtml =
           `).join("")}
 
         </div>
-        
+
+
         ${recipePartsHtml}
 
       </div>
@@ -384,15 +387,19 @@ const recipePartsHtml =
     </div>
 
 
-<section class="modal-section">
+    <section class="modal-section">
 
-  <div class="recipe-servings">
-    ${escapeHtml(recipe.servings)}人前
-  </div>
+      <div class="recipe-section-heading">
 
-  <h2 class="modal-section-title">
-    材料 / INGREDIENTS
-  </h2>
+        <h2 class="modal-section-title">
+          材料 / INGREDIENTS
+        </h2>
+
+        <div class="recipe-servings">
+          ${escapeHtml(recipe.servings)}人前
+        </div>
+
+      </div>
 
 
       <div class="ingredients-list">
@@ -498,136 +505,166 @@ const recipePartsHtml =
 
     });
 
-/* =================================
-   RECIPE PART POPUP
-================================= */
 
-recipeDetail
-  .querySelectorAll(".recipe-part-button")
-  .forEach(button => {
+  /* =================================
+     RECIPE PART POPUP
+  ================================= */
 
-    button.addEventListener("click", () => {
+  recipeDetail
+    .querySelectorAll(".recipe-part-button")
+    .forEach(button => {
 
-      const partId =
-        button.dataset.partId;
+      button.addEventListener("click", () => {
 
-      const part =
-        getRecipePart(partId);
+        const partId =
+          button.dataset.partId;
 
-      if(!part){
-        return;
-      }
+        const part =
+          getRecipePart(partId);
 
-      const ingredientsHtml =
-        part.ingredients
-          .map(item => `
-            <div class="part-ingredient">
-              <span>${escapeHtml(item[0])}</span>
-              <span>${escapeHtml(item[1])}</span>
+        if(!part){
+          return;
+        }
+
+        const ingredientsHtml =
+          part.ingredients
+            .map(item => `
+              <div class="part-ingredient">
+                <span>${escapeHtml(item[0])}</span>
+                <span>${escapeHtml(item[1])}</span>
+              </div>
+            `)
+            .join("");
+
+        const stepsHtml =
+          part.steps
+            .map((step,index) => `
+              <div class="part-step">
+
+                <span class="part-step-number">
+                  ${String(index + 1).padStart(2,"0")}
+                </span>
+
+                <span>
+                  ${escapeHtml(step)}
+                </span>
+
+              </div>
+            `)
+            .join("");
+
+        const popup =
+          document.createElement("div");
+
+        popup.className =
+          "recipe-part-popup";
+
+        popup.innerHTML = `
+
+          <div class="recipe-part-popup-inner">
+
+            <button
+              class="recipe-part-popup-close"
+              type="button"
+              aria-label="閉じる"
+            >
+              ×
+            </button>
+
+
+            <div class="recipe-part-popup-heading">
+
+              <small>
+                RECIPE PART
+              </small>
+
+              <h2>
+                ${escapeHtml(part.name)}
+              </h2>
+
             </div>
-          `)
-          .join("");
 
-      const stepsHtml =
-        part.steps
-          .map((step,index) => `
-            <div class="part-step">
-              <span class="part-step-number">
-                ${String(index + 1).padStart(2,"0")}
-              </span>
 
-              <span>
-                ${escapeHtml(step)}
-              </span>
-            </div>
-          `)
-          .join("");
+            <section>
 
-      const popup = document.createElement("div");
+              <h3>
+                材料 / INGREDIENTS
+              </h3>
 
-      popup.className = "recipe-part-popup";
+              <div class="part-ingredients">
+                ${ingredientsHtml}
+              </div>
 
-      popup.innerHTML = `
-        <div class="recipe-part-popup-inner">
+            </section>
 
-          <button
-            class="recipe-part-popup-close"
-            type="button"
-            aria-label="閉じる"
-          >
-            ×
-          </button>
 
-          <div class="recipe-part-popup-heading">
+            <section>
 
-            <small>
-              RECIPE PART
-            </small>
+              <h3>
+                つくりかた / HOW TO COOK
+              </h3>
 
-            <h2>
-              ${escapeHtml(part.name)}
-            </h2>
+              <div class="part-steps">
+                ${stepsHtml}
+              </div>
+
+            </section>
 
           </div>
 
-          <section>
+        `;
 
-            <h3>
-              材料 / INGREDIENTS
-            </h3>
 
-            <div class="part-ingredients">
-              ${ingredientsHtml}
-            </div>
+        document.body.appendChild(popup);
 
-          </section>
 
-          <section>
+        requestAnimationFrame(() => {
 
-            <h3>
-              つくりかた / HOW TO COOK
-            </h3>
+          popup.classList.add("is-open");
 
-            <div class="part-steps">
-              ${stepsHtml}
-            </div>
+        });
 
-          </section>
 
-        </div>
-      `;
+        const closePopup = () => {
 
-      document.body.appendChild(popup);
+          popup.classList.remove("is-open");
 
-      requestAnimationFrame(() => {
-        popup.classList.add("is-open");
-      });
+          setTimeout(() => {
 
-      const closePopup = () => {
+            popup.remove();
 
-        popup.classList.remove("is-open");
+          },250);
 
-        setTimeout(() => {
-          popup.remove();
-        }, 250);
+        };
 
-      };
 
-      popup
-        .querySelector(".recipe-part-popup-close")
-        .addEventListener("click", closePopup);
+        popup
+          .querySelector(
+            ".recipe-part-popup-close"
+          )
+          .addEventListener(
+            "click",
+            closePopup
+          );
 
-      popup.addEventListener("click", event => {
 
-        if(event.target === popup){
-          closePopup();
-        }
+        popup.addEventListener(
+          "click",
+          event => {
+
+            if(event.target === popup){
+
+              closePopup();
+
+            }
+
+          }
+        );
 
       });
 
     });
 
-  });
 
   /* =================================
      TAGS
@@ -653,4 +690,4 @@ recipeDetail
 
     });
 
-}
+}}
