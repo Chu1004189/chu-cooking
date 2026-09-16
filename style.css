@@ -812,15 +812,33 @@ body.tag-page-mode .tag-page{
   margin-top:22px;
 }
 
+
+/* =================================
+   RECIPE SECTION HEADING
+================================= */
+
+.recipe-section-heading{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:25px;
+}
+
+.recipe-section-heading .modal-section-title{
+  margin-bottom:0;
+}
+
+
 /* =================================
    RECIPE SERVINGS
 ================================= */
 
 .recipe-servings{
+  flex-shrink:0;
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  margin-bottom:18px;
   padding:6px 11px;
   border:1.5px solid var(--orange);
   border-radius:8px;
@@ -1165,6 +1183,7 @@ body.tag-page-mode .tag-page{
     both;
 }
 
+
 /* =================================
    RECIPE PART BUTTON
 ================================= */
@@ -1209,6 +1228,7 @@ body.tag-page-mode .tag-page{
 .recipe-part-button:active{
   transform:scale(.96);
 }
+
 
 /* =================================
    RECIPE PART POPUP
@@ -1368,4 +1388,3 @@ body.tag-page-mode .tag-page{
   font-size:9px;
   font-weight:900;
 }
-
