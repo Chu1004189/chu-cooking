@@ -3,6 +3,10 @@ const recipeParts = [
   {
     id:"spicy-dare",
     name:"ピリ辛だれ",
+    
+    name:"ピリ辛だれ",
+yieldAmount:"84",
+yieldUnit:"g",
 
     ingredients:[
       ["醤油","20g"],
