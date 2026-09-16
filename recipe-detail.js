@@ -494,6 +494,136 @@ const recipePartsHtml =
 
     });
 
+/* =================================
+   RECIPE PART POPUP
+================================= */
+
+recipeDetail
+  .querySelectorAll(".recipe-part-button")
+  .forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      const partId =
+        button.dataset.partId;
+
+      const part =
+        getRecipePart(partId);
+
+      if(!part){
+        return;
+      }
+
+      const ingredientsHtml =
+        part.ingredients
+          .map(item => `
+            <div class="part-ingredient">
+              <span>${escapeHtml(item[0])}</span>
+              <span>${escapeHtml(item[1])}</span>
+            </div>
+          `)
+          .join("");
+
+      const stepsHtml =
+        part.steps
+          .map((step,index) => `
+            <div class="part-step">
+              <span class="part-step-number">
+                ${String(index + 1).padStart(2,"0")}
+              </span>
+
+              <span>
+                ${escapeHtml(step)}
+              </span>
+            </div>
+          `)
+          .join("");
+
+      const popup = document.createElement("div");
+
+      popup.className = "recipe-part-popup";
+
+      popup.innerHTML = `
+        <div class="recipe-part-popup-inner">
+
+          <button
+            class="recipe-part-popup-close"
+            type="button"
+            aria-label="閉じる"
+          >
+            ×
+          </button>
+
+          <div class="recipe-part-popup-heading">
+
+            <small>
+              RECIPE PART
+            </small>
+
+            <h2>
+              ${escapeHtml(part.name)}
+            </h2>
+
+          </div>
+
+          <section>
+
+            <h3>
+              材料 / INGREDIENTS
+            </h3>
+
+            <div class="part-ingredients">
+              ${ingredientsHtml}
+            </div>
+
+          </section>
+
+          <section>
+
+            <h3>
+              つくりかた / HOW TO COOK
+            </h3>
+
+            <div class="part-steps">
+              ${stepsHtml}
+            </div>
+
+          </section>
+
+        </div>
+      `;
+
+      document.body.appendChild(popup);
+
+      requestAnimationFrame(() => {
+        popup.classList.add("is-open");
+      });
+
+      const closePopup = () => {
+
+        popup.classList.remove("is-open");
+
+        setTimeout(() => {
+          popup.remove();
+        }, 250);
+
+      };
+
+      popup
+        .querySelector(".recipe-part-popup-close")
+        .addEventListener("click", closePopup);
+
+      popup.addEventListener("click", event => {
+
+        if(event.target === popup){
+          closePopup();
+        }
+
+      });
+
+    });
+
+  });
 
   /* =================================
      TAGS
