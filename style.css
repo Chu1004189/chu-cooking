@@ -1388,3 +1388,70 @@ body.tag-page-mode .tag-page{
   font-size:9px;
   font-weight:900;
 }
+
+/* =================================
+   RECIPE PART STICKERS
+================================= */
+
+.recipe-parts-section{
+  margin:35px 0;
+}
+
+.recipe-parts-heading{
+  margin-bottom:14px;
+}
+
+.recipe-parts-heading small{
+  display:block;
+  margin-bottom:5px;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.recipe-parts-heading h2{
+  margin:0;
+  font-size:22px;
+  line-height:1.25;
+  font-weight:900;
+  letter-spacing:-.04em;
+}
+
+.recipe-parts-stickers{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:5px;
+}
+
+.recipe-parts-stickers .recipe-part-button{
+  margin-top:0;
+  padding:8px 13px;
+  border:2px solid var(--brown);
+  border-radius:8px;
+  background:var(--yellow);
+  color:var(--brown);
+  font-size:11px;
+  font-weight:900;
+  line-height:1;
+  box-shadow:3px 3px 0 var(--orange);
+  transform:rotate(-1deg);
+}
+
+.recipe-parts-stickers .recipe-part-button:nth-child(2){
+  transform:rotate(1deg);
+  margin-left:8px;
+}
+
+.recipe-parts-stickers .recipe-part-button:nth-child(3){
+  transform:rotate(-1.5deg);
+  margin-left:3px;
+}
+
+.recipe-parts-stickers .recipe-part-button:hover{
+  transform:translateY(-2px) rotate(-1deg);
+}
+
+.recipe-parts-stickers .recipe-part-button:active{
+  transform:scale(.96);
+}
