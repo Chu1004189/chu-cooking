@@ -359,9 +359,6 @@ const recipePartsHtml =
           ${escapeHtml(recipe.name)}
         </h1>
         
-        <div class="recipe-servings">
-  ${escapeHtml(recipe.servings)}人前
-</div>
 
         <div class="modal-tags">
 
@@ -387,11 +384,15 @@ const recipePartsHtml =
     </div>
 
 
-    <section class="modal-section">
+<section class="modal-section">
 
-      <h2 class="modal-section-title">
-        材料 / INGREDIENTS
-      </h2>
+  <div class="recipe-servings">
+    ${escapeHtml(recipe.servings)}人前
+  </div>
+
+  <h2 class="modal-section-title">
+    材料 / INGREDIENTS
+  </h2>
 
 
       <div class="ingredients-list">
