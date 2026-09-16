@@ -379,8 +379,6 @@ if(!recipe){
 
         </div>
 
-
-
       </div>
 
     </div>
@@ -437,6 +435,54 @@ if(!recipe){
       </div>
 
     </section>
+
+
+    ${recipePartsHtml ? `
+
+      <section class="recipe-parts-section">
+
+        <div class="recipe-parts-heading">
+
+          <small>
+            PART RECIPES
+          </small>
+
+          <h2>
+            このレシピに登場する<br>
+            パーツレシピ
+          </h2>
+
+        </div>
+
+
+        <div class="recipe-parts-stickers">
+
+          ${recipe.parts.map(partId => {
+
+            const part =
+              getRecipePart(partId);
+
+            if(!part){
+              return "";
+            }
+
+            return `
+              <button
+                class="recipe-part-button"
+                type="button"
+                data-part-id="${escapeHtml(part.id)}"
+              >
+                ★ ${escapeHtml(part.name)} →
+              </button>
+            `;
+
+          }).join("")}
+
+        </div>
+
+      </section>
+
+    ` : ""}
 
 
     <section class="modal-section">
