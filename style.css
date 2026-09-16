@@ -812,6 +812,26 @@ body.tag-page-mode .tag-page{
   margin-top:22px;
 }
 
+/* =================================
+   RECIPE SERVINGS
+================================= */
+
+.recipe-servings{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:18px;
+  padding:6px 11px;
+  border:1.5px solid var(--orange);
+  border-radius:8px;
+  background:var(--white);
+  color:var(--brown);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.04em;
+  line-height:1;
+}
+
 .modal-tag{
   padding:8px 12px;
   border-radius:999px;
