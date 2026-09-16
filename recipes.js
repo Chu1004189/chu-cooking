@@ -3,6 +3,7 @@ const recipes = [
   {
     id:"ebi-shio-yakisoba",
     name:"海老塩焼きそば",
+    servings:2,
     image:"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1000&q=85",
     tags:["麺類","海鮮","ガッツリ"],
     searchText:"海老 塩 焼きそば 麺 もやし キャベツ",
@@ -29,6 +30,7 @@ const recipes = [
   {
     id:"chicken-lemon-soy-saute",
     name:"鶏むね肉のレモン醤油ソテー",
+    servings:2,
     image:"https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=85",
     tags:["鶏肉","さっぱり","おかず"],
     searchText:"鶏むね肉 レモン 醤油 ソテー",
@@ -54,6 +56,7 @@ const recipes = [
   {
     id:"toro-uma-mabo-nasu",
     name:"とろ旨麻婆なす",
+    servings:2,
     image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
     tags:["なす","中華","ご飯"],
     searchText:"麻婆なす なす 豚ひき肉 豆板醤 甜麺醤",
@@ -84,6 +87,7 @@ const recipes = [
   {
     id:"rice-cooker-spice-chicken-rice",
     name:"炊飯器スパイスチキンライス",
+    servings:2,
     image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
     tags:["ご飯","鶏肉","スパイス"],
     searchText:"炊飯器 チキンライス カレー粉 クミン ヨーグルト",
@@ -115,6 +119,7 @@ const recipes = [
   {
     id:"cheese-napolitan",
     name:"とろけるチーズの焼きナポリタン",
+    servings:2,
     image:"https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=85",
     tags:["パスタ","チーズ","洋食"],
     searchText:"ナポリタン パスタ チーズ ケチャップ ウインナー",
@@ -145,6 +150,7 @@ const recipes = [
   {
     id:"chunky-vegetable-salad",
     name:"ごろごろ野菜サラダ",
+    servings:2,
     image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=85",
     tags:["サラダ","野菜","さっぱり"],
     searchText:"サラダ 野菜 トマト きゅうり レタス",
@@ -169,6 +175,7 @@ const recipes = [
   {
     id:"pork-kimchi-don",
     name:"豚キムチ丼",
+    servings:1,
     image:"https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=900&q=85",
     tags:["丼","豚肉","辛い"],
     searchText:"豚キムチ 豚肉 キムチ 丼 ご飯",
@@ -195,6 +202,7 @@ const recipes = [
   {
     id:"teriyaki-chicken-don",
     name:"照り焼きチキン丼",
+    servings:1,
     image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
     tags:["丼","鶏肉","甘辛"],
     searchText:"照り焼き チキン 鶏肉 丼 醤油 みりん",
@@ -220,6 +228,7 @@ const recipes = [
   {
     id:"negi-shio-pork-karubi-don",
     name:"ねぎ塩豚カルビ丼",
+    servings:1,
     image:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
     tags:["丼","豚肉","ガッツリ"],
     searchText:"ねぎ塩 豚カルビ 豚肉 丼 レモン",
@@ -246,6 +255,7 @@ const recipes = [
   {
     id:"salmon-butter-soy",
     name:"鮭のバター醤油焼き",
+    servings:2,
     image:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=85",
     tags:["魚","和食","バター"],
     searchText:"鮭 バター 醤油 焼き魚",
@@ -269,6 +279,7 @@ const recipes = [
   {
     id:"saba-miso-ni",
     name:"さば味噌煮",
+    servings:2,
     image:"https://images.unsplash.com/photo-1534256958597-7fe685cbd745?auto=format&fit=crop&w=900&q=85",
     tags:["魚","和食","煮物"],
     searchText:"さば 味噌煮 味噌 生姜",
@@ -295,6 +306,7 @@ const recipes = [
   {
     id:"pork-shabu-cold-udon",
     name:"豚しゃぶ冷やしうどん",
+    servings:2,
     image:"https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=900&q=85",
     tags:["麺類","豚肉","さっぱり"],
     searchText:"豚しゃぶ うどん 冷やし めんつゆ",
@@ -321,6 +333,7 @@ const recipes = [
   {
     id:"mentai-cream-pasta",
     name:"明太クリームパスタ",
+    servings:2,
     image:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=85",
     tags:["パスタ","クリーム","明太子"],
     searchText:"明太子 クリーム パスタ 豆乳 牛乳",
@@ -347,6 +360,7 @@ const recipes = [
   {
     id:"yakiniku-fried-rice",
     name:"焼肉チャーハン",
+    servings:2,
     image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
     tags:["ご飯","肉","ガッツリ"],
     searchText:"焼肉 チャーハン 牛肉 ご飯",
@@ -373,6 +387,7 @@ const recipes = [
   {
     id:"garlic-soy-fried-rice",
     name:"にんにく醤油チャーハン",
+    servings:2,
     image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
     tags:["ご飯","にんにく","ガッツリ"],
     searchText:"にんにく 醤油 チャーハン 卵",
@@ -398,6 +413,7 @@ const recipes = [
   {
     id:"cheese-mabo-tofu",
     name:"チーズ麻婆豆腐",
+    servings:2,
     image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
     tags:["豆腐","中華","チーズ"],
     searchText:"麻婆豆腐 チーズ 豆腐 豚ひき肉",
@@ -426,6 +442,7 @@ const recipes = [
   {
     id:"spicy-yodare-chicken",
     name:"旨辛よだれ鶏",
+    servings:2,
     image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85",
     tags:["鶏肉","辛い","中華"],
     parts:["spicy-dare"],
@@ -445,6 +462,7 @@ const recipes = [
   {
     id:"eggplant-agebitashi",
     name:"なすの揚げ浸し",
+    servings:2,
     image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85",
     tags:["なす","和食","副菜"],
     searchText:"なす 揚げ浸し めんつゆ 生姜",
@@ -469,6 +487,7 @@ const recipes = [
   {
     id:"cucumber-shio-kombu-ae",
     name:"きゅうりの塩昆布和え",
+    servings:2,
     image:"https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=85",
     tags:["副菜","野菜","さっぱり"],
     searchText:"きゅうり 塩昆布 ごま油",
@@ -488,6 +507,7 @@ const recipes = [
   {
     id:"tuna-egg-salad",
     name:"ツナ卵サラダ",
+    servings:2,
     image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=85",
     tags:["サラダ","卵","簡単"],
     searchText:"ツナ 卵 サラダ マヨネーズ",
@@ -509,6 +529,7 @@ const recipes = [
   {
     id:"bacon-spinach-quiche",
     name:"ベーコンとほうれん草のキッシュ",
+    servings:2,
     image:"https://images.unsplash.com/photo-1572449043416-55f4685c9bb7?auto=format&fit=crop&w=900&q=85",
     tags:["洋食","卵","チーズ"],
     searchText:"キッシュ ベーコン ほうれん草 卵 チーズ",
@@ -535,6 +556,7 @@ const recipes = [
   {
     id:"pork-onion-ginger",
     name:"豚肉と玉ねぎの生姜焼き",
+    servings:2,
     image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
     tags:["豚肉","和食","ご飯"],
     searchText:"生姜焼き 豚肉 玉ねぎ 生姜 醤油",
@@ -560,6 +582,7 @@ const recipes = [
   {
     id:"rich-carbonara",
     name:"濃厚カルボナーラ",
+    servings:2,
     image:"https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=85",
     tags:["パスタ","チーズ","濃厚"],
     searchText:"カルボナーラ パスタ 卵 チーズ ベーコン",
@@ -586,6 +609,7 @@ const recipes = [
   {
     id:"pork-cabbage-shio-itame",
     name:"豚肉とキャベツの塩炒め",
+    servings:2,
     image:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
     tags:["豚肉","野菜","簡単"],
     searchText:"豚肉 キャベツ 塩炒め にんにく",
@@ -611,6 +635,7 @@ const recipes = [
   {
     id:"tuna-mayo-soy-udon",
     name:"ツナマヨ醤油うどん",
+    servings:2,
     image:"https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=900&q=85",
     tags:["麺類","簡単","ツナ"],
     searchText:"ツナマヨ うどん 醤油 めんつゆ",
@@ -635,6 +660,7 @@ const recipes = [
   {
     id:"garlic-miso-pork-don",
     name:"にんにく味噌豚丼",
+    servings:1,
     image:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
     tags:["丼","豚肉","味噌"],
     searchText:"豚丼 にんにく 味噌 豚肉 ご飯",
@@ -661,6 +687,7 @@ const recipes = [
   {
     id:"tomato-mozzarella-salad",
     name:"トマトとモッツァレラのサラダ",
+    servings:2,
     image:"https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=85",
     tags:["サラダ","チーズ","さっぱり"],
     searchText:"トマト モッツァレラ サラダ オリーブオイル",
@@ -683,6 +710,7 @@ const recipes = [
   {
     id:"curry-potato-itame",
     name:"カレー風味のポテト炒め",
+    servings:2,
     image:"https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=900&q=85",
     tags:["じゃがいも","カレー","副菜"],
     searchText:"じゃがいも カレー粉 ポテト 炒め",
@@ -708,6 +736,7 @@ const recipes = [
   {
     id:"korean-spicy-hiyayakko",
     name:"韓国風ピリ辛冷奴",
+    servings:2,
     image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
     tags:["豆腐","韓国","辛い"],
     searchText:"冷奴 豆腐 コチュジャン ごま油 韓国",
@@ -733,6 +762,7 @@ const recipes = [
   {
     id:"baked-cheese-curry",
     name:"焼きチーズカレー",
+    servings:1,
     image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85",
     tags:["ご飯","カレー","チーズ"],
     searchText:"チーズカレー 焼きカレー ご飯 チーズ",
@@ -758,6 +788,7 @@ const recipes = [
   {
     id:"shio-dare-pork-cabbage-don",
     name:"塩だれ豚キャベツ丼",
+    servings:1,
     image:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
     tags:["丼","豚肉","塩だれ"],
     searchText:"豚キャベツ 丼 塩だれ ご飯 ごま油",
