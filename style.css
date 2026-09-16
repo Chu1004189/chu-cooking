@@ -1150,25 +1150,36 @@ body.tag-page-mode .tag-page{
 ================================= */
 
 .recipe-part-button{
+  -webkit-appearance:none;
+  appearance:none;
+
   display:inline-flex;
   align-items:center;
   justify-content:center;
 
   margin-top:18px;
-  padding:10px 16px;
+  padding:9px 15px;
 
   border:2px solid var(--orange);
   border-radius:999px;
 
   background:var(--yellow);
-  color:#222;
+  background-image:none;
+
+  color:var(--brown);
 
   font-family:inherit;
   font-size:12px;
-  font-weight:700;
+  font-weight:900;
+  line-height:1;
 
+  text-decoration:none;
   cursor:pointer;
-  transition:.2s ease;
+
+  box-shadow:none;
+  outline:none;
+
+  transition:transform .2s ease;
 }
 
 .recipe-part-button:hover{
