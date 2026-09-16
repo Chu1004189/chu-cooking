@@ -404,21 +404,36 @@ if(!recipe){
 
       <div class="ingredients-list">
 
-        ${recipe.ingredients.map(item => `
+        ${recipe.ingredients.map(item => {
 
-          <div class="ingredient-item">
+          const part =
+            recipe.parts
+              ?.map(partId => getRecipePart(partId))
+              .find(part =>
+                part &&
+                part.name === item[0]
+              );
 
-            <span class="ingredient-name">
-              ${escapeHtml(item[0])}
-            </span>
+          return `
 
-            <span class="ingredient-amount">
-              ${escapeHtml(item[1])}
-            </span>
+            <div
+              class="ingredient-item${part ? " recipe-part-ingredient" : ""}"
+              ${part ? `data-part-id="${escapeHtml(part.id)}"` : ""}
+            >
 
-          </div>
+              <span class="ingredient-name">
+                ${escapeHtml(item[0])}
+              </span>
 
-        `).join("")}
+              <span class="ingredient-amount">
+                ${escapeHtml(item[1])}
+              </span>
+
+            </div>
+
+          `;
+
+        }).join("")}
 
       </div>
 
