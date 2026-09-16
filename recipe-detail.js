@@ -380,7 +380,6 @@ if(!recipe){
         </div>
 
 
-        ${recipePartsHtml}
 
       </div>
 
