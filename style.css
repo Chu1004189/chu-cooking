@@ -1144,3 +1144,37 @@ body.tag-page-mode .tag-page{
     recipeDetailIn .65s cubic-bezier(.22,.8,.2,1) .52s
     both;
 }
+
+/* =================================
+   RECIPE PART BUTTON
+================================= */
+
+.recipe-part-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  margin-top:18px;
+  padding:10px 16px;
+
+  border:2px solid var(--orange);
+  border-radius:999px;
+
+  background:var(--yellow);
+  color:#222;
+
+  font-family:inherit;
+  font-size:12px;
+  font-weight:700;
+
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+.recipe-part-button:hover{
+  transform:translateY(-2px);
+}
+
+.recipe-part-button:active{
+  transform:scale(.96);
+}
