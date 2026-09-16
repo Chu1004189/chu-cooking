@@ -1189,3 +1189,162 @@ body.tag-page-mode .tag-page{
 .recipe-part-button:active{
   transform:scale(.96);
 }
+
+/* =================================
+   RECIPE PART POPUP
+================================= */
+
+.recipe-part-popup{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
+  background:rgba(55,35,20,.45);
+
+  opacity:0;
+  pointer-events:none;
+
+  transition:opacity .25s ease;
+}
+
+.recipe-part-popup.is-open{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.recipe-part-popup-inner{
+  position:relative;
+
+  width:min(560px,100%);
+  max-height:85vh;
+
+  overflow-y:auto;
+
+  padding:38px 35px 35px;
+
+  background:var(--cream);
+  border:3px solid var(--brown);
+  border-radius:24px;
+
+  box-shadow:10px 12px 0 var(--orange);
+
+  transform:translateY(20px) scale(.96);
+
+  transition:
+    transform .3s cubic-bezier(.2,.85,.2,1);
+}
+
+.recipe-part-popup.is-open
+.recipe-part-popup-inner{
+  transform:translateY(0) scale(1);
+}
+
+.recipe-part-popup-close{
+  position:absolute;
+  top:12px;
+  right:14px;
+
+  width:36px;
+  height:36px;
+
+  border:2px solid var(--brown);
+  border-radius:50%;
+
+  background:var(--yellow);
+  color:var(--brown);
+
+  font-size:24px;
+  font-weight:900;
+  line-height:1;
+
+  cursor:pointer;
+}
+
+.recipe-part-popup-heading small{
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.recipe-part-popup-heading h2{
+  margin:5px 0 28px;
+
+  font-size:34px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:-.05em;
+}
+
+.recipe-part-popup-inner section{
+  margin-top:25px;
+}
+
+.recipe-part-popup-inner h3{
+  margin:0 0 12px;
+
+  font-size:12px;
+  font-weight:900;
+}
+
+.part-ingredients{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:6px;
+}
+
+.part-ingredient{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+
+  padding:9px 11px;
+
+  background:#fff;
+  border-radius:9px;
+
+  font-size:11px;
+  font-weight:700;
+}
+
+.part-ingredient span:last-child{
+  white-space:nowrap;
+}
+
+.part-steps{
+  display:grid;
+  gap:10px;
+}
+
+.part-step{
+  display:grid;
+  grid-template-columns:32px 1fr;
+  gap:9px;
+
+  align-items:start;
+
+  font-size:12px;
+  line-height:1.7;
+  font-weight:700;
+}
+
+.part-step-number{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width:32px;
+  height:32px;
+
+  border-radius:50%;
+
+  background:var(--yellow);
+
+  font-size:9px;
+  font-weight:900;
+}
