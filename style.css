@@ -1182,6 +1182,21 @@ body.tag-page-mode .tag-page {
     box-shadow 0.2s ease;
 }
 
+.recipe-part-ingredient::before {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+
+  width: 4px;
+
+  border-radius: 0 4px 4px 0;
+
+  background: #8FAF72;
+}
+
 .recipe-part-ingredient:hover {
   transform: translateY(-3px);
 
