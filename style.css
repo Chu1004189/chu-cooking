@@ -1200,17 +1200,22 @@ body.tag-page-mode .tag-page {
 .ingredient-part-label {
   width: fit-content;
 
-  padding: 3px 6px;
+  padding: 4px 7px;
 
-  border-radius: 5px;
+  border-radius: 6px;
 
   background: #8FAF72;
   color: #fff;
 
   font-size: 7px;
   font-weight: 900;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   line-height: 1;
+
+  box-shadow:
+    2px 2px 0 rgba(90, 120, 65, 0.22);
+
+  transform: rotate(-1deg);
 }
 
 
