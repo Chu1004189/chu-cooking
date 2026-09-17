@@ -1163,12 +1163,12 @@ body.tag-page-mode .tag-page {
 .recipe-part-ingredient {
   position: relative;
 
-  border-color: var(--orange);
+  border-color: #8FAF72;
 
   background:
     linear-gradient(
       135deg,
-      #fff8cf,
+      #F0F5E8,
       #fff
     );
 
