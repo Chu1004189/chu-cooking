@@ -1183,6 +1183,28 @@ body.tag-page-mode .tag-page {
   transform: translateY(-3px);
 }
 
+.recipe-part-ingredient::after {
+  content: "";
+
+  position: absolute;
+
+  top: 10px;
+  right: 10px;
+
+  width: 16px;
+  height: 22px;
+
+  background: #8FAF72;
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    50% 72%,
+    0 100%
+  );
+}
+
 .recipe-part-ingredient
 .ingredient-name {
   display: flex;
