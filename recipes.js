@@ -7,7 +7,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1000&q=85",
     tags: ["麺類", "海鮮", "ガッツリ"],
     searchText: "海老 塩 焼きそば 麺 もやし キャベツ",
-    gas: 1,
     ingredients: [
       ["中華麺", "2玉"],
       ["むき海老", "120g"],
@@ -34,7 +33,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=85",
     tags: ["鶏肉", "さっぱり", "おかず"],
     searchText: "鶏むね肉 レモン 醤油 ソテー",
-    gas: 1,
     ingredients: [
       ["鶏むね肉", "300g"],
       ["塩", "2g"],
@@ -60,7 +58,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
     tags: ["なす", "中華", "ご飯"],
     searchText: "麻婆なす なす 豚ひき肉 豆板醤 甜麺醤",
-    gas: 1,
     ingredients: [
       ["冷凍なす", "300g"],
       ["豚ひき肉", "120g"],
@@ -91,8 +88,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
     tags: ["ご飯", "鶏肉", "スパイス"],
     searchText: "炊飯器 チキンライス カレー粉 クミン ヨーグルト",
-    appliance: "炊飯器",
-    note: "通常炊飯でOK",
     ingredients: [
       ["米", "2合"],
       ["鶏もも肉", "250g"],
@@ -123,9 +118,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=85",
     tags: ["パスタ", "チーズ", "洋食"],
     searchText: "ナポリタン パスタ チーズ ケチャップ ウインナー",
-    gas: 1,
-    appliance: "オーブン",
-    note: "チーズに焼き色がつくまで焼く",
     ingredients: [
       ["スパゲッティ", "200g"],
       ["玉ねぎ", "100g"],
@@ -179,7 +171,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=900&q=85",
     tags: ["丼", "豚肉", "辛い"],
     searchText: "豚キムチ 豚肉 キムチ 丼 ご飯",
-    gas: 1,
     ingredients: [
       ["豚バラ肉", "150g"],
       ["キムチ", "120g"],
@@ -206,7 +197,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
     tags: ["丼", "鶏肉", "甘辛"],
     searchText: "照り焼き チキン 鶏肉 丼 醤油 みりん",
-    gas: 1,
     ingredients: [
       ["鶏もも肉", "250g"],
       ["醤油", "20g"],
@@ -232,7 +222,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
     tags: ["丼", "豚肉", "ガッツリ"],
     searchText: "ねぎ塩 豚カルビ 豚肉 丼 レモン",
-    gas: 1,
     ingredients: [
       ["豚バラ肉", "180g"],
       ["長ねぎ", "80g"],
@@ -259,7 +248,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=85",
     tags: ["魚", "和食", "バター"],
     searchText: "鮭 バター 醤油 焼き魚",
-    gas: 1,
     ingredients: [
       ["鮭", "2切れ"],
       ["塩", "2g"],
@@ -283,7 +271,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1534256958597-7fe685cbd745?auto=format&fit=crop&w=900&q=85",
     tags: ["魚", "和食", "煮物"],
     searchText: "さば 味噌煮 味噌 生姜",
-    gas: 1,
     ingredients: [
       ["さば", "2切れ"],
       ["味噌", "35g"],
@@ -310,7 +297,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=900&q=85",
     tags: ["麺類", "豚肉", "さっぱり"],
     searchText: "豚しゃぶ うどん 冷やし めんつゆ",
-    gas: 1,
     ingredients: [
       ["冷凍うどん", "2玉"],
       ["豚しゃぶ肉", "150g"],
@@ -337,7 +323,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=85",
     tags: ["パスタ", "クリーム", "明太子"],
     searchText: "明太子 クリーム パスタ 豆乳 牛乳",
-    gas: 1,
     ingredients: [
       ["スパゲッティ", "200g"],
       ["明太子", "80g"],
@@ -364,7 +349,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
     tags: ["ご飯", "肉", "ガッツリ"],
     searchText: "焼肉 チャーハン 牛肉 ご飯",
-    gas: 1,
     ingredients: [
       ["ご飯", "300g"],
       ["牛こま肉", "100g"],
@@ -391,7 +375,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
     tags: ["ご飯", "にんにく", "ガッツリ"],
     searchText: "にんにく 醤油 チャーハン 卵",
-    gas: 1,
     ingredients: [
       ["ご飯", "300g"],
       ["卵", "2個"],
@@ -417,7 +400,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
     tags: ["豆腐", "中華", "チーズ"],
     searchText: "麻婆豆腐 チーズ 豆腐 豚ひき肉",
-    gas: 1,
     ingredients: [
       ["豆腐", "300g"],
       ["豚ひき肉", "100g"],
@@ -447,7 +429,6 @@ const recipes = [
     tags: ["鶏肉", "辛い", "中華"],
     parts: ["spicy-dare"],
     searchText: "よだれ鶏 鶏むね肉 ラー油 ごま",
-    gas: 1,
     ingredients: [
       ["鶏むね肉", "300g"],
       ["ピリ辛だれ", "50g"],
@@ -467,7 +448,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85",
     tags: ["なす", "和食", "副菜"],
     searchText: "なす 揚げ浸し めんつゆ 生姜",
-    gas: 1,
     ingredients: [
       ["なす", "300g"],
       ["めんつゆ", "50g"],
@@ -534,8 +514,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1572449043416-55f4685c9bb7?auto=format&fit=crop&w=900&q=85",
     tags: ["洋食", "卵", "チーズ"],
     searchText: "キッシュ ベーコン ほうれん草 卵 チーズ",
-    appliance: "オーブン",
-    note: "180℃に予熱してから焼く",
     ingredients: [
       ["卵", "3個"],
       ["ベーコン", "70g"],
@@ -561,7 +539,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
     tags: ["豚肉", "和食", "ご飯"],
     searchText: "生姜焼き 豚肉 玉ねぎ 生姜 醤油",
-    gas: 1,
     ingredients: [
       ["豚ロース", "200g"],
       ["玉ねぎ", "100g"],
@@ -587,7 +564,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=85",
     tags: ["パスタ", "チーズ", "濃厚"],
     searchText: "カルボナーラ パスタ 卵 チーズ ベーコン",
-    gas: 1,
     ingredients: [
       ["スパゲッティ", "200g"],
       ["ベーコン", "80g"],
@@ -614,7 +590,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
     tags: ["豚肉", "野菜", "簡単"],
     searchText: "豚肉 キャベツ 塩炒め にんにく",
-    gas: 1,
     ingredients: [
       ["豚こま肉", "180g"],
       ["キャベツ", "200g"],
@@ -640,7 +615,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=900&q=85",
     tags: ["麺類", "簡単", "ツナ"],
     searchText: "ツナマヨ うどん 醤油 めんつゆ",
-    gas: 1,
     ingredients: [
       ["冷凍うどん", "2玉"],
       ["ツナ", "70g"],
@@ -665,7 +639,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
     tags: ["丼", "豚肉", "味噌"],
     searchText: "豚丼 にんにく 味噌 豚肉 ご飯",
-    gas: 1,
     ingredients: [
       ["豚バラ肉", "180g"],
       ["味噌", "20g"],
@@ -715,7 +688,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=900&q=85",
     tags: ["じゃがいも", "カレー", "副菜"],
     searchText: "じゃがいも カレー粉 ポテト 炒め",
-    gas: 1,
     ingredients: [
       ["じゃがいも", "300g"],
       ["玉ねぎ", "80g"],
@@ -767,8 +739,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85",
     tags: ["ご飯", "カレー", "チーズ"],
     searchText: "チーズカレー 焼きカレー ご飯 チーズ",
-    appliance: "トースター",
-    note: "チーズに焼き色がつくまで焼く",
     ingredients: [
       ["ご飯", "300g"],
       ["カレー", "250g"],
@@ -793,7 +763,6 @@ const recipes = [
     image: "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
     tags: ["丼", "豚肉", "塩だれ"],
     searchText: "豚キャベツ 丼 塩だれ ご飯 ごま油",
-    gas: 1,
     ingredients: [
       ["豚バラ肉", "180g"],
       ["キャベツ", "180g"],
