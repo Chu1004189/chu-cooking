@@ -1572,7 +1572,16 @@ body.tag-page-mode .tag-page {
 }
 
 .part-recipe-meta-item span {
-  color: #8FAF72;
+  display: inline-block;
+
+  width: fit-content;
+
+  padding: 4px 7px;
+
+  border-radius: 6px;
+
+  background: #8FAF72;
+  color: #fff;
 
   font-size: 9px;
   font-weight: 900;
