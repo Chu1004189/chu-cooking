@@ -1089,8 +1089,8 @@ body.tag-page-mode .tag-page {
   border: 1.5px solid var(--orange);
   border-radius: 8px;
 
-  background: var(--white);
-  color: var(--brown);
+  background: var(--orange);
+  color: #fff;
 
   font-size: 11px;
   font-weight: 900;
