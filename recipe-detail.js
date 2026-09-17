@@ -575,67 +575,6 @@ if (!recipe) {
 
         </div>
 
-
-        <div class="recipe-meta">
-
-          ${
-            recipe.gas
-              ? `
-                <div class="recipe-meta-item">
-
-                  <span class="recipe-meta-label">
-                    コンロ
-                  </span>
-
-                  <span class="recipe-meta-value">
-                    ${escapeHtml(recipe.gas)}口
-                  </span>
-
-                </div>
-              `
-              : ""
-          }
-
-
-          ${
-            recipe.appliance
-              ? `
-                <div class="recipe-meta-item">
-
-                  <span class="recipe-meta-label">
-                    調理器具
-                  </span>
-
-                  <span class="recipe-meta-value">
-                    ${escapeHtml(recipe.appliance)}
-                  </span>
-
-                </div>
-              `
-              : ""
-          }
-
-
-          ${
-            recipe.note
-              ? `
-                <div class="recipe-meta-item">
-
-                  <span class="recipe-meta-label">
-                    メモ
-                  </span>
-
-                  <span class="recipe-meta-value">
-                    ${escapeHtml(recipe.note)}
-                  </span>
-
-                </div>
-              `
-              : ""
-          }
-
-        </div>
-
       </div>
 
     </div>
