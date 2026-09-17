@@ -1174,34 +1174,13 @@ body.tag-page-mode .tag-page {
 
   cursor: pointer;
 
-  box-shadow:
-    4px 4px 0 rgba(143, 175, 114, 0.28);
-
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
 }
 
-.recipe-part-ingredient::before {
-  content: "";
-
-  position: absolute;
-  left: 0;
-  top: 8px;
-  bottom: 8px;
-
-  width: 4px;
-
-  border-radius: 0 4px 4px 0;
-
-  background: #8FAF72;
-}
-
 .recipe-part-ingredient:hover {
   transform: translateY(-3px);
-
-  box-shadow:
-    6px 7px 0 rgba(143, 175, 114, 0.32);
 }
 
 .recipe-part-ingredient
@@ -1210,27 +1189,8 @@ body.tag-page-mode .tag-page {
   flex-direction: column;
 
   gap: 4px;
-}
 
-.ingredient-part-label {
-  width: fit-content;
-
-  padding: 4px 7px;
-
-  border-radius: 6px;
-
-  background: #8FAF72;
-  color: #fff;
-
-  font-size: 7px;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  line-height: 1;
-
-  box-shadow:
-    2px 2px 0 rgba(90, 120, 65, 0.22);
-
-  transform: rotate(-1deg);
+  color: #8FAF72;
 }
 
 
