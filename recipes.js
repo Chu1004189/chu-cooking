@@ -1,25 +1,25 @@
 const recipes = [
 
   {
-    id:"ebi-shio-yakisoba",
-    name:"海老塩焼きそば",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1000&q=85",
-    tags:["麺類","海鮮","ガッツリ"],
-    searchText:"海老 塩 焼きそば 麺 もやし キャベツ",
-    gas:1,
-    ingredients:[
-      ["中華麺","2玉"],
-      ["むき海老","120g"],
-      ["キャベツ","120g"],
-      ["もやし","100g"],
-      ["ごま油","10g"],
-      ["鶏ガラスープの素","5g"],
-      ["塩","3g"],
-      ["黒こしょう","少々"],
-      ["にんにく","5g"]
+    id: "ebi-shio-yakisoba",
+    name: "海老塩焼きそば",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1000&q=85",
+    tags: ["麺類", "海鮮", "ガッツリ"],
+    searchText: "海老 塩 焼きそば 麺 もやし キャベツ",
+    gas: 1,
+    ingredients: [
+      ["中華麺", "2玉"],
+      ["むき海老", "120g"],
+      ["キャベツ", "120g"],
+      ["もやし", "100g"],
+      ["ごま油", "10g"],
+      ["鶏ガラスープの素", "5g"],
+      ["塩", "3g"],
+      ["黒こしょう", "少々"],
+      ["にんにく", "5g"]
     ],
-    steps:[
+    steps: [
       "フライパンにごま油とにんにくを入れて中火で熱する。",
       "海老を加えて炒め、色が変わったらキャベツともやしを加える。",
       "中華麺を加えてほぐしながら炒める。",
@@ -28,24 +28,24 @@ const recipes = [
   },
 
   {
-    id:"chicken-lemon-soy-saute",
-    name:"鶏むね肉のレモン醤油ソテー",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=85",
-    tags:["鶏肉","さっぱり","おかず"],
-    searchText:"鶏むね肉 レモン 醤油 ソテー",
-    gas:1,
-    ingredients:[
-      ["鶏むね肉","300g"],
-      ["塩","2g"],
-      ["黒こしょう","少々"],
-      ["薄力粉","15g"],
-      ["油","10g"],
-      ["醤油","15g"],
-      ["レモン汁","15g"],
-      ["砂糖","5g"]
+    id: "chicken-lemon-soy-saute",
+    name: "鶏むね肉のレモン醤油ソテー",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=85",
+    tags: ["鶏肉", "さっぱり", "おかず"],
+    searchText: "鶏むね肉 レモン 醤油 ソテー",
+    gas: 1,
+    ingredients: [
+      ["鶏むね肉", "300g"],
+      ["塩", "2g"],
+      ["黒こしょう", "少々"],
+      ["薄力粉", "15g"],
+      ["油", "10g"],
+      ["醤油", "15g"],
+      ["レモン汁", "15g"],
+      ["砂糖", "5g"]
     ],
-    steps:[
+    steps: [
       "鶏むね肉をそぎ切りにして、塩、黒こしょうをまぶす。",
       "薄力粉を薄くまぶす。",
       "フライパンに油を熱し、鶏肉を両面焼く。",
@@ -54,28 +54,28 @@ const recipes = [
   },
 
   {
-    id:"toro-uma-mabo-nasu",
-    name:"とろ旨麻婆なす",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
-    tags:["なす","中華","ご飯"],
-    searchText:"麻婆なす なす 豚ひき肉 豆板醤 甜麺醤",
-    gas:1,
-    ingredients:[
-      ["冷凍なす","300g"],
-      ["豚ひき肉","120g"],
-      ["長ねぎ","50g"],
-      ["にんにく","5g"],
-      ["しょうが","5g"],
-      ["豆板醤","5g"],
-      ["甜麺醤","15g"],
-      ["醤油","10g"],
-      ["鶏ガラスープの素","3g"],
-      ["水","100g"],
-      ["花椒","少々"],
-      ["ごま油","5g"]
+    id: "toro-uma-mabo-nasu",
+    name: "とろ旨麻婆なす",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
+    tags: ["なす", "中華", "ご飯"],
+    searchText: "麻婆なす なす 豚ひき肉 豆板醤 甜麺醤",
+    gas: 1,
+    ingredients: [
+      ["冷凍なす", "300g"],
+      ["豚ひき肉", "120g"],
+      ["長ねぎ", "50g"],
+      ["にんにく", "5g"],
+      ["しょうが", "5g"],
+      ["豆板醤", "5g"],
+      ["甜麺醤", "15g"],
+      ["醤油", "10g"],
+      ["鶏ガラスープの素", "3g"],
+      ["水", "100g"],
+      ["花椒", "少々"],
+      ["ごま油", "5g"]
     ],
-    steps:[
+    steps: [
       "フライパンにごま油、にんにく、しょうが、豆板醤を入れて炒める。",
       "豚ひき肉を加えて炒める。",
       "甜麺醤と醤油を加える。",
@@ -85,29 +85,29 @@ const recipes = [
   },
 
   {
-    id:"rice-cooker-spice-chicken-rice",
-    name:"炊飯器スパイスチキンライス",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
-    tags:["ご飯","鶏肉","スパイス"],
-    searchText:"炊飯器 チキンライス カレー粉 クミン ヨーグルト",
-    appliance:"炊飯器",
-    note:"通常炊飯でOK",
-    ingredients:[
-      ["米","2合"],
-      ["鶏もも肉","250g"],
-      ["玉ねぎ","100g"],
-      ["トマト","100g"],
-      ["ヨーグルト","50g"],
-      ["カレー粉","8g"],
-      ["クミン","2g"],
-      ["黒こしょう","1g"],
-      ["にんにく","5g"],
-      ["しょうが","5g"],
-      ["レモン汁","10g"],
-      ["塩","5g"]
+    id: "rice-cooker-spice-chicken-rice",
+    name: "炊飯器スパイスチキンライス",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
+    tags: ["ご飯", "鶏肉", "スパイス"],
+    searchText: "炊飯器 チキンライス カレー粉 クミン ヨーグルト",
+    appliance: "炊飯器",
+    note: "通常炊飯でOK",
+    ingredients: [
+      ["米", "2合"],
+      ["鶏もも肉", "250g"],
+      ["玉ねぎ", "100g"],
+      ["トマト", "100g"],
+      ["ヨーグルト", "50g"],
+      ["カレー粉", "8g"],
+      ["クミン", "2g"],
+      ["黒こしょう", "1g"],
+      ["にんにく", "5g"],
+      ["しょうが", "5g"],
+      ["レモン汁", "10g"],
+      ["塩", "5g"]
     ],
-    steps:[
+    steps: [
       "米を研いで炊飯器に入れる。",
       "鶏肉にヨーグルト、カレー粉、クミン、塩、にんにく、しょうがを絡める。",
       "米の上に玉ねぎ、トマト、鶏肉をのせる。",
@@ -117,28 +117,28 @@ const recipes = [
   },
 
   {
-    id:"cheese-napolitan",
-    name:"とろけるチーズの焼きナポリタン",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=85",
-    tags:["パスタ","チーズ","洋食"],
-    searchText:"ナポリタン パスタ チーズ ケチャップ ウインナー",
-    gas:1,
-    appliance:"オーブン",
-    note:"チーズに焼き色がつくまで焼く",
-    ingredients:[
-      ["スパゲッティ","200g"],
-      ["玉ねぎ","100g"],
-      ["ピーマン","50g"],
-      ["ウインナー","80g"],
-      ["ケチャップ","80g"],
-      ["ウスターソース","10g"],
-      ["バター","10g"],
-      ["チーズ","70g"],
-      ["塩","2g"],
-      ["黒こしょう","少々"]
+    id: "cheese-napolitan",
+    name: "とろけるチーズの焼きナポリタン",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=85",
+    tags: ["パスタ", "チーズ", "洋食"],
+    searchText: "ナポリタン パスタ チーズ ケチャップ ウインナー",
+    gas: 1,
+    appliance: "オーブン",
+    note: "チーズに焼き色がつくまで焼く",
+    ingredients: [
+      ["スパゲッティ", "200g"],
+      ["玉ねぎ", "100g"],
+      ["ピーマン", "50g"],
+      ["ウインナー", "80g"],
+      ["ケチャップ", "80g"],
+      ["ウスターソース", "10g"],
+      ["バター", "10g"],
+      ["チーズ", "70g"],
+      ["塩", "2g"],
+      ["黒こしょう", "少々"]
     ],
-    steps:[
+    steps: [
       "スパゲッティを表示時間通り茹でる。",
       "フライパンで玉ねぎ、ピーマン、ウインナーを炒める。",
       "ケチャップとウスターソースを加える。",
@@ -148,24 +148,24 @@ const recipes = [
   },
 
   {
-    id:"chunky-vegetable-salad",
-    name:"ごろごろ野菜サラダ",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=85",
-    tags:["サラダ","野菜","さっぱり"],
-    searchText:"サラダ 野菜 トマト きゅうり レタス",
-    ingredients:[
-      ["レタス","100g"],
-      ["トマト","100g"],
-      ["きゅうり","80g"],
-      ["玉ねぎ","30g"],
-      ["オリーブオイル","15g"],
-      ["酢","15g"],
-      ["砂糖","5g"],
-      ["塩","2g"],
-      ["黒こしょう","少々"]
+    id: "chunky-vegetable-salad",
+    name: "ごろごろ野菜サラダ",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=85",
+    tags: ["サラダ", "野菜", "さっぱり"],
+    searchText: "サラダ 野菜 トマト きゅうり レタス",
+    ingredients: [
+      ["レタス", "100g"],
+      ["トマト", "100g"],
+      ["きゅうり", "80g"],
+      ["玉ねぎ", "30g"],
+      ["オリーブオイル", "15g"],
+      ["酢", "15g"],
+      ["砂糖", "5g"],
+      ["塩", "2g"],
+      ["黒こしょう", "少々"]
     ],
-    steps:[
+    steps: [
       "野菜を食べやすい大きさに切る。",
       "オリーブオイル、酢、砂糖、塩、黒こしょうを混ぜる。",
       "野菜とドレッシングを和える。"
@@ -173,24 +173,24 @@ const recipes = [
   },
 
   {
-    id:"pork-kimchi-don",
-    name:"豚キムチ丼",
-    servings:1,
-    image:"https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=900&q=85",
-    tags:["丼","豚肉","辛い"],
-    searchText:"豚キムチ 豚肉 キムチ 丼 ご飯",
-    gas:1,
-    ingredients:[
-      ["豚バラ肉","150g"],
-      ["キムチ","120g"],
-      ["玉ねぎ","80g"],
-      ["ごま油","5g"],
-      ["醤油","10g"],
-      ["砂糖","5g"],
-      ["ご飯","300g"],
-      ["青ねぎ","適量"]
+    id: "pork-kimchi-don",
+    name: "豚キムチ丼",
+    servings: 1,
+    image: "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=900&q=85",
+    tags: ["丼", "豚肉", "辛い"],
+    searchText: "豚キムチ 豚肉 キムチ 丼 ご飯",
+    gas: 1,
+    ingredients: [
+      ["豚バラ肉", "150g"],
+      ["キムチ", "120g"],
+      ["玉ねぎ", "80g"],
+      ["ごま油", "5g"],
+      ["醤油", "10g"],
+      ["砂糖", "5g"],
+      ["ご飯", "300g"],
+      ["青ねぎ", "適量"]
     ],
-    steps:[
+    steps: [
       "フライパンにごま油を熱し、豚肉を炒める。",
       "玉ねぎを加えて炒める。",
       "キムチを加える。",
@@ -200,23 +200,23 @@ const recipes = [
   },
 
   {
-    id:"teriyaki-chicken-don",
-    name:"照り焼きチキン丼",
-    servings:1,
-    image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
-    tags:["丼","鶏肉","甘辛"],
-    searchText:"照り焼き チキン 鶏肉 丼 醤油 みりん",
-    gas:1,
-    ingredients:[
-      ["鶏もも肉","250g"],
-      ["醤油","20g"],
-      ["みりん","20g"],
-      ["砂糖","10g"],
-      ["酒","15g"],
-      ["ご飯","300g"],
-      ["青ねぎ","適量"]
+    id: "teriyaki-chicken-don",
+    name: "照り焼きチキン丼",
+    servings: 1,
+    image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
+    tags: ["丼", "鶏肉", "甘辛"],
+    searchText: "照り焼き チキン 鶏肉 丼 醤油 みりん",
+    gas: 1,
+    ingredients: [
+      ["鶏もも肉", "250g"],
+      ["醤油", "20g"],
+      ["みりん", "20g"],
+      ["砂糖", "10g"],
+      ["酒", "15g"],
+      ["ご飯", "300g"],
+      ["青ねぎ", "適量"]
     ],
-    steps:[
+    steps: [
       "鶏肉の余分な脂を取り、食べやすく切る。",
       "フライパンで鶏肉を皮目から焼く。",
       "裏返して火を通す。",
@@ -226,24 +226,24 @@ const recipes = [
   },
 
   {
-    id:"negi-shio-pork-karubi-don",
-    name:"ねぎ塩豚カルビ丼",
-    servings:1,
-    image:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
-    tags:["丼","豚肉","ガッツリ"],
-    searchText:"ねぎ塩 豚カルビ 豚肉 丼 レモン",
-    gas:1,
-    ingredients:[
-      ["豚バラ肉","180g"],
-      ["長ねぎ","80g"],
-      ["ごま油","10g"],
-      ["レモン汁","10g"],
-      ["鶏ガラスープの素","3g"],
-      ["塩","2g"],
-      ["黒こしょう","少々"],
-      ["ご飯","300g"]
+    id: "negi-shio-pork-karubi-don",
+    name: "ねぎ塩豚カルビ丼",
+    servings: 1,
+    image: "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
+    tags: ["丼", "豚肉", "ガッツリ"],
+    searchText: "ねぎ塩 豚カルビ 豚肉 丼 レモン",
+    gas: 1,
+    ingredients: [
+      ["豚バラ肉", "180g"],
+      ["長ねぎ", "80g"],
+      ["ごま油", "10g"],
+      ["レモン汁", "10g"],
+      ["鶏ガラスープの素", "3g"],
+      ["塩", "2g"],
+      ["黒こしょう", "少々"],
+      ["ご飯", "300g"]
     ],
-    steps:[
+    steps: [
       "長ねぎをみじん切りにする。",
       "ごま油、レモン汁、鶏ガラスープの素、塩、黒こしょうと混ぜる。",
       "豚肉をフライパンで焼く。",
@@ -253,22 +253,22 @@ const recipes = [
   },
 
   {
-    id:"salmon-butter-soy",
-    name:"鮭のバター醤油焼き",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=85",
-    tags:["魚","和食","バター"],
-    searchText:"鮭 バター 醤油 焼き魚",
-    gas:1,
-    ingredients:[
-      ["鮭","2切れ"],
-      ["塩","2g"],
-      ["薄力粉","10g"],
-      ["バター","15g"],
-      ["醤油","15g"],
-      ["レモン汁","5g"]
+    id: "salmon-butter-soy",
+    name: "鮭のバター醤油焼き",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=85",
+    tags: ["魚", "和食", "バター"],
+    searchText: "鮭 バター 醤油 焼き魚",
+    gas: 1,
+    ingredients: [
+      ["鮭", "2切れ"],
+      ["塩", "2g"],
+      ["薄力粉", "10g"],
+      ["バター", "15g"],
+      ["醤油", "15g"],
+      ["レモン汁", "5g"]
     ],
-    steps:[
+    steps: [
       "鮭に塩を振り、薄力粉を薄くまぶす。",
       "フライパンにバターを熱する。",
       "鮭を両面焼く。",
@@ -277,24 +277,24 @@ const recipes = [
   },
 
   {
-    id:"saba-miso-ni",
-    name:"さば味噌煮",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1534256958597-7fe685cbd745?auto=format&fit=crop&w=900&q=85",
-    tags:["魚","和食","煮物"],
-    searchText:"さば 味噌煮 味噌 生姜",
-    gas:1,
-    ingredients:[
-      ["さば","2切れ"],
-      ["味噌","35g"],
-      ["酒","30g"],
-      ["みりん","20g"],
-      ["砂糖","15g"],
-      ["醤油","5g"],
-      ["しょうが","10g"],
-      ["水","150g"]
+    id: "saba-miso-ni",
+    name: "さば味噌煮",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1534256958597-7fe685cbd745?auto=format&fit=crop&w=900&q=85",
+    tags: ["魚", "和食", "煮物"],
+    searchText: "さば 味噌煮 味噌 生姜",
+    gas: 1,
+    ingredients: [
+      ["さば", "2切れ"],
+      ["味噌", "35g"],
+      ["酒", "30g"],
+      ["みりん", "20g"],
+      ["砂糖", "15g"],
+      ["醤油", "5g"],
+      ["しょうが", "10g"],
+      ["水", "150g"]
     ],
-    steps:[
+    steps: [
       "鍋に水、酒、みりん、砂糖、しょうがを入れて煮立てる。",
       "さばを加える。",
       "落とし蓋をして煮る。",
@@ -304,24 +304,24 @@ const recipes = [
   },
 
   {
-    id:"pork-shabu-cold-udon",
-    name:"豚しゃぶ冷やしうどん",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=900&q=85",
-    tags:["麺類","豚肉","さっぱり"],
-    searchText:"豚しゃぶ うどん 冷やし めんつゆ",
-    gas:1,
-    ingredients:[
-      ["冷凍うどん","2玉"],
-      ["豚しゃぶ肉","150g"],
-      ["きゅうり","80g"],
-      ["めんつゆ","50g"],
-      ["水","100g"],
-      ["ごま油","5g"],
-      ["白ごま","5g"],
-      ["ねぎ","適量"]
+    id: "pork-shabu-cold-udon",
+    name: "豚しゃぶ冷やしうどん",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=900&q=85",
+    tags: ["麺類", "豚肉", "さっぱり"],
+    searchText: "豚しゃぶ うどん 冷やし めんつゆ",
+    gas: 1,
+    ingredients: [
+      ["冷凍うどん", "2玉"],
+      ["豚しゃぶ肉", "150g"],
+      ["きゅうり", "80g"],
+      ["めんつゆ", "50g"],
+      ["水", "100g"],
+      ["ごま油", "5g"],
+      ["白ごま", "5g"],
+      ["ねぎ", "適量"]
     ],
-    steps:[
+    steps: [
       "うどんを茹でて冷水で締める。",
       "豚肉を茹でて冷ます。",
       "きゅうりを細切りにする。",
@@ -331,24 +331,24 @@ const recipes = [
   },
 
   {
-    id:"mentai-cream-pasta",
-    name:"明太クリームパスタ",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=85",
-    tags:["パスタ","クリーム","明太子"],
-    searchText:"明太子 クリーム パスタ 豆乳 牛乳",
-    gas:1,
-    ingredients:[
-      ["スパゲッティ","200g"],
-      ["明太子","80g"],
-      ["牛乳","150g"],
-      ["生クリーム","50g"],
-      ["バター","10g"],
-      ["醤油","5g"],
-      ["黒こしょう","少々"],
-      ["刻み海苔","適量"]
+    id: "mentai-cream-pasta",
+    name: "明太クリームパスタ",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=85",
+    tags: ["パスタ", "クリーム", "明太子"],
+    searchText: "明太子 クリーム パスタ 豆乳 牛乳",
+    gas: 1,
+    ingredients: [
+      ["スパゲッティ", "200g"],
+      ["明太子", "80g"],
+      ["牛乳", "150g"],
+      ["生クリーム", "50g"],
+      ["バター", "10g"],
+      ["醤油", "5g"],
+      ["黒こしょう", "少々"],
+      ["刻み海苔", "適量"]
     ],
-    steps:[
+    steps: [
       "スパゲッティを茹でる。",
       "フライパンに牛乳、生クリーム、バターを入れる。",
       "明太子を加える。",
@@ -358,24 +358,24 @@ const recipes = [
   },
 
   {
-    id:"yakiniku-fried-rice",
-    name:"焼肉チャーハン",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
-    tags:["ご飯","肉","ガッツリ"],
-    searchText:"焼肉 チャーハン 牛肉 ご飯",
-    gas:1,
-    ingredients:[
-      ["ご飯","300g"],
-      ["牛こま肉","100g"],
-      ["卵","2個"],
-      ["長ねぎ","50g"],
-      ["焼肉のたれ","30g"],
-      ["醤油","5g"],
-      ["ごま油","5g"],
-      ["黒こしょう","少々"]
+    id: "yakiniku-fried-rice",
+    name: "焼肉チャーハン",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
+    tags: ["ご飯", "肉", "ガッツリ"],
+    searchText: "焼肉 チャーハン 牛肉 ご飯",
+    gas: 1,
+    ingredients: [
+      ["ご飯", "300g"],
+      ["牛こま肉", "100g"],
+      ["卵", "2個"],
+      ["長ねぎ", "50g"],
+      ["焼肉のたれ", "30g"],
+      ["醤油", "5g"],
+      ["ごま油", "5g"],
+      ["黒こしょう", "少々"]
     ],
-    steps:[
+    steps: [
       "牛肉を小さく切る。",
       "フライパンにごま油を熱し、牛肉を炒める。",
       "卵とご飯を加えて炒める。",
@@ -385,24 +385,24 @@ const recipes = [
   },
 
   {
-    id:"garlic-soy-fried-rice",
-    name:"にんにく醤油チャーハン",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
-    tags:["ご飯","にんにく","ガッツリ"],
-    searchText:"にんにく 醤油 チャーハン 卵",
-    gas:1,
-    ingredients:[
-      ["ご飯","300g"],
-      ["卵","2個"],
-      ["長ねぎ","50g"],
-      ["にんにく","10g"],
-      ["醤油","15g"],
-      ["ごま油","10g"],
-      ["塩","2g"],
-      ["黒こしょう","少々"]
+    id: "garlic-soy-fried-rice",
+    name: "にんにく醤油チャーハン",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85",
+    tags: ["ご飯", "にんにく", "ガッツリ"],
+    searchText: "にんにく 醤油 チャーハン 卵",
+    gas: 1,
+    ingredients: [
+      ["ご飯", "300g"],
+      ["卵", "2個"],
+      ["長ねぎ", "50g"],
+      ["にんにく", "10g"],
+      ["醤油", "15g"],
+      ["ごま油", "10g"],
+      ["塩", "2g"],
+      ["黒こしょう", "少々"]
     ],
-    steps:[
+    steps: [
       "フライパンにごま油とにんにくを入れる。",
       "卵を加えてすぐにご飯を加える。",
       "長ねぎを加えて炒める。",
@@ -411,26 +411,26 @@ const recipes = [
   },
 
   {
-    id:"cheese-mabo-tofu",
-    name:"チーズ麻婆豆腐",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
-    tags:["豆腐","中華","チーズ"],
-    searchText:"麻婆豆腐 チーズ 豆腐 豚ひき肉",
-    gas:1,
-    ingredients:[
-      ["豆腐","300g"],
-      ["豚ひき肉","100g"],
-      ["長ねぎ","50g"],
-      ["豆板醤","5g"],
-      ["甜麺醤","15g"],
-      ["醤油","10g"],
-      ["鶏ガラスープの素","3g"],
-      ["水","100g"],
-      ["チーズ","50g"],
-      ["ごま油","5g"]
+    id: "cheese-mabo-tofu",
+    name: "チーズ麻婆豆腐",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
+    tags: ["豆腐", "中華", "チーズ"],
+    searchText: "麻婆豆腐 チーズ 豆腐 豚ひき肉",
+    gas: 1,
+    ingredients: [
+      ["豆腐", "300g"],
+      ["豚ひき肉", "100g"],
+      ["長ねぎ", "50g"],
+      ["豆板醤", "5g"],
+      ["甜麺醤", "15g"],
+      ["醤油", "10g"],
+      ["鶏ガラスープの素", "3g"],
+      ["水", "100g"],
+      ["チーズ", "50g"],
+      ["ごま油", "5g"]
     ],
-    steps:[
+    steps: [
       "ごま油で長ねぎ、豆板醤を炒める。",
       "豚ひき肉を加えて炒める。",
       "甜麺醤と醤油を加える。",
@@ -440,20 +440,20 @@ const recipes = [
   },
 
   {
-    id:"spicy-yodare-chicken",
-    name:"旨辛よだれ鶏",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85",
-    tags:["鶏肉","辛い","中華"],
-    parts:["spicy-dare"],
-    searchText:"よだれ鶏 鶏むね肉 ラー油 ごま",
-    gas:1,
-    ingredients:[
-      ["鶏むね肉","300g"],
-      ["ピリ辛だれ","50g"],
-      ["ねぎ","50g"]
+    id: "spicy-yodare-chicken",
+    name: "旨辛よだれ鶏",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85",
+    tags: ["鶏肉", "辛い", "中華"],
+    parts: ["spicy-dare"],
+    searchText: "よだれ鶏 鶏むね肉 ラー油 ごま",
+    gas: 1,
+    ingredients: [
+      ["鶏むね肉", "300g"],
+      ["ピリ辛だれ", "50g"],
+      ["ねぎ", "50g"]
     ],
-    steps:[
+    steps: [
       "鶏むね肉を茹でて火を通し、冷ます。",
       "鶏肉を食べやすく切る。",
       "ピリ辛だれをかけ、ねぎと白ごまをのせる。"
@@ -461,22 +461,22 @@ const recipes = [
   },
 
   {
-    id:"eggplant-agebitashi",
-    name:"なすの揚げ浸し",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85",
-    tags:["なす","和食","副菜"],
-    searchText:"なす 揚げ浸し めんつゆ 生姜",
-    gas:1,
-    ingredients:[
-      ["なす","300g"],
-      ["めんつゆ","50g"],
-      ["水","100g"],
-      ["しょうが","8g"],
-      ["ごま油","10g"],
-      ["ねぎ","適量"]
+    id: "eggplant-agebitashi",
+    name: "なすの揚げ浸し",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85",
+    tags: ["なす", "和食", "副菜"],
+    searchText: "なす 揚げ浸し めんつゆ 生姜",
+    gas: 1,
+    ingredients: [
+      ["なす", "300g"],
+      ["めんつゆ", "50g"],
+      ["水", "100g"],
+      ["しょうが", "8g"],
+      ["ごま油", "10g"],
+      ["ねぎ", "適量"]
     ],
-    steps:[
+    steps: [
       "なすを食べやすく切る。",
       "フライパンにごま油を熱し、なすを焼く。",
       "めんつゆと水を加える。",
@@ -486,19 +486,19 @@ const recipes = [
   },
 
   {
-    id:"cucumber-shio-kombu-ae",
-    name:"きゅうりの塩昆布和え",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=85",
-    tags:["副菜","野菜","さっぱり"],
-    searchText:"きゅうり 塩昆布 ごま油",
-    ingredients:[
-      ["きゅうり","2本"],
-      ["塩昆布","10g"],
-      ["ごま油","8g"],
-      ["白ごま","5g"]
+    id: "cucumber-shio-kombu-ae",
+    name: "きゅうりの塩昆布和え",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=85",
+    tags: ["副菜", "野菜", "さっぱり"],
+    searchText: "きゅうり 塩昆布 ごま油",
+    ingredients: [
+      ["きゅうり", "2本"],
+      ["塩昆布", "10g"],
+      ["ごま油", "8g"],
+      ["白ごま", "5g"]
     ],
-    steps:[
+    steps: [
       "きゅうりを叩いて食べやすく切る。",
       "塩昆布、ごま油、白ごまと和える。",
       "少し置いて味をなじませる。"
@@ -506,20 +506,20 @@ const recipes = [
   },
 
   {
-    id:"tuna-egg-salad",
-    name:"ツナ卵サラダ",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=85",
-    tags:["サラダ","卵","簡単"],
-    searchText:"ツナ 卵 サラダ マヨネーズ",
-    ingredients:[
-      ["卵","3個"],
-      ["ツナ","70g"],
-      ["マヨネーズ","30g"],
-      ["醤油","5g"],
-      ["黒こしょう","少々"]
+    id: "tuna-egg-salad",
+    name: "ツナ卵サラダ",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=85",
+    tags: ["サラダ", "卵", "簡単"],
+    searchText: "ツナ 卵 サラダ マヨネーズ",
+    ingredients: [
+      ["卵", "3個"],
+      ["ツナ", "70g"],
+      ["マヨネーズ", "30g"],
+      ["醤油", "5g"],
+      ["黒こしょう", "少々"]
     ],
-    steps:[
+    steps: [
       "卵を茹でる。",
       "卵を粗くつぶす。",
       "ツナ、マヨネーズ、醤油を加える。",
@@ -528,24 +528,24 @@ const recipes = [
   },
 
   {
-    id:"bacon-spinach-quiche",
-    name:"ベーコンとほうれん草のキッシュ",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1572449043416-55f4685c9bb7?auto=format&fit=crop&w=900&q=85",
-    tags:["洋食","卵","チーズ"],
-    searchText:"キッシュ ベーコン ほうれん草 卵 チーズ",
-    appliance:"オーブン",
-    note:"180℃に予熱してから焼く",
-    ingredients:[
-      ["卵","3個"],
-      ["ベーコン","70g"],
-      ["ほうれん草","100g"],
-      ["牛乳","100g"],
-      ["チーズ","60g"],
-      ["塩","2g"],
-      ["黒こしょう","少々"]
+    id: "bacon-spinach-quiche",
+    name: "ベーコンとほうれん草のキッシュ",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1572449043416-55f4685c9bb7?auto=format&fit=crop&w=900&q=85",
+    tags: ["洋食", "卵", "チーズ"],
+    searchText: "キッシュ ベーコン ほうれん草 卵 チーズ",
+    appliance: "オーブン",
+    note: "180℃に予熱してから焼く",
+    ingredients: [
+      ["卵", "3個"],
+      ["ベーコン", "70g"],
+      ["ほうれん草", "100g"],
+      ["牛乳", "100g"],
+      ["チーズ", "60g"],
+      ["塩", "2g"],
+      ["黒こしょう", "少々"]
     ],
-    steps:[
+    steps: [
       "ベーコンとほうれん草を炒める。",
       "卵、牛乳、塩、黒こしょうを混ぜる。",
       "具材を耐熱皿に入れる。",
@@ -555,24 +555,24 @@ const recipes = [
   },
 
   {
-    id:"pork-onion-ginger",
-    name:"豚肉と玉ねぎの生姜焼き",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
-    tags:["豚肉","和食","ご飯"],
-    searchText:"生姜焼き 豚肉 玉ねぎ 生姜 醤油",
-    gas:1,
-    ingredients:[
-      ["豚ロース","200g"],
-      ["玉ねぎ","100g"],
-      ["醤油","20g"],
-      ["みりん","15g"],
-      ["酒","15g"],
-      ["砂糖","5g"],
-      ["しょうが","15g"],
-      ["油","5g"]
+    id: "pork-onion-ginger",
+    name: "豚肉と玉ねぎの生姜焼き",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
+    tags: ["豚肉", "和食", "ご飯"],
+    searchText: "生姜焼き 豚肉 玉ねぎ 生姜 醤油",
+    gas: 1,
+    ingredients: [
+      ["豚ロース", "200g"],
+      ["玉ねぎ", "100g"],
+      ["醤油", "20g"],
+      ["みりん", "15g"],
+      ["酒", "15g"],
+      ["砂糖", "5g"],
+      ["しょうが", "15g"],
+      ["油", "5g"]
     ],
-    steps:[
+    steps: [
       "醤油、みりん、酒、砂糖、しょうがを混ぜる。",
       "フライパンに油を熱し豚肉を焼く。",
       "玉ねぎを加える。",
@@ -581,23 +581,23 @@ const recipes = [
   },
 
   {
-    id:"rich-carbonara",
-    name:"濃厚カルボナーラ",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=85",
-    tags:["パスタ","チーズ","濃厚"],
-    searchText:"カルボナーラ パスタ 卵 チーズ ベーコン",
-    gas:1,
-    ingredients:[
-      ["スパゲッティ","200g"],
-      ["ベーコン","80g"],
-      ["卵","2個"],
-      ["粉チーズ","40g"],
-      ["牛乳","50g"],
-      ["黒こしょう","2g"],
-      ["塩","適量"]
+    id: "rich-carbonara",
+    name: "濃厚カルボナーラ",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=85",
+    tags: ["パスタ", "チーズ", "濃厚"],
+    searchText: "カルボナーラ パスタ 卵 チーズ ベーコン",
+    gas: 1,
+    ingredients: [
+      ["スパゲッティ", "200g"],
+      ["ベーコン", "80g"],
+      ["卵", "2個"],
+      ["粉チーズ", "40g"],
+      ["牛乳", "50g"],
+      ["黒こしょう", "2g"],
+      ["塩", "適量"]
     ],
-    steps:[
+    steps: [
       "スパゲッティを茹でる。",
       "ベーコンを炒める。",
       "卵、粉チーズ、牛乳を混ぜる。",
@@ -608,23 +608,23 @@ const recipes = [
   },
 
   {
-    id:"pork-cabbage-shio-itame",
-    name:"豚肉とキャベツの塩炒め",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
-    tags:["豚肉","野菜","簡単"],
-    searchText:"豚肉 キャベツ 塩炒め にんにく",
-    gas:1,
-    ingredients:[
-      ["豚こま肉","180g"],
-      ["キャベツ","200g"],
-      ["にんにく","5g"],
-      ["鶏ガラスープの素","4g"],
-      ["塩","2g"],
-      ["ごま油","8g"],
-      ["黒こしょう","少々"]
+    id: "pork-cabbage-shio-itame",
+    name: "豚肉とキャベツの塩炒め",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
+    tags: ["豚肉", "野菜", "簡単"],
+    searchText: "豚肉 キャベツ 塩炒め にんにく",
+    gas: 1,
+    ingredients: [
+      ["豚こま肉", "180g"],
+      ["キャベツ", "200g"],
+      ["にんにく", "5g"],
+      ["鶏ガラスープの素", "4g"],
+      ["塩", "2g"],
+      ["ごま油", "8g"],
+      ["黒こしょう", "少々"]
     ],
-    steps:[
+    steps: [
       "ごま油とにんにくを炒める。",
       "豚肉を加える。",
       "キャベツを加えて強火で炒める。",
@@ -634,23 +634,23 @@ const recipes = [
   },
 
   {
-    id:"tuna-mayo-soy-udon",
-    name:"ツナマヨ醤油うどん",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=900&q=85",
-    tags:["麺類","簡単","ツナ"],
-    searchText:"ツナマヨ うどん 醤油 めんつゆ",
-    gas:1,
-    ingredients:[
-      ["冷凍うどん","2玉"],
-      ["ツナ","70g"],
-      ["マヨネーズ","30g"],
-      ["めんつゆ","20g"],
-      ["醤油","5g"],
-      ["ごま油","5g"],
-      ["ねぎ","適量"]
+    id: "tuna-mayo-soy-udon",
+    name: "ツナマヨ醤油うどん",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=900&q=85",
+    tags: ["麺類", "簡単", "ツナ"],
+    searchText: "ツナマヨ うどん 醤油 めんつゆ",
+    gas: 1,
+    ingredients: [
+      ["冷凍うどん", "2玉"],
+      ["ツナ", "70g"],
+      ["マヨネーズ", "30g"],
+      ["めんつゆ", "20g"],
+      ["醤油", "5g"],
+      ["ごま油", "5g"],
+      ["ねぎ", "適量"]
     ],
-    steps:[
+    steps: [
       "うどんを温める。",
       "ツナ、マヨネーズ、めんつゆ、醤油、ごま油を混ぜる。",
       "うどんと和える。",
@@ -659,24 +659,24 @@ const recipes = [
   },
 
   {
-    id:"garlic-miso-pork-don",
-    name:"にんにく味噌豚丼",
-    servings:1,
-    image:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
-    tags:["丼","豚肉","味噌"],
-    searchText:"豚丼 にんにく 味噌 豚肉 ご飯",
-    gas:1,
-    ingredients:[
-      ["豚バラ肉","180g"],
-      ["味噌","20g"],
-      ["醤油","10g"],
-      ["みりん","15g"],
-      ["砂糖","8g"],
-      ["にんにく","8g"],
-      ["ご飯","300g"],
-      ["ねぎ","適量"]
+    id: "garlic-miso-pork-don",
+    name: "にんにく味噌豚丼",
+    servings: 1,
+    image: "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
+    tags: ["丼", "豚肉", "味噌"],
+    searchText: "豚丼 にんにく 味噌 豚肉 ご飯",
+    gas: 1,
+    ingredients: [
+      ["豚バラ肉", "180g"],
+      ["味噌", "20g"],
+      ["醤油", "10g"],
+      ["みりん", "15g"],
+      ["砂糖", "8g"],
+      ["にんにく", "8g"],
+      ["ご飯", "300g"],
+      ["ねぎ", "適量"]
     ],
-    steps:[
+    steps: [
       "味噌、醤油、みりん、砂糖、にんにくを混ぜる。",
       "豚肉を焼く。",
       "合わせ調味料を加える。",
@@ -686,21 +686,21 @@ const recipes = [
   },
 
   {
-    id:"tomato-mozzarella-salad",
-    name:"トマトとモッツァレラのサラダ",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=85",
-    tags:["サラダ","チーズ","さっぱり"],
-    searchText:"トマト モッツァレラ サラダ オリーブオイル",
-    ingredients:[
-      ["トマト","200g"],
-      ["モッツァレラチーズ","100g"],
-      ["オリーブオイル","15g"],
-      ["塩","2g"],
-      ["黒こしょう","少々"],
-      ["レモン汁","5g"]
+    id: "tomato-mozzarella-salad",
+    name: "トマトとモッツァレラのサラダ",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=85",
+    tags: ["サラダ", "チーズ", "さっぱり"],
+    searchText: "トマト モッツァレラ サラダ オリーブオイル",
+    ingredients: [
+      ["トマト", "200g"],
+      ["モッツァレラチーズ", "100g"],
+      ["オリーブオイル", "15g"],
+      ["塩", "2g"],
+      ["黒こしょう", "少々"],
+      ["レモン汁", "5g"]
     ],
-    steps:[
+    steps: [
       "トマトとモッツァレラを切る。",
       "皿に交互に並べる。",
       "オリーブオイルとレモン汁をかける。",
@@ -709,23 +709,23 @@ const recipes = [
   },
 
   {
-    id:"curry-potato-itame",
-    name:"カレー風味のポテト炒め",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=900&q=85",
-    tags:["じゃがいも","カレー","副菜"],
-    searchText:"じゃがいも カレー粉 ポテト 炒め",
-    gas:1,
-    ingredients:[
-      ["じゃがいも","300g"],
-      ["玉ねぎ","80g"],
-      ["ベーコン","60g"],
-      ["カレー粉","6g"],
-      ["塩","2g"],
-      ["黒こしょう","少々"],
-      ["油","10g"]
+    id: "curry-potato-itame",
+    name: "カレー風味のポテト炒め",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=900&q=85",
+    tags: ["じゃがいも", "カレー", "副菜"],
+    searchText: "じゃがいも カレー粉 ポテト 炒め",
+    gas: 1,
+    ingredients: [
+      ["じゃがいも", "300g"],
+      ["玉ねぎ", "80g"],
+      ["ベーコン", "60g"],
+      ["カレー粉", "6g"],
+      ["塩", "2g"],
+      ["黒こしょう", "少々"],
+      ["油", "10g"]
     ],
-    steps:[
+    steps: [
       "じゃがいもを細切りにする。",
       "フライパンに油を熱してじゃがいもを炒める。",
       "玉ねぎとベーコンを加える。",
@@ -735,24 +735,24 @@ const recipes = [
   },
 
   {
-    id:"korean-spicy-hiyayakko",
-    name:"韓国風ピリ辛冷奴",
-    servings:2,
-    image:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
-    tags:["豆腐","韓国","辛い"],
-    searchText:"冷奴 豆腐 コチュジャン ごま油 韓国",
-    ingredients:[
-      ["豆腐","300g"],
-      ["コチュジャン","8g"],
-      ["味噌","5g"],
-      ["すりごま","8g"],
-      ["めんつゆ","10g"],
-      ["豆乳","30g"],
-      ["食べるラー油","5g"],
-      ["にんにく","4g"],
-      ["ねぎ","適量"]
+    id: "korean-spicy-hiyayakko",
+    name: "韓国風ピリ辛冷奴",
+    servings: 2,
+    image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85",
+    tags: ["豆腐", "韓国", "辛い"],
+    searchText: "冷奴 豆腐 コチュジャン ごま油 韓国",
+    ingredients: [
+      ["豆腐", "300g"],
+      ["コチュジャン", "8g"],
+      ["味噌", "5g"],
+      ["すりごま", "8g"],
+      ["めんつゆ", "10g"],
+      ["豆乳", "30g"],
+      ["食べるラー油", "5g"],
+      ["にんにく", "4g"],
+      ["ねぎ", "適量"]
     ],
-    steps:[
+    steps: [
       "コチュジャン、味噌、すりごま、めんつゆ、豆乳、食べるラー油、にんにくを混ぜる。",
       "豆腐を器に盛る。",
       "たれをかける。",
@@ -761,22 +761,22 @@ const recipes = [
   },
 
   {
-    id:"baked-cheese-curry",
-    name:"焼きチーズカレー",
-    servings:1,
-    image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85",
-    tags:["ご飯","カレー","チーズ"],
-    searchText:"チーズカレー 焼きカレー ご飯 チーズ",
-    appliance:"トースター",
-    note:"チーズに焼き色がつくまで焼く",
-    ingredients:[
-      ["ご飯","300g"],
-      ["カレー","250g"],
-      ["チーズ","80g"],
-      ["卵","1個"],
-      ["黒こしょう","少々"]
+    id: "baked-cheese-curry",
+    name: "焼きチーズカレー",
+    servings: 1,
+    image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85",
+    tags: ["ご飯", "カレー", "チーズ"],
+    searchText: "チーズカレー 焼きカレー ご飯 チーズ",
+    appliance: "トースター",
+    note: "チーズに焼き色がつくまで焼く",
+    ingredients: [
+      ["ご飯", "300g"],
+      ["カレー", "250g"],
+      ["チーズ", "80g"],
+      ["卵", "1個"],
+      ["黒こしょう", "少々"]
     ],
-    steps:[
+    steps: [
       "耐熱皿にご飯を盛る。",
       "カレーをかける。",
       "中央に卵をのせる。",
@@ -787,25 +787,25 @@ const recipes = [
   },
 
   {
-    id:"shio-dare-pork-cabbage-don",
-    name:"塩だれ豚キャベツ丼",
-    servings:1,
-    image:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
-    tags:["丼","豚肉","塩だれ"],
-    searchText:"豚キャベツ 丼 塩だれ ご飯 ごま油",
-    gas:1,
-    ingredients:[
-      ["豚バラ肉","180g"],
-      ["キャベツ","180g"],
-      ["ごま油","10g"],
-      ["鶏ガラスープの素","4g"],
-      ["塩","2g"],
-      ["レモン汁","8g"],
-      ["にんにく","5g"],
-      ["ご飯","300g"],
-      ["黒こしょう","少々"]
+    id: "shio-dare-pork-cabbage-don",
+    name: "塩だれ豚キャベツ丼",
+    servings: 1,
+    image: "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85",
+    tags: ["丼", "豚肉", "塩だれ"],
+    searchText: "豚キャベツ 丼 塩だれ ご飯 ごま油",
+    gas: 1,
+    ingredients: [
+      ["豚バラ肉", "180g"],
+      ["キャベツ", "180g"],
+      ["ごま油", "10g"],
+      ["鶏ガラスープの素", "4g"],
+      ["塩", "2g"],
+      ["レモン汁", "8g"],
+      ["にんにく", "5g"],
+      ["ご飯", "300g"],
+      ["黒こしょう", "少々"]
     ],
-    steps:[
+    steps: [
       "ごま油、鶏ガラスープの素、塩、レモン汁、にんにくを混ぜる。",
       "豚肉を焼く。",
       "キャベツを加えて炒める。",
