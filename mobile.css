@@ -330,18 +330,6 @@
     font-size: 10px;
   }
 
-  .recipe-meta {
-    margin-top: 14px;
-  }
-
-  .recipe-meta-item {
-    grid-template-columns: 90px 1fr;
-
-    padding: 8px 10px;
-
-    font-size: 10px;
-  }
-
   .modal-section {
     padding: 30px 22px;
   }
