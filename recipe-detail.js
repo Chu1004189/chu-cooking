@@ -9,7 +9,7 @@ const params = new URLSearchParams(
 const recipeId = params.get("id");
 
 const recipe = recipes.find(
-  recipe => recipe.id === recipeId
+  item => item.id === recipeId
 );
 
 const recipeDetail =
@@ -17,48 +17,50 @@ const recipeDetail =
 
 
 /* =================================
-   RECIPE PARTS
+   HELPERS
 ================================= */
 
-function getRecipePart(partId){
-
+function getRecipePart(partId) {
   return recipeParts.find(
     part => part.id === partId
   );
-
 }
 
 
-/* =================================
-   ESCAPE
-================================= */
-
-function escapeHtml(value){
-
+function escapeHtml(value) {
   return String(value)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 
-/* =================================
-   INGREDIENT MAP
-================================= */
+function makeIngredientMap(currentRecipe) {
+  return new Map(
+    currentRecipe.ingredients.map(
+      ([name, amount]) => [name, amount]
+    )
+  );
+}
 
-function makeIngredientMap(recipe){
 
-  const map = new Map();
+function getRecipePartByIngredient(
+  ingredientName,
+  currentRecipe
+) {
+  if (!currentRecipe.parts?.length) {
+    return null;
+  }
 
-  recipe.ingredients.forEach(item => {
-    map.set(item[0],item[1]);
-  });
-
-  return map;
-
+  return currentRecipe.parts
+    .map(getRecipePart)
+    .find(
+      part =>
+        part &&
+        part.name === ingredientName
+    ) || null;
 }
 
 
@@ -70,72 +72,60 @@ function makeClickableIngredients(
   text,
   ingredientMap,
   usedIngredients
-){
-
-  let result = text;
-
+) {
   const names =
     Array.from(ingredientMap.keys())
-      .sort((a,b) => b.length - a.length);
-
-
-  names.forEach(name => {
-
-    if(usedIngredients.has(name)){
-      return;
-    }
-
-
-    const safeName =
-      escapeHtml(name);
-
-    const index =
-      result.indexOf(safeName);
-
-
-    if(index === -1){
-      return;
-    }
-
-
-    const amount =
-      ingredientMap.get(name);
-
-    const before =
-      result.slice(0,index);
-
-    const after =
-      result.slice(
-        index + safeName.length
+      .sort(
+        (a, b) => b.length - a.length
       );
 
+  if (!names.length) {
+    return escapeHtml(text);
+  }
 
-    result =
-      before +
-      `
+  const escapedText =
+    escapeHtml(text);
+
+  const pattern =
+    names
+      .map(name =>
+        name.replace(
+          /[.*+?^${}()|[\]\\]/g,
+          "\\$&"
+        )
+      )
+      .join("|");
+
+  const regex =
+    new RegExp(`(${pattern})`, "g");
+
+  return escapedText
+    .split(regex)
+    .map((part, index) => {
+
+      if (index % 2 === 0) {
+        return part;
+      }
+
+      if (usedIngredients.has(part)) {
+        return part;
+      }
+
+      usedIngredients.add(part);
+
+      const amount =
+        ingredientMap.get(part);
+
+      return `
         <span class="cooking-ingredient">
-
-          ${safeName}
-
-          <span
-            class="ingredient-bubble"
-            style="display:none;"
-          >
+          ${part}
+          <span class="ingredient-bubble">
             ${escapeHtml(amount)}
           </span>
-
         </span>
-      ` +
-      after;
-
-
-    usedIngredients.add(name);
-
-  });
-
-
-  return result;
-
+      `;
+    })
+    .join("");
 }
 
 
@@ -143,41 +133,227 @@ function makeClickableIngredients(
    RELATED RECIPES
 ================================= */
 
-function getRelatedRecipes(current){
+function getRelatedRecipes(currentRecipe) {
+  const relatedTags = [
+    "副菜",
+    "サラダ",
+    "野菜",
+    "おかず"
+  ];
 
-  const sideDishPool =
-    recipes.filter(recipe => {
+  const candidates =
+    recipes.filter(item => {
 
-      if(recipe === current){
+      if (item.id === currentRecipe.id) {
         return false;
       }
 
-      return recipe.tags.some(tag =>
-        [
-          "副菜",
-          "サラダ",
-          "野菜",
-          "おかず"
-        ].includes(tag)
+      return item.tags.some(tag =>
+        relatedTags.includes(tag)
       );
-
     });
 
-
-  return [...sideDishPool]
-    .sort(() => Math.random() - .5)
-    .slice(0,3);
-
+  return [...candidates]
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 3);
 }
 
 
 /* =================================
-   RECIPE NOT FOUND
+   PART POPUP
 ================================= */
 
-if(!recipe){
+function openRecipePartPopup(
+  part,
+  usageAmount
+) {
+  const ingredientsHtml =
+    part.ingredients
+      .map(item => `
+        <div class="part-ingredient">
+
+          <span>
+            ${escapeHtml(item[0])}
+          </span>
+
+          <span>
+            ${escapeHtml(item[1])}
+          </span>
+
+        </div>
+      `)
+      .join("");
+
+  const stepsHtml =
+    part.steps
+      .map((step, index) => `
+        <div class="part-step">
+
+          <span class="part-step-number">
+            ${String(index + 1).padStart(2, "0")}
+          </span>
+
+          <span>
+            ${escapeHtml(step)}
+          </span>
+
+        </div>
+      `)
+      .join("");
+
+  const popup =
+    document.createElement("div");
+
+  popup.className =
+    "recipe-part-popup";
+
+  popup.innerHTML = `
+
+    <div
+      class="recipe-part-popup-inner"
+      role="dialog"
+      aria-modal="true"
+      aria-label="${escapeHtml(part.name)}"
+    >
+
+      <button
+        class="recipe-part-popup-close"
+        type="button"
+        aria-label="閉じる"
+      >
+        ×
+      </button>
+
+
+      <div class="recipe-part-popup-heading">
+
+        <small>
+          RECIPE PART
+        </small>
+
+        <h2>
+          ${escapeHtml(part.name)}
+        </h2>
+
+      </div>
+
+
+      <div class="part-recipe-meta">
+
+        <div class="part-recipe-meta-item">
+
+          <span>
+            できあがり
+          </span>
+
+          <strong>
+            ${escapeHtml(part.yieldAmount)}
+            ${escapeHtml(part.yieldUnit)}
+          </strong>
+
+        </div>
+
+
+        <div class="part-recipe-meta-item">
+
+          <span>
+            このレシピで使用
+          </span>
+
+          <strong>
+            ${escapeHtml(usageAmount)}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <section>
+
+        <h3>
+          材料 / INGREDIENTS
+        </h3>
+
+        <div class="part-ingredients">
+          ${ingredientsHtml}
+        </div>
+
+      </section>
+
+
+      <section>
+
+        <h3>
+          つくりかた / HOW TO COOK
+        </h3>
+
+        <div class="part-steps">
+          ${stepsHtml}
+        </div>
+
+      </section>
+
+    </div>
+  `;
+
+  document.body.appendChild(popup);
+
+  requestAnimationFrame(() => {
+    popup.classList.add("is-open");
+  });
+
+
+  const closePopup = () => {
+    popup.classList.remove("is-open");
+
+    setTimeout(() => {
+      popup.remove();
+    }, 250);
+  };
+
+
+  popup
+    .querySelector(".recipe-part-popup-close")
+    .addEventListener(
+      "click",
+      closePopup
+    );
+
+
+  popup.addEventListener(
+    "click",
+    event => {
+      if (event.target === popup) {
+        closePopup();
+      }
+    }
+  );
+
+
+  document.addEventListener(
+    "keydown",
+    event => {
+      if (
+        event.key === "Escape" &&
+        document.body.contains(popup)
+      ) {
+        closePopup();
+      }
+    },
+    { once: true }
+  );
+}
+
+
+/* =================================
+   NOT FOUND
+================================= */
+
+if (!recipe) {
 
   recipeDetail.innerHTML = `
+
     <div class="recipe-not-found">
 
       <h1>
@@ -189,10 +365,10 @@ if(!recipe){
       </a>
 
     </div>
+
   `;
 
-
-}else{
+} else {
 
   /* =================================
      PREPARE STEPS
@@ -204,23 +380,23 @@ if(!recipe){
   const usedIngredients =
     new Set();
 
+
   const stepsHtml =
     recipe.steps
-      .map((step,index) => {
+      .map((step, index) => {
 
         const clickable =
           makeClickableIngredients(
-            escapeHtml(step),
+            step,
             ingredientMap,
             usedIngredients
           );
-
 
         return `
           <div class="step">
 
             <div class="step-number">
-              ${String(index + 1).padStart(2,"0")}
+              ${String(index + 1).padStart(2, "0")}
             </div>
 
             <div class="step-text">
@@ -229,13 +405,12 @@ if(!recipe){
 
           </div>
         `;
-
       })
       .join("");
 
 
   /* =================================
-     RELATED
+     RELATED RECIPES
   ================================= */
 
   const related =
@@ -244,6 +419,7 @@ if(!recipe){
   const relatedHtml =
     related.length
       ? `
+
         <section class="more-recipes">
 
           <div class="more-heading">
@@ -271,7 +447,7 @@ if(!recipe){
                 <div class="more-card-image">
 
                   <img
-                    src="${item.image}"
+                    src="${escapeHtml(item.image)}"
                     alt="${escapeHtml(item.name)}"
                     loading="lazy"
                   >
@@ -285,16 +461,14 @@ if(!recipe){
                     ${escapeHtml(item.name)}
                   </div>
 
-
                   <div class="more-card-tags">
-
                     ${item.tags
                       .map(
-                        tag => "#" + escapeHtml(tag)
+                        tag =>
+                          "#" + escapeHtml(tag)
                       )
                       .join(" ")
                     }
-
                   </div>
 
                 </div>
@@ -306,35 +480,58 @@ if(!recipe){
           </div>
 
         </section>
+
       `
       : "";
 
 
   /* =================================
-     RECIPE PARTS HTML
+     INGREDIENTS
   ================================= */
 
-  const recipePartsHtml =
-    recipe.parts?.map(partId => {
+  const ingredientsHtml =
+    recipe.ingredients
+      .map(item => {
 
-      const part =
-        getRecipePart(partId);
+        const part =
+          getRecipePartByIngredient(
+            item[0],
+            recipe
+          );
 
-      if(!part){
-        return "";
-      }
+        return `
+          <div
+            class="ingredient-item${part ? " recipe-part-ingredient" : ""}"
+            ${part
+              ? `data-part-id="${escapeHtml(part.id)}"`
+              : ""
+            }
+          >
 
-      return `
-        <button
-          class="recipe-part-button"
-          type="button"
-          data-part-id="${escapeHtml(part.id)}"
-        >
-          ${escapeHtml(part.name)}
-        </button>
-      `;
+            <span class="ingredient-name">
 
-    }).join("") || "";
+              ${escapeHtml(item[0])}
+
+              ${
+                part
+                  ? `
+                    <small class="ingredient-part-label">
+                      PARTS RECIPE!
+                    </small>
+                  `
+                  : ""
+              }
+
+            </span>
+
+            <span class="ingredient-amount">
+              ${escapeHtml(item[1])}
+            </span>
+
+          </div>
+        `;
+      })
+      .join("");
 
 
   /* =================================
@@ -348,7 +545,7 @@ if(!recipe){
       <div class="modal-image">
 
         <img
-          src="${recipe.image}"
+          src="${escapeHtml(recipe.image)}"
           alt="${escapeHtml(recipe.name)}"
         >
 
@@ -372,10 +569,70 @@ if(!recipe){
               data-tag="${escapeHtml(tag)}"
             >
               #${escapeHtml(tag)}
-
             </button>
 
           `).join("")}
+
+        </div>
+
+
+        <div class="recipe-meta">
+
+          ${
+            recipe.gas
+              ? `
+                <div class="recipe-meta-item">
+
+                  <span class="recipe-meta-label">
+                    コンロ
+                  </span>
+
+                  <span class="recipe-meta-value">
+                    ${escapeHtml(recipe.gas)}口
+                  </span>
+
+                </div>
+              `
+              : ""
+          }
+
+
+          ${
+            recipe.appliance
+              ? `
+                <div class="recipe-meta-item">
+
+                  <span class="recipe-meta-label">
+                    調理器具
+                  </span>
+
+                  <span class="recipe-meta-value">
+                    ${escapeHtml(recipe.appliance)}
+                  </span>
+
+                </div>
+              `
+              : ""
+          }
+
+
+          ${
+            recipe.note
+              ? `
+                <div class="recipe-meta-item">
+
+                  <span class="recipe-meta-label">
+                    メモ
+                  </span>
+
+                  <span class="recipe-meta-value">
+                    ${escapeHtml(recipe.note)}
+                  </span>
+
+                </div>
+              `
+              : ""
+          }
 
         </div>
 
@@ -401,88 +658,11 @@ if(!recipe){
 
       <div class="ingredients-list">
 
-        ${recipe.ingredients.map(item => {
-
-          const part =
-            recipe.parts
-              ?.map(partId => getRecipePart(partId))
-              .find(part =>
-                part &&
-                part.name === item[0]
-              );
-
-          return `
-
-            <div
-              class="ingredient-item${part ? " recipe-part-ingredient" : ""}"
-              ${part ? `data-part-id="${escapeHtml(part.id)}"` : ""}
-            >
-
-              <span class="ingredient-name">
-                ${escapeHtml(item[0])}
-              </span>
-
-              <span class="ingredient-amount">
-                ${escapeHtml(item[1])}
-              </span>
-
-            </div>
-
-          `;
-
-        }).join("")}
+        ${ingredientsHtml}
 
       </div>
 
     </section>
-
-
-    ${recipePartsHtml ? `
-
-      <section class="recipe-parts-section">
-
-        <div class="recipe-parts-heading">
-
-          <small>
-            PART RECIPES
-          </small>
-
-          <h2>
-            このレシピに登場する<br>
-            パーツレシピ
-          </h2>
-
-        </div>
-
-
-        <div class="recipe-parts-stickers">
-
-          ${recipe.parts.map(partId => {
-
-            const part =
-              getRecipePart(partId);
-
-            if(!part){
-              return "";
-            }
-
-            return `
-              <button
-                class="recipe-part-button"
-                type="button"
-                data-part-id="${escapeHtml(part.id)}"
-              >
-                ★ ${escapeHtml(part.name)} →
-              </button>
-            `;
-
-          }).join("")}
-
-        </div>
-
-      </section>
-
-    ` : ""}
 
 
     <section class="modal-section">
@@ -507,7 +687,7 @@ if(!recipe){
 
 
   /* =================================
-     RECIPE DETAIL ANIMATION
+     DETAIL ANIMATION
   ================================= */
 
   requestAnimationFrame(() => {
@@ -537,28 +717,26 @@ if(!recipe){
 
           event.stopPropagation();
 
-
           const bubble =
             element.querySelector(
               ".ingredient-bubble"
             );
 
-
           recipeDetail
-            .querySelectorAll(".ingredient-bubble")
+            .querySelectorAll(
+              ".ingredient-bubble"
+            )
             .forEach(item => {
 
-              if(item !== bubble){
-                item.style.display = "none";
+              if (item !== bubble) {
+                item.classList.remove("is-visible");
               }
 
             });
 
-
-          bubble.style.display =
-            bubble.style.display === "none"
-              ? "block"
-              : "none";
+          bubble.classList.toggle(
+            "is-visible"
+          );
 
         }
       );
@@ -567,161 +745,41 @@ if(!recipe){
 
 
   /* =================================
-     RECIPE PART POPUP
+     PART RECIPE TAP
   ================================= */
 
   recipeDetail
-    .querySelectorAll(".recipe-part-button")
-    .forEach(button => {
+    .querySelectorAll(
+      ".recipe-part-ingredient"
+    )
+    .forEach(element => {
 
-      button.addEventListener("click", () => {
+      element.addEventListener(
+        "click",
+        () => {
 
-        const partId =
-          button.dataset.partId;
+          const partId =
+            element.dataset.partId;
 
-        const part =
-          getRecipePart(partId);
+          const part =
+            getRecipePart(partId);
 
-        if(!part){
-          return;
-        }
+          if (!part) {
+            return;
+          }
 
-        const ingredientsHtml =
-          part.ingredients
-            .map(item => `
-              <div class="part-ingredient">
-                <span>${escapeHtml(item[0])}</span>
-                <span>${escapeHtml(item[1])}</span>
-              </div>
-            `)
-            .join("");
+          const ingredientAmount =
+            recipe.ingredients.find(
+              item => item[0] === part.name
+            )?.[1] || "";
 
-        const stepsHtml =
-          part.steps
-            .map((step,index) => `
-              <div class="part-step">
-
-                <span class="part-step-number">
-                  ${String(index + 1).padStart(2,"0")}
-                </span>
-
-                <span>
-                  ${escapeHtml(step)}
-                </span>
-
-              </div>
-            `)
-            .join("");
-
-        const popup =
-          document.createElement("div");
-
-        popup.className =
-          "recipe-part-popup";
-
-        popup.innerHTML = `
-
-          <div class="recipe-part-popup-inner">
-
-            <button
-              class="recipe-part-popup-close"
-              type="button"
-              aria-label="閉じる"
-            >
-              ×
-            </button>
-
-
-            <div class="recipe-part-popup-heading">
-
-              <small>
-                RECIPE PART
-              </small>
-
-              <h2>
-                ${escapeHtml(part.name)}
-              </h2>
-
-            </div>
-
-
-            <section>
-
-              <h3>
-                材料 / INGREDIENTS
-              </h3>
-
-              <div class="part-ingredients">
-                ${ingredientsHtml}
-              </div>
-
-            </section>
-
-
-            <section>
-
-              <h3>
-                つくりかた / HOW TO COOK
-              </h3>
-
-              <div class="part-steps">
-                ${stepsHtml}
-              </div>
-
-            </section>
-
-          </div>
-
-        `;
-
-
-        document.body.appendChild(popup);
-
-
-        requestAnimationFrame(() => {
-
-          popup.classList.add("is-open");
-
-        });
-
-
-        const closePopup = () => {
-
-          popup.classList.remove("is-open");
-
-          setTimeout(() => {
-
-            popup.remove();
-
-          },250);
-
-        };
-
-
-        popup
-          .querySelector(
-            ".recipe-part-popup-close"
-          )
-          .addEventListener(
-            "click",
-            closePopup
+          openRecipePartPopup(
+            part,
+            ingredientAmount
           );
 
-
-        popup.addEventListener(
-          "click",
-          event => {
-
-            if(event.target === popup){
-
-              closePopup();
-
-            }
-
-          }
-        );
-
-      });
+        }
+      );
 
     });
 
