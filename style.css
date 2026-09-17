@@ -1489,7 +1489,7 @@ body.tag-page-mode .tag-page {
     );
 
   box-shadow:
-    10px 12px 0 #8FAF72;
+    10px 12px 0 #8FAF72 !important;
 
   transform:
     translateY(20px)
