@@ -512,16 +512,6 @@ if (!recipe) {
 
               ${escapeHtml(item[0])}
 
-              ${
-                part
-                  ? `
-                    <small class="ingredient-part-label">
-                      PARTS RECIPE!
-                    </small>
-                  `
-                  : ""
-              }
-
             </span>
 
             <span class="ingredient-amount">
