@@ -1,21 +1,15 @@
 /* =================================
-   OPENING CONTROL
+   OPENING
 ================================= */
 
-const opening =
-  document.getElementById("opening");
+const opening = document.getElementById("opening");
 
-if (sessionStorage.getItem("openingPlayed")) {
-
-  opening.style.display = "none";
-
-} else {
-
-  sessionStorage.setItem(
-    "openingPlayed",
-    "true"
-  );
-
+if (opening) {
+  if (sessionStorage.getItem("openingPlayed")) {
+    opening.style.display = "none";
+  } else {
+    sessionStorage.setItem("openingPlayed", "true");
+  }
 }
 
 
@@ -24,7 +18,6 @@ if (sessionStorage.getItem("openingPlayed")) {
 ================================= */
 
 const perPage = 15;
-
 let currentPage = 1;
 
 
@@ -32,149 +25,106 @@ let currentPage = 1;
    ELEMENTS
 ================================= */
 
-const recipeGrid =
-  document.getElementById("recipeGrid");
-
-const pagination =
-  document.getElementById("pagination");
-
-const tagList =
-  document.getElementById("tagList");
-
-const searchInput =
-  document.getElementById("searchInput");
-
-const tagRecipeGrid =
-  document.getElementById("tagRecipeGrid");
-
-const tagPageTitle =
-  document.getElementById("tagPageTitle");
+const recipeGrid = document.getElementById("recipeGrid");
+const pagination = document.getElementById("pagination");
+const tagList = document.getElementById("tagList");
+const searchInput = document.getElementById("searchInput");
+const tagRecipeGrid = document.getElementById("tagRecipeGrid");
+const tagPageTitle = document.getElementById("tagPageTitle");
 
 
 /* =================================
    TAGS
 ================================= */
 
-function getAllTags(){
-
+function getAllTags() {
   const tags = new Set();
 
-  recipes.forEach(recipe=>{
-
-    recipe.tags.forEach(tag=>{
+  recipes.forEach(recipe => {
+    recipe.tags.forEach(tag => {
       tags.add(tag);
     });
-
   });
 
   return [
     "すべて",
     ...Array.from(tags)
   ];
-
 }
 
 
-function renderTags(){
+function renderTags() {
+  if (!tagList) {
+    return;
+  }
 
   tagList.innerHTML = "";
 
-  getAllTags().forEach(tag=>{
-
-    const button =
-      document.createElement("button");
+  getAllTags().forEach(tag => {
+    const button = document.createElement("button");
 
     button.className = "tag-button";
     button.type = "button";
     button.textContent = "#" + tag;
 
-
-    button.addEventListener(
-      "click",
-      ()=>{
-
-        const url =
-          "index.html?tag=" +
-          encodeURIComponent(tag);
-
-        window.location.href = url;
-
-      }
-    );
-
+    button.addEventListener("click", () => {
+      window.location.href =
+        "index.html?tag=" + encodeURIComponent(tag);
+    });
 
     tagList.appendChild(button);
-
   });
-
 }
 
 
 /* =================================
-   FILTER
+   SEARCH
 ================================= */
 
-function getFilteredRecipes(){
+function getFilteredRecipes() {
+  if (!searchInput) {
+    return recipes;
+  }
 
-  const keyword =
-    searchInput.value
-      .trim()
+  const keyword = searchInput.value
+    .trim()
+    .toLowerCase();
+
+  return recipes.filter(recipe => {
+    const ingredientText = recipe.ingredients
+      .map(item => `${item[0]} ${item[1]}`)
+      .join(" ");
+
+    const searchable = [
+      recipe.name,
+      recipe.searchText || "",
+      recipe.tags.join(" "),
+      ingredientText
+    ]
+      .join(" ")
       .toLowerCase();
 
-
-  return recipes.filter(recipe=>{
-
-    const ingredientText =
-      recipe.ingredients
-        .map(
-          item =>
-            item[0] + " " + item[1]
-        )
-        .join(" ");
-
-
-    const searchable = (
-      recipe.name +
-      " " +
-      recipe.searchText +
-      " " +
-      recipe.tags.join(" ") +
-      " " +
-      ingredientText
-    ).toLowerCase();
-
-
-    return (
-      !keyword ||
-      searchable.includes(keyword)
-    );
-
+    return !keyword || searchable.includes(keyword);
   });
-
 }
 
 
 /* =================================
-   CARD
+   RECIPE CARD
 ================================= */
 
-function createRecipeCard(recipe){
-
-  const card =
-    document.createElement("article");
+function createRecipeCard(recipe) {
+  const card = document.createElement("article");
 
   card.className = "recipe-card";
 
-
   card.innerHTML = `
     <div class="recipe-image">
-
       <img
-        src="${recipe.image}"
+        src="${escapeHtml(recipe.image)}"
         alt="${escapeHtml(recipe.name)}"
         loading="lazy"
       >
-
     </div>
 
     <div class="recipe-info">
@@ -184,101 +134,65 @@ function createRecipeCard(recipe){
       </h3>
 
       <div class="recipe-tags">
-
-        ${recipe.tags.map(tag=>`
-
+        ${recipe.tags.map(tag => `
           <span class="recipe-tag">
             #${escapeHtml(tag)}
           </span>
-
         `).join("")}
-
       </div>
 
     </div>
   `;
 
-
-  card.addEventListener(
-    "click",
-    ()=>{
-
-      window.location.href =
-        "recipe.html?id=" +
-        encodeURIComponent(recipe.id);
-
-    }
-  );
-
+  card.addEventListener("click", () => {
+    window.location.href =
+      "recipe.html?id=" + encodeURIComponent(recipe.id);
+  });
 
   return card;
-
 }
 
 
 /* =================================
-   MAIN RECIPE LIST
+   RECIPE LIST
 ================================= */
 
-function renderRecipes(){
-
-  const filtered =
-    getFilteredRecipes();
-
-
-  const totalPages =
-    Math.max(
-      1,
-      Math.ceil(
-        filtered.length / perPage
-      )
-    );
-
-
-  if(currentPage > totalPages){
-
-    currentPage = totalPages;
-
+function renderRecipes() {
+  if (!recipeGrid || !pagination) {
+    return;
   }
 
+  const filtered = getFilteredRecipes();
 
-  const start =
-    (currentPage - 1) * perPage;
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filtered.length / perPage)
+  );
 
+  if (currentPage > totalPages) {
+    currentPage = totalPages;
+  }
 
-  const visible =
-    filtered.slice(
-      start,
-      start + perPage
-    );
-
+  const start = (currentPage - 1) * perPage;
+  const visible = filtered.slice(start, start + perPage);
 
   recipeGrid.innerHTML = "";
 
-
-  if(!visible.length){
-
+  if (!visible.length) {
     recipeGrid.innerHTML = `
       <div class="empty">
         該当するレシピがありません。
       </div>
     `;
-
-  }else{
-
-    visible.forEach(recipe=>{
-
+  } else {
+    visible.forEach(recipe => {
       recipeGrid.appendChild(
         createRecipeCard(recipe)
       );
-
     });
-
   }
 
-
   renderPagination(totalPages);
-
 }
 
 
@@ -286,66 +200,43 @@ function renderRecipes(){
    PAGINATION
 ================================= */
 
-function renderPagination(totalPages){
-
-  pagination.innerHTML = "";
-
-
-  if(totalPages <= 1){
+function renderPagination(totalPages) {
+  if (!pagination) {
     return;
   }
 
+  pagination.innerHTML = "";
 
-  for(
-    let page = 1;
-    page <= totalPages;
-    page++
-  ){
+  if (totalPages <= 1) {
+    return;
+  }
 
-    const button =
-      document.createElement("button");
-
+  for (let page = 1; page <= totalPages; page++) {
+    const button = document.createElement("button");
 
     button.type = "button";
     button.textContent = page;
 
-
-    if(page === currentPage){
-
+    if (page === currentPage) {
       button.classList.add("active");
-
-      button.setAttribute(
-        "aria-current",
-        "page"
-      );
-
+      button.setAttribute("aria-current", "page");
     }
 
+    button.addEventListener("click", () => {
+      currentPage = page;
 
-    button.addEventListener(
-      "click",
-      ()=>{
+      renderRecipes();
 
-        currentPage = page;
-
-        renderRecipes();
-
-
-        document
-          .getElementById("recipes")
-          .scrollIntoView({
-            behavior:"smooth",
-            block:"start"
-          });
-
-      }
-    );
-
+      document
+        .getElementById("recipes")
+        ?.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+    });
 
     pagination.appendChild(button);
-
   }
-
 }
 
 
@@ -353,70 +244,50 @@ function renderPagination(totalPages){
    TAG PAGE
 ================================= */
 
-function getTagFromUrl(){
-
-  const params =
-    new URLSearchParams(
-      window.location.search
-    );
-
-  return params.get("tag");
-
-}
-
-
-function getTagRecipes(tag){
-
-  if(
-    !tag ||
-    tag === "すべて"
-  ){
-
-    return recipes;
-
-  }
-
-
-  return recipes.filter(recipe=>
-    recipe.tags.includes(tag)
+function getTagFromUrl() {
+  const params = new URLSearchParams(
+    window.location.search
   );
 
+  return params.get("tag");
 }
 
 
-function renderTagPage(){
+function getTagRecipes(tag) {
+  if (!tag || tag === "すべて") {
+    return recipes;
+  }
 
-  const tag =
-    getTagFromUrl();
+  return recipes.filter(recipe =>
+    recipe.tags.includes(tag)
+  );
+}
 
 
-  if(!tag){
+function renderTagPage() {
+  if (!tagRecipeGrid || !tagPageTitle) {
     return;
   }
 
+  const tag = getTagFromUrl();
 
-  document.body.classList.add(
-    "tag-page-mode"
-  );
+  if (!tag) {
+    return;
+  }
 
+  document.body.classList.add("tag-page-mode");
 
   document.title =
     "CHU dot COOKING | #" + tag;
 
-
   tagPageTitle.innerHTML =
     "#" + escapeHtml(tag);
 
-
-  const matched =
-    getTagRecipes(tag);
-
+  const matched = getTagRecipes(tag);
 
   tagRecipeGrid.innerHTML = "";
 
-
-  if(!matched.length){
-
+  if (!matched.length) {
     tagRecipeGrid.innerHTML = `
       <div class="empty">
         このタグのレシピはありません。
@@ -424,184 +295,136 @@ function renderTagPage(){
     `;
 
     return;
-
   }
 
-
-  matched.forEach(recipe=>{
-
+  matched.forEach(recipe => {
     tagRecipeGrid.appendChild(
       createRecipeCard(recipe)
     );
-
   });
-
 }
 
 
 /* =================================
-   ESCAPE
-================================= */
-
-function escapeHtml(value){
-
-  return String(value)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-
-/* =================================
-   HEADER NAV
-   ページ遷移・履歴追加なし
+   HEADER NAVIGATION
 ================================= */
 
 const navLinks =
-  document.querySelectorAll(
-    ".header-nav a"
-  );
+  document.querySelectorAll(".header-nav a");
 
 
-navLinks.forEach(link=>{
+navLinks.forEach(link => {
+  link.addEventListener("click", event => {
+    event.preventDefault();
 
-  link.addEventListener(
-    "click",
-    event=>{
+    const targetId =
+      link.getAttribute("href");
 
-      event.preventDefault();
+    const isTagPage =
+      document.body.classList.contains("tag-page-mode");
 
+    if (isTagPage) {
+      window.location.href =
+        "index.html" + targetId;
 
-      const targetId =
-        link.getAttribute("href");
-
-
-      const isTagPage =
-        document.body.classList.contains(
-          "tag-page-mode"
-        );
-
-
-      if(isTagPage){
-
-        window.location.href =
-          "index.html" + targetId;
-
-        return;
-
-      }
-
-
-      const target =
-        document.querySelector(
-          targetId
-        );
-
-
-      if(target){
-
-        target.scrollIntoView({
-          behavior:"smooth",
-          block:"start"
-        });
-
-      }
-
+      return;
     }
-  );
 
+    const target =
+      document.querySelector(targetId);
+
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  });
 });
 
 
-/* ロゴもトップへ */
-
-document
-  .querySelector(".header-logo")
-  .addEventListener(
-    "click",
-    event=>{
-
-      event.preventDefault();
-
-
-      window.scrollTo({
-        top:0,
-        behavior:"smooth"
-      });
-
-    }
-  );
-
-
 /* =================================
-   SEARCH
+   LOGO
 ================================= */
 
-searchInput.addEventListener(
-  "input",
-  ()=>{
+const headerLogo =
+  document.querySelector(".header-logo");
 
-    currentPage = 1;
 
-    renderRecipes();
+if (headerLogo) {
+  headerLogo.addEventListener("click", event => {
+    event.preventDefault();
 
-  }
-);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+}
 
 
 /* =================================
-   NAV ACTIVE
+   SEARCH EVENT
+================================= */
+
+if (searchInput) {
+  searchInput.addEventListener("input", () => {
+    currentPage = 1;
+    renderRecipes();
+  });
+}
+
+
+/* =================================
+   ACTIVE NAV
 ================================= */
 
 const sections =
   document.querySelectorAll(
-    "#home,#about,#recipes,#mood"
+    "#home, #about, #recipes, #mood"
   );
 
 
-function updateActiveNav(){
-
+function updateActiveNav() {
   const scrollPosition =
     window.scrollY + 180;
 
-
   let activeId = "home";
 
-
-  sections.forEach(section=>{
-
-    if(
-      scrollPosition >=
-      section.offsetTop
-    ){
-
+  sections.forEach(section => {
+    if (scrollPosition >= section.offsetTop) {
       activeId = section.id;
-
     }
-
   });
 
-
-  navLinks.forEach(link=>{
-
+  navLinks.forEach(link => {
     link.classList.toggle(
       "active",
       link.dataset.nav === activeId
     );
-
   });
-
 }
 
 
 window.addEventListener(
   "scroll",
   updateActiveNav,
-  {passive:true}
+  { passive: true }
 );
+
+
+/* =================================
+   ESCAPE HTML
+================================= */
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
 
 
 /* =================================
@@ -609,9 +432,6 @@ window.addEventListener(
 ================================= */
 
 renderTags();
-
 renderRecipes();
-
 renderTagPage();
-
 updateActiveNav();
