@@ -228,7 +228,7 @@ function openRecipePartPopup(
       <div class="recipe-part-popup-heading">
 
         <small>
-          RECIPE PART
+          PARTS RECIPE
         </small>
 
         <h2>
