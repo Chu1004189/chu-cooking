@@ -1572,7 +1572,7 @@ body.tag-page-mode .tag-page {
 }
 
 .part-recipe-meta-item span {
-  color: var(--orange);
+  color: #8FAF72;
 
   font-size: 9px;
   font-weight: 900;
@@ -1622,7 +1622,7 @@ body.tag-page-mode .tag-page {
 .part-ingredient span:last-child {
   white-space: nowrap;
 
-  color: var(--orange);
+  color: #8FAF72;
 
   font-weight: 900;
 }
