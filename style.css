@@ -1163,16 +1163,19 @@ body.tag-page-mode .tag-page {
 .recipe-part-ingredient {
   position: relative;
 
-  border-color: #8FAF72;
+  border: 2px solid #8FAF72;
 
   background:
     linear-gradient(
       135deg,
       #F0F5E8,
-      #fff
+      #FFFFFF
     );
 
   cursor: pointer;
+
+  box-shadow:
+    4px 4px 0 rgba(143, 175, 114, 0.28);
 
   transition:
     transform 0.2s ease,
@@ -1180,10 +1183,10 @@ body.tag-page-mode .tag-page {
 }
 
 .recipe-part-ingredient:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 
   box-shadow:
-    0 7px 18px rgba(255, 104, 31, 0.12);
+    6px 7px 0 rgba(143, 175, 114, 0.32);
 }
 
 .recipe-part-ingredient
