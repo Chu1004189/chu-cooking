@@ -448,7 +448,7 @@
     border-radius: 20px;
 
     box-shadow:
-      7px 8px 0 var(--orange);
+      7px 8px 0 #8FAF72 !important;
   }
 
   .recipe-part-popup-heading h2 {
